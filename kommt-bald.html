@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INJERA – Kommt bald</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  min-height: 100%;
+  background: #FFFFFF;
+  color: #111111;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px 110px;
+  text-align: center;
+}
+
+/* Logo */
+.logo-wrap { margin-bottom: 24px; }
+.logo-wrap img {
+  width: min(220px, 50vw);
+  height: auto;
+  object-fit: contain;
+}
+
+/* Name */
+.name {
+  font-family: 'Cormorant SC', 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 8vw, 64px);
+  font-weight: 700;
+  letter-spacing: clamp(4px, 2vw, 10px);
+  text-transform: uppercase;
+  color: #111;
+  line-height: 1;
+}
+
+/* Tagline */
+.tagline {
+  font-size: clamp(14px, 3vw, 20px);
+  font-weight: 400;
+  font-style: italic;
+  color: #555;
+  letter-spacing: 0.3px;
+  margin-top: 10px;
+  max-width: 360px;
+  line-height: 1.5;
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(260px, 70vw);
+  margin: 28px auto;
+}
+.divider-line { flex: 1; height: 1px; background: #C9973A; }
+.divider-dot  { width: 5px; height: 5px; border-radius: 50%; background: #C9973A; flex-shrink: 0; }
+
+/* Coming soon */
+.cs-text {
+  font-size: clamp(36px, 8vw, 64px);
+  font-weight: 400;
+  font-style: italic;
+  color: #111;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+}
+.cs-sub {
+  font-size: clamp(14px, 3vw, 18px);
+  font-weight: 400;
+  color: #444;
+  margin-top: 10px;
+  max-width: 340px;
+  line-height: 1.6;
+}
+
+/* Features */
+.features {
+  display: flex;
+  align-items: stretch;
+  margin-top: 28px;
+  background: #F8F6F3;
+  border-radius: 16px;
+  border: 1px solid #E5E0D8;
+  overflow: hidden;
+  width: min(360px, 90vw);
+}
+.feature {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px 16px;
+}
+.feature-icon { font-size: clamp(22px, 5vw, 28px); }
+.feature-label {
+  font-family: 'Cormorant SC', 'Cormorant Garamond', serif;
+  font-size: clamp(10px, 2.2vw, 13px);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #333;
+  line-height: 1.3;
+}
+.feature-sep {
+  width: 1px;
+  background: #E5E0D8;
+  align-self: stretch;
+}
+
+/* Location */
+.location {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 12px 24px;
+  background: #F8F6F3;
+  border-radius: 40px;
+  border: 1px solid #E5E0D8;
+}
+.location-icon { font-size: 16px; }
+.location-text {
+  font-size: clamp(14px, 3vw, 16px);
+  font-weight: 400;
+  color: #333;
+}
+
+/* Button */
+.email-btn {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 14px 36px;
+  background: #111;
+  color: #fff;
+  border-radius: 40px;
+  font-family: 'Cormorant SC', 'Cormorant Garamond', serif;
+  font-size: clamp(11px, 2.5vw, 13px);
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.email-btn:hover, .email-btn:active {
+  background: #333;
+  transform: translateY(-1px);
+}
+
+/* Credit footer */
+.credit {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  padding: 10px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: #F8F6F3;
+  border-top: 1px solid #E5E0D8;
+  font-family: 'Cormorant Garamond', serif;
+}
+.credit-label {
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+}
+.credit-link {
+  font-family: 'Cormorant SC', 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #444;
+  text-decoration: none;
+  border-bottom: 1px solid #C9973A;
+  padding-bottom: 1px;
+  transition: color 0.2s;
+}
+.credit-link:hover { color: #C9973A; }
+
+/* Animations */
+.page > * { animation: up 0.6s ease both; }
+.logo-wrap  { animation-delay: 0.05s; }
+.name       { animation-delay: 0.12s; }
+.tagline    { animation-delay: 0.18s; }
+.divider    { animation-delay: 0.24s; }
+.cs-text    { animation-delay: 0.30s; }
+.cs-sub     { animation-delay: 0.36s; }
+.features   { animation-delay: 0.42s; }
+.location   { animation-delay: 0.48s; }
+.email-btn  { animation-delay: 0.54s; }
+
+@keyframes up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Tablet (≥ 600px) ── */
+@media (min-width: 600px) {
+  .page { padding: 60px 40px 120px; }
+  .features { width: min(420px, 80vw); }
+}
+
+/* ── Desktop (≥ 1024px) ── */
+@media (min-width: 1024px) {
+  .page { padding: 80px 48px 130px; }
+  .logo-wrap img { width: 220px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="logo-wrap">
+    <img src="logo-seal-nobg.png" alt="Injera Restaurant">
+  </div>
+
+  <div class="name">Injera</div>
+  <div class="tagline">Eritreische &amp; Äthiopische Spezialitäten · Hamburg</div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-dot"></div>
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="cs-text">Kommt bald</div>
+  <div class="cs-sub">Unsere Website &amp; digitale Speisekarte sind in Kürze für Sie verfügbar.</div>
+
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">🌐</div>
+      <div class="feature-label">Website</div>
+    </div>
+    <div class="feature-sep"></div>
+    <div class="feature">
+      <div class="feature-icon">📋</div>
+      <div class="feature-label">Digitale Speisekarte</div>
+    </div>
+  </div>
+
+  <div class="location">
+    <span class="location-icon">📍</span>
+    <span class="location-text">Hamburg St. Georg</span>
+  </div>
+
+  <a class="email-btn" href="mailto:injera@gmail.com">Kontakt aufnehmen</a>
+
+</div>
+
+<div class="credit">
+  <div style="display:flex;gap:.2rem .3rem;flex-wrap:wrap;justify-content:center;margin-bottom:6px;">
+    <a href="impressum.html" style="font-family:'Lato',sans-serif;font-size:11px;color:#888;text-decoration:none;">Impressum</a>
+    <span style="color:#ccc;font-size:11px;">·</span>
+    <a href="datenschutz.html" style="font-family:'Lato',sans-serif;font-size:11px;color:#888;text-decoration:none;">Datenschutz</a>
+    <span style="color:#ccc;font-size:11px;">·</span>
+    <a href="agb.html" style="font-family:'Lato',sans-serif;font-size:11px;color:#888;text-decoration:none;">AGB</a>
+  </div>
+  <span class="credit-label">Made with <span style="color:#E0201A;">♥</span> by</span>
+  <a class="credit-link" href="https://salweb.de" target="_blank">salweb.de</a>
+</div>
+
+</body>
+</html>

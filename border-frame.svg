@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 794 1123">
+  <defs>
+    <pattern id="p" patternUnits="userSpaceOnUse" width="60" height="60" patternTransform="rotate(-45 0 0)">
+      <rect width="60" height="20" fill="#CE1126"/>
+      <rect y="20" width="60" height="20" fill="#4189DD"/>
+      <rect y="40" width="60" height="20" fill="#007A3D"/>
+    </pattern>
+    <clipPath id="tl"><polygon points="0,0 165,0 0,165"/></clipPath>
+    <clipPath id="tr"><polygon points="794,0 629,0 794,165"/></clipPath>
+    <clipPath id="bl"><polygon points="0,1123 165,1123 0,958"/></clipPath>
+    <clipPath id="br"><polygon points="794,1123 629,1123 794,958"/></clipPath>
+  </defs>
+
+  <!-- Streifen-Dreiecke in allen 4 Ecken -->
+  <rect width="794" height="1123" fill="url(#p)" clip-path="url(#tl)"/>
+  <rect width="794" height="1123" fill="url(#p)" clip-path="url(#tr)"/>
+  <rect width="794" height="1123" fill="url(#p)" clip-path="url(#bl)"/>
+  <rect width="794" height="1123" fill="url(#p)" clip-path="url(#br)"/>
+
+  <!-- Dünne Goldlinie entlang der Hypotenuse -->
+  <line x1="165" y1="0"   x2="0"   y2="165"  stroke="#C9973A" stroke-width="1.5" opacity="0.7"/>
+  <line x1="629" y1="0"   x2="794" y2="165"  stroke="#C9973A" stroke-width="1.5" opacity="0.7"/>
+  <line x1="0"   y1="958" x2="165" y2="1123" stroke="#C9973A" stroke-width="1.5" opacity="0.7"/>
+  <line x1="794" y1="958" x2="629" y2="1123" stroke="#C9973A" stroke-width="1.5" opacity="0.7"/>
+</svg>

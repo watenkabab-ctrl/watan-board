@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 520" width="200" height="520">
+  <defs>
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#c8102e;stop-opacity:0.85"/>
+      <stop offset="25%" style="stop-color:#e8182e;stop-opacity:0.9"/>
+      <stop offset="50%" style="stop-color:#ff4d5e;stop-opacity:0.95"/>
+      <stop offset="75%" style="stop-color:#e8182e;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#8b0000;stop-opacity:0.85"/>
+    </linearGradient>
+    <linearGradient id="capGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#777;stop-opacity:1"/>
+      <stop offset="40%" style="stop-color:#bbb;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#888;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="shineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fff;stop-opacity:0"/>
+      <stop offset="30%" style="stop-color:#fff;stop-opacity:0.35"/>
+      <stop offset="55%" style="stop-color:#fff;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#fff;stop-opacity:0"/>
+    </linearGradient>
+    <linearGradient id="labelGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a00010;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#c8102e;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#a00010;stop-opacity:1"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="4" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <!-- Flaschenhals oben (Krone) -->
+    <rect x="84" y="28" width="32" height="12" rx="4" fill="url(#capGrad)"/>
+    <rect x="80" y="36" width="40" height="8" rx="3" fill="#999"/>
+
+    <!-- Hals -->
+    <path d="M88,44 L88,90 Q88,96 84,100 L72,118 Q68,124 68,132 L68,148"
+          fill="url(#glassGrad)" stroke="none"/>
+    <path d="M112,44 L112,90 Q112,96 116,100 L128,118 Q132,124 132,132 L132,148"
+          fill="url(#glassGrad)" stroke="none"/>
+    <!-- Hals Vorderseite -->
+    <rect x="88" y="44" width="24" height="46" rx="2" fill="url(#glassGrad)"/>
+
+    <!-- Schulter -->
+    <path d="M68,148 Q64,160 62,175 L62,185 L138,185 L138,175 Q136,160 132,148 Z"
+          fill="url(#glassGrad)"/>
+
+    <!-- Körper -->
+    <path d="M62,185 L58,210 L56,260 L56,360 L58,390 L62,410 L138,410 L142,390 L144,360 L144,260 L142,210 L138,185 Z"
+          fill="url(#glassGrad)"/>
+
+    <!-- Taille (klassische Coca-Cola Form) -->
+    <path d="M56,280 Q50,295 50,310 Q50,325 56,340"
+          stroke="url(#glassGrad)" stroke-width="8" fill="none"/>
+    <path d="M144,280 Q150,295 150,310 Q150,325 144,340"
+          stroke="url(#glassGrad)" stroke-width="8" fill="none"/>
+    <!-- Taille fill -->
+    <path d="M56,280 Q50,295 50,310 Q50,325 56,340 L144,340 Q150,325 150,310 Q150,295 144,280 Z"
+          fill="url(#glassGrad)"/>
+
+    <!-- Boden -->
+    <path d="M62,410 Q60,422 62,432 L138,432 Q140,422 138,410 Z"
+          fill="url(#glassGrad)"/>
+    <ellipse cx="100" cy="432" rx="38" ry="8" fill="#8b0000" opacity="0.6"/>
+
+    <!-- Label Hintergrund -->
+    <path d="M57,210 L57,278 Q57,282 62,282 L138,282 Q143,282 143,278 L143,210 Q143,206 138,206 L62,206 Q57,206 57,210 Z"
+          fill="url(#labelGrad)"/>
+
+    <!-- Label Text: Coca-Cola Stil -->
+    <text x="100" y="242"
+          font-family="Georgia, serif" font-size="19" font-weight="bold" font-style="italic"
+          fill="white" text-anchor="middle" letter-spacing="0.5">Coca-Cola</text>
+    <line x1="65" y1="250" x2="135" y2="250" stroke="white" stroke-width="1" opacity="0.6"/>
+    <text x="100" y="265"
+          font-family="Arial, sans-serif" font-size="9" font-weight="normal"
+          fill="white" text-anchor="middle" letter-spacing="2" opacity="0.85">CLASSIC</text>
+
+    <!-- Label Taille -->
+    <path d="M57,342 L57,390 Q57,394 62,394 L138,394 Q143,394 143,390 L143,342 Q143,338 138,338 L62,338 Q57,338 57,342 Z"
+          fill="url(#labelGrad)"/>
+    <text x="100" y="368"
+          font-family="Georgia, serif" font-size="13" font-weight="bold" font-style="italic"
+          fill="white" text-anchor="middle">Coca-Cola</text>
+    <text x="100" y="383"
+          font-family="Arial, sans-serif" font-size="8"
+          fill="white" text-anchor="middle" letter-spacing="1" opacity="0.8">330 ml</text>
+
+    <!-- Glanzeffekt -->
+    <path d="M68,44 L68,90 Q68,96 64,100 L58,114 L58,410 Q68,185 72,185 L72,100 Q76,96 76,90 L76,44 Z"
+          fill="url(#shineGrad)"/>
+    <path d="M68,210 L68,278 L76,278 L76,210 Z" fill="white" opacity="0.12"/>
+    <path d="M68,342 L68,390 L76,390 L76,342 Z" fill="white" opacity="0.12"/>
+  </g>
+</svg>

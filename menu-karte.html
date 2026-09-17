@@ -1,0 +1,2731 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=794px">
+<meta name="robots" content="noindex,nofollow"/>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Injera Restaurant — Speisekarte</title>
+<link rel="stylesheet" href="fonts/fonts.css"/>
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  background: #E8E4DC;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.page-outer {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* ═══════════════════════════════════
+   A4 PAGE  794 × 1123 px
+═══════════════════════════════════ */
+.page {
+  width: 794px;
+  height: 1123px;
+  position: absolute;
+  top: 0; left: 0;
+  overflow: hidden;
+  background-color: #FDFAF4;
+  background-image:
+    linear-gradient(rgba(253,250,244,0.92), rgba(253,250,244,0.92)),
+    repeating-linear-gradient(60deg,rgba(201,151,58,.13) 0,rgba(201,151,58,.13) 1px,transparent 1px,transparent 30px),
+    repeating-linear-gradient(-60deg,rgba(201,151,58,.13) 0,rgba(201,151,58,.13) 1px,transparent 1px,transparent 30px),
+    repeating-linear-gradient(0deg,rgba(201,151,58,.06) 0,rgba(201,151,58,.06) 1px,transparent 1px,transparent 30px);
+  transform-origin: top left;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.28), 0 1px 6px rgba(0,0,0,0.14);
+}
+
+/* ═══ GOLDENER INNENRAHMEN ═══════════════════════════════════════════════ */
+.page::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  z-index: 200;
+  pointer-events: none;
+  border: 1.5px solid rgba(201,151,58,0.50);
+}
+
+
+/* ═══ FLAGGEN-STREIFEN RAHMEN ══════════════════════ */
+.pattern-top,
+.pattern-bottom {
+  position: absolute;
+  left: 0; right: 0;
+  height: 18px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+}
+.pattern-top    { display: none; }
+.pattern-bottom { display: none; }
+
+/* ── Seitenleiste links & rechts ── */
+.page-side-pat {
+  position: absolute;
+  top: 8px; bottom: 8px;
+  width: 22px;
+  z-index: 30;
+  pointer-events: none;
+  clip-path: inset(0); /* clips rotated children by visual position */
+}
+.page-side-pat-l { left: 8px; }
+.page-side-pat-r { right: 8px; }
+
+/*
+  LEFT strip: logical x=22..1129, y=1085..1107 (bottom-right of wrapper)
+  After rotate(-90deg) around (left=22, bottom=0 → wrapper-bottom):
+  visually fills x=0..22, y=0..1107 ✓
+*/
+.page-side-pat-l .pat-inner {
+  position: absolute;
+  left: 22px;
+  bottom: 0;
+  width: 1107px; /* = wrapper height (1123-8-8) */
+  height: 22px;
+  transform: rotate(-90deg);
+  transform-origin: left bottom;
+  background: url('tibeb-border.png') top center / 1107px auto no-repeat;
+  opacity: 0.20;
+  mix-blend-mode: multiply;
+}
+
+/*
+  RIGHT strip: logical x=-1107..0, y=0..22 (top-left of wrapper)
+  After rotate(90deg) around (right=22 → x=0 of wrapper, top=0):
+  visually fills x=0..22, y=0..1107 ✓
+*/
+.page-side-pat-r .pat-inner {
+  position: absolute;
+  right: 22px;
+  top: 0;
+  width: 1107px;
+  height: 22px;
+  transform: rotate(90deg);
+  transform-origin: right top;
+  background: url('tibeb-border.png') top center / 1107px auto no-repeat;
+  opacity: 0.20;
+  mix-blend-mode: multiply;
+}
+
+/* Goldene Trennlinie innen */
+.page-side-pat-l::after,
+.page-side-pat-r::after {
+  content: '';
+  position: absolute;
+  top: 8%; bottom: 8%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(201,151,58,.50) 25%, rgba(201,151,58,.50) 75%, transparent);
+}
+.page-side-pat-l::after { right: 0; }
+.page-side-pat-r::after { left: 0; }
+
+@media print {
+  .page-side-pat-l .pat-inner,
+  .page-side-pat-r .pat-inner { opacity: 0.10 !important; }
+}
+
+/* ── Eritreischer Flaggenstreifen — vertikal rechts (entfernt) ── */
+.eritrea-stripe {
+  display: none;
+}
+
+/* Streifen: Grün / Gold / Rot */
+.pattern-top::before,
+.pattern-top::after,
+.pattern-bottom::before,
+.pattern-bottom::after { display: none; }
+
+.pattern-top {
+  background: linear-gradient(180deg,
+    #007A3D 0% 33.3%,
+    #4189DD 33.3% 66.6%,
+    #CE1126 66.6% 100%
+  );
+}
+.pattern-bottom {
+  background: linear-gradient(180deg,
+    #CE1126 0% 33.3%,
+    #4189DD 33.3% 66.6%,
+    #007A3D 66.6% 100%
+  );
+}
+
+/* Bilder ausblenden — reine CSS-Streifen */
+.pattern-top img,
+.pattern-bottom img { display: none; }
+
+/* ═══ SEITENINHALT — VOLLSEITE ══════════ */
+.content {
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  z-index: 5;
+  padding: 6px 28px 10px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 0;
+}
+
+
+/* ── Keine Gerichtnummern ── */
+.dish-name::before { display: none; }
+
+/* ── Allergenvermerk ── */
+.allergen-note {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding: 5px 12px 4px;
+  border-top: 1px solid rgba(180,130,20,0.30);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.allergen-note::before {
+  content: '✦';
+  font-size: 9px;
+  color: #C9A200;
+  flex-shrink: 0;
+}
+.allergen-note span {
+  font-family: 'Lato',sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  color: #5C3A1E;
+  line-height: 1.5;
+  letter-spacing: 0.1px;
+}
+
+/* ─── Kopfbereich ─── */
+.header-area {
+  text-align: center;
+  flex-shrink: 0;
+  padding: 6px 0 4px;
+}
+
+.restaurant-label {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 7px;
+  color: #8A6840;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.category-name {
+  font-family: 'Cormorant Garamond',Georgia,serif;
+  font-size: 50px;
+  font-weight: 700;
+  font-style: italic;
+  color: #5C3A1E;
+  line-height: 1.05;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 12px rgba(80,28,5,0.06);
+  letter-spacing: 1px;
+}
+
+.flag-rule {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.flag-rule-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(139,69,0,0.65), rgba(166,124,0,0.55), rgba(139,69,0,0.65), transparent);
+}
+.flag-diamonds { display: flex; gap: 10px; align-items: center; }
+.flag-diamonds span {
+  display: block;
+  width: 11px; height: 11px;
+  transform: rotate(45deg);
+  border-radius: 1px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.22);
+}
+.fd-g { background: #007A3D; }
+.fd-y { background: #4189DD; }
+.fd-r { background: #C9A200; }
+
+/* ═══ MENÜ-ITEM ═════════════════════════ */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 0 0 auto;
+  padding: 2px 0;
+}
+.item.rev { flex-direction: row-reverse; }
+
+/* Text-Block */
+.bubble {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: 4px 12px;
+  background: transparent;
+}
+.bubble-svg { display: none; }
+.bubble-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 10px;
+  row-gap: 2px;
+  align-items: baseline;
+}
+
+.dish-name {
+  font-family: 'Cormorant Garamond',Georgia,serif;
+  font-size: 25px;
+  font-weight: 700;
+  font-style: italic;
+  color: #5C3A1E;
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+  margin: 0;
+  grid-column: 1;
+  grid-row: 1;
+}
+.dish-nr {
+  display: block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid #21546A;
+  font-family: 'Cormorant SC','Cormorant Garamond',serif;
+  font-style: normal;
+  font-size: 15px;
+  font-weight: 700;
+  color: #21546A;
+  letter-spacing: 0;
+  margin-bottom: 7px;
+}
+.dish-name-am {
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #555555;
+  letter-spacing: 0.4px;
+  opacity: 0.9;
+  margin: 0;
+  grid-column: 1 / -1;
+}
+.dish-subtitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 500;
+  color: #1a1a1a;
+  letter-spacing: 0.3px;
+  margin: 2px 0 4px;
+  grid-column: 1 / -1;
+}
+.dish-desc {
+  font-family: 'Lato',sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  font-style: normal;
+  color: #2E1A0E;
+  line-height: 1.6;
+  margin: 0;
+  grid-column: 1 / -1;
+}
+.dish-price {
+  font-family: 'Dancing Script', cursive;
+  font-size: 25px;
+  font-weight: 500;
+  font-style: italic;
+  color: #1a1a1a;
+  line-height: 1.1;
+  white-space: nowrap;
+  margin: 0;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+}
+.dish-price-multi {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  width: 100%;
+  grid-column: 1 / -1;
+}
+.price-row {
+  display: grid;
+  grid-template-columns: 145px 1fr;
+  align-items: baseline;
+  gap: 0 6px;
+}
+.price-label {
+  font-family: 'Lato',sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  font-style: normal;
+  color: #2E1A0E;
+  line-height: 1.4;
+}
+.price-val {
+  font-family: 'Dancing Script', cursive;
+  font-size: 25px;
+  font-weight: 500;
+  font-style: italic;
+  color: #1a1a1a;
+  white-space: nowrap;
+  line-height: 1.2;
+  text-align: right;
+}
+
+/* Eritreische Flaggen-Leiste */
+.flag-bar {
+  flex-shrink: 0;
+  width: 2px;
+  align-self: stretch;
+  margin: 4px 2px;
+  border-radius: 4px;
+  background: linear-gradient(180deg,
+    #007A3D  0%    33.3%,
+    #4189DD  33.3% 66.6%,
+    #CE1126  66.6% 100%
+  );
+  opacity: 0.45;
+  box-shadow: none;
+}
+
+/* Foto — feste Box für einheitliche Größe */
+.photo-wrap {
+  flex-shrink: 0;
+  position: relative;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.photo-ring { display: none; }
+.photo-img {
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+  display: block;
+  mix-blend-mode: multiply;
+  filter:
+    drop-shadow(0 4px 14px rgba(80,30,5,0.18))
+    drop-shadow(0 2px 4px rgba(80,30,5,0.10));
+}
+
+/* Mondsichel */
+.crescent { display: none; }
+.crescent.cr-l { display: none; }
+.crescent::after {
+  content: '';
+  display: block;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--crescent-color, #007A3D);
+  opacity: 0.85;
+}
+.cr-r { top: 3px; right: 3px; }
+.cr-r::after { transform: translateX(-5px); }
+.cr-l { top: 3px; left: 3px; }
+.cr-l::after { transform: translateX(5px); }
+
+/* Trennlinie — ausgeblendet, space-between übernimmt den Abstand */
+.item-sep { display: none; }
+
+/* ═══ GETRÄNKE-LISTE ════════════════════ */
+.list-cols {
+  display: flex;
+  gap: 32px;
+  flex: 1;
+  min-height: 0;
+}
+.list-col { flex: 1; display: flex; flex-direction: column; gap: 18px; }
+.list-section-title {
+  font-family: 'Cormorant Garamond',Georgia,serif;
+  font-size: 38px; font-weight: 700; font-style: italic; color: #5C3A1E;
+  border-bottom: 1px solid rgba(130,90,30,0.28); padding-bottom: 5px; margin-bottom: 2px;
+}
+.drink-row {
+  display: flex; align-items: baseline; gap: 6px;
+  font-family: 'Lato',sans-serif; font-size: 18px; color: #2E1A0E; font-weight: 400;
+}
+.drink-row-name { flex-shrink: 0; }
+.drink-row-sub { font-size: 14px; color: #2E1A0E; font-style: normal; }
+.drink-row-dot { flex: 1; border-bottom: 1px dotted rgba(0,0,0,0.25); margin-bottom: 3px; }
+.drink-row-price {
+  font-family: 'Dancing Script', cursive; font-size: 18px; font-weight: 700; font-style: italic; color: #1a1a1a; white-space: nowrap; flex-shrink: 0;
+}
+
+.bubble-inner::before { display: none; }
+
+.page-pattern .fd-g,
+.page-hauptspeisen .fd-g { background: #007A3D; }
+.page-pattern .fd-y,
+.page-hauptspeisen .fd-y { background: #4189DD; }
+.page-pattern .fd-r,
+.page-hauptspeisen .fd-r { background: #C9A200; }
+.page-pattern .flag-bar {
+  background: linear-gradient(180deg, #007A3D 0% 25%, #C9A200 25% 75%, #007A3D 75% 100%);
+}
+
+/* ─── Trennlinie — unsichtbar ─── */
+.item-sep {
+  flex-shrink: 0;
+  height: 8px;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════
+   GETRÄNKE ALTERNATING BANDS
+══════════════════════════════════════ */
+.drink-bands {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+}
+.drink-band {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex: 1;
+  gap: 20px;
+  min-height: 0;
+  background: rgba(255,253,248,0.72);
+  border: 1px solid rgba(139,72,18,0.20);
+  border-radius: 18px;
+  padding: 14px 18px;
+  position: relative;
+  overflow: hidden;
+}
+.drink-band::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,252,230,0.28) 0%, transparent 65%);
+  pointer-events: none;
+}
+.drink-band.rev { flex-direction: row-reverse; }
+.drink-band-photo {
+  flex-shrink: 0;
+  width: 210px;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; z-index: 1;
+}
+.drink-band-photo img {
+  max-width: 210px;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 16px rgba(80,30,5,0.22)) drop-shadow(0 2px 5px rgba(80,30,5,0.12));
+}
+.drink-band-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  min-width: 0;
+  position: relative; z-index: 1;
+}
+.drink-cat { display: flex; flex-direction: column; gap: 3px; }
+.drink-cat-title {
+  font-family: 'Cormorant Garamond',Georgia,serif;
+  font-size: 40px;
+  font-weight: 700;
+  font-style: italic;
+  color: #5C3A1E;
+  margin: 0 0 4px 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(139,72,18,0.25);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.drink-cat-title-am {
+  font-family: sans-serif;
+  font-size: 9px;
+  color: #7A5600;
+  font-weight: 400;
+}
+.drink-cat-items { display: flex; flex-direction: column; gap: 2px; }
+.dcard-row {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-family: 'Lato',sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #2E1A0E;
+  line-height: 1.4;
+}
+.dcard-row-name { flex-shrink: 0; }
+.dcard-row-sub { font-size: 14px; color: #2E1A0E; font-style: normal; }
+.dcard-row-dot { flex: 1; border-bottom: 1px dotted rgba(0,0,0,0.25); margin-bottom: 2px; min-width: 6px; }
+.dcard-row-price {
+  font-family: 'Dancing Script', cursive;
+  font-size: 18px;
+  font-weight: 700;
+  font-style: italic;
+  color: #1a1a1a;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════
+   KAFFEEZEREMONIE SPEZIAL-LAYOUT
+══════════════════════════════════════ */
+.kaffee-hero {
+  width: calc(100% + 56px);
+  margin-left: -28px;
+  height: 170px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  margin-bottom: 8px;
+}
+.kaffee-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+}
+.kaffee-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(245,239,226,0.10) 0%,
+    rgba(245,239,226,0.55) 100%);
+}
+.kaffee-desc {
+  font-family: 'Lato',sans-serif;
+  font-size: 13px;
+  color: #2E1A0E;
+  line-height: 1.65;
+  text-align: justify;
+  font-style: normal;
+  margin: 0 0 8px;
+}
+.kaffee-price-grid {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+.kaffee-bottom-img {
+  flex: 1;
+  margin-top: 10px;
+  width: calc(100% + 56px);
+  margin-left: -28px;
+  min-height: 250px;
+  overflow: hidden;
+}
+.kaffee-bottom-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+}
+.kaffee-price-tile {
+  flex: 1;
+  background: rgba(255,252,240,0.92);
+  border: 1px solid rgba(201,162,0,0.40);
+  border-radius: 6px;
+  padding: 9px 4px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.kpt-person {
+  font-family: 'Lato',sans-serif;
+  font-size: 12px;
+  color: #2E1A0E;
+}
+.kpt-price {
+  font-family: 'Dancing Script', cursive;
+  font-size: 18px;
+  color: #1a1a1a;
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* ══════════════════════════════════════
+   KAFFEE-ITEMS KARTEN
+══════════════════════════════════════ */
+.kaffee-cards {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+}
+.kaffee-card {
+  flex: 1;
+  background: rgba(255,253,248,0.92);
+  border: 1.5px solid rgba(139,72,18,0.28);
+  border-radius: 16px;
+  padding: 12px 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  box-shadow: 0 3px 10px rgba(100,40,8,0.08), inset 0 1px 0 rgba(255,245,210,0.60);
+  position: relative;
+  overflow: hidden;
+}
+.kaffee-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 40%;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,252,230,0.50) 0%, transparent 70%);
+  pointer-events: none;
+}
+.kaffee-card-title {
+  font-family: 'Cormorant Garamond',Georgia,serif;
+  font-size: 15px;
+  font-weight: 700;
+  font-style: italic;
+  color: #5C3A1E;
+  border-bottom: 1px solid rgba(139,72,18,0.22);
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+}
+.kaffee-card-desc {
+  font-family: 'Lato',sans-serif;
+  font-size: 11.5px;
+  color: #2E1A0E;
+  line-height: 1.55;
+  margin-bottom: 6px;
+  flex: 1;
+}
+.kaffee-card-row {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-family: 'Lato',sans-serif;
+  font-size: 13px;
+  color: #2E1A0E;
+  margin-bottom: 3px;
+}
+.kaffee-card-row-name { flex-shrink: 0; }
+.kaffee-card-dot {
+  flex: 1;
+  border-bottom: 1px dotted rgba(0,0,0,0.25);
+  margin-bottom: 3px;
+}
+.kaffee-card-row-price {
+  font-family: 'Dancing Script', cursive;
+  font-size: 18px;
+  font-weight: 700;
+  font-style: italic;
+  color: #1a1a1a;
+  flex-shrink: 0;
+}
+.kaffee-card-big-price {
+  font-family: 'Dancing Script', cursive;
+  font-size: 22px;
+  font-weight: 700;
+  font-style: italic;
+  color: #1a1a1a;
+  text-align: center;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+/* ══════════════════════════════════════
+   SEITEN-TRENNORNAMENT (nur Bildschirm)
+══════════════════════════════════════ */
+.page-sep {
+  width: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #E8E0D4;
+  position: relative;
+  z-index: 2;
+}
+.page-sep::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center center;
+  opacity: 0.20;
+}
+.page-sep { display: none !important; }
+
+/* ══════════════════════════════════════
+   DECKBLATT — Logo zentriert
+══════════════════════════════════════ */
+.page-cover2 {
+  background: #FDFAF4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.cover2-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+  gap: 0;
+}
+.cover2-logo-row {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 0;
+}
+.cover2-seal {
+  height: 354px;
+  width: auto;
+  display: block;
+}
+.cover2-injera-text {
+  font-family: 'Cormorant SC','Cormorant Garamond',serif;
+  font-size: 122px;
+  font-weight: 900;
+  color: #21546A;
+  line-height: 1;
+  letter-spacing: 6px;
+  white-space: nowrap;
+  text-align: center;
+}
+.cover2-subtitle-band {
+  background: transparent;
+  width: 100%;
+  padding: 14px 0 0;
+  text-align: center;
+}
+.cover2-subtitle-text {
+  font-family: 'Cormorant SC','Cormorant Garamond',serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #21546A;
+  letter-spacing: 2px;
+}
+.cover2-qr-wrap {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+/* Kreisförmiger Siegel-Rahmen — gleicher Stil wie Logo */
+.cover2-qr-seal {
+  width: 200px;
+  height: 200px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 2px solid #21546A;
+  box-shadow: 0 0 0 1px #C9973A, 0 4px 16px rgba(33,84,106,0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+#cover-qr-code,
+#cover-qr-code-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#cover-qr-code canvas, #cover-qr-code img,
+#cover-qr-code-2 canvas, #cover-qr-code-2 img { display: block; }
+.cover2-qr-label {
+  font-family: 'Cormorant SC','Cormorant Garamond',serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #21546A;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+.cover2-qr-sublabel {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #21546A;
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin-top: 3px;
+}
+.cover2-deco-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════
+   DECKBLATT / COVER PAGE — heller Stil
+══════════════════════════════════════ */
+.cover-page .content {
+  padding: 18px 48px 22px;
+  align-items: center;
+  text-align: center;
+}
+.cover-top-label {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 7px;
+  color: #8A6840;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  margin-bottom: 18px;
+}
+.cover-logo-wrap {
+  width: 280px;
+  height: 280px;
+  flex-shrink: 0;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 6px 22px rgba(100,40,8,0.18));
+}
+.cover-logo { width: 100%; height: 100%; }
+.cover-name {
+  font-family: 'Cormorant Garamond',Georgia,serif;
+  font-size: 74px;
+  font-weight: 700;
+  font-style: italic;
+  color: #5C3A1E;
+  letter-spacing: 3px;
+  line-height: 1;
+  flex-shrink: 0;
+  text-shadow: 0 2px 12px rgba(80,28,5,0.14), 0 1px 0 rgba(255,238,195,0.45);
+}
+.cover-rest-label {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 10px;
+  color: #8A6840;
+  text-transform: uppercase;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+.cover-flag-rule { display: none; }
+.cover-flag-diamonds { display: none; }
+.cover-tagline {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 21px;
+  font-weight: 400;
+  font-style: italic;
+  color: #7A5538;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+.cover-tagline-am {
+  font-family: sans-serif;
+  font-size: 12px;
+  color: #A67C00;
+  margin-top: 8px;
+  flex-shrink: 0;
+  opacity: 0.88;
+}
+.cover-spacer { flex: 1; min-height: 0; }
+.cover-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  flex-shrink: 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(130,90,30,0.22);
+}
+.cover-address {
+  text-align: left;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 13.5px;
+  color: #7A5538;
+  line-height: 1.9;
+}
+.cover-address strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #5C3A1E;
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+}
+.cover-qr-wrap { text-align: center; }
+.cover-qr-img {
+  width: 96px;
+  height: 96px;
+  display: block;
+}
+.cover-qr-label {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 9.5px;
+  letter-spacing: 4px;
+  color: #8A6840;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+/* ══════════════════════════════════════
+   DECKBLATT — MINIMALIST MIT FARBEN
+══════════════════════════════════════ */
+.page-cover {
+  background: #FDFAF4;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cover-deco {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.cover-center {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+}
+.cover-logo-img {
+  width: 660px;
+  max-width: 88%;
+  display: block;
+  margin-bottom: 10px;
+}
+.cover-rule {
+  width: 55%;
+  height: 2px;
+  background: #21546A;
+  margin-bottom: 16px;
+}
+.cover-subtitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 19px;
+  color: #21546A;
+  letter-spacing: 3.5px;
+  margin-bottom: 48px;
+  text-transform: uppercase;
+}
+.cover-menu {
+  font-family: 'Dancing Script', cursive;
+  font-size: 72px;
+  font-weight: 700;
+  color: #5C3A1E;
+  line-height: 1;
+}
+
+/* ══════════════════════════════════════
+   PRINT — A4 300 DPI HEFT
+══════════════════════════════════════ */
+
+/* Hintergründe & Farben beim Drucken erhalten */
+*, *::before, *::after {
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+/* ── Willkommen Seite — mit Hintergrundbild wie andere Seiten ── */
+.page-willkommen::after {
+  background: rgba(253,250,244,0.55) !important;
+}
+.page-willkommen .willkommen-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 25% 60px 40px;
+  height: calc(100% - 40px);
+  margin-top: 40px;
+  position: relative;
+  z-index: 6;
+}
+.willkommen-title {
+  font-family: 'Lato',sans-serif;
+  font-size: 76px;
+  font-weight: 800;
+  color: #1A1210;
+  margin: 0 0 8px;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.willkommen-sub {
+  font-family: 'Lato',sans-serif;
+  font-size: 16.5px;
+  font-weight: 700;
+  color: #0E0804;
+  margin: 0 0 22px;
+  line-height: 1.4;
+}
+.willkommen-body {
+  font-family: 'Lato',sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #0E0804;
+  margin: 0 0 14px;
+  line-height: 1.62;
+  text-align: justify;
+}
+
+@page {
+  size: 210mm 297mm;
+  margin: 0;
+}
+
+/* ── Lochmarkierungen (nur Print) ── */
+@media screen {
+  .hole-markers { display: none; }
+}
+@media print {
+  .hole-markers {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: -18mm;
+    right: auto;
+    width: 8mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8mm 0;
+    pointer-events: none;
+    z-index: 999;
+  }
+  .hole-marker {
+    width: 5mm;
+    height: 5mm;
+    border-radius: 50%;
+    border: 0.4mm solid rgba(0,0,0,0.35);
+    background: white;
+    align-self: center;
+  }
+}
+
+/* ── Seitenende-Markierung: entfernt ── */
+.page-outer::before, .page-outer::after { content: none; }
+
+/* ─── Lochmarkierungen (Bildschirm: ausgeblendet) ─── */
+/* ─── Druckoptimierung ─── */
+
+@media print {
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  html, body {
+    width: 210mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #FDFAF4 !important;
+    display: block !important;
+  }
+
+  .page-sep { display: none !important; }
+
+  .page-outer {
+    width: 210mm !important;
+    height: 297mm !important;
+    overflow: hidden !important;
+    position: relative !important;
+    break-after: page;
+    page-break-after: always;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .page-outer:last-child {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* Heftrand / Lochmarkierungen entfernt */
+  .page-outer::before {
+    content: none;
+  }
+
+  .page {
+    transform: none !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    background: #FDFAF4 !important;
+    background-image: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Dreiecke jetzt in ::before — ::after nicht verwenden */
+  .page::after {
+    content: none !important;
+  }
+
+  /* Animiertes Canvas gehört nicht in den Druck */
+  #art-bg { display: none !important; }
+
+  img {
+    image-rendering: smooth !important;
+    image-rendering: high-quality !important;
+  }
+
+  /* ── Fotos: A4-optimiert ── */
+  .photo-wrap { width: 264px !important; height: 264px !important; }
+  .photo-img  { width: 264px !important; height: 264px !important; object-fit: contain !important; }
+
+  /* ── Milkshakes & Säfte: größere Fotos ── */
+  .page-safte-milkshake .photo-wrap { width: 360px !important; height: 360px !important; }
+  .page-safte-milkshake .photo-img  { width: 360px !important; height: 360px !important; object-fit: cover !important; }
+  .page-fritz-bier .item.rev .photo-wrap { width: 160px !important; height: 310px !important; overflow: visible !important; }
+  .page-fritz-bier .item.rev .photo-img  { width: 160px !important; height: 310px !important; object-fit: contain !important; }
+
+  /* ── Schrift: A4-optimiert ── */
+  .category-name { font-size: 38px !important; line-height: 1.1 !important; }
+  .dish-name     { font-size: 25px !important; line-height: 1.2 !important; color: #000000 !important; }
+  .dish-name-am  { font-size: 12px !important; }
+  .dish-desc     { font-size: 15px !important; font-weight: 300 !important; line-height: 1.5 !important; color: #000000 !important; }
+  /* ── Einheitliche Preis-Badge für ALLE Bereiche ── */
+  .dish-price,
+  .price-val,
+  .dcard-row-price,
+  .drink-row-price,
+  .kp-row span:last-child,
+  .kpt-price,
+  .kaffee-card-row-price,
+  .kaffee-card-big-price {
+    display: inline-block !important;
+    min-width: 105px !important;
+    text-align: center !important;
+    background: linear-gradient(135deg, rgba(201,151,58,0.15), rgba(253,250,244,0.9)) !important;
+    border: 1px solid rgba(201,151,58,0.45) !important;
+    border-radius: 6px !important;
+    padding: 2px 10px !important;
+    box-sizing: border-box !important;
+    color: #1a1a1a !important;
+  }
+  .dish-price      { font-size: 25px !important; justify-self: end !important; margin-left: auto !important; }
+  .dish-subtitle   { font-size: 14px !important; }
+  .price-val       { font-size: 25px !important; justify-self: end !important; }
+  .price-row       { grid-template-columns: 1fr 115px !important; }
+  .price-label     { font-size: 18px !important; color: #2E1A0E !important; }
+  .dcard-row       { font-size: 18px !important; }
+  .dcard-row-price { font-size: 18px !important; }
+  .drink-row-price { font-size: 20px !important; font-weight: 500 !important; }
+  .kp-row span:last-child     { font-size: 22px !important; font-weight: 500 !important; letter-spacing: 0 !important; }
+  .kpt-price                  { font-size: 18px !important; font-weight: 500 !important; }
+  .kaffee-card-row-price      { font-size: 18px !important; font-weight: 500 !important; }
+  .kaffee-card-big-price      { font-size: 22px !important; font-weight: 500 !important; margin-top: 6px !important; }
+  .flag-rule     { margin: 2px 0 !important; }
+
+  /* ── Verteilungsfix: Items gleichmäßig über die ganze Seite ──
+     margin-top:auto auf .allergen-note blockiert justify-content:space-evenly.
+     Lösung: allergen-note absolut unten, content bekommt padding-bottom. ── */
+  .allergen-note {
+    position: absolute !important;
+    bottom: 8px !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+    padding: 0 12px !important;
+  }
+  /* Header immer auf gleicher Höhe — aus Flex-Fluss nehmen */
+  .header-area {
+    position: absolute !important;
+    top: 8px !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+    padding: 0 12px !important;
+  }
+  .content {
+    padding-top: 72px !important;
+    padding-bottom: 50px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    justify-content: space-evenly !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+  /* Flag-Linie besser sichtbar im Druck */
+  .flag-rule-line {
+    background: linear-gradient(90deg, transparent, rgba(139,69,0,0.80), rgba(166,124,0,0.70), rgba(139,69,0,0.80), transparent) !important;
+  }
+  /* Keine Schatten im Druck — verhindert Highlight-Effekt auf Titeln und Dekorationen */
+  .category-name        { text-shadow: none !important; }
+  .dish-name            { text-shadow: none !important; }
+  .dish-price           { text-shadow: none !important; }
+  .flag-diamonds span   { box-shadow: none !important; }
+  .flag-bar             { box-shadow: none !important; }
+
+  /* ── Willkommen: Seite füllen ── */
+  .page-willkommen .willkommen-inner {
+    padding-top: 25% !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+    margin-top: 32px !important;
+    height: calc(100% - 32px) !important;
+    justify-content: flex-start !important;
+    gap: 18px !important;
+  }
+  .willkommen-title  { font-size: 72px !important; }
+  .willkommen-sub    { font-size: 17px !important; margin-bottom: 10px !important; }
+  .willkommen-body   { font-size: 18px !important; line-height: 1.68 !important; margin-bottom: 0 !important; }
+
+  /* ── Kaffeezeremonie: großes Foto, zentriert ── */
+  /* ─── Kaffeezeremonie redesign ─── */
+  .page-kaffeezeremonie .content {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 16px !important;
+    padding: 72px 54px 14px !important;
+  }
+  .kaffee-title-wrap { text-align: center; width: 100%; margin-bottom: 14px; }
+  .kaffee-script {
+    font-family: 'Dancing Script', cursive;
+    font-size: 36px; font-weight: 600;
+    color: #1a0a00; line-height: 1.1;
+  }
+  .kaffee-headline-row {
+    display: flex; align-items: center; gap: 14px; justify-content: center;
+  }
+  .kaffee-rule { flex: 1; height: 2px; background: #1a0a00; max-width: 120px; }
+  .kaffee-headline {
+    font-family: 'Cormorant SC','Cormorant Garamond',serif; font-size: 38px; font-weight: 700;
+    color: #1a0a00; letter-spacing: 1px; white-space: nowrap;
+  }
+  .kaffee-sub {
+    font-family: 'Lato',sans-serif; font-size: 14px;
+    color: #2E1A0E; margin-top: 4px; font-style: normal;
+  }
+  .kaffee-text {
+    width: 78%; margin-bottom: 10px;
+    font-family: 'Lato',sans-serif; font-size: 16px;
+    line-height: 1.65; color: #2E1A0E; text-align: justify;
+  }
+  .kaffee-text p { margin: 0 0 7px 0; }
+  .kaffee-pricing {
+    display: flex; align-items: flex-start; gap: 24px;
+    width: 78%; margin-bottom: 10px;
+  }
+  .kaffee-pricing-label {
+    font-family: 'Cormorant SC','Cormorant Garamond',serif; font-size: 20px; font-weight: 700;
+    color: #2E1A0E; white-space: nowrap; padding-top: 2px;
+  }
+  .kaffee-num { font-size: 22px; }
+  .kp-row {
+    display: grid; grid-template-columns: 150px 1fr; gap: 0 12px;
+    font-family: 'Lato',sans-serif; font-size: 20px; font-weight: 500; color: #2E1A0E;
+    line-height: 1.6;
+  }
+  .kp-row span:first-child { }
+  .kp-row span:last-child { font-family: 'Dancing Script', cursive; font-weight: 500; font-style: italic; color: #1a1a1a; font-size: 24px; text-align: right; display: inline-block; width: fit-content; background: linear-gradient(135deg, rgba(201,151,58,0.15), rgba(253,250,244,0.9)); border: 1px solid rgba(201,151,58,0.45); border-radius: 6px; padding: 2px 10px; }
+  .kaffee-img-wrap { width: 100%; display: flex; justify-content: center; margin-bottom: 8px; flex: 1; min-height: 0; }
+  .kaffee-img { width: auto; height: 100%; max-width: 100%; max-height: 1060px; object-fit: contain; display: block; }
+  .kaffee-allergen {
+    font-family: 'Lato',sans-serif; font-size: 11px; color: #5C3A1E;
+    text-align: left; width: 78%; line-height: 1.5;
+    border-top: 1px solid rgba(139,72,18,0.35); padding-top: 6px; margin-top: auto;
+  }
+  @media print {
+    .kaffee-img { width: auto !important; height: 100% !important; max-width: 100% !important; max-height: 1060px !important; transform: scale(1.1); transform-origin: center center; }
+    .kaffee-headline { font-size: 36px !important; }
+    .page-kaffeezeremonie .content { padding: 14px 40px 10px !important; gap: 10px !important; }
+  }
+}
+
+/* ─── Getränke-Liste inside standard item bubble ─── */
+.drink-item-list { display: flex; flex-direction: column; gap: 3px; margin-top: 6px; }
+.dcard-row {
+  display: flex; align-items: baseline; gap: 4px;
+  font-family: 'Lato',sans-serif; font-size: 18px; color: #2E1A0E;
+  line-height: 1.5;
+}
+.dcard-row-name { flex: 1; }
+.dcard-row-dot  { flex: 1; border-bottom: 1px dotted rgba(139,72,18,0.4); min-width: 20px; margin: 0 4px 3px; }
+.dcard-row-price{ font-weight: 700; white-space: nowrap; font-size: 18px; }
+.dcard-row-sub  { font-size: 14px; color: #666; }
+
+/* ─── Bebiaynetu / Vegane — Text + Bild zentriert auf der Seite ─── */
+.bebia-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: 0;
+  width: 100%;
+}
+.bebia-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  flex-shrink: 0;
+  width: 80%;
+  margin: 0 auto;
+}
+.bebia-text .dish-price-multi {
+  min-width: 260px;
+}
+.bebia-img-wrap {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 0;
+  margin-top: -60px;
+}
+.bebia-img {
+  width: 440px;
+  height: 440px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 4px 14px rgba(80,30,5,0.18)) drop-shadow(0 2px 4px rgba(80,30,5,0.10));
+}
+
+/* ─── Vegane Komposition — Feature-Seite ─── */
+.vegane-feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  gap: 12px;
+  width: 100%;
+  justify-content: center;
+}
+.vegane-photo {
+  max-width: 520px;
+  max-height: 460px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 4px 14px rgba(80,30,5,0.18)) drop-shadow(0 2px 4px rgba(80,30,5,0.10));
+}
+.vegane-name-am {
+  font-family: sans-serif;
+  font-size: 16px;
+  color: #007A3D;
+  text-align: center;
+}
+.vegane-desc {
+  text-align: center;
+  max-width: 500px;
+}
+.vegane-prices {
+  max-width: 300px;
+  width: 100%;
+}
+/* ── Vorspeisen: 4 Gerichte auf einer Seite ── */
+@media print {
+  .page-vorspeisen .content {
+    padding-top: 50px !important;
+    padding-bottom: 16px !important;
+  }
+  .page-vorspeisen .photo-wrap {
+    width: 216px !important;
+    height: 216px !important;
+  }
+  .page-vorspeisen .photo-img {
+    width: 216px !important;
+    height: 216px !important;
+  }
+  .page-vorspeisen .dish-name  { font-size: 20px !important; }
+  .page-vorspeisen .dish-desc  { font-size: 15px !important; font-weight: 300 !important; }
+  .page-vorspeisen .dish-price { font-size: 22px !important; }
+  .page-vorspeisen .price-val  { font-size: 22px !important; }
+  .page-vorspeisen .price-label{ font-size: 16px !important; }
+  .page-vorspeisen .header-area { margin-bottom: 0 !important; }
+  .page-vorspeisen .category-name { font-size: 38px !important; }
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- ═══════════ DECKBLATT ═══════════ -->
+<div class="page-outer"><div class="page page-cover2">
+
+
+  <div class="cover2-center">
+
+    <!-- Injera Logo -->
+    <div class="cover2-logo-row">
+      <img class="cover2-seal" src="logo-seal-nobg.png" alt="Injera Restaurant" style="height:340px;width:auto;">
+      <div class="cover2-injera-text" style="font-size:138px;">INJERA</div>
+    </div>
+
+    <!-- Eritreischer Flaggenstreifen -->
+    <div style="display:flex;gap:0;align-items:center;margin:18px auto 0;height:4px;width:280px;border-radius:2px;overflow:hidden;">
+      <div style="flex:1;height:100%;background:#007A3D;"></div>
+      <div style="flex:1;height:100%;background:#4189DD;"></div>
+      <div style="flex:1;height:100%;background:#CE1126;"></div>
+    </div>
+
+    <!-- Untertitel -->
+    <div class="cover2-subtitle-band">
+      <span class="cover2-subtitle-text">Eritreische &amp; Äthiopische Spezialitäten</span>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#8A6840;margin-top:8px;">Hamburg</p>
+    </div>
+
+    <!-- Menükarte Titel -->
+    <div style="font-family:'Cormorant SC','Cormorant Garamond',serif;font-size:42px;font-weight:700;letter-spacing:6px;color:#21546A;text-align:center;margin-top:18px;text-transform:uppercase;">Speisekarte</div>
+
+    <!-- QR Code — Digitale Speisekarte -->
+    <div class="cover2-qr-wrap" style="margin-top:22px;gap:6px;">
+      <div class="cover2-qr-seal" style="width:200px;height:200px;border:2px solid #21546A;box-shadow:0 0 0 1px #C9973A,0 4px 16px rgba(33,84,106,0.15);border-radius:12px;">
+        <div id="cover-qr-code">
+          <img src="qr-menu.png" width="180" height="180" style="display:block;border-radius:8px;">
+        </div>
+      </div>
+      <div style="font-family:'Cormorant SC','Cormorant Garamond',serif;font-size:10px;font-weight:700;color:#21546A;letter-spacing:2px;text-transform:uppercase;text-align:center;">Digitale Menükarte</div>
+    </div>
+
+  </div>
+
+</div></div>
+
+<!-- ═══════════ SEITE 0B: WILLKOMMEN ═══════════ -->
+<div class="page-outer"><div class="page page-pattern page-willkommen">
+  <div class="pattern-top"><img src="tibeb-border.png" alt=""></div>
+  <div class="pattern-bottom"><img src="tibeb-border.png" alt=""></div>
+  <div class="willkommen-inner">
+    <h1 class="willkommen-title">Willkommen</h1>
+    <p class="willkommen-sub">bei &bdquo;Injera &ndash; Eritreische &amp; Äthiopische Spezialitäten&ldquo; in Hamburg St. Georg!</p>
+    <p class="willkommen-body">Tauchen Sie ein in die authentische Küche Eritreas und Äthiopiens und entdecken Sie die vielfältigen Aromen und Traditionen des Horns von Afrika. Im Injera vereinen sich herzliche Gastfreundschaft, aromatische Gewürze und authentische Rezepte zu einer kulinarischen Reise durch zwei der faszinierendsten Küchen Afrikas.</p>
+    <p class="willkommen-body">Im Mittelpunkt unserer Speisen steht das namensgebende Injera &ndash; ein weiches, leicht säuerliches Fladenbrot aus Teffmehl, das die Grundlage nahezu aller Gerichte bildet. Doch Injera ist mehr als nur Beilage: Es wird traditionell als Esswerkzeug genutzt. Mit einem Stück Fladenbrot nimmt man die Speisen direkt auf &ndash; eine einzigartige Art zu essen, die Nähe und Verbundenheit schafft. Dieses gemeinschaftliche Erlebnis spielt in der eritreischen und äthiopischen Kultur eine zentrale Rolle.</p>
+    <p class="willkommen-body">Unsere Gerichte werden auf großen, runden Platten serviert und bieten eine reiche Auswahl an köstlichen Fleisch-, Gemüse- und Linsenspezialitäten. Auch vegetarische und vegane Optionen sind zahlreich vertreten, sodass für jeden Geschmack etwas dabei ist.</p>
+  </div>
+</div></div>
+
+<!-- ═══════════ SEITE 6: FRÜHSTÜCK ═══════════ -->
+<div class="page-outer"><div class="page page-flag">
+  <div class="pattern-top"><img src="tibeb-border.png" alt=""></div>
+  <div class="pattern-bottom"><img src="tibeb-border.png" alt=""></div>
+  <div class="content">
+    <div class="header-area">
+      <h1 class="category-name">Frühstück</h1>
+      <div class="flag-rule"><div class="flag-rule-line"></div><div class="flag-diamonds"><span class="fd-g"></span><span class="fd-y"></span><span class="fd-r"></span></div><div class="flag-rule-line"></div></div>
+    </div>
+
+    <!-- Kichafitfit — LTR -->
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#007A3D"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Kichafitfit</div>
+          <div class="dish-name-am">ክቻፍትፍት</div>
+          <p class="dish-desc">Zerteilte Kitcha-Fladenbrotstücke in geklärter Butter &amp; scharfer Tomatensauce.</p>
+          <div class="dish-price-multi">
+            <div class="price-row" style="grid-template-columns:185px 1fr;"><span class="price-label">Bi Tesmi (Mit Butter)</span><span class="price-val">€ 12,50</span></div>
+            <div class="price-row" style="grid-template-columns:185px 1fr;"><span class="price-label">Bi Siga (Mit Fleisch)</span><span class="price-val">€ 15,00</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/10448313_injera eritrea und ethiopia restaurant_Food_kichafitft.png" alt="Kichafitfit">
+      </div>
+    </div>
+    <div class="item-sep"></div>
+
+    <!-- Silsi Inkakoho — RTL -->
+    <div class="item rev">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,157 L 280.5,163 L 287,165.5 L 280.5,168 L 278,174 L 275.5,168 L 269,165.5 L 275.5,163 Z" fill="#CE1126"/>
+          <line x1="0" y1="82" x2="-20" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="-20" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Silsi Inkakoho</div>
+          <div class="dish-name-am">ስልሲ እንቁሆ</div>
+          <p class="dish-desc">Scharfe Tomatensoße mit Eiern.</p>
+          <div class="dish-price">11,00 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-l"></div>
+        <img class="photo-img" src="photos-nobg/silsi_inkakoho.png" alt="Silsi Inkakoho" style="transform: scaleX(-1) rotate(90deg);">
+      </div>
+    </div>
+    <div class="item-sep"></div>
+
+    <!-- Fata — LTR -->
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#007A3D"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Fata</div>
+          <div class="dish-name-am">ፋጣ</div>
+          <p class="dish-desc">Zerkleinerte Brötchen in scharfer Tomatensauce, dazu Joghurt &amp; Tomatensalat.</p>
+          <div class="dish-price">10,50 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/10448313_injera eritrea und ethiopia restaurant_Food_fata.png" alt="Fata">
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ═══════════ SEITE 6B: FRÜHSTÜCK II ═══════════ -->
+<div class="page-outer"><div class="page page-flag">
+  <div class="pattern-top"><img src="tibeb-border.png" alt=""></div>
+  <div class="pattern-bottom"><img src="tibeb-border.png" alt=""></div>
+  <div class="content">
+    <div class="header-area">
+      <h1 class="category-name">Frühstück</h1>
+      <div class="flag-rule"><div class="flag-rule-line"></div><div class="flag-diamonds"><span class="fd-g"></span><span class="fd-y"></span><span class="fd-r"></span></div><div class="flag-rule-line"></div></div>
+    </div>
+
+    <!-- Foul Meselah — LTR -->
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#007A3D"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Foul Meselah</div>
+          <div class="dish-name-am">ፉል ምስለ</div>
+          <p class="dish-desc">Gekochte Saubohnen mit Zwiebeln, Tomaten, Chili &amp; Ei.</p>
+          <div class="dish-price">12,50 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/10448313_injera eritrea und ethiopia restaurant_Food_foul_meselah.png" alt="Foul Meselah">
+      </div>
+    </div>
+
+    <!-- Panino — LTR -->
+    <div class="item rev">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,157 L 280.5,163 L 287,165.5 L 280.5,168 L 278,174 L 275.5,168 L 269,165.5 L 275.5,163 Z" fill="#C9A200"/>
+          <line x1="0" y1="82" x2="-20" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="-20" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Panino</div>
+          <div class="dish-name-am">ፓኒኖ</div>
+          <p class="dish-desc">Mit Scheibenzwiebeln, Tomaten &amp; grüner Paprika im Brot.</p>
+          <div class="dish-price">3,50 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-l"></div>
+        <img class="photo-img" src="photos-nobg/panino_clean.png" alt="Panino">
+      </div>
+    </div>
+    <div class="item-sep"></div>
+
+    <!-- Frittata — LTR -->
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#007A3D"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Frittata</div>
+          <div class="dish-name-am">ፍሪታታ</div>
+          <p class="dish-desc">Gebackenes Omelett mit Gemüse, Zwiebeln und eritreischen Gewürzen.</p>
+          <div class="dish-price">10,50 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/10448313_injera eritrea und ethiopia restaurant_Food_frittata.png" alt="Frittata">
+      </div>
+    </div>
+
+  </div>
+</div></div>
+
+<!-- ═══════════ SEITE 1: VORSPEISEN ═══════════ -->
+<div class="page-outer"><div class="page page-flag page-vorspeisen">
+  <div class="pattern-top"><img src="tibeb-border.png" alt=""></div>
+  <div class="pattern-bottom"><img src="tibeb-border.png" alt=""></div>
+  <div class="content">
+    <div class="header-area">
+      <h1 class="category-name">Vorspeisen</h1>
+      <div class="flag-rule">
+        <div class="flag-rule-line"></div>
+        <div class="flag-diamonds">
+          <span class="fd-g"></span><span class="fd-y"></span><span class="fd-r"></span>
+        </div>
+        <div class="flag-rule-line"></div>
+      </div>
+    </div>
+
+    <!-- Sambusa — LTR -->
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#007A3D"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/>
+          <circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Sambusa</div>
+          <div class="dish-name-am">ሳምቡሳ</div>
+          <p class="dish-desc">Gefüllte Teigtaschen mit Gemüse (Vegan) oder Fleisch.</p>
+          <div class="dish-price">5,90 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/sambusa.png" alt="Sambusa">
+      </div>
+    </div>
+
+    <div class="item-sep"></div>
+
+    <!-- Haussalat mit Sambusa — RTL -->
+    <div class="item rev">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,157 L 280.5,163 L 287,165.5 L 280.5,168 L 278,174 L 275.5,168 L 269,165.5 L 275.5,163 Z" fill="#CE1126"/>
+          <line x1="0" y1="82" x2="-20" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="-20" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Haussalat mit Sambusa</div>
+          <div class="dish-name-am">ሃውስ ሳላት</div>
+          <p class="dish-desc">Frischer Haussalat mit knusprigen Sambusa-Teigtaschen und Dressing.</p>
+          <div class="dish-price-multi">
+            <div class="price-row"><span class="price-label">1 Sambusa</span><span class="price-val">6,00 €</span></div>
+            <div class="price-row"><span class="price-label">3 Sambusa</span><span class="price-val">8,90 €</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-l"></div>
+        <img class="photo-img" src="photos-nobg/10448313_injera eritrea und ethiopia restaurant_Food_haus_salat_mit_sambusa.png" alt="Haussalat mit Sambusa">
+      </div>
+    </div>
+
+    <div class="item-sep"></div>
+
+    <!-- Pommes — LTR -->
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#007A3D"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Pommes</div>
+          <div class="dish-name-am">ፖምስ</div>
+          <p class="dish-desc">Crispy French fries served with ketchup or mayonnaise.</p>
+          <div class="dish-price">4,90 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/pommes.png" alt="Pommes">
+      </div>
+    </div>
+    <div class="item-sep"></div>
+
+    <!-- Pommes und Sambusa — RTL (photo left) -->
+    <div class="item rev" style="margin-top:-20px;">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#007A3D"/>
+          <line x1="0" y1="82" x2="-20" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="-20" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Pommes und Sambusa</div>
+          <div class="dish-name-am">ፖምስ እና ሳምቡሳ</div>
+          <p class="dish-desc">Knusprige Crinkle-Pommes mit frisch gefüllten Sambusa-Teigtaschen und Dipsauce.</p>
+          <div class="dish-price">9,90 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap" style="width:310px!important;height:310px!important;">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-l"></div>
+        <img class="photo-img" src="photos-nobg/pommes_sambusa.png" alt="Pommes und Sambusa" style="width:310px!important;height:310px!important;">
+      </div>
+    </div>
+
+  </div>
+</div></div>
+
+<!-- ═══════════ SEITE 2: VEGETARISCH ═══════════ -->
+<div class="page-outer"><div class="page page-flag">
+  <div class="pattern-top"><img src="tibeb-border.png" alt=""></div>
+  <div class="pattern-bottom"><img src="tibeb-border.png" alt=""></div>
+  <div class="content">
+    <div class="header-area">
+      <h1 class="category-name">Vegetarisch</h1>
+      <div class="flag-rule"><div class="flag-rule-line"></div><div class="flag-diamonds"><span class="fd-g"></span><span class="fd-y"></span><span class="fd-r"></span></div><div class="flag-rule-line"></div></div>
+    </div>
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#007A3D"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Shiro</div>
+          <div class="dish-name-am">ሽሮ</div>
+          <p class="dish-desc">Geröstete Kichererbsen mit eritreischen Gewürzen.</p>
+          <div class="dish-price">14,90 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/10448313_injera eritrea und ethiopia restaurant_Food_shiro.png" alt="Shiro">
+      </div>
+    </div>
+    <div class="item-sep"></div>
+    <div class="item rev">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,157 L 280.5,163 L 287,165.5 L 280.5,168 L 278,174 L 275.5,168 L 269,165.5 L 275.5,163 Z" fill="#CE1126"/>
+          <line x1="0" y1="82" x2="-20" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="-20" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Ades</div>
+          <div class="dish-name-am">አደስ</div>
+          <p class="dish-desc">Rote Linsen mit Zwiebeln, Peperoni &amp; Knoblauch, mit versch. Gewürzen verfeinert.</p>
+          <div class="dish-price">13,90 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-l"></div>
+        <img class="photo-img" src="photos-nobg/10448313_injera eritrea und ethiopia restaurant_Food_linze.png" alt="Misir Wot">
+      </div>
+    </div>
+    <div class="item-sep"></div>
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#007A3D"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Alicha</div>
+          <div class="dish-name-am">አልቻ</div>
+          <p class="dish-desc">Weißkohl, Zwiebeln, Kartoffeln &amp; Möhren, mit Gewürzen verfeinert.</p>
+          <div class="dish-price">12,50 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/Alicha.png" alt="Alicha">
+      </div>
+    </div>
+
+  </div>
+</div></div>
+
+<!-- ═══════════ VEGANE KOMPOSITION ═══════════ -->
+<div class="page-outer"><div class="page page-flag">
+  <div class="pattern-top"><img src="tibeb-border.png" alt=""></div>
+  <div class="pattern-bottom"><img src="tibeb-border.png" alt=""></div>
+  <div class="content">
+    <div class="header-area">
+      <h1 class="category-name">Vegetarisch</h1>
+      <div class="flag-rule"><div class="flag-rule-line"></div><div class="flag-diamonds"><span class="fd-g"></span><span class="fd-y"></span><span class="fd-r"></span></div><div class="flag-rule-line"></div></div>
+    </div>
+
+    <div class="bebia-main" style="padding-top: 33%;">
+      <div class="bebia-text">
+        <div class="dish-name">Vegane Komposition</div>
+        <div class="dish-name-am">ቪጋን ኮምፖዚሽን</div>
+        <p class="dish-desc">Komposition aus Grünkohl, gerösteten Kichererbsen, roten Linsen, gelben Linsen, Weißkohl und Brechbohnen.</p>
+        <div class="dish-price-multi">
+          <div class="price-row"><span class="price-label" style="position:relative;left:-10px;">1 Person</span><span class="price-val">17,50 €</span></div>
+          <div class="price-row"><span class="price-label">2 Personen</span><span class="price-val">33,00 €</span></div>
+          <div class="price-row"><span class="price-label">3 Personen</span><span class="price-val">48,00 €</span></div>
+          <div class="price-row"><span class="price-label">4 Personen</span><span class="price-val">62,00 €</span></div>
+        </div>
+      </div>
+      <div class="bebia-img-wrap">
+        <img class="bebia-img" src="photos-nobg/10448313_injera eritrea und ethiopia restaurant_Food_alicia.png" alt="Vegane Komposition">
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ═══════════ SEITE 3: FLEISCH I ═══════════ -->
+<div class="page-outer"><div class="page page-flag">
+  <div class="pattern-top"><img src="tibeb-border.png" alt=""></div>
+  <div class="pattern-bottom"><img src="tibeb-border.png" alt=""></div>
+  <div class="content">
+    <div class="header-area">
+      <h1 class="category-name">Fleisch</h1>
+      <div class="flag-rule"><div class="flag-rule-line"></div><div class="flag-diamonds"><span class="fd-g"></span><span class="fd-y"></span><span class="fd-r"></span></div><div class="flag-rule-line"></div></div>
+    </div>
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#007A3D"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Tsada Tibsi</div>
+          <div class="dish-name-am">ጥብስ ፃዳ</div>
+          <p class="dish-desc">Gebratenes Fleisch in einer hellen, milden Soße mit Zwiebeln, Paprika &amp; Gewürzen.</p>
+          <div class="dish-price">18,90 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/10448313_injera eritrea und ethiopia restaurant_Food_tapsi_tsaeda.png" alt="Tsada Tibsi">
+      </div>
+    </div>
+
+    <div class="item-sep"></div>
+    <div class="item rev">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,157 L 280.5,163 L 287,165.5 L 280.5,168 L 278,174 L 275.5,168 L 269,165.5 L 275.5,163 Z" fill="#CE1126"/>
+          <line x1="0" y1="82" x2="-20" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="-20" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Shekla</div>
+          <div class="dish-name-am">ሸቅሎ</div>
+          <p class="dish-desc">Zartes, gebratenes Kalbsfleisch in Öl, mit Paprika, Zwiebeln & Rosmarin.</p>
+          <div class="dish-price">19,50 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-l"></div>
+        <img class="photo-img" src="photos-nobg/shekla_orig_nobg.png" alt="Shekla">
+      </div>
+    </div>
+    <div class="item-sep"></div>
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#C9A200"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Tibsi / Keyih</div>
+          <div class="dish-name-am">ጥብስ / ቀይህ</div>
+          <p class="dish-desc">Scharf gebratenes, saftiges Fleisch mit einer würzigen Marinade.</p>
+          <div class="dish-price">18,90 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/10448313_injera eritrea und ethiopia restaurant_Food_tawpsi_keyin.png" alt="Tibsi / Keyih">
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ═══════════ SEITE 4: FLEISCH II ═══════════ -->
+<div class="page-outer"><div class="page page-flag">
+  <div class="pattern-top"><img src="tibeb-border.png" alt=""></div>
+  <div class="pattern-bottom"><img src="tibeb-border.png" alt=""></div>
+  <div class="content">
+    <div class="header-area">
+      <h1 class="category-name">Fleisch</h1>
+      <div class="flag-rule"><div class="flag-rule-line"></div><div class="flag-diamonds"><span class="fd-g"></span><span class="fd-y"></span><span class="fd-r"></span></div><div class="flag-rule-line"></div></div>
+    </div>
+    <!-- Shekla — RTL -->
+    <div class="item rev">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,157 L 280.5,163 L 287,165.5 L 280.5,168 L 278,174 L 275.5,168 L 269,165.5 L 275.5,163 Z" fill="#C9A200"/>
+          <line x1="0" y1="82" x2="-20" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="-20" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Gaslight Tibsi</div>
+          <div class="dish-name-am">ጋስሊት ጥብስ</div>
+          <p class="dish-desc">Aus fein gehacktem Fleisch, gewürzt mit Chili, Rosmarin und Mitmita.</p>
+          <div class="dish-price">18,50 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-l"></div>
+        <img class="photo-img" src="photos-nobg/dlot_clean.png" alt="Gaslight Tibsi">
+      </div>
+    </div>
+    <div class="item-sep"></div>
+    <!-- Firfir — LTR -->
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#CE1126"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Firfir</div>
+          <div class="dish-name-am">ፍርፍር</div>
+          <p class="dish-desc">Zerteilte Kitcha-Fladenbrotstücke in geklärter Butter & scharfer Tomatensauce.</p>
+          <div class="dish-price">16,50 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/10448313_injera eritrea und ethiopia restaurant_Food_firfir.png" alt="Firfir">
+      </div>
+    </div>
+    <div class="item-sep"></div>
+    <!-- Zigni — RTL -->
+    <div class="item rev">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,157 L 280.5,163 L 287,165.5 L 280.5,168 L 278,174 L 275.5,168 L 269,165.5 L 275.5,163 Z" fill="#CE1126"/>
+          <line x1="0" y1="82" x2="-20" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="-20" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Zigni</div>
+          <div class="dish-name-am">ዝግኒ</div>
+          <p class="dish-desc">Scharf gewürztes Fleisch in einer reichhaltigen Tomatensoße &amp; Berbere.</p>
+          <div class="dish-price">16,50 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-l"></div>
+        <img class="photo-img" src="photos-nobg/zigni.png" alt="Zigni">
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ═══════════ SEITE 4A: FLEISCH IIA ═══════════ -->
+<div class="page-outer"><div class="page page-flag">
+  <div class="pattern-top"><img src="tibeb-border.png" alt=""></div>
+  <div class="pattern-bottom"><img src="tibeb-border.png" alt=""></div>
+  <div class="content">
+    <div class="header-area">
+      <h1 class="category-name">Fleisch</h1>
+      <div class="flag-rule"><div class="flag-rule-line"></div><div class="flag-diamonds"><span class="fd-g"></span><span class="fd-y"></span><span class="fd-r"></span></div><div class="flag-rule-line"></div></div>
+    </div>
+
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#C9A200"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Kombi</div>
+          <div class="dish-name-am">ኮምቢ</div>
+          <p class="dish-desc">Kombination aus Shekla, Keih und Tsada Tibsi.</p>
+          <div class="dish-price">54,00 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap" style="width:340px!important;height:340px!important;">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/gemischte_platte_kombi.png" alt="Kombi" style="width:340px!important;height:340px!important;">
+      </div>
+    </div>
+
+    <div class="item-sep"></div>
+
+    <!-- Spezial Gemischte Platte — RTL -->
+    <div class="item rev">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,157 L 280.5,163 L 287,165.5 L 280.5,168 L 278,174 L 275.5,168 L 269,165.5 L 275.5,163 Z" fill="#CE1126"/>
+          <line x1="0" y1="82" x2="-20" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="-20" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Spezial Gemischte Platte</div>
+          <div class="dish-name-am">ስፔሻል ድብልቅ ሳሕኒ</div>
+          <p class="dish-desc">Für 2 Personen. Kombination aus Bebiaynetu, Shekla und Tsada Tibsi.</p>
+          <div class="dish-price">52,00 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap" style="width:340px!important;height:340px!important;">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-l"></div>
+        <img class="photo-img" src="photos-nobg/spezial_gemischte_platte.png" alt="Spezial Gemischte Platte" style="width:340px!important;height:340px!important;">
+      </div>
+    </div>
+
+    <div class="item-sep"></div>
+
+    <!-- Spezial Tibsi Platte — LTR -->
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#007A3D"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Spezial Tibsi Platte</div>
+          <div class="dish-name-am">ስፔሻል ጥብስ ሳሕኒ</div>
+          <p class="dish-desc">Für 1 Person. Kombination aus Bebiaynetu und Keih oder Tseda Tibsi.</p>
+          <div class="dish-price">25,90 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/gemischte_platte_tibsi.png" alt="Spezial Gemischte Platte mit Tibsi">
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ═══════════ SEITE 4B: FLEISCH III ═══════════ -->
+<div class="page-outer"><div class="page page-flag">
+  <div class="pattern-top"><img src="tibeb-border.png" alt=""></div>
+  <div class="pattern-bottom"><img src="tibeb-border.png" alt=""></div>
+  <div class="content">
+    <div class="header-area">
+      <h1 class="category-name">Fleisch</h1>
+      <div class="flag-rule"><div class="flag-rule-line"></div><div class="flag-diamonds"><span class="fd-g"></span><span class="fd-y"></span><span class="fd-r"></span></div><div class="flag-rule-line"></div></div>
+    </div>
+    <!-- Spezial Kifto — LTR -->
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#007A3D"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Spezial Kifto</div>
+          <div class="dish-name-am">ክፍቶ ስፔሻል</div>
+          <p class="dish-desc">Rohes Rinderhack mit Mitmita & Gewürzbutter, dazu Grünkohl & Frischkäse.</p>
+          <div class="dish-price">19,90 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/kifto_spezial.png" alt="Spezial Kifto">
+      </div>
+    </div>
+    <div class="item-sep"></div>
+    <!-- Dlot — RTL -->
+    <div class="item rev">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,157 L 280.5,163 L 287,165.5 L 280.5,168 L 278,174 L 275.5,168 L 269,165.5 L 275.5,163 Z" fill="#CE1126"/>
+          <line x1="0" y1="82" x2="-20" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="-20" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Dulet</div>
+          <div class="dish-name-am">ዱለት</div>
+          <p class="dish-desc">Fein gehacktes Rindfleisch, Leber und Lammkutteln, scharf gewürzt und auf Injera angerichtet.</p>
+          <div class="dish-price">18,90 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-l"></div>
+        <img class="photo-img" src="photos-nobg/dulet_nobg.png" alt="Dulet" style="filter: brightness(1.25) drop-shadow(0 4px 14px rgba(80,30,5,0.18)) drop-shadow(0 2px 4px rgba(80,30,5,0.10));">
+      </div>
+    </div>
+    <div class="item-sep"></div>
+    <!-- Kibda — LTR -->
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#007A3D"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Kilwa kebdi (Kibda)</div>
+          <div class="dish-name-am">ኪብዳ</div>
+          <p class="dish-desc">Zarte Lammleber mild gewürzt mit Peperoni, Zwiebeln und Rosmarin.</p>
+          <div class="dish-price">14,90 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/kibda.png" alt="Kibda">
+      </div>
+    </div>
+
+  </div>
+</div></div>
+
+<!-- ═══════════ BEBIAYNETU ═══════════ -->
+<div class="page-outer"><div class="page page-flag">
+  <div class="pattern-top"><img src="tibeb-border.png" alt=""></div>
+  <div class="pattern-bottom"><img src="tibeb-border.png" alt=""></div>
+  <div class="content">
+    <div class="header-area">
+      <h1 class="category-name">Fleisch</h1>
+      <div class="flag-rule"><div class="flag-rule-line"></div><div class="flag-diamonds"><span class="fd-g"></span><span class="fd-y"></span><span class="fd-r"></span></div><div class="flag-rule-line"></div></div>
+    </div>
+
+    <!-- Dorho -->
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#007A3D"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Dorho</div>
+          <div class="dish-name-am">ዶርሆ</div>
+          <p class="dish-desc">Hähnchenschenkel in scharfer Tomatensoße mit original eritreischer Gewürz-Butter & gekochtem Ei.</p>
+          <div class="dish-price">16,50 €</div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/dorho_nobg.png" alt="Dorho" style="filter: brightness(1.1) drop-shadow(0 4px 14px rgba(80,30,5,0.18)) drop-shadow(0 2px 4px rgba(80,30,5,0.10));">
+      </div>
+    </div>
+
+    <div class="item-sep"></div>
+
+    <div class="bebia-main" style="padding-top: 8%;">
+      <div class="bebia-text">
+        <div class="dish-name">Bebiaynetu mit Zigni oder Dorho</div>
+        <div class="dish-name-am">ብዕያኔቱ</div>
+        <p class="dish-desc">Komposition aus Grünkohl, gerösteten Kichererbsen, roten Linsen, gelben Linsen, Weißkohl &amp; Brechbohnen.</p>
+        <div class="dish-price-multi">
+          <div class="price-row"><span class="price-label" style="position:relative;left:-10px;">1 Person</span><span class="price-val">18 €</span></div>
+          <div class="price-row"><span class="price-label">2 Personen</span><span class="price-val">35 €</span></div>
+          <div class="price-row"><span class="price-label">3 Personen</span><span class="price-val">52 €</span></div>
+          <div class="price-row"><span class="price-label">4 Personen</span><span class="price-val">66 €</span></div>
+        </div>
+      </div>
+      <div class="bebia-img-wrap">
+        <img class="bebia-img" src="photos-nobg/10448313_injera eritrea und ethiopia restaurant_Food_bebiaynetu_mit_dorho.png" alt="Bebiaynetu mit Zigni oder Dorho">
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ═══════════ SEITE 7: GETRÄNKE ═══════════ -->
+<div class="page-outer"><div class="page page-flag">
+  <div class="pattern-top"><img src="tibeb-border.png" alt=""></div>
+  <div class="pattern-bottom"><img src="tibeb-border.png" alt=""></div>
+  <div class="content" style="padding-top:70px;padding-bottom:70px;">
+    <div class="header-area">
+      <h1 class="category-name">Getränke</h1>
+      <div class="flag-rule"><div class="flag-rule-line"></div><div class="flag-diamonds"><span class="fd-g"></span><span class="fd-y"></span><span class="fd-r"></span></div><div class="flag-rule-line"></div></div>
+    </div>
+
+    <!-- Heiße Getränke -->
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#C9A200"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Heiße Getränke</div>
+          <div class="dish-name-am">ሙቅ መጠጦች</div>
+          <div class="drink-item-list">
+            <div class="dcard-row"><span class="dcard-row-name">Kaffee klein</span><span class="dcard-row-dot"></span><span class="dcard-row-price">2,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Kaffee groß</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Cappuccino</span><span class="dcard-row-dot"></span><span class="dcard-row-price">2,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Latte Macchiato</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Espresso</span><span class="dcard-row-dot"></span><span class="dcard-row-price">2,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Tee klein</span><span class="dcard-row-dot"></span><span class="dcard-row-price">1,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Tee groß</span><span class="dcard-row-dot"></span><span class="dcard-row-price">2,00 €</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/heisse_getraenke_new.png" alt="Heiße Getränke" style="width:640px;height:640px;object-fit:cover;">
+      </div>
+    </div>
+
+    <div class="item-sep" style="height:60px;"></div>
+
+    <!-- Kalte Getränke -->
+    <div class="item rev">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,157 L 280.5,163 L 287,165.5 L 280.5,168 L 278,174 L 275.5,168 L 269,165.5 L 275.5,163 Z" fill="#CE1126"/>
+          <line x1="0" y1="82" x2="-20" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="-20" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Kalte Getränke</div>
+          <div class="dish-name-am">ቀዝቃዛ መጠጦች</div>
+          <div class="drink-item-list">
+            <div class="dcard-row"><span class="dcard-row-name">Cola</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,00 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Cola Zero</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,00 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Sprite</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,00 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Mezzo Mix</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,00 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Fanta</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,00 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Red Bull</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,00 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Wasser Viva con Agua</span><span class="dcard-row-dot"></span><span class="dcard-row-price">2,50 €</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-l"></div>
+        <img class="photo-img" src="photos-nobg/kalte_getraenke_new.png" alt="Kalte Getränke" style="width:640px;height:640px;object-fit:contain;">
+      </div>
+    </div>
+
+  </div>
+</div></div>
+
+<!-- ═══════════ SEITE 7B: MILKSHAKES & SÄFTE ═══════════ -->
+<div class="page-outer"><div class="page page-flag page-safte-milkshake">
+  <div class="pattern-top"><img src="tibeb-border.png" alt=""></div>
+  <div class="pattern-bottom"><img src="tibeb-border.png" alt=""></div>
+  <div class="content">
+    <div class="header-area">
+      <h1 class="category-name">Getränke</h1>
+      <div class="flag-rule"><div class="flag-rule-line"></div><div class="flag-diamonds"><span class="fd-g"></span><span class="fd-y"></span><span class="fd-r"></span></div><div class="flag-rule-line"></div></div>
+    </div>
+
+    <!-- Milkshakes -->
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#C9A200"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Milkshakes</div>
+          <div class="dish-name-am">ሚልክሼክ</div>
+          <div class="drink-item-list">
+            <div class="dcard-row"><span class="dcard-row-name">Erdbeer-Shake</span><span class="dcard-row-dot"></span><span class="dcard-row-price">6,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Mango-Shake</span><span class="dcard-row-dot"></span><span class="dcard-row-price">6,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Schokolade-Shake</span><span class="dcard-row-dot"></span><span class="dcard-row-price">6,00 €</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/milkshake2_nobg.png" alt="Milkshakes" style="width:560px;height:560px;object-fit:cover;">
+      </div>
+    </div>
+
+    <div class="item-sep"></div>
+
+    <!-- Frische Säfte -->
+    <div class="item rev">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,157 L 280.5,163 L 287,165.5 L 280.5,168 L 278,174 L 275.5,168 L 269,165.5 L 275.5,163 Z" fill="#CE1126"/>
+          <line x1="0" y1="82" x2="-20" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="-20" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Frische Säfte</div>
+          <div class="dish-name-am">ጭማቂ</div>
+          <div class="drink-item-list">
+            <div class="dcard-row"><span class="dcard-row-name">Orangensaft</span><span class="dcard-row-dot"></span><span class="dcard-row-price">5,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Zitronensaft mit Minze</span><span class="dcard-row-dot"></span><span class="dcard-row-price">5,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Mangosaft <span class="dcard-row-sub">(mit Milch oder ohne)</span></span><span class="dcard-row-dot"></span><span class="dcard-row-price">6,00 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Erdbeersaft <span class="dcard-row-sub">(mit Milch oder ohne)</span></span><span class="dcard-row-dot"></span><span class="dcard-row-price">6,00 €</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-l"></div>
+        <img class="photo-img" src="photos-nobg/frischesaefte_nobg.png" alt="Frische Säfte" style="width:560px;height:560px;object-fit:cover;object-position:center top;margin-top:-40px;">
+      </div>
+    </div>
+
+
+  </div>
+</div></div>
+
+<!-- ═══════════ SEITE 7C: ALKOHOLFREIES BIER & FRITZ ═══════════ -->
+<div class="page-outer"><div class="page page-flag page-fritz-bier">
+  <div class="pattern-top"><img src="tibeb-border.png" alt=""></div>
+  <div class="pattern-bottom"><img src="tibeb-border.png" alt=""></div>
+  <div class="content" style="padding-top:70px;padding-bottom:70px;">
+    <div class="header-area">
+      <h1 class="category-name">Getränke</h1>
+      <div class="flag-rule"><div class="flag-rule-line"></div><div class="flag-diamonds"><span class="fd-g"></span><span class="fd-y"></span><span class="fd-r"></span></div><div class="flag-rule-line"></div></div>
+    </div>
+
+    <!-- Alkoholfreies Bier -->
+    <div class="item">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,-13 L 280.5,-6 L 287,-3 L 280.5,0 L 278,7 L 275.5,0 L 269,-3 L 275.5,-6 Z" fill="#007A3D"/>
+          <line x1="558" y1="82" x2="578" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="578" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Alkoholfreies Bier</div>
+          <div class="dish-name-am">አልኮል ያልሆነ ቢራ</div>
+          <div class="drink-item-list">
+            <div class="dcard-row"><span class="dcard-row-name">Becks Blue</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Jever alkoholfrei</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Krombacher Pilsener</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Flensburg Radler</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Heineken</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,50 €</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-r"></div>
+        <img class="photo-img" src="photos-nobg/bier_flasche_clean.png" alt="Alkoholfreies Bier" style="width:264px;height:264px;object-fit:contain;">
+      </div>
+    </div>
+
+    <div class="item-sep" style="height:60px;"></div>
+
+    <!-- Fritz Kola & Limo -->
+    <div class="item rev">
+      <div class="bubble">
+        <svg class="bubble-svg" viewBox="0 0 556 164" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 32,6 C 155,-9 400,-9 524,6 C 550,16 562,46 558,82 C 554,118 542,150 520,158 C 400,172 155,172 34,158 C 12,150 -4,118 0,82 C 4,46 10,16 32,6 Z" fill="rgba(252,242,224,0.62)" stroke="rgba(139,72,18,0.55)" stroke-width="1.5"/>
+          <path d="M 278,157 L 280.5,163 L 287,165.5 L 280.5,168 L 278,174 L 275.5,168 L 269,165.5 L 275.5,163 Z" fill="#CE1126"/>
+          <line x1="0" y1="82" x2="-20" y2="82" stroke="rgba(185,138,40,0.55)" stroke-width="1.2"/><circle cx="-20" cy="82" r="2.5" fill="rgba(175,128,10,0.65)"/>
+        </svg>
+        <div class="bubble-inner">
+          <div class="dish-name">Fritz Kola & Limo</div>
+          <div class="dish-name-am">ፍሪትስ ኮላ</div>
+          <div class="drink-item-list">
+            <div class="dcard-row"><span class="dcard-row-name">Fritz Kola</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Fritz Limo Orange</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Fritz Limo Zitrone</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Fritz Limo Honigmelone</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Fritz Spritz Bio Apfelschorle</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,50 €</span></div>
+            <div class="dcard-row"><span class="dcard-row-name">Fritz Spritz Bio Rhabarberschorle</span><span class="dcard-row-dot"></span><span class="dcard-row-price">3,50 €</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="flag-bar"></div>
+      <div class="photo-wrap">
+        <div class="photo-ring"></div>
+        <div class="crescent cr-l"></div>
+        <img class="photo-img" src="photos-nobg/fritz_combined.png" alt="Fritz Kola & Limo">
+      </div>
+    </div>
+
+  </div>
+</div></div>
+
+<!-- ═══════════ SEITE 8: KAFFEEZEREMONIE ═══════════ -->
+<div class="page-outer"><div class="page page-pattern page-kaffeezeremonie">
+  <div class="pattern-top"><img src="tibeb-border.png" alt=""></div>
+  <div class="pattern-bottom"><img src="tibeb-border.png" alt=""></div>
+  <div class="content">
+
+    <div class="header-area">
+      <h1 class="category-name">Kaffeezeremonie</h1>
+      <div class="flag-rule"><div class="flag-rule-line"></div><div class="flag-diamonds"><span class="fd-g"></span><span class="fd-y"></span><span class="fd-r"></span></div><div class="flag-rule-line"></div></div>
+    </div>
+
+    <div class="kaffee-text" style="margin-top: 120px;">
+      <p>Die Kaffeezeremonie ist ein zentraler Bestandteil der Traditionen Äthiopiens und Eritreas. Sie ist weit mehr als eine einfache Kaffeepause: Sie symbolisiert Gemeinschaft, Respekt und Spiritualität. Kaffee wird Freunden, Nachbarn sowie Gästen, etwa bei Festen oder Hochzeiten, mit großer Sorgfalt und Herzlichkeit serviert.</p>
+      <p>Lehnt jemand den angebotenen Kaffee ab, wird stattdessen häufig Tee – in der Landessprache Shai – gereicht. Diese Zeremonie ist ein Ausdruck von Respekt, insbesondere gegenüber Älteren, und bietet einen besonderen Moment, der dem Segen und der Wertschätzung des Lebens gewidmet ist.</p>
+    </div>
+
+    <div class="kaffee-pricing">
+      <div class="dish-name" style="margin-bottom:6px;">Kaffeezeremonie</div>
+      <div class="kaffee-pricing-rows" style="width:310px;">
+        <div class="kp-row"><span>1 Person</span><span>6,00 €</span></div>
+        <div class="kp-row"><span>2 Personen</span><span>10,00 €</span></div>
+        <div class="kp-row"><span>3 Personen</span><span>13,00 €</span></div>
+        <div class="kp-row"><span>4 Personen</span><span>16,00 €</span></div>
+      </div>
+    </div>
+
+    <div class="kaffee-img-wrap">
+      <img class="kaffee-img" src="photos-nobg/10448313_injera eritrea und ethiopia restaurant_Food_cafe_ceremony.png" alt="Kaffeezeremonie">
+    </div>
+
+
+  </div>
+</div></div>
+
+<!-- ═══════════ SEITE 9: KONTAKT & ÖFFNUNGSZEITEN ═══════════ -->
+<div class="page-outer"><div class="page page-cover2">
+  <div class="pattern-top" style="opacity:0.6;"><img src="tibeb-border.png" alt=""></div>
+  <div class="pattern-bottom" style="opacity:0.6;"><img src="tibeb-border.png" alt=""></div>
+  <div class="cover2-center" style="gap:18px;justify-content:center;">
+
+    <!-- Logo — oben -->
+    <div class="cover2-logo-row">
+      <img class="cover2-seal" src="logo-seal-nobg.png" alt="Injera Restaurant" style="height:340px;width:auto;">
+      <div class="cover2-injera-text" style="font-size:138px;">INJERA</div>
+    </div>
+
+    <!-- Flaggenstreifen -->
+    <div style="display:flex;gap:0;align-items:center;margin:0 auto;height:5px;width:260px;border-radius:3px;overflow:hidden;">
+      <div style="flex:1;height:100%;background:#007A3D;"></div>
+      <div style="flex:1;height:100%;background:#4189DD;"></div>
+      <div style="flex:1;height:100%;background:#CE1126;"></div>
+    </div>
+
+    <!-- Untertitel -->
+    <p style="font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:#8A6840;margin:0;">Eritreische &amp; Äthiopische Spezialitäten · Hamburg</p>
+
+    <!-- Trennlinie -->
+    <div style="width:280px;height:1px;background:linear-gradient(to right,transparent,rgba(139,72,18,0.4),transparent);margin:0 auto;"></div>
+
+    <!-- Öffnungszeiten -->
+    <div style="width:340px;">
+      <div style="font-family:'Cormorant SC','Cormorant Garamond',serif;font-size:13px;font-weight:700;color:#21546A;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;text-align:center;">Öffnungszeiten</div>
+      <table style="width:100%;border-collapse:collapse;font-family:'Lato',sans-serif;font-size:16px;color:#2E1A0E;">
+        <tr>
+          <td style="padding:7px 0;color:#5C3A1E;">So – Do</td>
+          <td style="padding:7px 0;text-align:right;font-weight:600;">12:00 – 22:00</td>
+        </tr>
+        <tr>
+          <td style="padding:7px 0;color:#5C3A1E;">Fr – Sa</td>
+          <td style="padding:7px 0;text-align:right;font-weight:600;">12:00 – 23:00</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Trennlinie -->
+    <div style="width:280px;height:1px;background:linear-gradient(to right,transparent,rgba(139,72,18,0.4),transparent);margin:0 auto;"></div>
+
+    <!-- Adresse -->
+    <div style="text-align:center;">
+      <div style="font-family:'Cormorant SC','Cormorant Garamond',serif;font-size:13px;font-weight:700;color:#21546A;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;">Adresse</div>
+      <p style="font-family:'Lato',sans-serif;font-size:17px;color:#2E1A0E;margin:0;line-height:1.8;">Brennerstraße 35<br>20099 Hamburg St. Georg</p>
+    </div>
+
+    <!-- Trennlinie -->
+    <div style="width:280px;height:1px;background:linear-gradient(to right,transparent,rgba(139,72,18,0.4),transparent);margin:0 auto;"></div>
+
+    <!-- QR Code — Digitale Speisekarte -->
+    <div class="cover2-qr-wrap" style="margin-top:0;gap:6px;">
+      <div class="cover2-qr-seal" style="width:200px;height:200px;border:2px solid #21546A;box-shadow:0 0 0 1px #C9973A,0 4px 16px rgba(33,84,106,0.15);border-radius:12px;">
+        <div id="cover-qr-code-2">
+          <img src="qr-menu.png" width="180" height="180" style="display:block;border-radius:8px;">
+        </div>
+      </div>
+      <div style="font-family:'Cormorant SC','Cormorant Garamond',serif;font-size:10px;font-weight:700;color:#21546A;letter-spacing:2px;text-transform:uppercase;text-align:center;">Digitale Menükarte</div>
+    </div>
+
+  </div>
+</div></div>
+
+<script>
+
+
+// Lochmarkierungen links auf alle Seiten (10 Löcher)
+document.querySelectorAll('.page').forEach(page => {
+  const markers = document.createElement('div');
+  markers.className = 'hole-markers';
+  for (let i = 0; i < 10; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'hole-marker';
+    markers.appendChild(dot);
+  }
+  page.appendChild(markers);
+});
+
+// Tibeb-Seitenmuster links & rechts auf alle Menü-Seiten
+document.querySelectorAll('.page-flag, .page-pattern').forEach(page => {
+  ['l', 'r'].forEach(side => {
+    const wrap = document.createElement('div');
+    wrap.className = 'page-side-pat page-side-pat-' + side;
+    const inner = document.createElement('div');
+    inner.className = 'pat-inner';
+    wrap.appendChild(inner);
+    page.appendChild(wrap);
+  });
+});
+
+
+// Crescent-Farben: Äthiopische Flaggenfarben abwechselnd
+(function() {
+  const colors = ['#007A3D', '#4189DD', '#CE1126'];
+  document.querySelectorAll('.crescent').forEach((el, i) => {
+    el.style.setProperty('--crescent-color', colors[i % 3]);
+  });
+})();
+
+// Foto-Streifen zwischen Seiten einfügen
+document.querySelectorAll('.page-outer').forEach((outer, i, all) => {
+  if (i < all.length - 1) {
+    const sep = document.createElement('div');
+    sep.className = 'page-sep page-sep-' + (i + 1);
+    outer.after(sep);
+  }
+});
+
+const TIBEB_PX = 0; // tibeb border height inside each page (page pixels)
+
+function scalePages() {
+  if (window.matchMedia('print').matches) return;
+  const scale   = window.innerWidth / 794;
+  const scaledH = Math.round(1123 * scale);
+  const overlap = Math.round(TIBEB_PX * scale);
+  document.querySelectorAll('.page').forEach(p => {
+    p.style.transform = 'scale(' + scale + ')';
+  });
+  document.querySelectorAll('.page-outer').forEach(o => {
+    o.style.height = scaledH + 'px';
+  });
+  // Photo strip extends 56px (scaled) into each adjacent page, covering the
+  // tibeb border so the photo reaches right to the flag stripe boundary.
+  document.querySelectorAll('.page-sep').forEach(s => {
+    s.style.height      = Math.round((200 + TIBEB_PX * 2) * scale) + 'px';
+    s.style.marginTop   = '-' + overlap + 'px';
+    s.style.marginBottom= '-' + overlap + 'px';
+  });
+}
+window.addEventListener('resize', scalePages);
+window.addEventListener('beforeprint', () => {
+  document.querySelectorAll('.page').forEach(p => { p.style.transform = ''; });
+  document.querySelectorAll('.page-outer').forEach(o => { o.style.height = ''; });
+  document.querySelectorAll('.page-sep').forEach(s => {
+    s.style.height = '';
+    s.style.marginTop = '';
+    s.style.marginBottom = '';
+  });
+});
+window.addEventListener('afterprint', scalePages);
+scalePages();
+
+// Gerichtnummern — nur Speisen (erste 29), keine Getränke
+(function() {
+  const all = document.querySelectorAll('.dish-name');
+  let count = 0;
+  all.forEach(el => {
+    if (count >= 29) return;
+    const nr = document.createElement('span');
+    nr.className = 'dish-nr';
+    nr.textContent = String(count + 1).padStart(2, '0');
+    el.insertBefore(nr, el.firstChild);
+    count++;
+  });
+})();
+
+</script>
+
+<!-- Cookie-Hinweis -->
+<div id="ck" style="position:fixed;bottom:0;left:0;right:0;z-index:9999;display:none;background:#163B4A;color:rgba(253,250,244,.85);font:300 .82rem/1.6 'Lato',sans-serif;padding:.9rem 1.5rem;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-top:2px solid rgba(201,151,58,.38);box-shadow:0 -2px 16px rgba(0,0,0,.12);">
+  <span>Diese Website verwendet ausschließlich technisch notwendige Cookies – keine Tracking- oder Werbecookies. <a href="datenschutz.html" style="color:rgba(201,151,58,.85);text-decoration:underline;text-underline-offset:2px;">Datenschutzerklärung</a></span>
+  <button onclick="localStorage.setItem('ck','1');document.getElementById('ck').style.display='none'" style="flex-shrink:0;background:rgba(201,151,58,.85);color:#0A0603;font:700 .68rem/1 'Lato',sans-serif;letter-spacing:.14em;text-transform:uppercase;border:none;padding:.68rem 1.5rem;border-radius:2px;cursor:pointer;min-height:40px;">Verstanden</button>
+</div>
+<script>if(!localStorage.getItem('ck'))document.getElementById('ck').style.display='flex';</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+venv_rembg/
+__pycache__/
+node_modules/
+.DS_Store
+*.py
+export-*.js
+debug-*.png
+prev_*.jpg
+preview_*.jpg
+page-preview-*.png
+page*-screenshot.png
+heft-preview.png
+cover-screenshot.png
+test-*.svg
+Photos-3-001/
+photos_16227497_*/
