@@ -81,11 +81,11 @@ body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-
 
 /* ── ITEM ── */
 .item{display:flex;flex-direction:column;min-width:0;min-height:0;padding:.5vh .4vw 1.4vh;
-  border-bottom:1px solid rgba(180,110,25,.18);position:relative;transform-style:preserve-3d}
+  border-bottom:1px solid rgba(180,110,25,.18);position:relative}
 .slide.on .item{animation:var(--anim,enter) var(--edur,1.25s) var(--een,cubic-bezier(.22,1,.36,1)) both;
-  animation-delay:calc(var(--i,0)*var(--estag,.09s));will-change:transform,opacity,filter}
+  animation-delay:calc(var(--i,0)*var(--estag,.09s));will-change:transform,opacity}
 .slide.leaving .item{animation:var(--lanim,leave) var(--ldur,.7s) var(--leas,cubic-bezier(.4,0,1,1)) both;
-  animation-delay:calc(var(--i,0)*var(--lstag,.05s));will-change:transform,opacity,filter}
+  animation-delay:calc(var(--i,0)*var(--lstag,.05s));will-change:transform,opacity}
 
 /* ── ENTER KEYFRAMES ── */
 @keyframes enter{
@@ -120,8 +120,8 @@ body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-
   0%{opacity:0;transform:scale(var(--fs,2.6)) rotate(var(--fr,0deg))}
   100%{opacity:1;transform:none}}
 @keyframes enter-swing{
-  0%{opacity:0;transform:rotate(var(--fr,-55deg)) translate(var(--fx,0),var(--fy,-40vh));transform-origin:top center}
-  65%{transform:rotate(calc(var(--fr,0deg)*-.12)) translate(0,0);transform-origin:top center}
+  0%{opacity:0;transform:translate(var(--fx,0),var(--fy,-40vh)) rotate(var(--fr,-55deg)) scale(.8)}
+  65%{opacity:1;transform:translate(0,0) rotate(calc(var(--fr,0deg)*-.08)) scale(1.02)}
   100%{opacity:1;transform:none}}
 @keyframes enter-flip{
   0%{opacity:0;transform:rotateY(var(--ry,180deg)) scale(.7)}
