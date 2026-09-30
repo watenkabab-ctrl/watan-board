@@ -215,7 +215,7 @@ const stage=document.getElementById('stage'),rail=document.getElementById('rail'
 SLIDES.forEach(sl=>{
   let inner="";
   if(sl.showcase){
-    const sc=sl.showcase,v="?v="+Date.now();
+    const sc=sl.showcase;
     const pills=sc.opts.map(o=>`
       <div class="sc-card">
         <div class="sc-card-left">
@@ -225,7 +225,7 @@ SLIDES.forEach(sl=>{
         <div class="sc-card-price">${o.p}<span class="cur">€</span></div>
       </div>`).join("");
     inner=`<div class="showcase">
-      <div class="sc-img"><img src="images/${sc.img}${v}" alt=""></div>
+      <div class="sc-img"><img src="images/${sc.img}" alt=""></div>
       <div class="sc-title" style="position:relative;z-index:3;text-align:center;margin-top:-2.5vh;animation:row-rise .8s cubic-bezier(.22,1,.36,1) both;animation-delay:.3s">
         <div style="font-family:'Playfair Display',serif;font-weight:700;font-style:italic;font-size:3.8vw;letter-spacing:.06em;background:linear-gradient(135deg,#E8B84A,#FFE8A0 45%,#C8922A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 8px rgba(0,0,0,1)) drop-shadow(0 2px 6px rgba(0,0,0,1))">${sc.n}</div>
         <div style="font-size:.85vw;letter-spacing:.28em;text-transform:uppercase;color:rgba(220,170,60,.9);margin-top:.3vh;text-shadow:0 0 8px rgba(0,0,0,1),0 1px 4px rgba(0,0,0,1)">${sc.sub}</div>
@@ -234,9 +234,8 @@ SLIDES.forEach(sl=>{
     </div>`;
   } else {
     inner=`<div class="grid">${sl.items.map((d,idx)=>{
-      const v="?v="+Date.now();
       const badge=d.badge?`<div class="badge">${d.badge}</div>`:"";
-      const pic=d.img?`<img src="images/${d.img}${v}" alt="">`:
+      const pic=d.img?`<img src="images/${d.img}" alt="">`:
         `<span class="emo">${d.emo||"🍢"}</span>`;
       const fdur=(6.2+(idx%4)*.65).toFixed(1),fdel=(-(idx*.9+Math.random()*.4)).toFixed(1);
       const desc=d.d?`<div class="desc">${d.d}</div>`:"";
