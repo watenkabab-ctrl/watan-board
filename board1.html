@@ -37,6 +37,9 @@ body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-
 @keyframes eb2{0%,100%{opacity:.6;transform:scaleX(.95)}50%{opacity:1;transform:scaleX(1.08)}}
 .vignette{position:fixed;inset:0;z-index:8;pointer-events:none;
   box-shadow:inset 0 0 18vw 5vw rgba(0,0,0,.65)}
+#sparks{position:fixed;inset:0;z-index:6;pointer-events:none;width:100%;height:100%}
+#flash{position:fixed;inset:0;z-index:9;pointer-events:none;opacity:0;
+  background:radial-gradient(ellipse 60% 40% at 50% 50%,rgba(255,180,40,.18),transparent 70%)}
 
 /* ── FRAME ── */
 .frame{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;padding:3vh 4.5vw 2.2vh}
@@ -189,6 +192,8 @@ body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-
   <footer class="rail" id="rail"></footer>
 </div>
 <div class="vignette"></div>
+<canvas id="sparks"></canvas>
+<div id="flash"></div>
 <script>
 const SLIDES=[
   {title:"Vom Grill",star:"✦",items:[
@@ -300,6 +305,7 @@ function show(n){
   segs.forEach((s,k)=>{s.classList.remove('on','done');if(k<next)s.classList.add('done');});
   const fill=segs[next].querySelector('.fill');fill.style.animation='none';void fill.offsetWidth;fill.style.animation='';
   segs[next].classList.add('on');i=next;
+  if(typeof doFlash==='function')doFlash();
 }
 requestAnimationFrame(()=>requestAnimationFrame(()=>show(0)));
 let timer=setInterval(()=>show(i+1),13000);
@@ -308,6 +314,52 @@ addEventListener('click',()=>jump(i+1));
 addEventListener('keydown',e=>{if(e.key==='ArrowRight')jump(i+1);if(e.key==='ArrowLeft')jump(i-1);if(e.key.toLowerCase()==='f'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}});
 // auto fullscreen on first interaction (TV kiosk mode)
 (function(){const fs=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(()=>{});};['click','touchstart','keydown'].forEach(e=>addEventListener(e,fs,{once:true,passive:true}));})();
+// ── GOLDEN SPARK PARTICLES ──
+(function(){
+  const cv=document.getElementById('sparks');
+  const ctx=cv.getContext('2d');
+  const COLS=['rgba(255,200,60,','rgba(255,160,30,','rgba(255,230,100,','rgba(220,120,20,','rgba(255,255,160,'];
+  let W,H,parts=[];
+  function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
+  resize();addEventListener('resize',resize);
+  function spawn(){
+    const x=W*.15+Math.random()*W*.7;
+    const spd=.18+Math.random()*.38;
+    parts.push({x,y:H+2,vy:-(spd),vx:(Math.random()-.5)*.18,
+      r:.7+Math.random()*2.2,life:1,decay:.0028+Math.random()*.002,
+      col:COLS[0|Math.random()*COLS.length],glow:Math.random()<.22});
+  }
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    if(Math.random()<.18)spawn();
+    parts=parts.filter(p=>{
+      p.x+=p.vx*(1+p.life*.4);p.y+=p.vy*H;p.life-=p.decay;
+      p.vx+=(Math.random()-.5)*.012;
+      if(p.life<=0||p.y<-10)return false;
+      const a=Math.min(p.life,.7)*(.55+p.life*.45);
+      if(p.glow){
+        const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*4.5);
+        g.addColorStop(0,p.col+(a*.7)+')');g.addColorStop(1,p.col+'0)');
+        ctx.beginPath();ctx.arc(p.x,p.y,p.r*4.5,0,6.28);
+        ctx.fillStyle=g;ctx.fill();
+      }
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);
+      ctx.fillStyle=p.col+a+')';ctx.fill();
+      return true;
+    });
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+// ── SLIDE FLASH ON TRANSITION ──
+const flashEl=document.getElementById('flash');
+function doFlash(){
+  flashEl.style.transition='none';flashEl.style.opacity='1';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    flashEl.style.transition='opacity 1.1s cubic-bezier(.4,0,1,1)';
+    flashEl.style.opacity='0';
+  }));
+}
 (function(){
   const vid=document.getElementById('firevid');
   if(!vid)return;
