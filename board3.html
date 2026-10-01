@@ -69,14 +69,18 @@ body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-
 .slide.on{opacity:1;pointer-events:auto}
 .slide.leaving{opacity:0;pointer-events:none;transition:opacity .75s var(--ease-up)}
 
-/* ── SLIDE HEADER ── */
-.sl-head{flex-shrink:0;margin-bottom:.5vh}
-.sl-head span{font-family:"Playfair Display",serif;font-weight:700;font-style:italic;font-size:1.85vw;
-  color:var(--g);letter-spacing:.06em;display:block;
-  text-shadow:0 0 2vw rgba(200,130,30,.3)}
+/* ── SECTIONS (2 per slide) ── */
+.sec{flex:1;min-height:0;display:flex;flex-direction:column;gap:.25vh}
+.sec+.sec{border-top:1px solid rgba(180,110,25,.2);padding-top:.4vh}
+.sec-hd{flex-shrink:0;display:flex;align-items:center;gap:.8vw}
+.sec-hd::after{content:"";flex:1;height:1px;background:rgba(200,146,42,.28)}
+.sec-hd span{font-family:"Playfair Display",serif;font-weight:700;font-style:italic;font-size:1.3vw;
+  letter-spacing:.04em;background:linear-gradient(135deg,#E8B84A,#FFE8A0 45%,#C8922A);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 6px rgba(0,0,0,.9))}
 
 /* ── GRID ── */
-.grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);gap:.3vh 1vw}
+.grid{flex:1;min-height:0;display:grid;gap:.3vh .8vw}
 
 /* ── ITEM ── */
 .item{display:flex;flex-direction:column;min-width:0;min-height:0;padding:.2vh .2vw .3vh;
@@ -229,7 +233,7 @@ body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-
 <div class="ember2"></div>
 <div class="frame">
   <header class="head">
-    <div class="board-title">Hauptgerichte</div>
+    <div class="board-title">Speisekarte</div>
   </header>
   <main class="stage" id="stage"></main>
   <footer class="rail" id="rail"></footer>
@@ -239,15 +243,38 @@ body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-
 <div id="flash"></div>
 <script>
 const SLIDES=[
-  {title:"Hauptgerichte",star:"✦",items:[
-    {n:"Haleem",p:"11",d:"Kalbfleisch · Hähnchen · Linsen · Zwiebeln",img:"Haleem.webp"},
-    {n:"Mantu",p:"11",d:"Teigtaschen · Hackfleisch · Joghurt-Knoblauch",img:"Mantu.webp"},
-    {n:"Pacha",p:"10",d:"Kalbsfüße · Zwiebeln · scharfes Chutney",img:"Pacha.webp"},
-    {n:"Rosh",p:"13",d:"Kalbfleisch · Tomaten · Kartoffeln",img:"Rosh.webp"},
-    {n:"Chanaki",p:"15",d:"Lammfleisch im Tontopf · Spezial-Masala",img:"Chanaki_v2.webp"},
-    {n:"Chicken Karahi",p:"15",d:"Hähnchen · Tomaten · grüner Pfeffer",img:"Chicken_Karahi.webp"},
-    {n:"Lamm Karahi",p:"16",d:"Lammfleisch · Tomaten · grüner Pfeffer",img:"Lamm_Karahi.webp"},
-    {n:"Grill Fish",p:"15",d:"Gegrillter Fisch · Salat · Chutney",img:"Grill_Fish.webp"},
+  {sections:[
+    {t:"Nr. 46–50",items:[
+      {n:"46. Loobia",p:"7",d:"Bohnen · Tomaten · Zwiebeln · Koriander",img:"Loobia.webp"},
+      {n:"Sabzi Palak",p:"9",d:"Spinat · Knoblauch · Tomaten · Gewürze",img:"Sabzi_Palak.webp"},
+      {n:"Qorma",p:"9",d:"Fleisch · Zwiebeln · Tomaten · Gewürze",img:"Qorma.webp"},
+      {n:"Chicken Jalfrezi",p:"10",d:"Hähnchen · Paprika · Tomaten · Gewürze",img:"Chicken_Jalfrezi.webp"},
+      {n:"Bamya (Okra)",p:"10",d:"Okra · Tomaten · Zwiebeln · Gewürze",img:"Bamya_Okra.webp"},
+    ]},
+    {t:"Palau",items:[
+      {n:"40. Kabuli Palau",p:"9",d:"Lammfleisch · Karotten · Rosinen · Basmatireis",img:"Kabuli_Palau.webp"},
+      {n:"Beryani Palau",p:"10",d:"Gewürzreis · Fleisch · Safran",img:"Beryani_Palau.webp"},
+      {n:"Mahicha Palau",p:"14",d:"Lammhaxe · Gewürzreis · Karotten",img:"Mahicha_Palau.webp"},
+      {n:"Molong Palau",p:"30",d:"3 Personen · Festtagsreis · Lammfleisch",img:"Molong_Palau.webp"},
+      {n:"Mantu",p:"11",d:"Teigtaschen · Hackfleisch · Joghurt-Knoblauch",img:"Mantu.webp"},
+    ]},
+  ]},
+  {sections:[
+    {t:"Nr. 51–56",items:[
+      {n:"51. Pacha",p:"10",d:"Kalbsfüße · Zwiebeln · scharfes Chutney",img:"Pacha.webp"},
+      {n:"Rosh",p:"13",d:"Kalbfleisch · Tomaten · Kartoffeln",img:"Rosh.webp"},
+      {n:"Chanaki",p:"15",d:"Lammfleisch im Tontopf · Spezial-Masala",img:"Chanaki_v2.webp"},
+      {n:"Chicken Karahi",p:"15",d:"Hähnchen · Tomaten · grüner Pfeffer",img:"Chicken_Karahi.webp"},
+      {n:"Lamm Karahi",p:"16",d:"Lammfleisch · Tomaten · grüner Pfeffer",img:"Lamm_Karahi.webp"},
+    ]},
+    {t:"Pizza",items:[
+      {n:"34. Margarita",p:"9",d:"Tomatensoße · Gouda",img:"Pizza_Margarita.webp"},
+      {n:"35. mit Spinat",p:"10",d:"Tomatensoße · Gouda · Spinat",img:"Pizza_Spinat.webp"},
+      {n:"36. Salami / Sucuk",p:"10",d:"Tomatensoße · Gouda · Salami oder Sucuk",img:"Pizza_Salami_Sucuk.webp"},
+      {n:"37. mit Tunfisch",p:"10",d:"Tomatensoße · Gouda · Thunfisch · Zwiebeln",img:"Pizza_Tunfisch.webp"},
+      {n:"38. Champignons",p:"10",d:"Tomatensoße · Gouda · Champignons",img:"Pizza_Champignons.webp"},
+      {n:"39. mit Gemüse",p:"13",d:"Tomatensoße · Paprika · Champignons · Oliven · Zucchini",img:"Pizza_Gemuese.webp"},
+    ]},
   ]},
 ];
 const stage=document.getElementById('stage'),rail=document.getElementById('rail');
@@ -271,12 +298,28 @@ SLIDES.forEach(sl=>{
       </div>
       <div class="sc-row">${pills}</div>
     </div>`;
-  } else {
-    inner=`<div class="grid">${sl.items.map((d,idx)=>{
+  } else if(sl.sections){
+    const renderItems=(items,offset)=>items.map((d,idx)=>{
+      const i=offset+idx;
       const badge=d.badge?`<div class="badge">${d.badge}</div>`:"";
       const pic=d.img?`<img src="images/${d.img}" alt="">`:
         `<span class="emo">${d.emo||"🍢"}</span>`;
-      const fdur=(6.2+(idx%4)*.65).toFixed(1),fdel=(-(idx*.9+Math.random()*.4)).toFixed(1);
+      const fdur=(6.2+(i%5)*.55).toFixed(1),fdel=(-(i*.7+Math.random()*.3)).toFixed(1);
+      const desc=d.d?`<div class="desc">${d.d}</div>`:"";
+      return `<div class="item" style="--i:${i};--fdur:${fdur}s;--fdel:${fdel}s"><div class="pic">${pic}</div><div class="info"><div class="nm">${d.n}</div>${desc}<div class="bot"><div class="pr">${d.p}<span class="cur">€</span></div>${badge}</div></div></div>`;
+    }).join("");
+    let off=0;
+    inner=sl.sections.map(sec=>{
+      const cols=sec.items.length;
+      const html=`<div class="sec"><div class="sec-hd"><span>${sec.t}</span></div><div class="grid" style="grid-template-columns:repeat(${cols},1fr)">${renderItems(sec.items,off)}</div></div>`;
+      off+=sec.items.length;return html;
+    }).join("");
+  } else {
+    inner=`<div class="grid" style="grid-template-columns:repeat(${sl.items.length},1fr)">${sl.items.map((d,idx)=>{
+      const badge=d.badge?`<div class="badge">${d.badge}</div>`:"";
+      const pic=d.img?`<img src="images/${d.img}" alt="">`:
+        `<span class="emo">${d.emo||"🍢"}</span>`;
+      const fdur=(6.2+(idx%5)*.55).toFixed(1),fdel=(-(idx*.7+Math.random()*.3)).toFixed(1);
       const desc=d.d?`<div class="desc">${d.d}</div>`:"";
       return `<div class="item" style="--i:${idx};--fdur:${fdur}s;--fdel:${fdel}s"${d.hero?" data-hero":""}><div class="pic">${pic}</div><div class="info"><div class="nm">${d.n}</div>${desc}<div class="bot"><div class="pr">${d.p}<span class="cur">€</span></div>${badge}</div></div></div>`;
     }).join("")}</div>`;
