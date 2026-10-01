@@ -245,34 +245,31 @@ body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-
 const SLIDES=[
   {sections:[
     {t:"Döner",items:[
-      {n:"Döner",p:"7",d:"Fladenbrot · Salat · Soße · mit Käse +1 €",img:"Doener_v1.webp"},
+      {n:"5. Döner",p:"7",d:"Fladenbrot · Salat · Soße · mit Käse +1 €",img:"Doener_v1.webp"},
       {n:"Döner Box",p:"8,50",d:"Pommes oder Reis · Salat · Soße",img:"Doener_Box.webp"},
       {n:"Lahmacun",p:"9",d:"Dönerfleisch · frischer Salat · Soße",img:"Lahmacun.webp"},
       {n:"Dönerteller Pommes",p:"12",d:"Pommes · Salat · Zwiebeln · Soße",img:"Doenerteller_Pommes.webp"},
-      {n:"Dönerteller Reis",p:"12",d:"Reis · Salat · Zwiebeln · Soße",img:"Doenerteller_Reis.webp"},
+      {n:"10. Dönerteller Reis",p:"12",d:"Reis · Salat · Zwiebeln · Soße",img:"Doenerteller_Reis.webp"},
     ]},
-    {t:"Vegetarisch · Vegan",items:[
-      {n:"Falafel-Sandwich",p:"7",d:"Falafel · Salat · Soße · Fladenbrot",img:"Falafel_Sandwich.webp"},
+    {t:"Vegetarisch / Vegan",items:[
+      {n:"11. Falafel-Sandwich",p:"7",d:"Falafel · Salat · Soße · Fladenbrot",img:"Falafel_Sandwich.webp"},
       {n:"Falafel-Teller",p:"12",d:"Falafel · Salat · Beilagen · Soße",img:"Falafel_Teller.webp"},
       {n:"Seitan-Sandwich",p:"7,50",d:"Seitan · Salat · Soße · Fladenbrot",img:"Seitan_Sandwich.webp"},
       {n:"Seitan-Teller",p:"11,50",d:"Seitan · Salat · Beilagen · Soße",img:"Seitan_Teller.webp"},
-      {n:"Bolani Kachalo",p:"5",d:"Kartoffeln · Zwiebeln · Koriander · Stück 2,50 €",img:"Bolani_Kachalo.webp"},
     ]},
   ]},
   {sections:[
     {t:"Vorspeisen",items:[
       {n:"Samosa Gemüse",p:"5",d:"Gemüse · Kartoffeln · Erbsen · Stück 2,50 €",img:"Samosa_Gemuese.webp"},
+      {n:"Bolani Kachalo &amp; Gandana",p:"5",d:"Kartoffeln · Zwiebeln · Koriander · Stück 2,50 €",img:"Bolani_Kachalo.webp"},
       {n:"Shor Nakhod",p:"7",d:"Kichererbsen · Kartoffeln · Chutney · Pfeffer",img:"Shor_Nakhod.webp"},
       {n:"Afghan Soup",p:"7",d:"Hähnchen · Kichererbsen · Ei · Mais · Karotten",img:"Afghan_Soup.webp"},
-      {n:"Pacha",p:"10",d:"Kalbsfüße · Zwiebeln · scharfes Chutney",img:"Pacha.webp"},
-      {n:"Haleem",p:"11",d:"Kalbfleisch · Hähnchen · Linsen · Zwiebeln",img:"Haleem.webp"},
     ]},
     {t:"Burger &amp; Fisch",items:[
-      {n:"Afghan Burger",p:"7",d:"Dürüm-Fladen · Kalbfleisch · Pommes · Ei · Salat",img:"Afghan_Burger.webp"},
+      {n:"22. Afghan Burger",p:"7",d:"Dürüm-Fladen · Kalbfleisch · Pommes · Ei · Salat",img:"Afghan_Burger.webp"},
       {n:"Burger mit Pommes",p:"9",d:"Rindfleisch-Patty · Cheddar · Salat · Pommes",img:"Burger_mit_Pommes.webp"},
       {n:"Fry Fish",p:"12,50",d:"Frittierter Fisch · Pommes oder Brot · Salat",img:"Fry_Fish.webp"},
       {n:"Grill Fish",p:"15",d:"Gegrillter Fisch · Pommes oder Brot · Salat",img:"Grill_Fish.webp"},
-      {n:"Falafel-Sandwich",p:"7",d:"Falafel · Salat · Soße · Fladenbrot",img:"Falafel_Sandwich.webp"},
     ]},
   ]},
 ];
@@ -309,7 +306,8 @@ SLIDES.forEach(sl=>{
     }).join("");
     let off=0;
     inner=sl.sections.map(sec=>{
-      const html=`<div class="sec"><div class="sec-hd"><span>${sec.t}</span></div><div class="grid">${renderItems(sec.items,off)}</div></div>`;
+      const cols=sec.items.length;
+      const html=`<div class="sec"><div class="sec-hd"><span>${sec.t}</span></div><div class="grid" style="grid-template-columns:repeat(${cols},1fr)">${renderItems(sec.items,off)}</div></div>`;
       off+=sec.items.length;return html;
     }).join("");
   } else {
