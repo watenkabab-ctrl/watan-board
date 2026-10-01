@@ -69,14 +69,18 @@ body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-
 .slide.on{opacity:1;pointer-events:auto}
 .slide.leaving{opacity:0;pointer-events:none;transition:opacity .75s var(--ease-up)}
 
-/* ── SLIDE HEADER ── */
-.sl-head{flex-shrink:0;margin-bottom:.5vh}
-.sl-head span{font-family:"Playfair Display",serif;font-weight:700;font-style:italic;font-size:1.85vw;
-  color:var(--g);letter-spacing:.06em;display:block;
-  text-shadow:0 0 2vw rgba(200,130,30,.3)}
+/* ── SECTIONS (2 per slide) ── */
+.sec{flex:1;min-height:0;display:flex;flex-direction:column;gap:.25vh}
+.sec+.sec{border-top:1px solid rgba(180,110,25,.2);padding-top:.4vh}
+.sec-hd{flex-shrink:0;display:flex;align-items:center;gap:.8vw}
+.sec-hd::after{content:"";flex:1;height:1px;background:rgba(200,146,42,.28)}
+.sec-hd span{font-family:"Playfair Display",serif;font-weight:700;font-style:italic;font-size:1.3vw;
+  letter-spacing:.04em;background:linear-gradient(135deg,#E8B84A,#FFE8A0 45%,#C8922A);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 6px rgba(0,0,0,.9))}
 
 /* ── GRID ── */
-.grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);gap:.3vh 1vw}
+.grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(5,1fr);gap:.3vh .8vw}
 
 /* ── ITEM ── */
 .item{display:flex;flex-direction:column;min-width:0;min-height:0;padding:.2vh .2vw .3vh;
@@ -239,30 +243,37 @@ body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-
 <div id="flash"></div>
 <script>
 const SLIDES=[
-  {title:"Döner",star:"✦",items:[
-    {n:"Döner",p:"7",d:"Fladenbrot · Salat · Soße · mit Käse +1 €",img:"Doener_v1.webp"},
-    {n:"Döner Box",p:"8,50",d:"Pommes oder Reis · Salat · Soße",img:"Doener_Box.webp"},
-    {n:"Lahmacun",p:"9",d:"Dönerfleisch · frischer Salat · Soße",img:"Lahmacun.webp"},
-    {n:"Dönerteller Pommes",p:"12",d:"Pommes · Salat · Zwiebeln · Soße",img:"Doenerteller_Pommes.webp"},
-    {n:"Dönerteller Reis",p:"12",d:"Reis · Salat · Zwiebeln · Soße",img:"Doenerteller_Reis.webp"},
+  {sections:[
+    {t:"Döner",items:[
+      {n:"Döner",p:"7",d:"Fladenbrot · Salat · Soße · mit Käse +1 €",img:"Doener_v1.webp"},
+      {n:"Döner Box",p:"8,50",d:"Pommes oder Reis · Salat · Soße",img:"Doener_Box.webp"},
+      {n:"Lahmacun",p:"9",d:"Dönerfleisch · frischer Salat · Soße",img:"Lahmacun.webp"},
+      {n:"Dönerteller Pommes",p:"12",d:"Pommes · Salat · Zwiebeln · Soße",img:"Doenerteller_Pommes.webp"},
+      {n:"Dönerteller Reis",p:"12",d:"Reis · Salat · Zwiebeln · Soße",img:"Doenerteller_Reis.webp"},
+    ]},
+    {t:"Vegetarisch · Vegan",items:[
+      {n:"Falafel-Sandwich",p:"7",d:"Falafel · Salat · Soße · Fladenbrot",img:"Falafel_Sandwich.webp"},
+      {n:"Falafel-Teller",p:"12",d:"Falafel · Salat · Beilagen · Soße",img:"Falafel_Teller.webp"},
+      {n:"Seitan-Sandwich",p:"7,50",d:"Seitan · Salat · Soße · Fladenbrot",img:"Seitan_Sandwich.webp"},
+      {n:"Seitan-Teller",p:"11,50",d:"Seitan · Salat · Beilagen · Soße",img:"Seitan_Teller.webp"},
+      {n:"Bolani Kachalo",p:"5",d:"Kartoffeln · Zwiebeln · Koriander · Stück 2,50 €",img:"Bolani_Kachalo.webp"},
+    ]},
   ]},
-  {title:"Vegetarisch · Vegan",star:"✦",items:[
-    {n:"Falafel-Sandwich",p:"7",d:"Falafel · Salat · Soße · Fladenbrot",img:"Falafel_Sandwich.webp"},
-    {n:"Falafel-Teller",p:"12",d:"Falafel · Salat · Beilagen · Soße",img:"Falafel_Teller.webp"},
-    {n:"Seitan-Sandwich",p:"7,50",d:"Seitan · Salat · Soße · Fladenbrot",img:"Seitan_Sandwich.webp"},
-    {n:"Seitan-Teller",p:"11,50",d:"Seitan · Salat · Beilagen · Soße",img:"Seitan_Teller.webp"},
-  ]},
-  {title:"Vorspeisen",star:"✦",items:[
-    {n:"Samosa Gemüse",p:"5",d:"Gemüse · Kartoffeln · Erbsen · Stück 2,50 €",img:"Samosa_Gemuese.webp"},
-    {n:"Bolani Kachalo",p:"5",d:"Kartoffeln · Zwiebeln · Koriander · Stück 2,50 €",img:"Bolani_Kachalo.webp"},
-    {n:"Shor Nakhod",p:"7",d:"Kichererbsen · Kartoffeln · Chutney · Pfeffer",img:"Shor_Nakhod.webp"},
-    {n:"Haleem",p:"11",d:"Kalbfleisch · Hähnchen · Linsen · Zwiebeln",img:"Haleem.webp"},
-  ]},
-  {title:"Burger &amp; Fisch",star:"✦",items:[
-    {n:"Afghan Burger",p:"7",d:"Dürüm-Fladen · Kalbfleisch · Pommes · Ei · Salat",img:"Afghan_Burger.webp"},
-    {n:"Burger mit Pommes",p:"9",d:"Rindfleisch-Patty · Cheddar · Salat · Pommes",img:"Burger_mit_Pommes.webp"},
-    {n:"Fry Fish",p:"12,50",d:"Frittierter Fisch · Pommes oder Brot · Salat",img:"Fry_Fish.webp"},
-    {n:"Grill Fish",p:"15",d:"Gegrillter Fisch · Pommes oder Brot · Salat",img:"Grill_Fish.webp"},
+  {sections:[
+    {t:"Vorspeisen",items:[
+      {n:"Samosa Gemüse",p:"5",d:"Gemüse · Kartoffeln · Erbsen · Stück 2,50 €",img:"Samosa_Gemuese.webp"},
+      {n:"Shor Nakhod",p:"7",d:"Kichererbsen · Kartoffeln · Chutney · Pfeffer",img:"Shor_Nakhod.webp"},
+      {n:"Afghan Soup",p:"7",d:"Hähnchen · Kichererbsen · Ei · Mais · Karotten",img:"Afghan_Soup.webp"},
+      {n:"Pacha",p:"10",d:"Kalbsfüße · Zwiebeln · scharfes Chutney",img:"Pacha.webp"},
+      {n:"Haleem",p:"11",d:"Kalbfleisch · Hähnchen · Linsen · Zwiebeln",img:"Haleem.webp"},
+    ]},
+    {t:"Burger &amp; Fisch",items:[
+      {n:"Afghan Burger",p:"7",d:"Dürüm-Fladen · Kalbfleisch · Pommes · Ei · Salat",img:"Afghan_Burger.webp"},
+      {n:"Burger mit Pommes",p:"9",d:"Rindfleisch-Patty · Cheddar · Salat · Pommes",img:"Burger_mit_Pommes.webp"},
+      {n:"Fry Fish",p:"12,50",d:"Frittierter Fisch · Pommes oder Brot · Salat",img:"Fry_Fish.webp"},
+      {n:"Grill Fish",p:"15",d:"Gegrillter Fisch · Pommes oder Brot · Salat",img:"Grill_Fish.webp"},
+      {n:"Falafel-Sandwich",p:"7",d:"Falafel · Salat · Soße · Fladenbrot",img:"Falafel_Sandwich.webp"},
+    ]},
   ]},
 ];
 const stage=document.getElementById('stage'),rail=document.getElementById('rail');
@@ -286,12 +297,27 @@ SLIDES.forEach(sl=>{
       </div>
       <div class="sc-row">${pills}</div>
     </div>`;
+  } else if(sl.sections){
+    const renderItems=(items,offset)=>items.map((d,idx)=>{
+      const i=offset+idx;
+      const badge=d.badge?`<div class="badge">${d.badge}</div>`:"";
+      const pic=d.img?`<img src="images/${d.img}" alt="">`:
+        `<span class="emo">${d.emo||"🍢"}</span>`;
+      const fdur=(6.2+(i%5)*.55).toFixed(1),fdel=(-(i*.7+Math.random()*.3)).toFixed(1);
+      const desc=d.d?`<div class="desc">${d.d}</div>`:"";
+      return `<div class="item" style="--i:${i};--fdur:${fdur}s;--fdel:${fdel}s"><div class="pic">${pic}</div><div class="info"><div class="nm">${d.n}</div>${desc}<div class="bot"><div class="pr">${d.p}<span class="cur">€</span></div>${badge}</div></div></div>`;
+    }).join("");
+    let off=0;
+    inner=sl.sections.map(sec=>{
+      const html=`<div class="sec"><div class="sec-hd"><span>${sec.t}</span></div><div class="grid">${renderItems(sec.items,off)}</div></div>`;
+      off+=sec.items.length;return html;
+    }).join("");
   } else {
     inner=`<div class="grid">${sl.items.map((d,idx)=>{
       const badge=d.badge?`<div class="badge">${d.badge}</div>`:"";
       const pic=d.img?`<img src="images/${d.img}" alt="">`:
         `<span class="emo">${d.emo||"🍢"}</span>`;
-      const fdur=(6.2+(idx%4)*.65).toFixed(1),fdel=(-(idx*.9+Math.random()*.4)).toFixed(1);
+      const fdur=(6.2+(idx%5)*.55).toFixed(1),fdel=(-(idx*.7+Math.random()*.3)).toFixed(1);
       const desc=d.d?`<div class="desc">${d.d}</div>`:"";
       return `<div class="item" style="--i:${idx};--fdur:${fdur}s;--fdel:${fdel}s"${d.hero?" data-hero":""}><div class="pic">${pic}</div><div class="info"><div class="nm">${d.n}</div>${desc}<div class="bot"><div class="pr">${d.p}<span class="cur">€</span></div>${badge}</div></div></div>`;
     }).join("")}</div>`;
