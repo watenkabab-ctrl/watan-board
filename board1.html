@@ -470,5 +470,9 @@ function doFlash(){
   ['click','keydown','touchstart','mousemove'].forEach(ev=>addEventListener(ev,tp,{once:true,passive:true}));
 })();
 </script>
+<script>
+// Auto-reload every 2 hours to pick up updates
+setTimeout(()=>location.reload(true), 7200000);
+</script>
 </body>
 </html>
