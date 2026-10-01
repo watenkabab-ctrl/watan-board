@@ -40,13 +40,13 @@ body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-
   background:radial-gradient(ellipse 60% 40% at 50% 50%,rgba(255,180,40,.18),transparent 70%)}
 
 /* ── FRAME ── */
-.frame{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;padding:3vh 4.5vw 2.2vh;transform:translateZ(0)}
+.frame{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;padding:1.5vh 2.5vw 1.2vh;transform:translateZ(0)}
 
 /* ── HEADER ── */
-.head{text-align:center;flex-shrink:0;padding:.6vh 0 .4vh}
+.head{text-align:center;flex-shrink:0;padding:.2vh 0 .1vh}
 .board-title{position:relative;display:inline-block;
   font-family:"Playfair Display",serif;font-weight:700;font-style:italic;
-  font-size:3.9vw;line-height:1.1;letter-spacing:.08em;
+  font-size:3.3vw;line-height:1.1;letter-spacing:.08em;
   background:linear-gradient(135deg,#E8B84A 0%,#FFE8A0 40%,#C8922A 65%,#E8B84A 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   background-size:200% auto;
@@ -62,7 +62,7 @@ body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-
 @keyframes line-expand{to{width:110%}}
 
 /* ── STAGE ── */
-.stage{flex:1;min-height:0;position:relative;margin:.6vh 0;perspective:1400px}
+.stage{flex:1;min-height:0;position:relative;margin:.2vh 0;perspective:1400px}
 .slide{position:absolute;inset:0;display:flex;flex-direction:column;
   opacity:0;pointer-events:none}
 .slide.on{opacity:1;pointer-events:auto}
@@ -75,10 +75,10 @@ body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-
   text-shadow:0 0 2vw rgba(200,130,30,.3)}
 
 /* ── GRID ── */
-.grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);gap:.5vh 1.5vw}
+.grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);gap:.3vh 1vw}
 
 /* ── ITEM ── */
-.item{display:flex;flex-direction:column;min-width:0;min-height:0;padding:.4vh .4vw .5vh;
+.item{display:flex;flex-direction:column;min-width:0;min-height:0;padding:.2vh .2vw .3vh;
   border-bottom:1px solid rgba(180,110,25,.18);position:relative}
 .slide.on .item{animation:var(--anim,enter) var(--edur,1.25s) var(--een,cubic-bezier(.22,1,.36,1)) both;
   animation-delay:calc(var(--i,0)*var(--estag,.09s));will-change:transform,opacity}
@@ -158,10 +158,10 @@ body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-
 .item .nm{font-family:"Playfair Display",serif;font-weight:700;font-size:2.05vw;line-height:1.1;
   color:#F5EAD5;letter-spacing:.015em;
   text-shadow:0 0 12px rgba(0,0,0,1),0 1px 4px rgba(0,0,0,1),0 2px 20px rgba(0,0,0,.95)}
-.item .desc{font-size:1.18vw;color:#C8B89A;line-height:1.28;margin-top:.15vh;text-shadow:0 0 8px rgba(0,0,0,1),0 1px 3px rgba(0,0,0,1);
+.item .desc{font-size:1.18vw;color:#C8B89A;line-height:1.28;margin-top:.05vh;text-shadow:0 0 8px rgba(0,0,0,1),0 1px 3px rgba(0,0,0,1);
   display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.item .bot{display:flex;align-items:baseline;justify-content:space-between;margin-top:.15vh;gap:.5vw}
-.item .pr{font-family:"Playfair Display",serif;font-weight:700;font-size:2.65vw;line-height:1.2;padding-bottom:.2vh;
+.item .bot{display:flex;align-items:baseline;justify-content:space-between;margin-top:.05vh;gap:.5vw}
+.item .pr{font-family:"Playfair Display",serif;font-weight:700;font-size:2.65vw;line-height:1.2;padding-bottom:.08vh;
   background:linear-gradient(135deg,#C8922A,#FFE8A0 50%,#C8922A);
   background-size:200% auto;
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
@@ -228,7 +228,7 @@ body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-
 <div class="ember2"></div>
 <div class="frame">
   <header class="head">
-    <div class="board-title">Grill Gerichte</div>
+    <div class="board-title">Hauptgerichte</div>
   </header>
   <main class="stage" id="stage"></main>
   <footer class="rail" id="rail"></footer>
@@ -238,25 +238,16 @@ body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-
 <div id="flash"></div>
 <script>
 const SLIDES=[
-  {title:"Vom Grill",star:"✦",items:[
-    {n:"Chicken Wings Kebab",p:"12",d:"Marinierte Flügel · Knoblauch-Joghurt",img:"Chicken_Wings_Kebab_v1.webp"},
-    {n:"Chicken Tikka Kebab",p:"12,50",d:"Tandoor · Basmati-Reis · Beilagen",img:"Chicken_Tikka_Kebab_v1.webp"},
-    {n:"Zershk Palau · Hähnchen",p:"13,50",d:"Berberitzenreis · Safran · Hähnchen",img:"Zershk_Palau_Haehnchen.webp",emo:"🍗"},
-    {n:"Chapli Kebab",p:"8",d:"Gehacktes Lamm · Kräuter · Fladenbrot",img:"Chapli_Kebab_v1.webp",smoke:true},
-    {n:"Kobide Kebab",p:"15",d:"Rindshackfleisch · Gewürze · Basmati-Reis",img:"Kobide_Kebab.webp",emo:"🍢",smoke:true},
-    {n:"Lamm Tikka Kebab",p:"18",d:"Zartes Lammfleisch · Tandoor · Beilagen",img:"Lamm_Tikka_Kebab.webp"},
-    {n:"Lamm Kotelett",p:"19,50",d:"Gegrillte Lammkoteletts · Beilagen",img:"Lamm_Kotelett_v1.webp",smoke:true},
-    {n:"Mix Grill · 1 Person",p:"20",d:"Wings · Chapli · Tikka · Koteletts",img:"Mix_Grill_1_Person_v1.webp",hero:true},
+  {title:"Hauptgerichte",star:"✦",items:[
+    {n:"Afghan Soup",p:"7",d:"Hähnchen · Kichererbsen · Ei · Karotten",img:"Afghan_Soup.webp"},
+    {n:"Mantu",p:"11",d:"Teigtaschen · Hackfleisch · Joghurt-Knoblauch",img:"Mantu.webp"},
+    {n:"Pacha",p:"10",d:"Kalbsfüße · Zwiebeln · scharfes Chutney",img:"Pacha.webp"},
+    {n:"Rosh",p:"13",d:"Kalbfleisch · Tomaten · Kartoffeln",img:"Rosh.webp"},
+    {n:"Chanaki",p:"15",d:"Lammfleisch im Tontopf · Spezial-Masala",img:"Chanaki.webp"},
+    {n:"Chicken Karahi",p:"15",d:"Hähnchen · Tomaten · grüner Pfeffer",img:"Chicken_Karahi.webp"},
+    {n:"Lamm Karahi",p:"16",d:"Lammfleisch · Tomaten · grüner Pfeffer",img:"Lamm_Karahi.webp"},
+    {n:"Grill Fish",p:"15",d:"Gegrillter Fisch · Salat · Chutney",img:"Grill_Fish.webp"},
   ]},
-  {title:"Mix Grill",showcase:{
-    n:"Mix Grill",
-    sub:"Frisch vom Grill · Beilagen · Soßen · Salat",
-    img:"Mix_Grill_Grillplatte_v1.webp",
-    opts:[
-      {label:"Personen",num:"2",p:"40"},
-      {label:"Personen",num:"4",p:"80"},
-    ]
-  }},
 ];
 const stage=document.getElementById('stage'),rail=document.getElementById('rail');
 SLIDES.forEach(sl=>{
