@@ -17,7 +17,7 @@
   --ease:cubic-bezier(.22,1,.36,1);--ease-up:cubic-bezier(.4,0,1,1);--dwell:13s;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;width:100%;overflow:hidden;background:#2a1205}
+html,body{height:100%;width:100%;overflow:hidden;background:#2a1205;overscroll-behavior:none}
 body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   text-rendering:geometricPrecision;image-rendering:-webkit-optimize-contrast}
@@ -74,7 +74,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .frame.showcase-mode .head{opacity:0;transform:translateY(-1.5vh);pointer-events:none}
 
 /* ── STAGE ── */
-.stage{flex:1;min-height:0;position:relative;margin:.1vh 0}
+.stage{flex:1;min-height:0;position:relative;margin:.1vh 0;overflow:hidden;perspective:1200px}
 .slide{position:absolute;inset:0;display:flex;flex-direction:column;
   opacity:0;pointer-events:none;will-change:opacity,transform}
 .slide.on{opacity:1;pointer-events:auto;transition:opacity .9s var(--ease),transform .9s var(--ease);transform:none}
@@ -101,19 +101,31 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .slide.leaving .item{will-change:transform,opacity;
   animation:var(--out-anim,anim-lift) var(--out-dur,.46s) var(--out-ease,cubic-bezier(.4,0,1,1)) var(--out-delay,0ms) both}
 
-/* enter animations */
-@keyframes anim-rise{from{opacity:0;transform:translateY(3vh) scale(.96)}to{opacity:1;transform:none}}
-@keyframes anim-drop{from{opacity:0;transform:translateY(-3vh) scale(.96)}to{opacity:1;transform:none}}
-@keyframes anim-left{from{opacity:0;transform:translateX(-3vw) scale(.97)}to{opacity:1;transform:none}}
-@keyframes anim-right{from{opacity:0;transform:translateX(3vw) scale(.97)}to{opacity:1;transform:none}}
-@keyframes anim-bloom{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:none}}
-@keyframes anim-unfold{from{opacity:0;transform:scaleY(.4) translateY(1.5vh)}to{opacity:1;transform:none}}
-/* exit animations */
-@keyframes anim-lift{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-2vh) scale(.97)}}
-@keyframes anim-sink{from{opacity:1;transform:none}to{opacity:0;transform:translateY(2vh) scale(.97)}}
-@keyframes anim-swipe{from{opacity:1;transform:none}to{opacity:0;transform:translateX(-2.5vw) scale(.97)}}
-@keyframes anim-fold{from{opacity:1;transform:none}to{opacity:0;transform:scaleY(.3) translateY(-1vh)}}
-@keyframes anim-shrink{from{opacity:1;transform:none}to{opacity:0;transform:scale(.82)}}
+/* ── ENTER: von außen herein ── */
+@keyframes from-bottom   {from{opacity:0;transform:translateY(110vh)}          to{opacity:1;transform:none}}
+@keyframes from-top      {from{opacity:0;transform:translateY(-110vh)}         to{opacity:1;transform:none}}
+@keyframes from-left     {from{opacity:0;transform:translateX(-110vw)}         to{opacity:1;transform:none}}
+@keyframes from-right    {from{opacity:0;transform:translateX(110vw)}          to{opacity:1;transform:none}}
+@keyframes from-bl       {from{opacity:0;transform:translate(-90vw,90vh)}      to{opacity:1;transform:none}}
+@keyframes from-br       {from{opacity:0;transform:translate(90vw,90vh)}       to{opacity:1;transform:none}}
+@keyframes from-tl       {from{opacity:0;transform:translate(-90vw,-90vh)}     to{opacity:1;transform:none}}
+@keyframes from-tr       {from{opacity:0;transform:translate(90vw,-90vh)}      to{opacity:1;transform:none}}
+@keyframes zoom-in       {from{opacity:0;transform:scale(.1)}                  to{opacity:1;transform:none}}
+@keyframes zoom-in-top   {from{opacity:0;transform:scale(.1) translateY(-60vh)}to{opacity:1;transform:none}}
+@keyframes flip-x        {from{opacity:0;transform:rotateX(90deg) translateY(8vh)}to{opacity:1;transform:none}}
+@keyframes flip-y        {from{opacity:0;transform:rotateY(90deg) translateX(4vw)}to{opacity:1;transform:none}}
+/* ── EXIT: nach außen heraus ── */
+@keyframes to-top        {from{opacity:1;transform:none}to{opacity:0;transform:translateY(-110vh)}}
+@keyframes to-bottom     {from{opacity:1;transform:none}to{opacity:0;transform:translateY(110vh)}}
+@keyframes to-left       {from{opacity:1;transform:none}to{opacity:0;transform:translateX(-110vw)}}
+@keyframes to-right      {from{opacity:1;transform:none}to{opacity:0;transform:translateX(110vw)}}
+@keyframes to-bl         {from{opacity:1;transform:none}to{opacity:0;transform:translate(-90vw,90vh)}}
+@keyframes to-br         {from{opacity:1;transform:none}to{opacity:0;transform:translate(90vw,90vh)}}
+@keyframes to-tl         {from{opacity:1;transform:none}to{opacity:0;transform:translate(-90vw,-90vh)}}
+@keyframes to-tr         {from{opacity:1;transform:none}to{opacity:0;transform:translate(90vw,-90vh)}}
+@keyframes zoom-out      {from{opacity:1;transform:none}to{opacity:0;transform:scale(.05)}}
+@keyframes flip-x-out   {from{opacity:1;transform:none}to{opacity:0;transform:rotateX(-90deg) translateY(-6vh)}}
+@keyframes flip-y-out   {from{opacity:1;transform:none}to{opacity:0;transform:rotateY(-90deg) translateX(-4vw)}}
 
 /* ── IMAGE ── */
 .item .pic{flex:1;min-height:0;position:relative;overflow:hidden}
@@ -291,27 +303,41 @@ function reflow(el){void el.offsetWidth;}
 function setVideos(sl,play){sl.querySelectorAll('video').forEach(v=>{try{play?v.play().catch(()=>{}):v.pause();}catch(e){}});}
 const frame=document.querySelector('.frame'),boardTitle=document.getElementById('boardTitle');
 
-// Elegant animation sets — each entry: [in-anim, out-anim, stagger-mode]
-// stagger-mode: 'seq'=left→right top→bot, 'col'=by column, 'row'=by row, 'rev'=reversed, 'center'=from center out
+// stagger-modes: seq, rev, col, row, center, wave, spiral
 const ANIM_SETS=[
-  {in:'anim-rise',  out:'anim-lift',  stag:'seq',    dur:[.78,.46], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
-  {in:'anim-drop',  out:'anim-sink',  stag:'rev',    dur:[.72,.44], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
-  {in:'anim-left',  out:'anim-swipe', stag:'col',    dur:[.70,.42], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
-  {in:'anim-right', out:'anim-lift',  stag:'row',    dur:[.70,.44], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
-  {in:'anim-bloom', out:'anim-shrink',stag:'center', dur:[.82,.50], ease:['cubic-bezier(.34,1.28,.64,1)','cubic-bezier(.4,0,1,1)']},
-  {in:'anim-unfold',out:'anim-fold',  stag:'seq',    dur:[.68,.38], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.55,0,1,1)']},
+  {in:'from-bottom', out:'to-top',      stag:'seq',    dur:[.85,.52], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'from-top',    out:'to-bottom',   stag:'rev',    dur:[.82,.50], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'from-left',   out:'to-right',    stag:'col',    dur:[.80,.48], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
+  {in:'from-right',  out:'to-left',     stag:'row',    dur:[.80,.48], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
+  {in:'from-bl',     out:'to-tr',       stag:'wave',   dur:[.88,.54], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'from-br',     out:'to-tl',       stag:'wave',   dur:[.88,.54], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'from-tl',     out:'to-br',       stag:'spiral', dur:[.90,.55], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
+  {in:'from-tr',     out:'to-bl',       stag:'spiral', dur:[.90,.55], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
+  {in:'zoom-in',     out:'zoom-out',    stag:'center', dur:[.92,.55], ease:['cubic-bezier(.34,1.18,.64,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'zoom-in-top', out:'to-bottom',   stag:'rev',    dur:[.88,.50], ease:['cubic-bezier(.34,1.18,.64,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'flip-x',      out:'flip-x-out', stag:'row',    dur:[.78,.46], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'flip-y',      out:'flip-y-out', stag:'col',    dur:[.78,.46], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'from-bottom', out:'to-left',    stag:'spiral', dur:[.85,.48], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.55,0,1,1)']},
+  {in:'from-left',   out:'to-bottom',  stag:'rev',    dur:[.80,.46], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.55,0,1,1)']},
+  {in:'from-tr',     out:'to-bottom',  stag:'seq',    dur:[.88,.50], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'from-bl',     out:'to-right',   stag:'center', dur:[.88,.52], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
 ];
 let lastSet=-1;
 function pickSet(){let s;do{s=0|Math.random()*ANIM_SETS.length;}while(s===lastSet);lastSet=s;return ANIM_SETS[s];}
 function staggerDelay(idx,mode,total){
   const cols=4,rows=Math.ceil(total/cols),col=idx%cols,row=0|idx/cols;
   const cx=cols/2-.5,cy=rows/2-.5,dist=Math.hypot(col-cx,row-cy);
-  if(mode==='seq')    return idx*52;
-  if(mode==='rev')    return (total-1-idx)*45;
-  if(mode==='col')    return col*90+(row*28);
-  if(mode==='row')    return row*110+(col*22);
-  if(mode==='center') return dist*80;
-  return idx*52;
+  if(mode==='seq')    return idx*48;
+  if(mode==='rev')    return (total-1-idx)*42;
+  if(mode==='col')    return col*80+(row*25);
+  if(mode==='row')    return row*95+(col*20);
+  if(mode==='center') return dist*72;
+  if(mode==='wave')   return (col+row)*55;
+  if(mode==='spiral') {
+    const angle=Math.atan2(row-cy,col-cx);
+    return (dist*60 + ((angle+Math.PI)/(2*Math.PI))*120)|0;
+  }
+  return idx*48;
 }
 function applyAnim(sl,set,phase){
   const items=sl.querySelectorAll('.item');
