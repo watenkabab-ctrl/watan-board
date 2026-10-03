@@ -150,19 +150,19 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .showcase::before{content:"";display:none}
 @keyframes bg-breathe{0%,100%{opacity:.7}50%{opacity:1}}
 /* plate */
-.sc-img{flex:0 0 auto;width:100%;max-height:62vh;position:relative;z-index:2;
+.sc-img{flex:0 0 auto;width:100%;max-height:50vh;position:relative;z-index:2;
   display:flex;align-items:center;justify-content:center}
 .sc-img::before{content:"";display:none}
-.sc-img img{max-width:100%;max-height:62vh;object-fit:contain;position:relative;z-index:1;
+.sc-img img{max-width:100%;max-height:50vh;object-fit:contain;position:relative;z-index:1;
   animation:sc-float 8s ease-in-out infinite}
-@keyframes sc-float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-2.2vh) scale(1.016)}}
+@keyframes sc-float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-1.4vh) scale(1.016)}}
 /* bottom options */
-.sc-info{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;width:100%;margin-top:1.5vh}
-.sc-row{position:relative;z-index:3;display:flex;flex-direction:column;gap:0;margin-top:.8vh;width:78%;
+.sc-info{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;width:100%;margin-top:.6vh}
+.sc-row{position:relative;z-index:3;display:flex;flex-direction:column;gap:0;margin-top:.4vh;width:78%;
   opacity:0;animation:fade-up .85s cubic-bezier(.22,1,.36,1) .4s forwards}
 @keyframes fade-up{from{opacity:0;transform:translateY(2vh)}to{opacity:1;transform:none}}
 .sc-card{display:flex;align-items:center;justify-content:space-between;
-  padding:.55vh 0;border-bottom:1px solid rgba(200,146,42,.15)}
+  padding:.4vh 0;border-bottom:1px solid rgba(200,146,42,.15)}
 .sc-card:first-child{border-top:1px solid rgba(200,146,42,.15)}
 .sc-card-left{display:flex;align-items:baseline;gap:1vw}
 .sc-card-num{font-family:"Lora",serif;font-weight:900;font-size:4.4vw;color:#FFF8EC;text-rendering:geometricPrecision;
@@ -254,8 +254,8 @@ SLIDES.forEach(sl=>{
       <div class="sc-img"><img src="images/${imgF(sc.img)}${v}" alt=""></div>
       <div class="sc-info">
         <div class="sc-title" style="text-align:center;animation:row-rise .8s cubic-bezier(.22,1,.36,1) both;animation-delay:.3s">
-          <div style="font-family:'Lora',serif;font-weight:700;font-size:6.24vw;letter-spacing:.04em;background:linear-gradient(135deg,#E8B84A,#FFE8A0 45%,#C8922A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 8px rgba(0,0,0,1)) drop-shadow(0 2px 6px rgba(0,0,0,1))">${sc.n}</div>
-          <div style="font-family:'Raleway',sans-serif;font-size:1.02vw;letter-spacing:.38em;text-transform:uppercase;color:rgba(220,170,60,.9);margin-top:.3vh;font-weight:600;text-shadow:0 0 8px rgba(0,0,0,1),0 1px 4px rgba(0,0,0,1)">${sc.sub}</div>
+          <div style="font-family:'Lora',serif;font-weight:700;font-size:5.6vw;letter-spacing:.04em;background:linear-gradient(135deg,#E8B84A,#FFE8A0 45%,#C8922A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 8px rgba(0,0,0,1)) drop-shadow(0 2px 6px rgba(0,0,0,1))">${sc.n}</div>
+          <div style="font-family:'Raleway',sans-serif;font-size:1.02vw;letter-spacing:.38em;text-transform:uppercase;color:rgba(220,170,60,.9);margin-top:.15vh;font-weight:600;text-shadow:0 0 8px rgba(0,0,0,1),0 1px 4px rgba(0,0,0,1)">${sc.sub}</div>
         </div>
         <div class="sc-row">${pills}</div>
       </div>
