@@ -354,6 +354,9 @@ addEventListener('click',()=>jump(i+1));
 addEventListener('keydown',e=>{if(e.key==='ArrowRight')jump(i+1);if(e.key==='ArrowLeft')jump(i-1);if(e.key.toLowerCase()==='f'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}});
 // auto fullscreen on first interaction (TV kiosk mode)
 (function(){const fs=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(()=>{});};['click','touchstart','keydown'].forEach(e=>addEventListener(e,fs,{once:true,passive:true}));})();
+// sofort Vollbild versuchen (Samsung TV startet oft direkt damit)
+document.documentElement.requestFullscreen().catch(()=>{});
+
 (function(){
   const vid=document.getElementById('firevid');
   if(!vid)return;
@@ -361,6 +364,33 @@ addEventListener('keydown',e=>{if(e.key==='ArrowRight')jump(i+1);if(e.key==='Arr
   const tp=()=>{if(vid.isConnected)vid.play().catch(()=>{});};
   vid.addEventListener('loadeddata',tp);vid.addEventListener('canplay',tp);tp();
   ['click','keydown','touchstart','mousemove'].forEach(ev=>addEventListener(ev,tp,{once:true,passive:true}));
+})();
+
+// ── Dauerbetrieb ──────────────────────────────────────────────────────
+// 1. Screen Wake Lock — verhindert TV-Standby/Screensaver
+(function keepAwake(){
+  if(!navigator.wakeLock)return;
+  const req=()=>navigator.wakeLock.request('screen').catch(()=>{});
+  req();
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')req();});
+})();
+
+// 2. Nach TV-Sleep wieder aufwachen — Video + Slides neu starten
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState!=='visible')return;
+  const vid=document.getElementById('firevid');
+  if(vid&&vid.paused)vid.play().catch(()=>{});
+  clearTimeout(timer);show(i);scheduleNext();
+});
+
+// 3. Watchdog — alle 35s prüfen ob Slides noch wechseln; falls nicht → neu starten
+(function(){
+  let last=i;
+  setInterval(()=>{
+    if(document.visibilityState!=='visible')return;
+    if(last===i){clearTimeout(timer);show(i+1);scheduleNext();}
+    last=i;
+  },35000);
 })();
 </script>
 </body>
