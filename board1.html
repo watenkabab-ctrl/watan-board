@@ -28,7 +28,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 /* ── BACKGROUND ── */
 .ytbg{position:fixed;inset:0;z-index:1;overflow:hidden;background:#000}
 .ytbg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  filter:brightness(1.7) contrast(1.1) saturate(1.5) hue-rotate(-8deg);opacity:.70;
+  filter:brightness(1.9) contrast(1.1) saturate(1.5) hue-rotate(-8deg);opacity:.78;
   -webkit-mask-image:linear-gradient(to top,#000 0%,#000 38%,rgba(0,0,0,.55) 58%,transparent 82%);
   mask-image:linear-gradient(to top,#000 0%,#000 38%,rgba(0,0,0,.55) 58%,transparent 82%)}
 .ytbg iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
@@ -47,7 +47,12 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   animation:eb2 3s ease-in-out infinite;will-change:opacity}
 @keyframes eb2{0%,100%{opacity:.75}50%{opacity:1}}
 .vignette{position:fixed;inset:0;z-index:8;pointer-events:none;
-  box-shadow:inset 0 0 8vw 2vw rgba(0,0,0,.12)}
+  box-shadow:inset 0 8vw 6vw -4vw rgba(0,0,0,.18),inset 0 -8vw 6vw -4vw rgba(0,0,0,.18)}
+/* helle Seitenleuchten links & rechts */
+.side-glow{position:fixed;inset:0;z-index:3;pointer-events:none;
+  background:
+    radial-gradient(ellipse 18% 70% at 0% 50%, rgba(255,180,80,.13), transparent 70%),
+    radial-gradient(ellipse 18% 70% at 100% 50%, rgba(255,180,80,.13), transparent 70%)}
 
 /* ── FRAME ── */
 .frame{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;padding:1.2vh 2.5vw 1vh}
@@ -235,6 +240,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   <main class="stage" id="stage"></main>
   <footer class="rail" id="rail"></footer>
 </div>
+<div class="side-glow"></div>
 <div class="vignette"></div>
 <script>
 const SLIDES=[
