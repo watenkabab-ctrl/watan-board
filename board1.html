@@ -96,20 +96,24 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   border-radius:1vw;overflow:hidden;
   box-shadow:0 2px 16px rgba(0,0,0,.3);
   position:relative;contain:layout style paint}
-.slide.on .item{
-  animation:item-in .75s cubic-bezier(.22,1,.36,1) both;
-  animation-delay:calc(var(--i,0)*55ms);
-  will-change:transform,opacity}
-@keyframes item-in{
-  0%{opacity:0;transform:translateY(2.2vh) scale(.97)}
-  100%{opacity:1;transform:none}}
-.slide.leaving .item{
-  animation:item-out .45s cubic-bezier(.4,0,1,1) both;
-  animation-delay:calc(var(--i,0)*30ms);
-  will-change:transform,opacity}
-@keyframes item-out{
-  0%{opacity:1;transform:none}
-  100%{opacity:0;transform:translateY(-1.5vh) scale(.98)}}
+.slide.on .item{will-change:transform,opacity;
+  animation:var(--in-anim,anim-rise) var(--in-dur,.78s) var(--in-ease,cubic-bezier(.22,1,.36,1)) var(--in-delay,0ms) both}
+.slide.leaving .item{will-change:transform,opacity;
+  animation:var(--out-anim,anim-lift) var(--out-dur,.46s) var(--out-ease,cubic-bezier(.4,0,1,1)) var(--out-delay,0ms) both}
+
+/* enter animations */
+@keyframes anim-rise{from{opacity:0;transform:translateY(3vh) scale(.96)}to{opacity:1;transform:none}}
+@keyframes anim-drop{from{opacity:0;transform:translateY(-3vh) scale(.96)}to{opacity:1;transform:none}}
+@keyframes anim-left{from{opacity:0;transform:translateX(-3vw) scale(.97)}to{opacity:1;transform:none}}
+@keyframes anim-right{from{opacity:0;transform:translateX(3vw) scale(.97)}to{opacity:1;transform:none}}
+@keyframes anim-bloom{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:none}}
+@keyframes anim-unfold{from{opacity:0;transform:scaleY(.4) translateY(1.5vh)}to{opacity:1;transform:none}}
+/* exit animations */
+@keyframes anim-lift{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-2vh) scale(.97)}}
+@keyframes anim-sink{from{opacity:1;transform:none}to{opacity:0;transform:translateY(2vh) scale(.97)}}
+@keyframes anim-swipe{from{opacity:1;transform:none}to{opacity:0;transform:translateX(-2.5vw) scale(.97)}}
+@keyframes anim-fold{from{opacity:1;transform:none}to{opacity:0;transform:scaleY(.3) translateY(-1vh)}}
+@keyframes anim-shrink{from{opacity:1;transform:none}to{opacity:0;transform:scale(.82)}}
 
 /* ── IMAGE ── */
 .item .pic{flex:1;min-height:0;position:relative;overflow:hidden}
@@ -286,15 +290,57 @@ const slides=[...stage.children],segs=[...rail.children];let i=0,leaveT=0;
 function reflow(el){void el.offsetWidth;}
 function setVideos(sl,play){sl.querySelectorAll('video').forEach(v=>{try{play?v.play().catch(()=>{}):v.pause();}catch(e){}});}
 const frame=document.querySelector('.frame'),boardTitle=document.getElementById('boardTitle');
+
+// Elegant animation sets — each entry: [in-anim, out-anim, stagger-mode]
+// stagger-mode: 'seq'=left→right top→bot, 'col'=by column, 'row'=by row, 'rev'=reversed, 'center'=from center out
+const ANIM_SETS=[
+  {in:'anim-rise',  out:'anim-lift',  stag:'seq',    dur:[.78,.46], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'anim-drop',  out:'anim-sink',  stag:'rev',    dur:[.72,.44], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'anim-left',  out:'anim-swipe', stag:'col',    dur:[.70,.42], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
+  {in:'anim-right', out:'anim-lift',  stag:'row',    dur:[.70,.44], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
+  {in:'anim-bloom', out:'anim-shrink',stag:'center', dur:[.82,.50], ease:['cubic-bezier(.34,1.28,.64,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'anim-unfold',out:'anim-fold',  stag:'seq',    dur:[.68,.38], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.55,0,1,1)']},
+];
+let lastSet=-1;
+function pickSet(){let s;do{s=0|Math.random()*ANIM_SETS.length;}while(s===lastSet);lastSet=s;return ANIM_SETS[s];}
+function staggerDelay(idx,mode,total){
+  const cols=4,rows=Math.ceil(total/cols),col=idx%cols,row=0|idx/cols;
+  const cx=cols/2-.5,cy=rows/2-.5,dist=Math.hypot(col-cx,row-cy);
+  if(mode==='seq')    return idx*52;
+  if(mode==='rev')    return (total-1-idx)*45;
+  if(mode==='col')    return col*90+(row*28);
+  if(mode==='row')    return row*110+(col*22);
+  if(mode==='center') return dist*80;
+  return idx*52;
+}
+function applyAnim(sl,set,phase){
+  const items=sl.querySelectorAll('.item');
+  const anim=phase==='in'?set.in:set.out;
+  const dur=phase==='in'?set.dur[0]:set.dur[1];
+  const ease=phase==='in'?set.ease[0]:set.ease[1];
+  items.forEach((el,idx)=>{
+    const delay=staggerDelay(idx,set.stag,items.length);
+    el.style.setProperty('--in-anim',set.in);
+    el.style.setProperty('--out-anim',set.out);
+    el.style.setProperty('--in-dur',set.dur[0]+'s');
+    el.style.setProperty('--out-dur',set.dur[1]+'s');
+    el.style.setProperty('--in-ease',set.ease[0]);
+    el.style.setProperty('--out-ease',set.ease[1]);
+    el.style.setProperty(phase==='in'?'--in-delay':'--out-delay', delay+'ms');
+  });
+}
+
 function show(n){
   const next=(n+slides.length)%slides.length;
   const sl=SLIDES[next];
+  const set=pickSet();
   slides.forEach((s,k)=>{
     if(k===next){
-      // reset animations so they replay cleanly
-      s.querySelectorAll('.item').forEach((el,idx)=>{el.style.animation='none';reflow(el);el.style.animation='';});
+      applyAnim(s,set,'in');
+      s.querySelectorAll('.item').forEach(el=>{el.style.animation='none';reflow(el);el.style.animation='';});
       s.classList.remove('leaving');s.classList.add('on');setVideos(s,true);
     } else if(k===i&&k!==next){
+      applyAnim(s,set,'out');
       s.classList.remove('on');s.classList.add('leaving');setVideos(s,false);
     } else {
       s.classList.remove('on','leaving');setVideos(s,false);
