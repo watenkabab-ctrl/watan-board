@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=1920, initial-scale=1, viewport-fit=cover">
 <title>Watan Kabab · Vom Grill</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔥</text></svg>">
 <link rel="stylesheet" href="fonts/fonts.css">
@@ -234,6 +234,9 @@ const SLIDES=[
     ]
   }},
 ];
+// WebP-Unterstützung testen — ältere Samsung TVs (Tizen <5) kennen kein WebP
+const WEBP=(()=>{try{const c=document.createElement('canvas');return c.toDataURL('image/webp').startsWith('data:image/webp');}catch(e){return false;}})();
+const imgF=f=>WEBP?f:f.replace(/\.webp$/i,'.png');
 const stage=document.getElementById('stage'),rail=document.getElementById('rail');
 SLIDES.forEach(sl=>{
   let inner="";
@@ -248,7 +251,7 @@ SLIDES.forEach(sl=>{
         <div class="sc-card-price">${o.p}<span class="cur">€</span></div>
       </div>`).join("");
     inner=`<div class="showcase">
-      <div class="sc-img"><img src="images/${sc.img}${v}" alt=""></div>
+      <div class="sc-img"><img src="images/${imgF(sc.img)}${v}" alt=""></div>
       <div class="sc-info">
         <div class="sc-title" style="text-align:center;animation:row-rise .8s cubic-bezier(.22,1,.36,1) both;animation-delay:.3s">
           <div style="font-family:'Lora',serif;font-weight:700;font-size:6.24vw;letter-spacing:.04em;background:linear-gradient(135deg,#E8B84A,#FFE8A0 45%,#C8922A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 8px rgba(0,0,0,1)) drop-shadow(0 2px 6px rgba(0,0,0,1))">${sc.n}</div>
@@ -261,7 +264,7 @@ SLIDES.forEach(sl=>{
     inner=`<div class="grid">${sl.items.map((d,idx)=>{
       const v="?v="+Date.now();
       const badge=d.badge?`<div class="badge">${d.badge}</div>`:"";
-      const pic=d.img?`<img src="images/${d.img}${v}" alt="">`:
+      const pic=d.img?`<img src="images/${imgF(d.img)}${v}" alt="">`:
         `<span class="emo">${d.emo||"🍢"}</span>`;
       const fdur=(6.2+(idx%4)*.65).toFixed(1),fdel=(-(idx*.9+Math.random()*.4)).toFixed(1);
       const desc=d.d?`<div class="desc">${d.d}</div>`:"";
