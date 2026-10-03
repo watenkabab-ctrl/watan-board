@@ -263,7 +263,7 @@ const SLIDES=[
     {t:"Nr. 51–56",items:[
       {n:"51. Pacha",p:"10",d:"Kalbsfüße · Zwiebeln · scharfes Chutney",img:"Pacha.webp"},
       {n:"Rosh",p:"13",d:"Kalbfleisch · Tomaten · Kartoffeln",img:"Rosh.webp"},
-      {n:"Chanaki",p:"15",d:"Lammfleisch im Tontopf · Spezial-Masala",img:"Chanaki_v2.webp"},
+      {n:"Chanaki",p:"15",d:"Lammfleisch im Tontopf · Spezial-Masala",img:"Chanaki_v2.webp",e:"🫕",noimg:true},
       {n:"Chicken Karahi",p:"15",d:"Hähnchen · Tomaten · grüner Pfeffer",img:"Chicken_Karahi.webp"},
       {n:"Lamm Karahi",p:"16",d:"Lammfleisch · Tomaten · grüner Pfeffer",img:"Lamm_Karahi.webp"},
     ]},
@@ -302,8 +302,8 @@ SLIDES.forEach(sl=>{
     const renderItems=(items,offset)=>items.map((d,idx)=>{
       const i=offset+idx;
       const badge=d.badge?`<div class="badge">${d.badge}</div>`:"";
-      const pic=d.img?`<img src="images/${d.img}" alt="">`:
-        `<span class="emo">${d.emo||"🍢"}</span>`;
+      const pic=(d.img&&!d.noimg)?`<img src="images/${d.img}" alt="">`:
+        `<span class="emo">${d.e||d.emo||"🍢"}</span>`;
       const fdur=(6.2+(i%5)*.55).toFixed(1),fdel=(-(i*.7+Math.random()*.3)).toFixed(1);
       const desc=d.d?`<div class="desc">${d.d}</div>`:"";
       return `<div class="item" style="--i:${i};--fdur:${fdur}s;--fdel:${fdel}s"><div class="pic">${pic}</div><div class="info"><div class="nm">${d.n}</div>${desc}<div class="bot"><div class="pr">${d.p}<span class="cur">€</span></div>${badge}</div></div></div>`;
@@ -317,8 +317,8 @@ SLIDES.forEach(sl=>{
   } else {
     inner=`<div class="grid" style="grid-template-columns:repeat(${sl.items.length},1fr)">${sl.items.map((d,idx)=>{
       const badge=d.badge?`<div class="badge">${d.badge}</div>`:"";
-      const pic=d.img?`<img src="images/${d.img}" alt="">`:
-        `<span class="emo">${d.emo||"🍢"}</span>`;
+      const pic=(d.img&&!d.noimg)?`<img src="images/${d.img}" alt="">`:
+        `<span class="emo">${d.e||d.emo||"🍢"}</span>`;
       const fdur=(6.2+(idx%5)*.55).toFixed(1),fdel=(-(idx*.7+Math.random()*.3)).toFixed(1);
       const desc=d.d?`<div class="desc">${d.d}</div>`:"";
       return `<div class="item" style="--i:${idx};--fdur:${fdur}s;--fdel:${fdel}s"${d.hero?" data-hero":""}><div class="pic">${pic}</div><div class="info"><div class="nm">${d.n}</div>${desc}<div class="bot"><div class="pr">${d.p}<span class="cur">€</span></div>${badge}</div></div></div>`;
@@ -489,8 +489,11 @@ function doFlash(){
 }
 </script>
 <script>
-// Auto-reload every 2 hours to pick up updates
-setTimeout(()=>location.reload(true), 7200000);
+// Auto-update: alle 3 Min prüfen ob neue Version deployed wurde
+(function(){
+  async function chk(){try{const r=await fetch(location.href,{cache:'no-store'});const t=await r.text();const h=t.length+'-'+t.slice(800,1200);if(!chk._h){chk._h=h;return;}if(chk._h!==h)location.reload(true);}catch(e){}}
+  chk();setInterval(chk,180000);
+})();
 </script>
 </body>
 </html>
