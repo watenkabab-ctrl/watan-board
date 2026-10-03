@@ -489,11 +489,8 @@ function doFlash(){
 }
 </script>
 <script>
-// Auto-update: alle 3 Min prüfen ob neue Version deployed wurde
-(function(){
-  async function chk(){try{const r=await fetch(location.href,{cache:'no-store'});const t=await r.text();const h=t.length+'-'+t.slice(800,1200);if(!chk._h){chk._h=h;return;}if(chk._h!==h)location.reload(true);}catch(e){}}
-  chk();setInterval(chk,180000);
-})();
+// Auto-reload every 2 hours to pick up updates
+setTimeout(()=>location.reload(true), 7200000);
 </script>
 </body>
 </html>
