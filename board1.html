@@ -17,7 +17,7 @@
   --ease:cubic-bezier(.22,1,.36,1);--ease-up:cubic-bezier(.4,0,1,1);--dwell:13s;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;width:100%;overflow:hidden;background:#1a0b03}
+html,body{height:100%;width:100%;overflow:hidden;background:#2a1205}
 body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   text-rendering:geometricPrecision;image-rendering:-webkit-optimize-contrast}
@@ -28,13 +28,13 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 /* ── BACKGROUND ── */
 .ytbg{position:fixed;inset:0;z-index:1;overflow:hidden;background:#000}
 .ytbg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  filter:brightness(1.05) contrast(1.1) saturate(1.5) hue-rotate(-8deg);opacity:.32;
+  filter:brightness(1.4) contrast(1.1) saturate(1.5) hue-rotate(-8deg);opacity:.55;
   -webkit-mask-image:linear-gradient(to top,#000 0%,#000 38%,rgba(0,0,0,.55) 58%,transparent 82%);
   mask-image:linear-gradient(to top,#000 0%,#000 38%,rgba(0,0,0,.55) 58%,transparent 82%)}
 .ytbg iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   width:100vw;height:56.25vw;min-height:100vh;min-width:177.78vh;pointer-events:none;border:0}
 .shade{position:fixed;inset:0;z-index:2;pointer-events:none;
-  background:linear-gradient(180deg,rgba(20,6,1,.55) 0%,rgba(18,5,1,.38) 22%,rgba(15,4,0,.22) 50%,rgba(10,3,0,.08) 70%,transparent 100%)}
+  background:linear-gradient(180deg,rgba(20,6,1,.25) 0%,rgba(18,5,1,.15) 22%,rgba(15,4,0,.08) 50%,transparent 100%)}
 .texture{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.07;
   background-image:url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")}
 /* fire glow layers */
@@ -47,7 +47,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   animation:eb2 3s ease-in-out infinite;will-change:opacity}
 @keyframes eb2{0%,100%{opacity:.75}50%{opacity:1}}
 .vignette{position:fixed;inset:0;z-index:8;pointer-events:none;
-  box-shadow:inset 0 0 14vw 3vw rgba(0,0,0,.28)}
+  box-shadow:inset 0 0 8vw 2vw rgba(0,0,0,.12)}
 
 /* ── FRAME ── */
 .frame{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;padding:1.2vh 2.5vw 1vh}
@@ -91,8 +91,8 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 
 /* ── ITEM ── */
 .item{display:flex;flex-direction:column;min-width:0;min-height:0;padding:0;
-  background:rgba(22,10,1,.14);
-  border:1px solid rgba(255,210,110,.32);
+  background:rgba(60,28,4,.38);
+  border:1px solid rgba(255,210,110,.55);
   border-radius:1vw;overflow:hidden;
   box-shadow:0 2px 16px rgba(0,0,0,.3);
   position:relative;contain:layout style paint}
@@ -120,7 +120,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 
 /* ── TEXT PANEL ── */
 .item .info{flex:0 0 auto;padding:.7vh .8vw 1.0vh;
-  background:linear-gradient(180deg,rgba(4,1,0,.0) 0%,rgba(4,1,0,.50) 18%,rgba(4,1,0,.62) 100%);
+  background:linear-gradient(180deg,rgba(4,1,0,.0) 0%,rgba(4,1,0,.30) 18%,rgba(4,1,0,.45) 100%);
   border-top:1px solid rgba(200,146,42,.22);
   position:relative}
 .item .info::before{content:"";position:absolute;top:0;left:.8vw;right:.8vw;height:1px;
