@@ -25,7 +25,7 @@
   --ease:cubic-bezier(.22,1,.36,1);--ease-up:cubic-bezier(.4,0,1,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;width:100%;overflow:hidden;background:#100202}
+html,body{height:100%;width:100%;overflow:hidden;background:#2a0c04}
 body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   text-rendering:geometricPrecision}
@@ -33,13 +33,13 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 /* ── BACKGROUND ── */
 .bg{position:fixed;inset:0;z-index:0;
   background:
-    radial-gradient(ellipse 120% 48% at 50% 108%,rgba(185,60,8,.24) 0%,rgba(110,28,4,.09) 48%,transparent 68%),
-    radial-gradient(ellipse 65% 22% at 50% -2%,rgba(160,48,8,.11) 0%,transparent 42%),
-    radial-gradient(ellipse 160% 130% at 50% 52%,#1b0503 0%,#0e0202 58%,#040101 100%)}
-.texture{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.06;
+    radial-gradient(ellipse 130% 55% at 50% 110%,rgba(210,80,12,.32) 0%,rgba(140,40,6,.14) 50%,transparent 70%),
+    radial-gradient(ellipse 70% 25% at 50% -2%,rgba(190,70,12,.18) 0%,transparent 44%),
+    radial-gradient(ellipse 160% 130% at 50% 52%,#3a1005 0%,#240804 55%,#130403 100%)}
+.texture{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.04;
   background-image:url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E")}
 .vignette{position:fixed;inset:0;z-index:8;pointer-events:none;
-  box-shadow:inset 0 0 16vw 5vw rgba(0,0,0,.38)}
+  box-shadow:inset 0 0 12vw 3vw rgba(0,0,0,.22)}
 
 /* ── FRAME ── */
 .frame{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;padding:.95vh 2.0vw .6vh}
@@ -47,7 +47,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 /* ── HEADER ── */
 .head{text-align:center;flex-shrink:0;padding:.06vh 0 .04vh}
 .board-brand{font-size:.82vw;letter-spacing:.52em;text-transform:uppercase;
-  color:rgba(218,162,48,.78);font-weight:600;margin-bottom:.05vh;
+  color:rgba(240,188,72,.92);font-weight:600;margin-bottom:.05vh;
   font-family:"Raleway",system-ui,sans-serif}
 .board-title{position:relative;display:inline-block;
   font-family:"Lora",serif;font-weight:700;
@@ -90,13 +90,13 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 
 /* ── ITEM ── */
 .item{display:flex;flex-direction:column;min-width:0;min-height:0;
-  background:linear-gradient(168deg,rgba(28,8,1,.30) 0%,rgba(10,2,0,.52) 100%);
-  border:1px solid rgba(218,158,48,.30);
+  background:linear-gradient(168deg,rgba(70,22,4,.55) 0%,rgba(40,10,1,.72) 100%);
+  border:1px solid rgba(230,168,55,.50);
   border-radius:1.05vw;overflow:hidden;
-  box-shadow:0 4px 28px rgba(0,0,0,.60),inset 0 1px 0 rgba(255,195,65,.08);
+  box-shadow:0 4px 28px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,205,80,.14);
   position:relative;contain:layout style paint}
 .item::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,210,80,.14),transparent);z-index:4;pointer-events:none}
+  background:linear-gradient(90deg,transparent,rgba(255,215,90,.28),transparent);z-index:4;pointer-events:none}
 .slide.on .item{animation:enter 1.1s var(--ease) both;
   animation-delay:calc(var(--i,0)*.065s);will-change:transform,opacity}
 .slide.leaving .item{animation:leave .55s var(--ease-up) both;
@@ -130,25 +130,25 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 
 /* ── INFO PANEL ── */
 .item .info{flex:0 0 auto;padding:.42vh .65vw .52vh;
-  background:linear-gradient(180deg,rgba(5,1,0,.0) 0%,rgba(6,1,0,.80) 16%,rgba(3,0,0,.95) 100%);
-  border-top:1px solid rgba(200,146,42,.18);position:relative}
+  background:linear-gradient(180deg,rgba(30,8,1,.0) 0%,rgba(20,5,0,.82) 16%,rgba(10,2,0,.96) 100%);
+  border-top:1px solid rgba(220,162,50,.30);position:relative}
 .item .info::before{content:"";position:absolute;top:0;left:.65vw;right:.65vw;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(232,184,74,.22),transparent)}
+  background:linear-gradient(90deg,transparent,rgba(240,195,80,.32),transparent)}
 .item .nm{font-family:"Lora",serif;font-weight:700;font-size:1.62vw;line-height:1.1;
-  color:#FDFAF2;letter-spacing:.022em;
+  color:#FFFFFF;letter-spacing:.022em;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  text-shadow:0 1px 8px rgba(0,0,0,.95),0 0 18px rgba(0,0,0,.75)}
-.item .desc{font-family:"Raleway",sans-serif;font-size:.76vw;color:rgba(208,172,110,.78);
+  text-shadow:0 1px 6px rgba(0,0,0,.85)}
+.item .desc{font-family:"Raleway",sans-serif;font-size:.76vw;color:rgba(240,205,145,.92);
   line-height:1.26;margin-top:.05vh;letter-spacing:.09em;text-transform:uppercase;font-weight:600;
-  text-shadow:0 1px 3px rgba(0,0,0,.85)}
+  text-shadow:0 1px 3px rgba(0,0,0,.70)}
 .item .bot{display:flex;align-items:baseline;justify-content:space-between;margin-top:.18vh;gap:.4vw}
 .item .pr{font-family:"Lora",serif;font-weight:900;font-size:2.38vw;line-height:1;
-  background:linear-gradient(135deg,#B87E20 0%,#FFE090 44%,#C8922A 78%,#FFD060 100%);
+  background:linear-gradient(135deg,#D4A030 0%,#FFE890 44%,#D4982A 78%,#FFE060 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  filter:drop-shadow(0 0 .6vw rgba(200,130,28,.22));
+  filter:drop-shadow(0 0 .5vw rgba(220,150,30,.30));
   text-rendering:geometricPrecision}
 .item .pr .cur{font-size:.48em;font-weight:600;vertical-align:.2em;margin-left:.04em;
-  -webkit-text-fill-color:rgba(195,140,40,.82)}
+  -webkit-text-fill-color:rgba(215,158,48,.90)}
 
 /* ── FOOTER ── */
 .ft{flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:2vw;
@@ -184,7 +184,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 </div>
 <div class="vignette"></div>
 <script>
-const v="?v="+"20261004n";
+const v="?v="+"20261004o";
 const SLIDES=[
   {
     title:"Traditionelle Gerichte",
@@ -213,7 +213,7 @@ const SLIDES=[
       {t:"Spezialitäten",items:[
         {n:"Pacha",nr:"51",p:"10",d:"Traditionell · Kopffleisch · Gewürze",img:"Pacha.webp",e:"🍲",imgsz:1.20},
         {n:"Rosh",nr:"53",p:"13",d:"Lammfleisch-Eintopf · Gewürze · Brot",img:"Rosh.webp",e:"🍖",imgsz:1.22},
-        {n:"Chanaki",nr:"54",p:"15",d:"Lamm · Kartoffeln · Tomaten · Gewürze",img:"Chanaki.webp",e:"🫕",imgsz:1.35},
+        {n:"Chanaki",nr:"54",p:"15",d:"Lamm · Kartoffeln · Tomaten · Gewürze",img:"Chanaki.webp",e:"🫕",imgsz:1.28},
         {n:"Chicken Karahi",nr:"55",p:"15",d:"Hähnchen · Tomaten · Ingwer · Gewürze",img:"Chicken_Karahi.webp",e:"🍗",imgsz:1.18},
         {n:"Lamm Karahi",nr:"56",p:"16",d:"Lamm · Tomaten · Ingwer · Gewürze",img:"Lamm_Karahi.webp",e:"🍖",imgsz:1.15},
       ]},
