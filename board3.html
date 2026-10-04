@@ -43,7 +43,7 @@
   --ease:cubic-bezier(.22,1,.36,1);--ease-up:cubic-bezier(.4,0,1,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;width:100%;overflow:hidden;background:#F5EFE4}
+html,body{height:100%;width:100%;overflow:hidden;background:#FFFFFF}
 body{font-family:"Raleway",system-ui,sans-serif;color:#1E0E02;cursor:none;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   text-rendering:geometricPrecision}
@@ -51,9 +51,9 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#1E0E02;cursor:none;
 /* ── BACKGROUND ── */
 .bg{position:fixed;inset:0;z-index:0;
   background:
-    radial-gradient(ellipse 110% 45% at 50% 105%,rgba(180,120,30,.14) 0%,transparent 60%),
-    radial-gradient(ellipse 70% 30% at 50% -5%,rgba(180,120,30,.10) 0%,transparent 50%),
-    linear-gradient(170deg,#FDFAF5 0%,#F5EFE4 50%,#EDE5D4 100%)}
+    radial-gradient(ellipse 110% 45% at 50% 105%,rgba(180,120,30,.07) 0%,transparent 60%),
+    radial-gradient(ellipse 70% 30% at 50% -5%,rgba(180,120,30,.05) 0%,transparent 50%),
+    linear-gradient(170deg,#FFFFFF 0%,#FDFCF8 50%,#FAF7F2 100%)}
 .texture{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.025;
   background-image:url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E")}
 .vignette{position:fixed;inset:0;z-index:8;pointer-events:none;
@@ -110,7 +110,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#1E0E02;cursor:none;
 
 /* ── ITEM ── */
 .item{display:flex;flex-direction:column;min-width:0;min-height:0;
-  background:rgba(255,252,246,.92);
+  background:rgba(255,255,255,.97);
   border:1px solid rgba(168,112,32,.22);
   border-radius:1.05vw;overflow:hidden;
   box-shadow:0 2px 18px rgba(100,60,10,.12),0 1px 0 rgba(255,255,255,.9);
@@ -148,7 +148,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#1E0E02;cursor:none;
 
 /* ── INFO PANEL ── */
 .item .info{flex:0 0 auto;padding:.42vh .65vw .52vh;
-  background:linear-gradient(180deg,rgba(255,252,246,.0) 0%,rgba(255,251,242,.95) 18%,rgba(255,249,238,1.0) 100%);
+  background:linear-gradient(180deg,rgba(255,255,255,.0) 0%,rgba(255,255,255,.96) 18%,rgba(255,255,255,1.0) 100%);
   border-top:1px solid rgba(168,112,32,.18);position:relative}
 .item .info::before{content:"";position:absolute;top:0;left:.65vw;right:.65vw;height:1px;
   background:linear-gradient(90deg,transparent,rgba(168,112,32,.22),transparent)}
@@ -200,7 +200,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#1E0E02;cursor:none;
 </div>
 <div class="vignette"></div>
 <script>
-const v="?v="+"20261004u";
+const v="?v="+"20261004v";
 const SLIDES=[
   {
     title:"Traditionelle Gerichte",
