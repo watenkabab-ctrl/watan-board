@@ -2,164 +2,301 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Watan Kabab · Döner · Vegan · Burger</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&family=Archivo:wght@400;500;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Watan Kabab · Döner &amp; Mehr</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🥙</text></svg>">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/0QIvMX1D_JOuMwr7Iw.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/1Ptug8zYS_SKggPNyC0ITw.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/0QIhMX1D_JOuMw_LIftL.woff2">
+<link rel="preload" as="image" href="images/Doener_v1.webp">
+<link rel="preload" as="image" href="images/Lahmacun_v1.webp">
+<link rel="preload" as="image" href="images/Doener_Box.webp">
+<link rel="preload" as="image" href="images/Doenerteller_Pommes.webp">
+<link rel="preload" as="image" href="images/Falafel_Sandwich.webp">
+<link rel="preload" as="image" href="images/Seitan_Sandwich.webp">
+<link rel="preload" as="image" href="images/Falafel_Teller.webp">
+<link rel="preload" as="image" href="images/Seitan_Teller.webp">
+<link rel="preload" as="image" href="images/Samosa_Gemuese_v1.webp">
+<link rel="preload" as="image" href="images/Bolani_Kachalo_Gandana_v1.webp">
+<link rel="preload" as="image" href="images/Afghan_Soup.webp">
+<link rel="preload" as="image" href="images/Shor_Nakhod_v1.webp">
+<link rel="preload" as="image" href="images/Afghan_Burger.webp">
+<link rel="preload" as="image" href="images/Burger_mit_Pommes_v1.webp">
+<link rel="preload" as="image" href="images/Fry_Fish.webp">
+<link rel="preload" as="image" href="images/Grill_Fish.webp">
 <style>
-:root{--g:#C8922A;--gl:#A07020;--gc:#7A5010;--cream:#2a1a0a;--mute:#6b5540;--bg:#fdf8f2}
+@font-face{font-family:'Lora';font-style:normal;font-weight:600 700;font-display:optional;src:url('fonts/0QIvMX1D_JOuMwT7I-NP.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C0}
+@font-face{font-family:'Lora';font-style:normal;font-weight:600 700;font-display:optional;src:url('fonts/0QIvMX1D_JOuMwr7Iw.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+FEFF,U+FFFD}
+@font-face{font-family:'Lora';font-style:italic;font-weight:400 600;font-display:optional;src:url('fonts/0QIhMX1D_JOuMw_LL_tLp_A.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C0}
+@font-face{font-family:'Lora';font-style:italic;font-weight:400 600;font-display:optional;src:url('fonts/0QIhMX1D_JOuMw_LIftL.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+FEFF,U+FFFD}
+@font-face{font-family:'Raleway';font-style:normal;font-weight:400 700;font-display:optional;src:url('fonts/1Ptug8zYS_SKggPNyCMIT5lu.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C0}
+@font-face{font-family:'Raleway';font-style:normal;font-weight:400 700;font-display:optional;src:url('fonts/1Ptug8zYS_SKggPNyC0ITw.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+FEFF,U+FFFD}
+</style>
+<style>.board-title,.item .nm,.item .pr{font-synthesis:none}</style>
+<style>
+:root{
+  --g:#C8922A;--gl:#E8B84A;--gc:#FFE8A0;--cream:#EFE1C5;--mute:#7A6248;
+  --ease:cubic-bezier(.22,1,.36,1);--ease-up:cubic-bezier(.4,0,1,1);
+}
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;width:100%;overflow:hidden;background:var(--bg)}
-body{font-family:"Archivo",system-ui,sans-serif;color:var(--cream);cursor:none;-webkit-font-smoothing:antialiased}
+html,body{height:100%;width:100%;overflow:hidden;background:#1a0b03}
+body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  text-rendering:geometricPrecision}
+
+/* ── BACKGROUND ── */
 .bg{position:fixed;inset:0;z-index:0;
-  background:radial-gradient(ellipse 70% 35% at 50% 0%,rgba(255,235,190,.75),transparent 60%),
-             radial-gradient(ellipse 100% 40% at 50% 105%,rgba(255,220,160,.4),transparent 65%),
-             var(--bg)}
-.texture{display:none}
-.ember{display:none}
-.vignette{position:fixed;inset:0;z-index:6;pointer-events:none;box-shadow:inset 0 0 12vw 2vw rgba(200,140,60,.08)}
-.frame{position:fixed;inset:0;z-index:4;display:flex;flex-direction:column;padding:1.9vh 3.2vw 1.6vh}
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 108%,rgba(255,110,0,.55),rgba(200,70,0,.28) 42%,rgba(150,30,0,.10) 64%,transparent 75%),
+    radial-gradient(ellipse 125% 96% at 50% 44%,#0d0804 0%,#080503 55%,#030201 100%)}
+.texture{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.06;
+  background-image:url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E")}
+.vignette{position:fixed;inset:0;z-index:8;pointer-events:none;
+  box-shadow:inset 0 0 14vw 3vw rgba(0,0,0,.30)}
 
-/* BOARD HEADER */
-.board-head{text-align:center;flex-shrink:0;padding:.5vh 0 .3vh;border-bottom:1px solid rgba(160,104,24,.2);margin-bottom:.3vh}
-.board-title-b2{font-family:"Playfair Display",serif;font-weight:700;font-style:italic;font-size:2.8vw;
-  background:linear-gradient(135deg,#8a5208 0%,#C8922A 40%,#6a3e06 65%,#a06810 100%);
+/* ── FRAME ── */
+.frame{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;padding:.95vh 2.0vw .6vh}
+
+/* ── HEADER ── */
+.head{text-align:center;flex-shrink:0;padding:.06vh 0 .04vh}
+.board-brand{font-size:1.12vw;letter-spacing:.52em;text-transform:uppercase;
+  color:rgba(225,175,55,.92);font-weight:600;margin-bottom:.05vh;
+  font-family:"Raleway",system-ui,sans-serif}
+.board-title{position:relative;display:inline-block;
+  font-family:"Lora",serif;font-weight:700;
+  font-size:4.70vw;line-height:1.0;letter-spacing:.04em;
+  background:linear-gradient(135deg,#E8B84A 0%,#FFE8A0 40%,#C8922A 65%,#E8B84A 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.board-sub{font-size:.78vw;font-weight:500;letter-spacing:.32em;color:rgba(140,88,10,.7);text-transform:uppercase;margin-top:.18vh}
-/* HEADER (legacy) */
-.head{text-align:center;flex-shrink:0}
-.neon-name{font-family:"Pacifico",cursive;font-size:4.5vw;line-height:1.08;color:#e02020;-webkit-text-fill-color:#e02020;
-  text-shadow:0 0 1.1vw rgba(255,40,0,.9),0 0 2.8vw rgba(255,10,0,.55),0 0 5vw rgba(255,0,0,.22);
-  animation:fg 2.4s ease-in-out infinite}
-@keyframes fg{0%,100%{text-shadow:0 0 1.1vw rgba(255,40,0,.9),0 0 2.8vw rgba(255,10,0,.55),0 0 5vw rgba(255,0,0,.22)}
-  30%{text-shadow:0 0 1.9vw rgba(255,65,0,1),0 0 4.2vw rgba(255,28,0,.7),0 0 7.5vw rgba(255,0,0,.38)}
-  55%{text-shadow:0 0 .65vw rgba(195,18,0,.65),0 0 1.8vw rgba(175,8,0,.38)}
-  80%{text-shadow:0 0 1.45vw rgba(255,48,0,.92),0 0 3.5vw rgba(255,18,0,.58)}}
-.fl,.fl-l{display:inline-block;font-size:4.3vw;vertical-align:middle;-webkit-text-fill-color:initial;color:initial;
-  filter:sepia(1) saturate(6) hue-rotate(308deg) brightness(1.6) drop-shadow(0 0 .55vw rgba(255,55,0,1)) drop-shadow(0 0 1.1vw rgba(255,95,0,.72))}
-.fl{margin-left:.4rem;animation:fb 1.8s ease-in-out infinite}
-.fl-l{margin-right:.4rem;animation:fb 1.8s .45s ease-in-out infinite}
-@keyframes fb{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-13%) scale(1.13)}}
-.head-tagline{margin-top:.5vh;text-align:center}
-.head-tagline span{font-size:.82vw;font-weight:500;letter-spacing:.52em;text-indent:.52em;color:rgba(160,100,10,.82);text-transform:uppercase}
+.board-title::before,.board-title::after{
+  content:"";position:absolute;bottom:-.5vh;left:50%;transform:translateX(-50%);
+  height:1px;background:linear-gradient(90deg,transparent,rgba(232,184,74,.6),rgba(255,232,160,.9),rgba(232,184,74,.6),transparent);
+  animation:line-expand 1.4s cubic-bezier(.22,1,.36,1) forwards}
+.board-title::before{width:0;animation-delay:.25s}
+.board-title::after{width:0;bottom:-.9vh;opacity:.4;animation-delay:.45s}
+@keyframes line-expand{to{width:116%}}
 
-/* STAGE */
-.stage{flex:1;min-height:0;position:relative;margin:.5vh 0}
-.slide{position:absolute;inset:0;display:flex;flex-direction:column;gap:.55vh;
-  opacity:0;transform:translateY(.6vh);pointer-events:none;transition:opacity .9s ease,transform .9s ease}
-.slide.on{opacity:1;transform:none;pointer-events:auto}
+/* ── STAGE ── */
+.stage{flex:1;min-height:0;position:relative;margin:.25vh 0}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;gap:.48vh;
+  opacity:0;pointer-events:none;will-change:opacity}
+.slide.on{opacity:1;pointer-events:auto;transition:opacity 1.4s ease}
+.slide.entering{opacity:0}
+.slide.leaving{opacity:0;pointer-events:none;transition:opacity 1.0s ease}
 
-/* SECTION */
-.sec{flex:1;min-height:0;display:flex;flex-direction:column;gap:.38vh}
-.sec+.sec{padding-top:.55vh;
-  border-top:1px solid rgba(180,110,25,.25)}
+/* ── SECTION GROUP ── */
+.sl-group{flex:1;min-height:0;display:flex;flex-direction:column;gap:.16vh}
 
-/* SECTION TITLE */
-.sec-hd{flex-shrink:0;display:flex;align-items:center;gap:1vw}
-.sec-hd::after{content:"";flex:1;height:1px;background:rgba(160,104,24,.35)}
-.sec-hd span{font-family:"Playfair Display",serif;font-weight:700;font-style:italic;font-size:1.78vw;
-  color:#8a5208;letter-spacing:.05em;white-space:nowrap}
+/* ── SECTION HEADER ── */
+.sl-head{flex-shrink:0;display:flex;align-items:center;gap:.65vw;margin-bottom:.06vh}
+.sl-head::before{content:"";width:1.5vw;height:1px;flex-shrink:0;
+  background:linear-gradient(270deg,rgba(200,146,42,.50),transparent)}
+.sl-head::after{content:"";flex:1;height:1px;
+  background:linear-gradient(90deg,rgba(200,146,42,.40),rgba(200,146,42,.05),transparent)}
+.sl-head span{font-family:"Lora",serif;font-weight:700;font-style:italic;
+  font-size:2.60vw;letter-spacing:.042em;white-space:nowrap;
+  color:var(--g);text-shadow:0 0 2vw rgba(200,130,30,.3)}
 
-/* GRID */
-.grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(var(--cols,4),1fr);gap:.65vh 1.6vw}
+/* ── GRID ── */
+.grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(var(--cols,4),1fr);
+  grid-template-rows:1fr;gap:.42vh .52vw}
 
-/* ITEM */
-.item{display:flex;flex-direction:column;min-width:0;min-height:0;padding:.4vh .35vw .5vh;
-  border-bottom:1px solid rgba(175,105,22,.22)}
-.item .pic{flex:1;min-height:0;position:relative}
-.item .pic::before{content:"";position:absolute;inset:0 10%;border-radius:50%;
-  background:radial-gradient(ellipse at 50% 62%,rgba(215,150,50,.14),rgba(200,130,30,.03) 50%,transparent 68%);
-  filter:blur(1.4vw);z-index:0}
-.item .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:1;
-  filter:drop-shadow(0 .8vh 1.6vh rgba(140,90,20,.22)) contrast(1.04) saturate(1.08)}
-.item .pic .emo{position:absolute;inset:0;display:grid;place-items:center;font-size:9vh;z-index:1}
-.item .info{flex:0 0 auto;padding:.42vh 0 0}
-.item .nm{font-family:"Playfair Display",serif;font-weight:700;font-size:1.38vw;line-height:1.1;color:#2a1a0a}
-.item .desc{font-size:.7vw;color:var(--mute);line-height:1.24;margin-top:.16vh;
-  display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.item .pr{font-family:"Playfair Display",serif;font-weight:700;font-size:1.82vw;line-height:1;
-  color:#9a6010;margin-top:.38vh}
-.item .pr .cur{font-size:.52em;font-weight:600;opacity:.9;margin-left:.08em;vertical-align:.14em}
+/* ── ITEM ── */
+.item{display:flex;flex-direction:column;min-width:0;min-height:0;
+  background:rgba(18,8,0,.22);
+  border:1px solid rgba(255,200,100,.22);
+  border-radius:1.05vw;overflow:hidden;
+  box-shadow:0 2px 16px rgba(0,0,0,.30);
+  position:relative;contain:layout style paint}
+.item::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(232,184,74,.22),transparent);z-index:4;pointer-events:none}
 
-/* FOOTER */
-.cta{flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:2vw;
-  padding-top:.7vh;border-top:1px solid rgba(180,110,25,.25)}
-.cta::before,.cta::after{content:"";flex:0 0 min(6vw,85px);height:1px;background:linear-gradient(90deg,transparent,rgba(160,112,32,.5))}
-.cta::after{background:linear-gradient(270deg,transparent,rgba(160,112,32,.5))}
-.cta span{font-family:"Playfair Display",serif;font-weight:600;font-style:italic;font-size:1.22vw;
-  letter-spacing:.1em;color:rgba(150,95,20,.82)}
-.dots{display:flex;justify-content:center;gap:1vw;margin-top:.55vh}
-.dots i{width:.85vh;height:.85vh;border-radius:50%;background:rgba(200,146,42,.3);transition:.4s}
-.dots i.on{background:#C8922A;box-shadow:0 0 .8vh rgba(200,146,42,.45);transform:scale(1.35)}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.slide.on{opacity:1;transform:none}.slide:not(.on){opacity:0}}
+/* ── IMAGE AREA ── */
+.item .pic{flex:1 1 0;min-height:14vh;position:relative;overflow:hidden}
+.item .pic::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:radial-gradient(ellipse 110% 40% at 50% 105%,rgba(8,2,0,.32) 0%,transparent 55%)}
+.item .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+  object-position:center center;z-index:1;
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.62));
+  animation:float 7s ease-in-out var(--fdel,0s) infinite;will-change:transform;
+  transform:translateZ(0)}
+.slide:not(.on) .item .pic img{animation-play-state:paused}
+@keyframes float{0%,100%{transform:translateY(0) scale(var(--imgsz,1))}50%{transform:translateY(-.9vh) scale(calc(var(--imgsz,1) + .012))}}
+.item .pic .emo{position:absolute;inset:0;display:grid;place-items:center;
+  font-size:min(11vh,8vw);z-index:1}
+.item .pic .nr{position:absolute;top:.32vh;left:.28vw;z-index:3;
+  font-family:"Lora",serif;font-weight:700;font-size:2.05vw;line-height:1;
+  color:#EDD068;letter-spacing:.06em;
+  background:rgba(6,1,0,.88);padding:.26vh .52vw .22vh;
+  border-radius:.38vw;border:1px solid rgba(200,146,42,.55);
+  text-shadow:0 0 1vw rgba(220,160,40,.55);
+  box-shadow:0 1px 6px rgba(0,0,0,.65)}
+
+/* ── INFO PANEL ── */
+.item .info{flex:0 0 auto;padding:.42vh .65vw .52vh;
+  background:linear-gradient(180deg,rgba(4,1,0,.0) 0%,rgba(4,1,0,.65) 18%,rgba(4,1,0,.82) 100%);
+  border-top:1px solid rgba(200,146,42,.22);position:relative}
+.item .info::before{content:"";position:absolute;top:0;left:.65vw;right:.65vw;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(232,184,74,.35),transparent)}
+.item .nm{font-family:"Lora",serif;font-weight:700;font-size:2.20vw;line-height:1.1;
+  color:#FFFAF0;letter-spacing:.03em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  filter:drop-shadow(0 1px 6px rgba(0,0,0,1))}
+.item .desc{font-family:"Raleway",sans-serif;font-size:1.04vw;color:#E0C090;
+  line-height:1.26;margin-top:.05vh;letter-spacing:.09em;text-transform:uppercase;font-weight:600;
+  filter:drop-shadow(0 1px 3px rgba(0,0,0,.9))}
+.item .bot{display:flex;align-items:baseline;justify-content:space-between;margin-top:.18vh;gap:.4vw}
+.item .pr{font-family:"Lora",serif;font-weight:900;font-size:3.24vw;line-height:1;
+  background:linear-gradient(135deg,#C8922A 0%,#FFE8A0 50%,#C8922A 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  text-rendering:geometricPrecision}
+.item .pr .cur{font-size:.48em;font-weight:600;vertical-align:.2em;margin-left:.04em;
+  -webkit-text-fill-color:rgba(200,146,42,.80)}
+
+/* ── FOOTER ── */
+.ft{flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:2vw;
+  padding-top:.42vh;border-top:1px solid rgba(200,146,42,.14)}
+.ft::before,.ft::after{content:"";flex:0 0 min(5.5vw,78px);height:1px;
+  background:linear-gradient(90deg,transparent,rgba(200,146,42,.32))}
+.ft::after{background:linear-gradient(270deg,transparent,rgba(200,146,42,.32))}
+.ft span{font-family:"Lora",serif;font-weight:600;font-style:italic;font-size:1.46vw;
+  letter-spacing:.13em;color:rgba(200,146,42,.72)}
+.dots{display:flex;justify-content:center;gap:.9vw;margin-top:.35vh}
+.dots i{width:.75vh;height:.75vh;border-radius:50%;background:rgba(200,146,42,.18);transition:.45s}
+.dots i.on{background:var(--gl);box-shadow:0 0 .9vh rgba(232,175,55,.72);transform:scale(1.4)}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .slide.on{opacity:1}.slide:not(.on){opacity:0}
+}
 </style>
 </head>
 <body>
 <div class="bg"></div>
 <div class="texture"></div>
 <div class="frame">
-  <header class="board-head">
-    <div class="board-title-b2">Watan Kabab</div>
-    <div class="board-sub">Döner &nbsp;·&nbsp; Vegetarisch &amp; Vegan &nbsp;·&nbsp; Burger &amp; Fisch &nbsp;·&nbsp; Vorspeisen</div>
+  <header class="head">
+    <div class="board-brand">Watan Kabab</div>
+    <div class="board-title" id="boardTitle">Döner &amp; Mehr</div>
   </header>
   <main class="stage" id="stage"></main>
-  <footer class="cta"><span>Frisch zubereitet &nbsp;·&nbsp; auch zum Mitnehmen</span><div class="dots" id="dots"></div></footer>
+  <footer class="ft">
+    <span>Frisch zubereitet &nbsp;·&nbsp; auch zum Mitnehmen</span>
+    <div class="dots" id="dots"></div>
+  </footer>
 </div>
 <div class="vignette"></div>
 <script>
-const PAGES=[
-  {sections:[
-    {t:"Döner",items:[
-      {n:"5. Döner",p:"7",d:"Fladenbrot · Salat · Soße · mit Käse +1 €",img:"Doener_v1.webp",e:"🥙"},
-      {n:"Döner Box",p:"8,50",d:"Pommes oder Reis · Salat · Soße",img:"Doener_Box.webp",e:"🥡",noimg:true},
-      {n:"Lahmacun",p:"9",d:"Dönerfleisch · frischer Salat · Soße",img:"Lahmacun_v1.webp",e:"🌯"},
-      {n:"Dönerteller Pommes",p:"12",d:"Pommes · Salat · Zwiebeln · Soße",img:"Doenerteller_Pommes.webp",e:"🍽️"},
-      {n:"10. Dönerteller Reis",p:"12",d:"Reis · Salat · Zwiebeln · Soße",img:"Doenerteller_Reis.webp",e:"🍚"},
-    ]},
-    {t:"Vegetarisch / Vegan",items:[
-      {n:"11. Falafel-Sandwich",p:"7",d:"Falafel · Salat · Soße · Fladenbrot",img:"Falafel_Sandwich.webp",e:"🥙",noimg:true},
-      {n:"Falafel-Teller",p:"12",d:"Falafel · Salat · Beilagen · Soße",img:"Falafel_Teller.webp",e:"🧆",noimg:true},
-      {n:"Seitan-Sandwich",p:"7,50",d:"Seitan · Salat · Soße · Fladenbrot",img:"Seitan_Sandwich.webp",e:"🌱",noimg:true},
-      {n:"Seitan-Teller",p:"11,50",d:"Seitan · Salat · Beilagen · Soße",img:"Seitan_Teller.webp",e:"🌿",noimg:true},
-    ]},
-  ]},
-  {sections:[
-    {t:"Vorspeisen",items:[
-      {n:"Samosa Gemüse",p:"5",d:"Gemüse · Kartoffeln · Erbsen · Stück 2,50 €",img:"Samosa_Gemuese.webp",e:"🥟"},
-      {n:"Bolani Kachalo",p:"5",d:"Kartoffeln · Zwiebeln · Koriander · Stück 2,50 €",img:"Bolani_Kachalo.webp",e:"🫓"},
-      {n:"Shor Nakhod",p:"7",d:"Kichererbsen · Kartoffeln · Chutney · Pfeffer",img:"Shor_Nakhod.webp",e:"🫘"},
-      {n:"Afghan Soup",p:"7",d:"Hähnchen · Kichererbsen · Ei · Mais · Karotten",img:"Afghan_Soup.webp",e:"🍲",noimg:true},
-    ]},
-    {t:"Burger &amp; Fisch",items:[
-      {n:"22. Afghan Burger",p:"7",d:"Dürüm-Fladen · Kalbfleisch · Pommes · Ei · Salat",img:"Afghan_Burger.webp",e:"🌯",noimg:true},
-      {n:"Burger mit Pommes",p:"9",d:"Rindfleisch-Patty · Cheddar · Salat · Pommes",img:"Burger_mit_Pommes.webp",e:"🍔"},
-      {n:"Fry Fish",p:"12,50",d:"Frittierter Fisch · Pommes oder Brot · Salat",img:"Fry_Fish.webp",e:"🐟"},
-      {n:"Grill Fish",p:"15",d:"Gegrillter Fisch · Pommes oder Brot · Salat",img:"Grill_Fish.webp",e:"🐟"},
-    ]},
-  ]},
+const v="?v="+"20261005a";
+const SLIDES=[
+  {
+    title:"Döner &amp; Mehr",
+    ms:18000,
+    sections:[
+      {t:"Döner",items:[
+        {n:"Döner",nr:"05",p:"7",d:"Fladenbrot · Salat · Soße · mit Käse +1 €",img:"Doener_v1.webp",e:"🥙",imgsz:1.10},
+        {n:"Lahmacun",nr:"07",p:"9",d:"Dönerfleisch · frischer Salat · Soße",img:"Lahmacun_v1.webp",e:"🌯",imgsz:1.10},
+        {n:"Döner Box",nr:"06",p:"8,50",d:"Pommes oder Reis · Salat · Soße",img:"Doener_Box.webp",e:"🥡",imgsz:1.10},
+        {n:"Dönerteller",nr:"09",p:"12",d:"Pommes oder Reis · Salat · Zwiebeln · Soße",img:"Doenerteller_Pommes.webp",e:"🍽️",imgsz:1.10},
+      ]},
+      {t:"Vegetarisch &amp; Vegan",items:[
+        {n:"Falafel-Sandwich",nr:"11",p:"7",d:"Falafel · Salat · Soße · Fladenbrot",img:"Falafel_Sandwich.webp",e:"🥙",imgsz:1.10},
+        {n:"Seitan-Sandwich",nr:"13",p:"7,50",d:"Seitan · Salat · Soße · Fladenbrot",img:"Seitan_Sandwich.webp",e:"🌱",imgsz:1.10},
+        {n:"Falafel-Teller",nr:"12",p:"12",d:"Falafel · Salat · Beilagen · Soße",img:"Falafel_Teller.webp",e:"🧆",imgsz:1.10},
+        {n:"Seitan-Teller",nr:"14",p:"11,50",d:"Seitan · Salat · Beilagen · Soße",img:"Seitan_Teller.webp",e:"🌿",imgsz:1.10},
+      ]},
+    ]
+  },
+  {
+    title:"Vorspeisen &amp; Burger",
+    ms:18000,
+    sections:[
+      {t:"Vorspeisen",items:[
+        {n:"Samosa Gemüse",nr:"01",p:"5",d:"Gemüse · Kartoffeln · Erbsen · Stück 2,50 €",img:"Samosa_Gemuese_v1.webp",e:"🥟",imgsz:1.10},
+        {n:"Bolani Kachalo",nr:"02",p:"5",d:"Kartoffeln · Zwiebeln · Koriander · Stück 2,50 €",img:"Bolani_Kachalo_Gandana_v1.webp",e:"🫓",imgsz:1.10},
+        {n:"Afghan Soup",nr:"04",p:"7",d:"Hähnchen · Kichererbsen · Ei · Mais · Karotten",img:"Afghan_Soup.webp",e:"🍲",imgsz:1.10},
+        {n:"Shor Nakhod",nr:"03",p:"7",d:"Kichererbsen · Kartoffeln · Chutney · Pfeffer",img:"Shor_Nakhod_v1.webp",e:"🫘",imgsz:1.10},
+      ]},
+      {t:"Burger &amp; Fisch",items:[
+        {n:"Afghan Burger",nr:"22",p:"7",d:"Dürüm-Fladen · Kalbfleisch · Pommes · Ei · Salat",img:"Afghan_Burger.webp",e:"🌯",imgsz:1.10},
+        {n:"Burger mit Pommes",nr:"23",p:"9",d:"Rindfleisch-Patty · Cheddar · Salat · Pommes",img:"Burger_mit_Pommes_v1.webp",e:"🍔",imgsz:1.10},
+        {n:"Fry Fish",nr:"24",p:"12,50",d:"Frittierter Fisch · Pommes oder Brot · Salat",img:"Fry_Fish.webp",e:"🐟",imgsz:1.10},
+        {n:"Grill Fish",nr:"25",p:"15",d:"Gegrillter Fisch · Pommes oder Brot · Salat",img:"Grill_Fish.webp",e:"🐟",imgsz:1.10},
+      ]},
+    ]
+  },
 ];
-const stage=document.getElementById('stage'),dotsBox=document.getElementById('dots');
-PAGES.forEach(pg=>{
-  const html=pg.sections.map(sec=>{
-    const cols=sec.items.length;
+
+const stage=document.getElementById('stage');
+const dotsBox=document.getElementById('dots');
+const boardTitle=document.getElementById('boardTitle');
+
+SLIDES.forEach((sl)=>{
+  let idx=0;
+  const html=sl.sections.map(sec=>{
     const cards=sec.items.map(d=>{
-      const v="?v="+Date.now();
-      const img=(d.img&&!d.noimg)?`<img src="images/${d.img}${v}" alt="">`:`<span class="emo">${d.e}</span>`;
-      return `<div class="item"><div class="pic">${img}</div><div class="info"><div class="nm">${d.n}</div><div class="desc">${d.d}</div><div class="pr">${d.p}<span class="cur">€</span></div></div></div>`;
+      const k=idx++;
+      const fdel=(-(k*.85+Math.random()*.3)).toFixed(1);
+      const pic=d.img
+        ?`<img src="images/${d.img}${v}" alt="" loading="eager" decoding="async">`
+        :`<span class="emo">${d.e||"🍽️"}</span>`;
+      const nr=d.nr?`<span class="nr">${d.nr}</span>`:"";
+      const imgsz=d.imgsz?`;--imgsz:${d.imgsz}`:"";
+      return `<div class="item" style="--i:${k};--fdel:${fdel}s${imgsz}">
+        <div class="pic">${pic}${nr}</div>
+        <div class="info">
+          <div class="nm">${d.n}</div>
+          <div class="desc">${d.d}</div>
+          <div class="bot"><div class="pr">${d.p}<span class="cur">€</span></div></div>
+        </div>
+      </div>`;
     }).join("");
-    return `<div class="sec"><div class="sec-hd"><span>${sec.t}</span></div><div class="grid" style="--cols:${cols}">${cards}</div></div>`;
+    return `<div class="sl-group">
+      <div class="sl-head"><span>${sec.t}</span></div>
+      <div class="grid" style="--cols:${sec.items.length}">${cards}</div>
+    </div>`;
   }).join("");
   stage.insertAdjacentHTML('beforeend',`<section class="slide">${html}</section>`);
   dotsBox.insertAdjacentHTML('beforeend','<i></i>');
 });
-const slides=[...stage.children],dots=[...dotsBox.children];let i=0;
-function show(n){i=(n+slides.length)%slides.length;slides.forEach((s,k)=>s.classList.toggle('on',k===i));dots.forEach((d,k)=>d.classList.toggle('on',k===i));}
-show(0);let timer=setInterval(()=>show(i+1),18000);
+
+const slides=[...stage.children], dots=[...dotsBox.children];
+let i=0;
+
+function show(n){
+  const prev=i;
+  i=(n+slides.length)%slides.length;
+  slides.forEach((s,k)=>{
+    if(k===i){
+      s.classList.remove('leaving','entering');
+      s.classList.add('entering');
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        s.classList.remove('entering');s.classList.add('on');
+      }));
+    } else if(k===prev&&k!==i){
+      s.classList.remove('on');s.classList.add('leaving');
+      setTimeout(()=>s.classList.remove('leaving'),1200);
+    } else{s.classList.remove('on','leaving','entering');}
+  });
+  dots.forEach((d,k)=>d.classList.toggle('on',k===i));
+  boardTitle.innerHTML=SLIDES[i].title;
+}
+
+show(0);
+let timer=setInterval(()=>show(i+1),18000);
 function jump(n){clearInterval(timer);show(n);timer=setInterval(()=>show(i+1),18000);}
 addEventListener('click',()=>jump(i+1));
-addEventListener('keydown',e=>{if(e.key==='ArrowRight')jump(i+1);if(e.key==='ArrowLeft')jump(i-1);if(e.key.toLowerCase()==='f'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}});
-
+addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight')jump(i+1);
+  if(e.key==='ArrowLeft')jump(i-1);
+  if(e.key.toLowerCase()==='f'){
+    document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+  }
+});
+(function(){
+  const fs=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(()=>{});};
+  ['click','touchstart','keydown'].forEach(e=>addEventListener(e,fs,{once:true,passive:true}));
+})();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw2.js').catch(()=>{});}
 </script>
 </body>
 </html>
