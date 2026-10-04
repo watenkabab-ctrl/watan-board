@@ -43,21 +43,20 @@
   --ease:cubic-bezier(.22,1,.36,1);--ease-up:cubic-bezier(.4,0,1,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;width:100%;overflow:hidden;background:#FFFFFF}
-body{font-family:"Raleway",system-ui,sans-serif;color:#1E0E02;cursor:none;
+html,body{height:100%;width:100%;overflow:hidden;background:#1a0b03}
+body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   text-rendering:geometricPrecision}
 
 /* ── BACKGROUND ── */
 .bg{position:fixed;inset:0;z-index:0;
   background:
-    radial-gradient(ellipse 110% 45% at 50% 105%,rgba(180,120,30,.07) 0%,transparent 60%),
-    radial-gradient(ellipse 70% 30% at 50% -5%,rgba(180,120,30,.05) 0%,transparent 50%),
-    linear-gradient(170deg,#FFFFFF 0%,#FDFCF8 50%,#FAF7F2 100%)}
-.texture{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.025;
+    radial-gradient(ellipse 90% 55% at 50% 108%,rgba(255,110,0,.55),rgba(200,70,0,.28) 42%,rgba(150,30,0,.10) 64%,transparent 75%),
+    radial-gradient(ellipse 125% 96% at 50% 44%,#0d0804 0%,#080503 55%,#030201 100%)}
+.texture{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.06;
   background-image:url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E")}
 .vignette{position:fixed;inset:0;z-index:8;pointer-events:none;
-  box-shadow:inset 0 0 10vw 2vw rgba(120,70,10,.08)}
+  box-shadow:inset 0 0 14vw 3vw rgba(0,0,0,.30)}
 
 /* ── FRAME ── */
 .frame{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;padding:.95vh 2.0vw .6vh}
@@ -65,18 +64,19 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#1E0E02;cursor:none;
 /* ── HEADER ── */
 .head{text-align:center;flex-shrink:0;padding:.06vh 0 .04vh}
 .board-brand{font-size:1.12vw;letter-spacing:.52em;text-transform:uppercase;
-  color:rgba(212,30,60,.82);font-weight:600;margin-bottom:.05vh;
+  color:rgba(225,175,55,.92);font-weight:600;margin-bottom:.05vh;
   font-family:"Raleway",system-ui,sans-serif}
 .board-title{position:relative;display:inline-block;
   font-family:"Lora",serif;font-weight:700;
-  font-size:4.70vw;line-height:1.0;letter-spacing:.035em;
-  -webkit-text-fill-color:#0A0A0A;color:#0A0A0A}
+  font-size:4.70vw;line-height:1.0;letter-spacing:.04em;
+  background:linear-gradient(135deg,#E8B84A 0%,#FFE8A0 40%,#C8922A 65%,#E8B84A 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .board-title::before,.board-title::after{
-  content:"";position:absolute;bottom:-.38vh;left:50%;transform:translateX(-50%);
-  height:1px;background:linear-gradient(90deg,transparent,rgba(212,30,60,.55),rgba(212,30,60,.95),rgba(212,30,60,.55),transparent);
+  content:"";position:absolute;bottom:-.5vh;left:50%;transform:translateX(-50%);
+  height:1px;background:linear-gradient(90deg,transparent,rgba(232,184,74,.6),rgba(255,232,160,.9),rgba(232,184,74,.6),transparent);
   animation:line-expand 1.4s cubic-bezier(.22,1,.36,1) forwards}
 .board-title::before{width:0;animation-delay:.25s}
-.board-title::after{width:0;bottom:-.72vh;opacity:.55;animation-delay:.45s}
+.board-title::after{width:0;bottom:-.9vh;opacity:.4;animation-delay:.45s}
 @keyframes line-expand{to{width:116%}}
 
 /* ── STAGE ── */
@@ -95,12 +95,12 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#1E0E02;cursor:none;
 /* ── SECTION HEADER ── */
 .sl-head{flex-shrink:0;display:flex;align-items:center;gap:.65vw;margin-bottom:.06vh}
 .sl-head::before{content:"";width:1.5vw;height:1px;flex-shrink:0;
-  background:linear-gradient(270deg,rgba(160,40,56,.50),transparent)}
+  background:linear-gradient(270deg,rgba(200,146,42,.50),transparent)}
 .sl-head::after{content:"";flex:1;height:1px;
-  background:linear-gradient(90deg,rgba(160,40,56,.40),rgba(160,40,56,.05),transparent)}
+  background:linear-gradient(90deg,rgba(200,146,42,.40),rgba(200,146,42,.05),transparent)}
 .sl-head span{font-family:"Lora",serif;font-weight:700;font-style:italic;
   font-size:2.60vw;letter-spacing:.042em;white-space:nowrap;
-  color:#0A0A0A}
+  color:var(--g);text-shadow:0 0 2vw rgba(200,130,30,.3)}
 
 /* ── GRID ── */
 .grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(var(--cols,5),1fr);
@@ -108,13 +108,13 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#1E0E02;cursor:none;
 
 /* ── ITEM ── */
 .item{display:flex;flex-direction:column;min-width:0;min-height:0;
-  background:rgba(255,255,255,.97);
-  border:1px solid rgba(168,112,32,.22);
+  background:rgba(18,8,0,.22);
+  border:1px solid rgba(255,200,100,.22);
   border-radius:1.05vw;overflow:hidden;
-  box-shadow:0 2px 18px rgba(100,60,10,.12),0 1px 0 rgba(255,255,255,.9);
+  box-shadow:0 2px 16px rgba(0,0,0,.30);
   position:relative;contain:layout style paint}
 .item::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(200,146,42,.22),transparent);z-index:4;pointer-events:none}
+  background:linear-gradient(90deg,transparent,rgba(232,184,74,.22),transparent);z-index:4;pointer-events:none}
 .slide.on .item{animation:enter 1.1s var(--ease) both;
   animation-delay:calc(var(--i,0)*.065s);will-change:transform,opacity}
 .slide.leaving .item{animation:leave .55s var(--ease-up) both;
@@ -126,10 +126,10 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#1E0E02;cursor:none;
 .item .pic{flex:1 1 0;min-height:14vh;position:relative;overflow:hidden}
 .item .pic::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    radial-gradient(ellipse 110% 40% at 50% 105%,rgba(240,230,210,.50) 0%,transparent 55%)}
+    radial-gradient(ellipse 110% 40% at 50% 105%,rgba(8,2,0,.32) 0%,transparent 55%)}
 .item .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
   object-position:center center;z-index:1;
-  filter:drop-shadow(0 3px 8px rgba(80,40,5,.28));
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.62));
   animation:float 7s ease-in-out var(--fdel,0s) infinite;will-change:transform;
   transform:translateZ(0)}
 .slide:not(.on) .item .pic img{animation-play-state:paused}
@@ -139,30 +139,32 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#1E0E02;cursor:none;
   font-size:min(11vh,8vw);z-index:1}
 .item .pic .nr{position:absolute;top:.32vh;left:.28vw;z-index:3;
   font-family:"Lora",serif;font-weight:700;font-size:2.05vw;line-height:1;
-  color:#1A2A5E;letter-spacing:.06em;
-  background:rgba(255,249,235,.94);padding:.26vh .52vw .22vh;
-  border-radius:.38vw;border:1px solid rgba(168,112,32,.40);
-  box-shadow:0 1px 5px rgba(80,40,5,.18)}
+  color:#EDD068;letter-spacing:.06em;
+  background:rgba(6,1,0,.88);padding:.26vh .52vw .22vh;
+  border-radius:.38vw;border:1px solid rgba(200,146,42,.55);
+  text-shadow:0 0 1vw rgba(220,160,40,.55);
+  box-shadow:0 1px 6px rgba(0,0,0,.65)}
 
 /* ── INFO PANEL ── */
 .item .info{flex:0 0 auto;padding:.42vh .65vw .52vh;
-  background:linear-gradient(180deg,rgba(255,255,255,.0) 0%,rgba(255,255,255,.96) 18%,rgba(255,255,255,1.0) 100%);
-  border-top:1px solid rgba(168,112,32,.18);position:relative}
+  background:linear-gradient(180deg,rgba(4,1,0,.0) 0%,rgba(4,1,0,.65) 18%,rgba(4,1,0,.82) 100%);
+  border-top:1px solid rgba(200,146,42,.22);position:relative}
 .item .info::before{content:"";position:absolute;top:0;left:.65vw;right:.65vw;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(168,112,32,.22),transparent)}
+  background:linear-gradient(90deg,transparent,rgba(232,184,74,.35),transparent)}
 .item .nm{font-family:"Lora",serif;font-weight:700;font-size:2.20vw;line-height:1.1;
-  color:#1A2A5E;letter-spacing:.022em;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.item .desc{font-family:"Raleway",sans-serif;font-size:1.04vw;color:rgba(40,30,55,.88);
-  line-height:1.26;margin-top:.05vh;letter-spacing:.09em;text-transform:uppercase;font-weight:600}
+  color:#FFFAF0;letter-spacing:.03em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  filter:drop-shadow(0 1px 6px rgba(0,0,0,1))}
+.item .desc{font-family:"Raleway",sans-serif;font-size:1.04vw;color:#E0C090;
+  line-height:1.26;margin-top:.05vh;letter-spacing:.09em;text-transform:uppercase;font-weight:600;
+  filter:drop-shadow(0 1px 3px rgba(0,0,0,.9))}
 .item .bot{display:flex;align-items:baseline;justify-content:space-between;margin-top:.18vh;gap:.4vw}
 .item .pr{font-family:"Lora",serif;font-weight:900;font-size:3.24vw;line-height:1;
-  color:#0A6830;
-  background:#E4F5EC;border-radius:.45vw;
-  display:inline-block;padding:.10vh .45vw .12vh;
+  background:linear-gradient(135deg,#C8922A 0%,#FFE8A0 50%,#C8922A 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   text-rendering:geometricPrecision}
 .item .pr .cur{font-size:.48em;font-weight:600;vertical-align:.2em;margin-left:.04em;
-  color:#0A6830}
+  -webkit-text-fill-color:rgba(200,146,42,.80)}
 
 /* ── FOOTER ── */
 .ft{flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:2vw;
@@ -171,7 +173,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#1E0E02;cursor:none;
   background:linear-gradient(90deg,transparent,rgba(200,146,42,.32))}
 .ft::after{background:linear-gradient(270deg,transparent,rgba(200,146,42,.32))}
 .ft span{font-family:"Lora",serif;font-weight:600;font-style:italic;font-size:1.46vw;
-  letter-spacing:.13em;color:rgba(192,135,36,.62)}
+  letter-spacing:.13em;color:rgba(200,146,42,.72)}
 .dots{display:flex;justify-content:center;gap:.9vw;margin-top:.35vh}
 .dots i{width:.75vh;height:.75vh;border-radius:50%;background:rgba(200,146,42,.18);transition:.45s}
 .dots i.on{background:var(--gl);box-shadow:0 0 .9vh rgba(232,175,55,.72);transform:scale(1.4)}
@@ -198,7 +200,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#1E0E02;cursor:none;
 </div>
 <div class="vignette"></div>
 <script>
-const v="?v="+"20261005c";
+const v="?v="+"20261005d";
 const SLIDES=[
   {
     title:"Traditionelle Gerichte",
