@@ -1,4 +1,4 @@
-const CACHE='watan2-v2';
+const CACHE='watan2-v3';
 const ASSETS=[
   './board2.html',
   './fonts/0QIhMX1D_JOuMw_LIftL.woff2',
@@ -8,7 +8,7 @@ const ASSETS=[
   './fonts/1Ptug8zYS_SKggPNyC0ITw.woff2',
   './fonts/1Ptug8zYS_SKggPNyCMIT5lu.woff2',
   './images/Doener_v1.webp','./images/Lahmacun_v1.webp',
-  './images/Doener_Box.webp','./images/Doenerteller_Pommes.webp',
+  './images/Doener_Box_neu.webp','./images/Doenerteller_Pommes.webp',
   './images/Falafel_Sandwich.webp','./images/Seitan_Sandwich.webp',
   './images/Falafel_Teller.webp','./images/Seitan_Teller.webp',
   './images/Samosa_Gemuese_v1.webp','./images/Bolani_Kachalo_Gandana_v1.webp',
