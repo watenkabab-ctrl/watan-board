@@ -85,12 +85,12 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
   opacity:0;pointer-events:none;will-change:opacity,transform;
   transform:scale(1) translateZ(0)}
 .slide.on{opacity:1;pointer-events:auto;
-  transition:opacity 2.2s cubic-bezier(.4,0,.2,1),transform 2.2s cubic-bezier(.4,0,.2,1);
+  transition:opacity 1.7s cubic-bezier(.4,0,.2,1),transform 1.7s cubic-bezier(.4,0,.2,1);
   transform:scale(1) translateZ(0)}
-.slide.entering{opacity:0;transform:scale(1.018) translateZ(0)}
+.slide.entering{opacity:0;transform:scale(1.016) translateZ(0)}
 .slide.leaving{opacity:0;pointer-events:none;
-  transition:opacity 1.1s cubic-bezier(.4,0,1,1),transform 1.1s cubic-bezier(.4,0,1,1);
-  transform:scale(.984) translateZ(0)}
+  transition:opacity .95s cubic-bezier(.55,0,1,1),transform .95s cubic-bezier(.55,0,1,1);
+  transform:scale(.986) translateZ(0)}
 
 /* ── SECTION GROUP ── */
 .sl-group{flex:1;min-height:0;display:flex;flex-direction:column;gap:.16vh}
@@ -288,7 +288,7 @@ function show(n){
       }));
     } else if(k===prev&&k!==i){
       s.classList.remove('on');s.classList.add('leaving');
-      setTimeout(()=>s.classList.remove('leaving'),1100);
+      setTimeout(()=>s.classList.remove('leaving'),1000);
     } else{s.classList.remove('on','leaving','entering');}
   });
   dots.forEach((d,k)=>d.classList.toggle('on',k===i));
