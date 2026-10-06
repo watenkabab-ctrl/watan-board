@@ -1,4 +1,4 @@
-const CACHE='watan-v4';
+const CACHE='watan-v5';
 const ASSETS=[
   './board3.html',
   './fonts/0QIhMX1D_JOuMw_LIftL.woff2',
@@ -23,8 +23,10 @@ self.addEventListener('activate',e=>{
   e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));
 });
 self.addEventListener('fetch',e=>{
+  // Video range requests must bypass SW — caching breaks streaming
+  if(e.request.url.includes('/video/')) return;
   e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(res=>{
-    if(res.ok){const c=res.clone();caches.open(CACHE).then(ca=>ca.put(e.request,c));}
+    if(res.ok&&res.status===200){const c=res.clone();caches.open(CACHE).then(ca=>ca.put(e.request,c));}
     return res;
   })));
 });
