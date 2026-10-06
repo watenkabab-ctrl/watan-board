@@ -155,21 +155,21 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .showcase{flex:1;min-height:0;position:relative;overflow:hidden}
 /* plate — füllt gesamte Fläche, schräge Float-Animation */
 .sc-img{position:absolute;top:0;left:0;right:0;bottom:0;z-index:10;
-  display:-webkit-flex;display:flex;-webkit-align-items:flex-start;align-items:flex-start;-webkit-justify-content:center;justify-content:center;padding-top:2vh}
+  display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center}
 .sc-img::before{content:"";display:none}
 .sc-img img{width:77%;max-height:52vh;-webkit-object-fit:contain;object-fit:contain;position:relative;z-index:1;
-  will-change:transform;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+  margin-bottom:24vh;will-change:transform;-webkit-backface-visibility:hidden;backface-visibility:hidden}
 .slide.on .sc-img img{-webkit-animation:sc-float 9s ease-in-out infinite;animation:sc-float 9s ease-in-out infinite}
 @-webkit-keyframes sc-float{
-  0%{-webkit-transform:translate3d(0,0,0) rotate(-2.5deg) scale(1)}
-  30%{-webkit-transform:translate3d(-12px,0,0) rotate(-0.8deg) scale(1.022)}
-  65%{-webkit-transform:translate3d(10px,0,0) rotate(0.6deg) scale(0.984)}
-  100%{-webkit-transform:translate3d(0,0,0) rotate(-2.5deg) scale(1)}}
+  0%{-webkit-transform:translate3d(0,0,0) rotate(-7deg) scale(1)}
+  30%{-webkit-transform:translate3d(-12px,0,0) rotate(-4deg) scale(1.022)}
+  65%{-webkit-transform:translate3d(10px,0,0) rotate(-1deg) scale(0.984)}
+  100%{-webkit-transform:translate3d(0,0,0) rotate(-7deg) scale(1)}}
 @keyframes sc-float{
-  0%{transform:translate3d(0,0,0) rotate(-2.5deg) scale(1)}
-  30%{transform:translate3d(-12px,0,0) rotate(-0.8deg) scale(1.022)}
-  65%{transform:translate3d(10px,0,0) rotate(0.6deg) scale(0.984)}
-  100%{transform:translate3d(0,0,0) rotate(-2.5deg) scale(1)}}
+  0%{transform:translate3d(0,0,0) rotate(-7deg) scale(1)}
+  30%{transform:translate3d(-12px,0,0) rotate(-4deg) scale(1.022)}
+  65%{transform:translate3d(10px,0,0) rotate(-1deg) scale(0.984)}
+  100%{transform:translate3d(0,0,0) rotate(-7deg) scale(1)}}
 /* info-overlay am unteren Rand */
 .sc-info{position:absolute;bottom:0;left:0;right:0;z-index:5;
   display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-align-items:center;align-items:center;
