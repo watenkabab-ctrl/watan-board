@@ -136,7 +136,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .slide:not(.on) .item .pic img{animation-play-state:paused}
 @keyframes float{0%{transform:translateY(0) scale(1.0)}50%{transform:translateY(-1vh) scale(1.012)}100%{transform:translateY(0) scale(1.0)}}
 .item.big-img .pic img{animation:float-big var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite}
-@keyframes float-big{0%,100%{transform:translateY(0) scale(1.577)}50%{transform:translateY(-1vh) scale(1.592)}}
+@keyframes float-big{0%,100%{transform:translateY(0) scale(1.05)}50%{transform:translateY(-1vh) scale(1.062)}}
 .item.small-img .pic img{animation:float-small var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite}
 @keyframes float-small{0%,100%{transform:translateY(0) scale(.95)}50%{transform:translateY(-1vh) scale(.962)}}
 
@@ -244,7 +244,7 @@ const SLIDES=[
   {title:"Grill Gerichte",star:"✦",ms:30000,items:[
     {n:"Chicken Wings Kebab",p:"12",d:"Marinierte Flügel · Knoblauch-Joghurt",img:"Chicken_Wings_Kebab_pr1.webp"},
     {n:"Chicken Tikka Kebab",p:"12,50",d:"Tandoor · Basmati-Reis · Beilagen",img:"Chicken_Tikka_Kebab_pr1.webp"},
-    {n:"Zershk Palau · Hähnchen",p:"13,50",d:"Berberitzenreis · Safran · Hähnchen",img:"Zershk_Palau_Haehnchen.webp"},
+    {n:"Zershk Palau · Hähnchen",p:"13,50",d:"Berberitzenreis · Safran · Hähnchen",img:"Zershk_Palau_Haehnchen.webp",bigimg:true},
     {n:"Chapli Kebab",p:"8",d:"Gehacktes Lamm · Kräuter · Fladenbrot",img:"Chapli_Kebab_pr1.webp"},
     {n:"Kobide Kebab",p:"15",d:"Rindshackfleisch · Gewürze · Basmati-Reis",img:"Kobide_Kebab_pr1.webp"},
     {n:"Lamm Tikka Kebab",p:"18",d:"Zartes Lammfleisch · Tandoor · Beilagen",img:"Lamm_Tikka_Kebab.webp"},
