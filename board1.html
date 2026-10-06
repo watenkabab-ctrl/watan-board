@@ -29,14 +29,14 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 /* ── BACKGROUND ── */
 .ytbg{position:fixed;top:0;left:0;right:0;bottom:0;z-index:1;overflow:hidden;background:#000}
 .ytbg video{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;object-fit:cover;
-  -webkit-filter:brightness(1.2) contrast(1.05) saturate(1.4) hue-rotate(-8deg);
-  filter:brightness(1.2) contrast(1.05) saturate(1.4) hue-rotate(-8deg);opacity:.52;
-  -webkit-mask-image:linear-gradient(to top,#000 0%,#000 55%,rgba(0,0,0,.7) 75%,transparent 92%);
-  mask-image:linear-gradient(to top,#000 0%,#000 55%,rgba(0,0,0,.7) 75%,transparent 92%)}
+  -webkit-filter:brightness(1.45) contrast(1.0) saturate(1.3) hue-rotate(-6deg);
+  filter:brightness(1.45) contrast(1.0) saturate(1.3) hue-rotate(-6deg);opacity:.72;
+  -webkit-mask-image:linear-gradient(to top,#000 0%,#000 65%,rgba(0,0,0,.75) 82%,transparent 96%);
+  mask-image:linear-gradient(to top,#000 0%,#000 65%,rgba(0,0,0,.75) 82%,transparent 96%)}
 .ytbg iframe{position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);
   width:100vw;height:56.25vw;min-height:100vh;min-width:177.78vh;pointer-events:none;border:0}
 .shade{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2;pointer-events:none;
-  background:linear-gradient(180deg,rgba(20,6,1,.30) 0%,rgba(18,5,1,.18) 22%,rgba(15,4,0,.10) 50%,transparent 70%)}
+  background:linear-gradient(180deg,rgba(20,6,1,.15) 0%,rgba(15,4,0,.08) 30%,transparent 55%)}
 .texture{position:fixed;top:0;left:0;right:0;bottom:0;z-index:3;pointer-events:none;opacity:.07;
   background-image:url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")}
 /* fire glow layers */
@@ -82,8 +82,8 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .stage{flex:1;min-height:0;position:relative;margin:.1vh 0}
 .slide{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;
   opacity:0;pointer-events:none;will-change:opacity}
-.slide.on{opacity:1;pointer-events:auto;-webkit-transition:opacity .6s cubic-bezier(.22,1,.36,1);transition:opacity .6s cubic-bezier(.22,1,.36,1)}
-.slide.leaving{opacity:0;pointer-events:none;-webkit-transition:opacity .7s cubic-bezier(.4,0,1,1);transition:opacity .7s cubic-bezier(.4,0,1,1)}
+.slide.on{opacity:1;pointer-events:auto;-webkit-transition:opacity .9s cubic-bezier(.22,1,.36,1);transition:opacity .9s cubic-bezier(.22,1,.36,1)}
+.slide.leaving{opacity:0;pointer-events:none;-webkit-transition:opacity .85s cubic-bezier(.4,0,1,1);transition:opacity .85s cubic-bezier(.4,0,1,1)}
 
 /* ── SLIDE HEADER ── */
 .sl-head{flex-shrink:0;margin-bottom:.15vh}
@@ -118,7 +118,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 
 /* ── TEXT PANEL ── */
 .item .info{flex:0 0 auto;padding:1.2vh 1.1vw 1.4vh;
-  background:linear-gradient(180deg,rgba(4,1,0,.0) 0%,rgba(4,1,0,.82) 28%,rgba(4,1,0,.92) 100%);
+  background:linear-gradient(180deg,rgba(4,1,0,.0) 0%,rgba(4,1,0,.70) 28%,rgba(4,1,0,.80) 100%);
   border-top:1px solid rgba(200,146,42,.3);
   position:relative}
 .item .info::before{content:"";position:absolute;top:0;left:1.1vw;right:1.1vw;height:1px;
@@ -143,13 +143,12 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   color:rgba(200,146,42,.8);white-space:nowrap}
 
 /* ── SLIDE 2 CINEMATIC SHOWCASE ── */
-.showcase{flex:1;min-height:0;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:2vh;gap:0;overflow:visible}
-.showcase::before{content:"";display:none}
-/* plate */
-.sc-img{flex:0 0 auto;width:100%;max-height:72vh;position:relative;z-index:2;
-  display:flex;align-items:center;justify-content:center;margin-top:4vh}
+.showcase{flex:1;min-height:0;position:relative;overflow:hidden}
+/* plate — füllt gesamte Fläche, Bild zentriert mit Offset nach unten */
+.sc-img{position:absolute;top:0;left:0;right:0;bottom:22vh;z-index:1;
+  display:-webkit-flex;display:flex;-webkit-align-items:flex-end;align-items:flex-end;-webkit-justify-content:center;justify-content:center;padding-bottom:2vh}
 .sc-img::before{content:"";display:none}
-.sc-img img{max-width:96%;max-height:72vh;-webkit-object-fit:contain;object-fit:contain;position:relative;z-index:1;
+.sc-img img{max-width:92%;max-height:85%;-webkit-object-fit:contain;object-fit:contain;position:relative;z-index:1;
   -webkit-animation:sc-float 9s ease-in-out infinite;animation:sc-float 9s ease-in-out infinite}
 .slide.leaving .sc-img img{-webkit-animation-play-state:paused;animation-play-state:paused}
 @-webkit-keyframes sc-float{
@@ -162,9 +161,12 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   30%{transform:translate(-14px,-10px) scale(1.025)}
   65%{transform:translate(10px,8px) scale(0.982)}
   100%{transform:translate(0px,0px) scale(1)}}
-/* bottom options */
-.sc-info{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;width:100%;margin-top:1vh}
-.sc-row{position:relative;z-index:3;display:flex;flex-direction:column;gap:0;margin-top:1.5vh;width:78%;
+/* info-overlay am unteren Rand */
+.sc-info{position:absolute;bottom:0;left:0;right:0;z-index:5;
+  display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-align-items:center;align-items:center;
+  padding:3vh 4vw 2.5vh;
+  background:linear-gradient(to bottom,transparent,rgba(8,2,0,.92) 38%)}
+.sc-row{position:relative;z-index:3;display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:0;margin-top:1vh;width:72%;
   opacity:0;-webkit-animation:fade-up .85s ease .4s forwards;animation:fade-up .85s ease .4s forwards}
 @-webkit-keyframes fade-up{from{opacity:0;-webkit-transform:translateY(10px)}to{opacity:1;-webkit-transform:translateY(0)}}
 @keyframes fade-up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
