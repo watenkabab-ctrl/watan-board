@@ -110,39 +110,35 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 @keyframes leave{0%{opacity:1}100%{opacity:0}}
 
 /* ── IMAGE ── */
-.item .pic{flex:0 0 13vh;height:13vh;overflow:hidden;background-size:contain;background-position:center center;background-repeat:no-repeat}
-.item .pic.bigimg{flex-basis:26.8vh;height:26.8vh}
+.item .pic{flex:1 1 0;min-height:0;position:relative;overflow:hidden;
+  background-size:80%;background-position:center center;background-repeat:no-repeat}
 .item .pic img{display:none}
 .item .pic .emo{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font-size:11vh;z-index:1}
-.item .pic .smoke{position:absolute;left:0;right:0;bottom:0;height:175%;object-fit:cover;object-position:bottom;
-  mix-blend-mode:screen;opacity:.36;z-index:2;
-  -webkit-mask-image:linear-gradient(to top,transparent 0,#000 16%,#000 62%,transparent 100%);
-  mask-image:linear-gradient(to top,transparent 0,#000 16%,#000 62%,transparent 100%)}
 
 /* ── TEXT PANEL ── */
-.item .info{flex:0 0 auto;padding:.7vh .8vw 1.0vh;
-  background:linear-gradient(180deg,rgba(4,1,0,.0) 0%,rgba(4,1,0,.65) 18%,rgba(4,1,0,.78) 100%);
+.item .info{flex:0 0 auto;padding:1.1vh 1vw 1.3vh;
+  background:linear-gradient(180deg,rgba(4,1,0,.0) 0%,rgba(4,1,0,.72) 22%,rgba(4,1,0,.85) 100%);
   border-top:1px solid rgba(200,146,42,.22);
   position:relative}
-.item .info::before{content:"";position:absolute;top:0;left:.8vw;right:.8vw;height:1px;
+.item .info::before{content:"";position:absolute;top:0;left:1vw;right:1vw;height:1px;
   background:linear-gradient(90deg,transparent,rgba(232,184,74,.35),transparent)}
-.item .nm{font-family:"Lora",serif;font-weight:700;font-size:2.05vw;line-height:1.15;
+.item .nm{font-family:"Lora",serif;font-weight:700;font-size:2.3vw;line-height:1.15;
   color:#FFFAF0;letter-spacing:.03em;
   text-rendering:geometricPrecision;-webkit-font-smoothing:antialiased;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   filter:drop-shadow(0 1px 6px rgba(0,0,0,1)) drop-shadow(0 0 12px rgba(0,0,0,.8))}
-.item .desc{font-family:"Raleway",sans-serif;font-size:0.82vw;color:#E0C090;line-height:1.25;margin-top:.1vh;
+.item .desc{font-family:"Raleway",sans-serif;font-size:0.95vw;color:#E0C090;line-height:1.25;margin-top:.2vh;
   letter-spacing:.1em;text-transform:uppercase;font-weight:600;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   filter:drop-shadow(0 1px 3px rgba(0,0,0,.9))}
-.item .bot{display:flex;align-items:baseline;justify-content:space-between;margin-top:.3vh;gap:.5vw}
-.item .pr{font-family:"Lora",serif;font-weight:900;font-size:0.84vw;line-height:1.15;overflow:visible;
+.item .bot{display:flex;align-items:baseline;justify-content:space-between;margin-top:.4vh;gap:.5vw}
+.item .pr{font-family:"Lora",serif;font-weight:900;font-size:1.15vw;line-height:1.15;overflow:visible;
   background:linear-gradient(135deg,#C8922A 0%,#FFE8A0 50%,#C8922A 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   text-rendering:geometricPrecision}
-.item .pr .cur{font-size:.48em;font-weight:600;vertical-align:.2em;margin-left:.04em;
+.item .pr .cur{font-size:.55em;font-weight:600;vertical-align:.2em;margin-left:.04em;
   -webkit-text-fill-color:rgba(200,146,42,.8)}
-.item .badge{font-size:.82vw;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+.item .badge{font-size:.95vw;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
   color:rgba(200,146,42,.75);white-space:nowrap}
 
 /* ── SLIDE 2 CINEMATIC SHOWCASE ── */
