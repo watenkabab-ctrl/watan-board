@@ -111,34 +111,34 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 
 /* ── IMAGE ── */
 .item .pic{flex:1 1 0;min-height:0;position:relative;overflow:hidden;
-  background-size:80%;background-position:center center;background-repeat:no-repeat}
+  background-size:85%;background-position:center center;background-repeat:no-repeat}
 .item .pic img{display:none}
 .item .pic .emo{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font-size:11vh;z-index:1}
 
 /* ── TEXT PANEL ── */
-.item .info{flex:0 0 auto;padding:1.1vh 1vw 1.3vh;
+.item .info{flex:0 0 auto;padding:.8vh .9vw 1vh;
   background:linear-gradient(180deg,rgba(4,1,0,.0) 0%,rgba(4,1,0,.72) 22%,rgba(4,1,0,.85) 100%);
   border-top:1px solid rgba(200,146,42,.22);
   position:relative}
-.item .info::before{content:"";position:absolute;top:0;left:1vw;right:1vw;height:1px;
+.item .info::before{content:"";position:absolute;top:0;left:.9vw;right:.9vw;height:1px;
   background:linear-gradient(90deg,transparent,rgba(232,184,74,.35),transparent)}
-.item .nm{font-family:"Lora",serif;font-weight:700;font-size:2.3vw;line-height:1.15;
-  color:#FFFAF0;letter-spacing:.03em;
+.item .nm{font-family:"Lora",serif;font-weight:700;font-size:1.9vw;line-height:1.2;
+  color:#FFFAF0;letter-spacing:.02em;
   text-rendering:geometricPrecision;-webkit-font-smoothing:antialiased;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  overflow:hidden;
   filter:drop-shadow(0 1px 6px rgba(0,0,0,1)) drop-shadow(0 0 12px rgba(0,0,0,.8))}
-.item .desc{font-family:"Raleway",sans-serif;font-size:0.95vw;color:#E0C090;line-height:1.25;margin-top:.2vh;
-  letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+.item .desc{font-family:"Raleway",sans-serif;font-size:0.88vw;color:#E0C090;line-height:1.2;margin-top:.15vh;
+  letter-spacing:.08em;text-transform:uppercase;font-weight:600;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   filter:drop-shadow(0 1px 3px rgba(0,0,0,.9))}
-.item .bot{display:flex;align-items:baseline;justify-content:space-between;margin-top:.4vh;gap:.5vw}
-.item .pr{font-family:"Lora",serif;font-weight:900;font-size:1.15vw;line-height:1.15;overflow:visible;
+.item .bot{display:flex;align-items:baseline;justify-content:space-between;margin-top:.3vh;gap:.5vw}
+.item .pr{font-family:"Lora",serif;font-weight:900;font-size:1.05vw;line-height:1.15;overflow:visible;
   background:linear-gradient(135deg,#C8922A 0%,#FFE8A0 50%,#C8922A 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   text-rendering:geometricPrecision}
 .item .pr .cur{font-size:.55em;font-weight:600;vertical-align:.2em;margin-left:.04em;
   -webkit-text-fill-color:rgba(200,146,42,.8)}
-.item .badge{font-size:.95vw;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+.item .badge{font-size:.88vw;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
   color:rgba(200,146,42,.75);white-space:nowrap}
 
 /* ── SLIDE 2 CINEMATIC SHOWCASE ── */
@@ -212,7 +212,7 @@ const SLIDES=[
   {title:"Grill Gerichte",star:"✦",ms:30000,items:[
     {n:"Chicken Wings Kebab",p:"12",d:"Marinierte Flügel · Knoblauch-Joghurt",img:"Chicken_Wings_Kebab_pr1.png"},
     {n:"Chicken Tikka Kebab",p:"12,50",d:"Tandoor · Basmati-Reis · Beilagen",img:"Chicken_Tikka_Kebab_pr1.png"},
-    {n:"Zershk Palau · Hähnchen",p:"13,50",d:"Berberitzenreis · Safran · Hähnchen",img:"Zershk_Palau_Haehnchen.png",bigimg:true},
+    {n:"Zershk Palau · Hähnchen",p:"13,50",d:"Berberitzenreis · Safran · Hähnchen",img:"Zershk_Palau_Haehnchen.png"},
     {n:"Chapli Kebab",p:"8",d:"Gehacktes Lamm · Kräuter · Fladenbrot",img:"Chapli_Kebab_pr1.png"},
     {n:"Kobide Kebab",p:"15",d:"Rindshackfleisch · Gewürze · Basmati-Reis",img:"Kobide_Kebab_pr1.png",noscale:true},
     {n:"Lamm Tikka Kebab",p:"18",d:"Zartes Lammfleisch · Tandoor · Beilagen",img:"Lamm_Tikka_Kebab.png"},
@@ -343,8 +343,19 @@ requestAnimationFrame(()=>requestAnimationFrame(()=>{ show(0); scheduleNext(); }
 function jump(n){clearTimeout(timer);show(n);scheduleNext();}
 addEventListener('click',()=>jump(i+1));
 addEventListener('keydown',e=>{if(e.key==='ArrowRight')jump(i+1);if(e.key==='ArrowLeft')jump(i-1);if(e.key.toLowerCase()==='f'){const el=document.documentElement;if(document.fullscreenElement||document.webkitFullscreenElement){if(document.exitFullscreen)document.exitFullscreen();else if(document.webkitExitFullscreen)document.webkitExitFullscreen();}else{if(el.requestFullscreen)el.requestFullscreen();else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen();}}});
-// auto fullscreen on first interaction (TV kiosk mode)
-(function(){const fs=()=>{const el=document.documentElement;if(!document.fullscreenElement&&!document.webkitFullscreenElement){if(el.requestFullscreen)el.requestFullscreen().catch(()=>{});else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen();}};['click','touchstart','keydown'].forEach(e=>addEventListener(e,fs,{once:true,passive:true}));})();
+// auto fullscreen — sofort beim Laden + bei erster Interaktion
+(function(){
+  function fs(){var el=document.documentElement;
+    if(!document.fullscreenElement&&!document.webkitFullscreenElement){
+      if(el.requestFullscreen)el.requestFullscreen().catch(function(){});
+      else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen();
+    }
+  }
+  // sofort versuchen (funktioniert auf Samsung Tizen ohne Interaktion)
+  fs();
+  // Fallback: bei erster Interaktion
+  ['click','touchstart','keydown','keyup'].forEach(function(e){addEventListener(e,fs,{once:true,passive:true});});
+})();
 (function(){
   const vid=document.getElementById('firevid');
   if(!vid)return;
