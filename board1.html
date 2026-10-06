@@ -106,7 +106,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 @keyframes enter{0%{opacity:0;transform:translate(var(--fx,0),var(--fy,80vh)) scale(var(--fs,.88)) rotate(var(--fr,0deg))}
   100%{opacity:1;transform:none}}
 .slide.leaving .item{-webkit-animation:leave var(--ldur,.7s) var(--ease-up) both;animation:leave var(--ldur,.7s) var(--ease-up) both;
-  -webkit-animation-delay:calc(var(--i,0)*.05s);animation-delay:calc(var(--i,0)*.05s);will-change:transform,opacity}
+  -webkit-animation-delay:0s;animation-delay:0s;will-change:transform,opacity}
 @-webkit-keyframes leave{0%{opacity:1;-webkit-transform:none;transform:none}100%{opacity:0;-webkit-transform:translate(var(--lx,0),var(--ly,-9vh)) scale(var(--ls,.94)) rotate(var(--lr,0deg));transform:translate(var(--lx,0),var(--ly,-9vh)) scale(var(--ls,.94)) rotate(var(--lr,0deg))}}
 @keyframes leave{0%{opacity:1;transform:none}100%{opacity:0;transform:translate(var(--lx,0),var(--ly,-9vh)) scale(var(--ls,.94)) rotate(var(--lr,0deg))}}
 
