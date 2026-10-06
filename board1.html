@@ -322,8 +322,11 @@ function show(n){
   if(sl.showcase){
     setTimeout(()=>frame.classList.add('showcase-mode'),1400);
   } else {
-    frame.classList.remove('showcase-mode');
-    boardTitle.textContent=sl.title||'Grill Gerichte';
+    // Erst nach der Leave-Animation wiederherstellen (sonst Layout-Shift sichtbar)
+    setTimeout(function(){
+      frame.classList.remove('showcase-mode');
+      boardTitle.textContent=sl.title||'Grill Gerichte';
+    },750);
   }
   clearTimeout(leaveT);leaveT=setTimeout(()=>slides.forEach(s=>{if(!s.classList.contains('on'))s.classList.remove('leaving');}),1400);
   segs.forEach((s,k)=>{s.classList.remove('on','done');if(k<next)s.classList.add('done');});
