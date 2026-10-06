@@ -141,19 +141,21 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .item .pic .emo{position:absolute;inset:0;display:grid;place-items:center;font-size:11vh;z-index:1}
 .slide.on .item .pic img{animation:float var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite;will-change:transform}
 @keyframes float{0%{transform:translateY(0) scale(1.0)}50%{transform:translateY(-1vh) scale(1.012)}100%{transform:translateY(0) scale(1.0)}}
+.item.big-img .pic img{animation:float-big var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite}
+@keyframes float-big{0%,100%{transform:translateY(0) scale(1.22)}50%{transform:translateY(-1vh) scale(1.235)}}
 .item .pic .smoke{position:absolute;left:0;right:0;bottom:0;height:175%;object-fit:cover;object-position:bottom;
   mix-blend-mode:screen;opacity:.36;z-index:2;
   -webkit-mask-image:linear-gradient(to top,transparent 0,#000 16%,#000 62%,transparent 100%);
   mask-image:linear-gradient(to top,transparent 0,#000 16%,#000 62%,transparent 100%)}
 
 /* ── TEXT PANEL ── */
-.item .info{flex:0 0 auto;padding:.7vh .8vw 1.0vh;
+.item .info{flex:0 0 auto;padding:.55vh .8vw .75vh;
   background:linear-gradient(180deg,rgba(4,1,0,.0) 0%,rgba(4,1,0,.15) 18%,rgba(4,1,0,.28) 100%);
   border-top:1px solid rgba(200,146,42,.22);
   position:relative}
 .item .info::before{content:"";position:absolute;top:0;left:.8vw;right:.8vw;height:1px;
   background:linear-gradient(90deg,transparent,rgba(232,184,74,.35),transparent)}
-.item .nm{font-family:"Lora",serif;font-weight:700;font-size:1.80vw;line-height:1.15;
+.item .nm{font-family:"Lora",serif;font-weight:700;font-size:2.1vw;line-height:1.15;
   color:#FFFAF0;letter-spacing:.03em;
   text-rendering:geometricPrecision;-webkit-font-smoothing:antialiased;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
@@ -162,8 +164,8 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   letter-spacing:.1em;text-transform:uppercase;font-weight:600;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   filter:drop-shadow(0 1px 3px rgba(0,0,0,.9))}
-.item .bot{display:flex;align-items:baseline;justify-content:space-between;margin-top:.3vh;gap:.5vw}
-.item .pr{font-family:"Lora",serif;font-weight:900;font-size:2.48vw;line-height:1.15;overflow:visible;
+.item .bot{display:flex;align-items:baseline;justify-content:space-between;margin-top:.15vh;gap:.5vw}
+.item .pr{font-family:"Lora",serif;font-weight:900;font-size:1.92vw;line-height:1.15;overflow:visible;
   background:linear-gradient(135deg,#C8922A 0%,#FFE8A0 50%,#C8922A 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   text-rendering:geometricPrecision}
@@ -178,15 +180,15 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .showcase::before{content:"";display:none}
 @keyframes bg-breathe{0%,100%{opacity:.7}50%{opacity:1}}
 /* plate */
-.sc-img{flex:0 0 auto;width:100%;max-height:50vh;position:relative;z-index:2;
-  display:flex;align-items:center;justify-content:center}
+.sc-img{flex:0 0 auto;width:100%;max-height:52vh;position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:center;margin-top:.8vh}
 .sc-img::before{content:"";display:none}
-.sc-img img{max-width:100%;max-height:50vh;object-fit:contain;position:relative;z-index:1;
+.sc-img img{max-width:100%;max-height:52vh;object-fit:contain;position:relative;z-index:1;
   animation:sc-enter 1.1s cubic-bezier(.22,1,.36,1) both, sc-float 8s ease-in-out 1.2s infinite}
-@keyframes sc-enter{0%{opacity:0;transform:scale(.93) translateY(2vh)}100%{opacity:1;transform:none}}
-@keyframes sc-float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-1.4vh) scale(1.016)}}
+@keyframes sc-enter{0%{opacity:0;transform:scale(.9) rotate(-6deg) translateY(3vh)}100%{opacity:1;transform:rotate(-7deg) translateY(1.5vh) scale(1.08)}}
+@keyframes sc-float{0%,100%{transform:rotate(-7deg) translateY(1.5vh) scale(1.08)}50%{transform:rotate(-7deg) translateY(-.2vh) scale(1.096)}}
 /* bottom options */
-.sc-info{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;width:100%;margin-top:.6vh}
+.sc-info{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;width:100%;margin-top:.3vh}
 .sc-row{position:relative;z-index:3;display:flex;flex-direction:column;gap:0;margin-top:.4vh;width:78%;
   opacity:0;animation:fade-up .85s cubic-bezier(.22,1,.36,1) .4s forwards}
 @keyframes fade-up{from{opacity:0;transform:translateY(2vh)}to{opacity:1;transform:none}}
@@ -242,17 +244,17 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 <div class="vignette"></div>
 <script>
 const SLIDES=[
-  {title:"Grill Gerichte",star:"✦",ms:22000,items:[
+  {title:"Grill Gerichte",star:"✦",ms:30000,items:[
     {n:"Chicken Wings Kebab",p:"12",d:"Marinierte Flügel · Knoblauch-Joghurt",img:"Chicken_Wings_Kebab_pr1.webp"},
     {n:"Chicken Tikka Kebab",p:"12,50",d:"Tandoor · Basmati-Reis · Beilagen",img:"Chicken_Tikka_Kebab_pr1.webp"},
-    {n:"Zershk Palau · Hähnchen",p:"13,50",d:"Berberitzenreis · Safran · Hähnchen",img:"Zershk_Palau_Haehnchen.webp",emo:"🍗",noscale:true},
+    {n:"Zershk Palau · Hähnchen",p:"13,50",d:"Berberitzenreis · Safran · Hähnchen",img:"Zershk_Palau_Haehnchen.webp",bigimg:true},
     {n:"Chapli Kebab",p:"8",d:"Gehacktes Lamm · Kräuter · Fladenbrot",img:"Chapli_Kebab_pr1.webp"},
     {n:"Kobide Kebab",p:"15",d:"Rindshackfleisch · Gewürze · Basmati-Reis",img:"Kobide_Kebab_pr1.webp",noscale:true},
     {n:"Lamm Tikka Kebab",p:"18",d:"Zartes Lammfleisch · Tandoor · Beilagen",img:"Lamm_Tikka_Kebab.webp"},
     {n:"Lamm Kotelett",p:"19,50",d:"Gegrillte Lammkoteletts · Beilagen",img:"Lamm_Kotelett_pr1.webp"},
     {n:"Mix Grill · 1 Person",p:"20",d:"Wings · Chapli · Tikka · Koteletts",img:"Mix_Grill_1_Person_pr1.webp",hero:true},
   ]},
-  {title:"Mix Grill",ms:9000,showcase:{
+  {title:"Mix Grill",ms:7000,showcase:{
     n:"Mix Grill",
     sub:"Frisch vom Grill · Beilagen · Soßen · Salat",
     img:"Mix_Grill_Grillplatte_pr1.webp",
@@ -297,7 +299,7 @@ SLIDES.forEach(sl=>{
         `<span class="emo">${d.emo||"🍢"}</span>`;
       const fdur=(6.2+(idx%4)*.65).toFixed(1),fdel=(-(idx*.9+Math.random()*.4)).toFixed(1);
       const desc=d.d?`<div class="desc">${d.d}</div>`:"";
-      return `<div class="item${d.noscale?" no-upscale":""}" style="--i:${idx};--fdur:${fdur}s;--fdel:${fdel}s"${d.hero?" data-hero":""}><div class="pic">${pic}</div><div class="info"><div class="nm">${d.n}</div>${desc}<div class="bot"><div class="pr">${d.p}<span class="cur">€</span></div>${badge}</div></div></div>`;
+      return `<div class="item${d.noscale?" no-upscale":""}${d.bigimg?" big-img":""}" style="--i:${idx};--fdur:${fdur}s;--fdel:${fdel}s"${d.hero?" data-hero":""}><div class="pic">${pic}</div><div class="info"><div class="nm">${d.n}</div>${desc}<div class="bot"><div class="pr">${d.p}<span class="cur">€</span></div>${badge}</div></div></div>`;
     }).join("")}</div>`;
   }
   stage.insertAdjacentHTML('beforeend',`<section class="slide">${inner}</section>`);
@@ -310,39 +312,39 @@ const frame=document.querySelector('.frame'),boardTitle=document.getElementById(
 
 // stagger-modes: seq, rev, col, row, center, wave, spiral
 const ANIM_SETS=[
-  {in:'from-bottom', out:'to-top',      stag:'seq',    dur:[.85,.52], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
-  {in:'from-top',    out:'to-bottom',   stag:'rev',    dur:[.82,.50], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
-  {in:'from-left',   out:'to-right',    stag:'col',    dur:[.80,.48], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
-  {in:'from-right',  out:'to-left',     stag:'row',    dur:[.80,.48], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
-  {in:'from-bl',     out:'to-tr',       stag:'wave',   dur:[.88,.54], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
-  {in:'from-br',     out:'to-tl',       stag:'wave',   dur:[.88,.54], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
-  {in:'from-tl',     out:'to-br',       stag:'spiral', dur:[.90,.55], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
-  {in:'from-tr',     out:'to-bl',       stag:'spiral', dur:[.90,.55], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
-  {in:'zoom-in',     out:'zoom-out',    stag:'center', dur:[.92,.55], ease:['cubic-bezier(.34,1.18,.64,1)','cubic-bezier(.4,0,1,1)']},
-  {in:'zoom-in-top', out:'to-bottom',   stag:'rev',    dur:[.88,.50], ease:['cubic-bezier(.34,1.18,.64,1)','cubic-bezier(.4,0,1,1)']},
-  {in:'flip-x',      out:'flip-x-out', stag:'row',    dur:[.78,.46], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
-  {in:'flip-y',      out:'flip-y-out', stag:'col',    dur:[.78,.46], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
-  {in:'from-bottom', out:'to-left',    stag:'spiral', dur:[.85,.48], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.55,0,1,1)']},
-  {in:'from-left',   out:'to-bottom',  stag:'rev',    dur:[.80,.46], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.55,0,1,1)']},
-  {in:'from-tr',     out:'to-bottom',  stag:'seq',    dur:[.88,.50], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
-  {in:'from-bl',     out:'to-right',   stag:'center', dur:[.88,.52], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
+  {in:'from-bottom', out:'to-top',      stag:'seq',    dur:[1.15,.72], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'from-top',    out:'to-bottom',   stag:'rev',    dur:[1.12,.70], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'from-left',   out:'to-right',    stag:'col',    dur:[1.08,.66], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
+  {in:'from-right',  out:'to-left',     stag:'row',    dur:[1.08,.66], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
+  {in:'from-bl',     out:'to-tr',       stag:'wave',   dur:[1.20,.74], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'from-br',     out:'to-tl',       stag:'wave',   dur:[1.20,.74], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'from-tl',     out:'to-br',       stag:'spiral', dur:[1.22,.76], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
+  {in:'from-tr',     out:'to-bl',       stag:'spiral', dur:[1.22,.76], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
+  {in:'zoom-in',     out:'zoom-out',    stag:'center', dur:[1.25,.76], ease:['cubic-bezier(.34,1.18,.64,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'zoom-in-top', out:'to-bottom',   stag:'rev',    dur:[1.20,.70], ease:['cubic-bezier(.34,1.18,.64,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'flip-x',      out:'flip-x-out', stag:'row',    dur:[1.06,.64], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'flip-y',      out:'flip-y-out', stag:'col',    dur:[1.06,.64], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'from-bottom', out:'to-left',    stag:'spiral', dur:[1.15,.66], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.55,0,1,1)']},
+  {in:'from-left',   out:'to-bottom',  stag:'rev',    dur:[1.08,.64], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.55,0,1,1)']},
+  {in:'from-tr',     out:'to-bottom',  stag:'seq',    dur:[1.20,.70], ease:['cubic-bezier(.22,1,.36,1)','cubic-bezier(.4,0,1,1)']},
+  {in:'from-bl',     out:'to-right',   stag:'center', dur:[1.20,.72], ease:['cubic-bezier(.16,1,.3,1)', 'cubic-bezier(.4,0,1,1)']},
 ];
 let lastSet=-1;
 function pickSet(){let s;do{s=0|Math.random()*ANIM_SETS.length;}while(s===lastSet);lastSet=s;return ANIM_SETS[s];}
 function staggerDelay(idx,mode,total){
   const cols=4,rows=Math.ceil(total/cols),col=idx%cols,row=0|idx/cols;
   const cx=cols/2-.5,cy=rows/2-.5,dist=Math.hypot(col-cx,row-cy);
-  if(mode==='seq')    return idx*48;
-  if(mode==='rev')    return (total-1-idx)*42;
-  if(mode==='col')    return col*80+(row*25);
-  if(mode==='row')    return row*95+(col*20);
-  if(mode==='center') return dist*72;
-  if(mode==='wave')   return (col+row)*55;
+  if(mode==='seq')    return idx*62;
+  if(mode==='rev')    return (total-1-idx)*55;
+  if(mode==='col')    return col*100+(row*32);
+  if(mode==='row')    return row*122+(col*26);
+  if(mode==='center') return dist*92;
+  if(mode==='wave')   return (col+row)*70;
   if(mode==='spiral') {
     const angle=Math.atan2(row-cy,col-cx);
-    return (dist*60 + ((angle+Math.PI)/(2*Math.PI))*120)|0;
+    return (dist*78 + ((angle+Math.PI)/(2*Math.PI))*155)|0;
   }
-  return idx*48;
+  return idx*62;
 }
 function applyAnim(sl,set,phase){
   const items=sl.querySelectorAll('.item');
@@ -383,7 +385,7 @@ function show(n){
     frame.classList.remove('showcase-mode');
     boardTitle.textContent=sl.title||'Grill Gerichte';
   }
-  clearTimeout(leaveT);leaveT=setTimeout(()=>slides.forEach(s=>{if(!s.classList.contains('on'))s.classList.remove('leaving');}),1200);
+  clearTimeout(leaveT);leaveT=setTimeout(()=>slides.forEach(s=>{if(!s.classList.contains('on'))s.classList.remove('leaving');}),1800);
   segs.forEach((s,k)=>{s.classList.remove('on','done');if(k<next)s.classList.add('done');});
   const ms=SLIDES[next].ms||13000;
   const fill=segs[next].querySelector('.fill');
