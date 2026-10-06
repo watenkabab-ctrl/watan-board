@@ -76,7 +76,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .board-title::before{width:0;animation-delay:.3s}
 .board-title::after{width:0;bottom:-.9vh;opacity:.4;animation-delay:.5s}
 @keyframes line-expand{to{width:110%}}
-.frame.showcase-mode .head{opacity:0;transform:translateY(-1.5vh);pointer-events:none}
+.frame.showcase-mode .head{height:0;overflow:hidden;padding:0;margin:0;opacity:0;pointer-events:none;transition:height .5s ease,opacity .5s ease}
 
 /* ── STAGE ── */
 .stage{flex:1;min-height:0;position:relative;margin:.1vh 0;overflow:hidden;perspective:1200px}
