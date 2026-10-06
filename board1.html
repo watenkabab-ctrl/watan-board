@@ -142,18 +142,19 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   color:rgba(200,146,42,.8);white-space:nowrap}
 
 /* ── SLIDE 2 CINEMATIC SHOWCASE ── */
-.showcase{flex:1;min-height:0;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:0;gap:0;overflow:visible}
-/* full-bleed warm glow backdrop */
+.showcase{flex:1;min-height:0;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:2vh;gap:0;overflow:visible}
 .showcase::before{content:"";display:none}
-@keyframes bg-breathe{0%,100%{opacity:.7}50%{opacity:1}}
 /* plate */
-.sc-img{flex:0 0 auto;width:100%;max-height:54vh;position:relative;z-index:2;
-  display:flex;align-items:center;justify-content:center}
+.sc-img{flex:0 0 auto;width:100%;max-height:68vh;position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:center;margin-top:2vh}
 .sc-img::before{content:"";display:none}
-.sc-img img{max-width:100%;max-height:54vh;-webkit-object-fit:contain;object-fit:contain;position:relative;z-index:1}
+.sc-img img{max-width:92%;max-height:68vh;-webkit-object-fit:contain;object-fit:contain;position:relative;z-index:1;
+  -webkit-animation:sc-spin 18s linear infinite;animation:sc-spin 18s linear infinite}
+@-webkit-keyframes sc-spin{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}
+@keyframes sc-spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 /* bottom options */
-.sc-info{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;width:100%;margin-top:1.5vh}
-.sc-row{position:relative;z-index:3;display:flex;flex-direction:column;gap:0;margin-top:.8vh;width:78%;
+.sc-info{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;width:100%;margin-top:3vh}
+.sc-row{position:relative;z-index:3;display:flex;flex-direction:column;gap:0;margin-top:1.5vh;width:78%;
   opacity:0;-webkit-animation:fade-up .85s ease .4s forwards;animation:fade-up .85s ease .4s forwards}
 @-webkit-keyframes fade-up{from{opacity:0}to{opacity:1}}
 @keyframes fade-up{from{opacity:0}to{opacity:1}}
