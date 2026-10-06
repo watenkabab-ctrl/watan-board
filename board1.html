@@ -97,12 +97,10 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   border-radius:1vw;overflow:hidden;
   box-shadow:0 2px 16px rgba(0,0,0,.3);
   position:relative;overflow:hidden}
-.slide.on .item{-webkit-animation:enter var(--edur,1.25s) var(--een,cubic-bezier(.22,1,.36,1)) both;animation:enter var(--edur,1.25s) var(--een,cubic-bezier(.22,1,.36,1)) both;
-  -webkit-animation-delay:calc(var(--i,0)*var(--estag,.09s));animation-delay:calc(var(--i,0)*var(--estag,.09s));will-change:transform,opacity}
-@-webkit-keyframes enter{0%{opacity:0;-webkit-transform:translate(var(--fx,0),var(--fy,80vh)) scale(var(--fs,.88)) rotate(var(--fr,0deg));transform:translate(var(--fx,0),var(--fy,80vh)) scale(var(--fs,.88)) rotate(var(--fr,0deg))}
-  100%{opacity:1;-webkit-transform:none;transform:none}}
-@keyframes enter{0%{opacity:0;transform:translate(var(--fx,0),var(--fy,80vh)) scale(var(--fs,.88)) rotate(var(--fr,0deg))}
-  100%{opacity:1;transform:none}}
+.slide.on .item{-webkit-animation:enter var(--edur,1.1s) ease both;animation:enter var(--edur,1.1s) ease both;
+  -webkit-animation-delay:calc(var(--i,0)*var(--estag,.09s));animation-delay:calc(var(--i,0)*var(--estag,.09s))}
+@-webkit-keyframes enter{0%{opacity:0}100%{opacity:1}}
+@keyframes enter{0%{opacity:0}100%{opacity:1}}
 .slide.leaving .item{-webkit-animation:leave var(--ldur,.7s) ease-in both;animation:leave var(--ldur,.7s) ease-in both;
   -webkit-animation-delay:0s;animation-delay:0s;will-change:opacity}
 @-webkit-keyframes leave{0%{opacity:1}100%{opacity:0}}
