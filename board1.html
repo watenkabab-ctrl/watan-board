@@ -128,6 +128,13 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   transform:scale(1.0);transform-origin:center center;
   image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges;filter:brightness(1.08)}
 .item .pic .emo{position:absolute;inset:0;display:grid;place-items:center;font-size:11vh;z-index:1}
+.item .pic .nr{position:absolute;top:.32vh;left:.28vw;z-index:3;
+  font-family:"Lora",serif;font-weight:700;font-size:2.05vw;line-height:1;
+  color:#EDD068;letter-spacing:.06em;
+  background:rgba(6,1,0,.88);padding:.26vh .52vw .22vh;
+  border-radius:.38vw;border:1px solid rgba(200,146,42,.55);
+  text-shadow:0 0 1vw rgba(220,160,40,.55);
+  box-shadow:0 1px 6px rgba(0,0,0,.65)}
 .slide.on .item .pic img{animation:float var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite;will-change:transform}
 .slide:not(.on) .item .pic img{animation-play-state:paused}
 @keyframes float{0%{transform:translateY(0) scale(1.0)}50%{transform:translateY(-1vh) scale(1.012)}100%{transform:translateY(0) scale(1.0)}}
@@ -234,14 +241,14 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 <script>
 const SLIDES=[
   {title:"Grill Gerichte",star:"✦",ms:30000,items:[
-    {n:"Chicken Wings Kebab",p:"12",d:"Marinierte Flügel · Knoblauch-Joghurt",img:"Chicken_Wings_Kebab_pr1.webp"},
-    {n:"Chicken Tikka Kebab",p:"12,50",d:"Tandoor · Basmati-Reis · Beilagen",img:"Chicken_Tikka_Kebab_pr1.webp"},
-    {n:"Zershk Palau · Hähnchen",p:"13,50",d:"Berberitzenreis · Safran · Hähnchen",img:"Zershk_Palau_Haehnchen.webp",bigimg:true},
-    {n:"Chapli Kebab",p:"8",d:"Gehacktes Lamm · Kräuter · Fladenbrot",img:"Chapli_Kebab_pr1.webp"},
-    {n:"Kobide Kebab",p:"15",d:"Rindshackfleisch · Gewürze · Basmati-Reis",img:"Kobide_Kebab_pr1.webp",smallimg:true},
-    {n:"Lamm Tikka Kebab",p:"18",d:"Zartes Lammfleisch · Tandoor · Beilagen",img:"Lamm_Tikka_Kebab.webp"},
-    {n:"Lamm Kotelett",p:"19,50",d:"Gegrillte Lammkoteletts · Beilagen",img:"Lamm_Kotelett_pr1.webp"},
-    {n:"Mix Grill · 1 Person",p:"20",d:"Wings · Chapli · Tikka · Koteletts",img:"Mix_Grill_1_Person_pr1.webp"},
+    {n:"Chicken Wings Kebab",nr:"15",p:"12",d:"Marinierte Flügel · Knoblauch-Joghurt",img:"Chicken_Wings_Kebab_pr1.webp"},
+    {n:"Chicken Tikka Kebab",nr:"16",p:"12,50",d:"Tandoor · Basmati-Reis · Beilagen",img:"Chicken_Tikka_Kebab_pr1.webp"},
+    {n:"Zershk Palau · Hähnchen",nr:"17",p:"13,50",d:"Berberitzenreis · Safran · Hähnchen",img:"Zershk_Palau_Haehnchen.webp",bigimg:true},
+    {n:"Chapli Kebab",nr:"18",p:"8",d:"Gehacktes Lamm · Kräuter · Fladenbrot",img:"Chapli_Kebab_pr1.webp"},
+    {n:"Kobide Kebab",nr:"19",p:"15",d:"Rindshackfleisch · Gewürze · Basmati-Reis",img:"Kobide_Kebab_pr1.webp",smallimg:true},
+    {n:"Lamm Tikka Kebab",nr:"20",p:"18",d:"Zartes Lammfleisch · Tandoor · Beilagen",img:"Lamm_Tikka_Kebab.webp"},
+    {n:"Lamm Kotelett",nr:"21",p:"19,50",d:"Gegrillte Lammkoteletts · Beilagen",img:"Lamm_Kotelett_pr1.webp"},
+    {n:"Mix Grill · 1 Person",nr:"62",p:"20",d:"Wings · Chapli · Tikka · Koteletts",img:"Mix_Grill_1_Person_pr1.webp"},
   ]},
   {title:"Mix Grill",ms:7000,showcase:{
     n:"Mix Grill",
@@ -286,9 +293,10 @@ SLIDES.forEach(sl=>{
       const badge=d.badge?`<div class="badge">${d.badge}</div>`:"";
       const pic=d.img?`<img src="images/${imgF(d.img)}${v}" alt="">`:
         `<span class="emo">${d.emo||"🍢"}</span>`;
+      const nr=d.nr?`<span class="nr">${d.nr}</span>`:"";
       const fdur=(6.2+(idx%4)*.65).toFixed(1),fdel=(-(idx*.9+Math.random()*.4)).toFixed(1);
       const desc=d.d?`<div class="desc">${d.d}</div>`:"";
-      return `<div class="item${d.bigimg?" big-img":""}${d.smallimg?" small-img":""}" style="--fdur:${fdur}s;--fdel:${fdel}s"><div class="pic">${pic}</div><div class="info"><div class="nm">${d.n}</div>${desc}<div class="bot"><div class="pr">${d.p}<span class="cur">€</span></div>${badge}</div></div></div>`;
+      return `<div class="item${d.bigimg?" big-img":""}${d.smallimg?" small-img":""}" style="--fdur:${fdur}s;--fdel:${fdel}s"><div class="pic">${pic}${nr}</div><div class="info"><div class="nm">${d.n}</div>${desc}<div class="bot"><div class="pr">${d.p}<span class="cur">€</span></div>${badge}</div></div></div>`;
     }).join("")}</div>`;
   }
   stage.insertAdjacentHTML('beforeend',`<section class="slide">${inner}</section>`);
