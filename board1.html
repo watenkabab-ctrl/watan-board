@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=1920, initial-scale=1, viewport-fit=cover">
 <title>Watan Kabab · Vom Grill</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔥</text></svg>">
-<link rel="stylesheet" href="fonts/fonts.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,400&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -42,7 +41,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   animation:eb2 3s ease-in-out infinite;will-change:opacity}
 @keyframes eb2{0%,100%{opacity:.75}50%{opacity:1}}
 .vignette{position:fixed;inset:0;z-index:8;pointer-events:none;
-  box-shadow:none}
+  box-shadow:inset 0 0 14vw 3vw rgba(0,0,0,.30)}
 /* helle Seitenleuchten links & rechts */
 .side-glow{position:fixed;inset:0;z-index:3;pointer-events:none;
   background:
@@ -240,7 +239,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 <div class="vignette"></div>
 <script>
 const SLIDES=[
-  {title:"Grill Gerichte",star:"✦",ms:30000,items:[
+  {title:"Grill Gerichte",ms:30000,items:[
     {n:"Chicken Wings Kebab",nr:"15",p:"12",d:"Marinierte Flügel · Knoblauch-Joghurt",img:"Chicken_Wings_Kebab_pr1.webp"},
     {n:"Chicken Tikka Kebab",nr:"16",p:"12,50",d:"Tandoor · Basmati-Reis · Beilagen",img:"Chicken_Tikka_Kebab_pr1.webp"},
     {n:"Zershk Palau · Hähnchen",nr:"17",p:"13,50",d:"Berberitzenreis · Safran · Hähnchen",img:"Zershk_Palau_Haehnchen.webp",bigimg:true},
@@ -303,7 +302,6 @@ SLIDES.forEach(sl=>{
   rail.insertAdjacentHTML('beforeend','<div class="seg"><span class="fill"></span></div>');
 });
 const slides=[...stage.children],segs=[...rail.children];let i=0,leaveT=0;
-function setVideos(sl,play){sl.querySelectorAll('video').forEach(v=>{try{play?v.play().catch(()=>{}):v.pause();}catch(e){}});}
 const frame=document.querySelector('.frame'),boardTitle=document.getElementById('boardTitle');
 
 // stagger-modes: seq, rev, col, row, center, wave, spiral
@@ -365,12 +363,12 @@ function show(n){
       els.forEach(el=>el.style.animation='none');
       void s.offsetWidth;
       els.forEach(el=>el.style.animation='');
-      s.classList.remove('leaving');s.classList.add('on');setVideos(s,true);
+      s.classList.remove('leaving');s.classList.add('on');
     } else if(k===i&&k!==next){
       applyAnim(s,set,'out');
-      s.classList.remove('on');s.classList.add('leaving');setVideos(s,false);
+      s.classList.remove('on');s.classList.add('leaving');
     } else {
-      s.classList.remove('on','leaving');setVideos(s,false);
+      s.classList.remove('on','leaving');
     }
   });
   if(sl.showcase){
@@ -437,6 +435,7 @@ document.addEventListener('visibilitychange',()=>{
     last=i;
   },35000);
 })();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw1.js').catch(()=>{});}
 // Auto-update: alle 3 Min prüfen ob neue Version deployed wurde
 (function(){
   async function chk(){try{const r=await fetch(location.href,{cache:'no-store'});const t=await r.text();const h=t.length+'-'+t.slice(800,1200);if(!chk._h){chk._h=h;return;}if(chk._h!==h)location.reload(true);}catch(e){}}
