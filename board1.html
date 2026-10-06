@@ -120,6 +120,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges}
 .item .pic .emo{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font-size:11vh;z-index:1}
 .slide.on .item .pic img{-webkit-animation:float var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite;animation:float var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite;will-change:transform}
+.slide.on .item .pic.bigimg img{-webkit-animation:none;animation:none;-webkit-transform:none;transform:none}
 @-webkit-keyframes float{0%{-webkit-transform:translateY(0);transform:translateY(0)}50%{-webkit-transform:translateY(-1vh);transform:translateY(-1vh)}100%{-webkit-transform:translateY(0);transform:translateY(0)}}
 @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-1vh)}100%{transform:translateY(0)}}
 .item .pic .smoke{position:absolute;left:0;right:0;bottom:0;height:175%;object-fit:cover;object-position:bottom;
