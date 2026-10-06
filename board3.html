@@ -83,13 +83,11 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
 .stage{flex:1;min-height:0;position:relative;margin:.25vh 0}
 .slide{position:absolute;inset:0;display:flex;flex-direction:column;gap:.48vh;
   opacity:0;pointer-events:none;will-change:opacity,transform;
-  transform:scale(1.012) translateZ(0)}
+  transform:scale(1) translateZ(0);z-index:1}
 .slide.on{opacity:1;pointer-events:auto;
-  transition:opacity 1.4s cubic-bezier(.4,0,.2,1),transform 1.4s cubic-bezier(.4,0,.2,1);
+  transition:opacity 1.2s cubic-bezier(.25,0,.2,1),transform 1.2s cubic-bezier(.25,0,.2,1);
   transform:scale(1) translateZ(0)}
-.slide.leaving{opacity:0;pointer-events:none;
-  transition:opacity 1.4s cubic-bezier(.55,0,1,1),transform 1.4s cubic-bezier(.55,0,1,1);
-  transform:scale(.992) translateZ(0)}
+.slide.entering{opacity:0;transform:scale(0.975) translateZ(0)}
 
 /* ── SECTION GROUP ── */
 .sl-group{flex:1;min-height:0;display:flex;flex-direction:column;gap:.16vh}
@@ -275,19 +273,32 @@ SLIDES.forEach((sl)=>{
 const slides=[...stage.children], dots=[...dotsBox.children];
 let i=0;
 
+let hideTimer;
 function show(n){
   const prev=i;
   i=(n+slides.length)%slides.length;
-  slides.forEach((s,k)=>{
-    if(k===i){
-      s.classList.remove('leaving','on');
-      void s.offsetWidth;
-      requestAnimationFrame(()=>s.classList.add('on'));
-    } else if(k===prev&&k!==i){
-      s.classList.remove('on');s.classList.add('leaving');
-      setTimeout(()=>s.classList.remove('leaving'),1550);
-    } else{s.classList.remove('on','leaving');}
-  });
+  clearTimeout(hideTimer);
+
+  // Incoming slide comes to front; outgoing stays as solid backdrop
+  slides.forEach((s,k)=>s.style.zIndex=k===i?'2':'1');
+
+  // Animate incoming: scale(0.975)+opacity:0 → scale(1)+opacity:1
+  const incoming=slides[i];
+  incoming.classList.remove('leaving','entering','on');
+  void incoming.offsetWidth;
+  incoming.classList.add('entering');
+  void incoming.offsetWidth;
+  incoming.classList.remove('entering');
+  incoming.classList.add('on');
+
+  // Keep outgoing at full opacity as backdrop; hide after transition
+  if(prev!==i){
+    const outgoing=slides[prev];
+    outgoing.classList.remove('leaving','entering');
+    if(!outgoing.classList.contains('on'))outgoing.classList.add('on');
+    hideTimer=setTimeout(()=>outgoing.classList.remove('on'),1300);
+  }
+
   dots.forEach((d,k)=>d.classList.toggle('on',k===i));
   boardTitle.innerHTML=SLIDES[i].title;
 }
