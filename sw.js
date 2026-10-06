@@ -1,4 +1,4 @@
-const CACHE='watan-v8';
+const CACHE='watan-v9';
 const ASSETS=[
   './board3.html',
   './fonts/0QIhMX1D_JOuMw_LIftL.woff2',

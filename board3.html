@@ -202,7 +202,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
 </div>
 <div class="vignette"></div>
 <script>
-const v="?v="+"20261006a";
+const v="?v="+"20261006b";
 const SLIDES=[
   {
     title:"Traditionelle Gerichte",
@@ -306,16 +306,17 @@ function show(n){
       incoming.classList.remove('on','leaving');
       void incoming.offsetWidth;
       incoming.classList.add('on');
+      boardTitle.innerHTML=SLIDES[i].title;
     }, OUT_MS);
   } else {
     // Initial show (no outgoing)
     incoming.classList.remove('on','leaving');
     void incoming.offsetWidth;
     incoming.classList.add('on');
+    boardTitle.innerHTML=SLIDES[i].title;
   }
 
   dots.forEach((d,k)=>d.classList.toggle('on',k===i));
-  boardTitle.innerHTML=SLIDES[i].title;
 }
 
 show(0);
