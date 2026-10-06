@@ -6,12 +6,26 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
 <title>Watan Kabab · Vom Grill</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔥</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2020/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔥</text></svg>">
+<!-- Preload: alle Gerichtebilder (WebP, ~90% kleiner als PNG) -->
+<link rel="preload" href="images/Chicken_Wings_Kebab_pr1.webp" as="image" type="image/webp">
+<link rel="preload" href="images/Chicken_Tikka_Kebab_pr1.webp" as="image" type="image/webp">
+<link rel="preload" href="images/Zershk_Palau_Haehnchen.webp" as="image" type="image/webp">
+<link rel="preload" href="images/Chapli_Kebab_pr1.webp" as="image" type="image/webp">
+<link rel="preload" href="images/Kobide_Kebab_pr1.webp" as="image" type="image/webp">
+<link rel="preload" href="images/Lamm_Tikka_Kebab.webp" as="image" type="image/webp">
+<link rel="preload" href="images/Lamm_Kotelett_pr1.webp" as="image" type="image/webp">
+<link rel="preload" href="images/Mix_Grill_1_Person_pr1.webp" as="image" type="image/webp">
+<link rel="preload" href="images/Mix_Grill_Grillplatte_pr1.webp" as="image" type="image/webp">
+<!-- Fonts -->
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 <link rel="stylesheet" href="fonts/fonts.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,400&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,400&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <style>/* Fallback bis Fonts geladen — verhindert Layout-Shift */
 .board-title,.item .nm,.item .pr,.sc-card-num,.sc-card-price{font-synthesis:none}</style>
 <style>
@@ -145,10 +159,10 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 /* ── SLIDE 2 CINEMATIC SHOWCASE ── */
 .showcase{flex:1;min-height:0;position:relative;overflow:hidden}
 /* plate — füllt gesamte Fläche, Bild zentriert mit Offset nach unten */
-.sc-img{position:absolute;top:0;left:0;right:0;bottom:16vh;z-index:1;
-  display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;padding-bottom:0;padding-top:4vh}
+.sc-img{position:absolute;top:0;left:0;right:0;bottom:0;z-index:1;
+  display:-webkit-flex;display:flex;-webkit-align-items:flex-start;align-items:flex-start;-webkit-justify-content:center;justify-content:center;padding-top:3vh}
 .sc-img::before{content:"";display:none}
-.sc-img img{max-width:99%;max-height:90%;-webkit-object-fit:contain;object-fit:contain;position:relative;z-index:1;
+.sc-img img{max-width:82%;max-height:58vh;-webkit-object-fit:contain;object-fit:contain;position:relative;z-index:1;
   -webkit-animation:sc-float 9s ease-in-out infinite;animation:sc-float 9s ease-in-out infinite}
 .slide.leaving .sc-img img{-webkit-animation-play-state:paused;animation-play-state:paused}
 @-webkit-keyframes sc-float{
@@ -224,19 +238,19 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 <script>
 const SLIDES=[
   {title:"Grill Gerichte",star:"✦",ms:30000,items:[
-    {n:"Chicken Wings Kebab",p:"12",d:"Marinierte Flügel · Knoblauch-Joghurt",img:"Chicken_Wings_Kebab_pr1.png"},
-    {n:"Chicken Tikka Kebab",p:"12,50",d:"Tandoor · Basmati-Reis · Beilagen",img:"Chicken_Tikka_Kebab_pr1.png"},
-    {n:"Zershk Palau · Hähnchen",p:"13,50",d:"Berberitzenreis · Safran · Hähnchen",img:"Zershk_Palau_Haehnchen.png"},
-    {n:"Chapli Kebab",p:"8",d:"Gehacktes Lamm · Kräuter · Fladenbrot",img:"Chapli_Kebab_pr1.png"},
-    {n:"Kobide Kebab",p:"15",d:"Rindshackfleisch · Gewürze · Basmati-Reis",img:"Kobide_Kebab_pr1.png",noscale:true},
-    {n:"Lamm Tikka Kebab",p:"18",d:"Zartes Lammfleisch · Tandoor · Beilagen",img:"Lamm_Tikka_Kebab.png"},
-    {n:"Lamm Kotelett",p:"19,50",d:"Gegrillte Lammkoteletts · Beilagen",img:"Lamm_Kotelett_pr1.png"},
-    {n:"Mix Grill · 1 Person",p:"20",d:"Wings · Chapli · Tikka · Koteletts",img:"Mix_Grill_1_Person_pr1.png",hero:true},
+    {n:"Chicken Wings Kebab",p:"12",d:"Marinierte Flügel · Knoblauch-Joghurt",img:"Chicken_Wings_Kebab_pr1.webp"},
+    {n:"Chicken Tikka Kebab",p:"12,50",d:"Tandoor · Basmati-Reis · Beilagen",img:"Chicken_Tikka_Kebab_pr1.webp"},
+    {n:"Zershk Palau · Hähnchen",p:"13,50",d:"Berberitzenreis · Safran · Hähnchen",img:"Zershk_Palau_Haehnchen.webp"},
+    {n:"Chapli Kebab",p:"8",d:"Gehacktes Lamm · Kräuter · Fladenbrot",img:"Chapli_Kebab_pr1.webp"},
+    {n:"Kobide Kebab",p:"15",d:"Rindshackfleisch · Gewürze · Basmati-Reis",img:"Kobide_Kebab_pr1.webp",noscale:true},
+    {n:"Lamm Tikka Kebab",p:"18",d:"Zartes Lammfleisch · Tandoor · Beilagen",img:"Lamm_Tikka_Kebab.webp"},
+    {n:"Lamm Kotelett",p:"19,50",d:"Gegrillte Lammkoteletts · Beilagen",img:"Lamm_Kotelett_pr1.webp"},
+    {n:"Mix Grill · 1 Person",p:"20",d:"Wings · Chapli · Tikka · Koteletts",img:"Mix_Grill_1_Person_pr1.webp",hero:true},
   ]},
   {title:"Mix Grill",ms:7000,showcase:{
     n:"Mix Grill",
     sub:"Frisch vom Grill · Beilagen · Soßen · Salat",
-    img:"Mix_Grill_Grillplatte_pr1.png",
+    img:"Mix_Grill_Grillplatte_pr1.webp",
     opts:[
       {label:"Person",num:"1",p:"20"},
       {label:"Personen",num:"2",p:"40"},
