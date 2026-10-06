@@ -278,7 +278,7 @@ function show(n){
       }));
     } else if(k===prev&&k!==i){
       s.classList.remove('on');s.classList.add('leaving');
-      setTimeout(()=>s.classList.remove('leaving'),1200);
+      setTimeout(()=>s.classList.remove('leaving'),1000);
     } else{s.classList.remove('on','leaving','entering');}
   });
   dots.forEach((d,k)=>d.classList.toggle('on',k===i));

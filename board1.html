@@ -21,8 +21,6 @@ html,body{height:100%;width:100%;overflow:hidden;background:#3d1a06;overscroll-b
 body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   text-rendering:geometricPrecision;image-rendering:-webkit-optimize-contrast}
-/* GPU-layer promotion — only on animating elements */
-.item,.item .pic img{will-change:transform}
 .ember,.ember2{will-change:opacity}
 
 /* ── BACKGROUND ── */
@@ -79,7 +77,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .frame.showcase-mode .head{opacity:0;pointer-events:none}
 
 /* ── STAGE ── */
-.stage{flex:1;min-height:0;position:relative;margin:.1vh 0;overflow:hidden;perspective:1200px}
+.stage{flex:1;min-height:0;position:relative;margin:.1vh 0;overflow:hidden}
 .slide{position:absolute;inset:0;display:flex;flex-direction:column;
   opacity:0;pointer-events:none;will-change:opacity,transform;transform:scale(1.012) translateZ(0)}
 .slide.on{opacity:1;pointer-events:auto;
@@ -135,6 +133,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges;filter:brightness(1.08)}
 .item .pic .emo{position:absolute;inset:0;display:grid;place-items:center;font-size:11vh;z-index:1}
 .slide.on .item .pic img{animation:float var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite;will-change:transform}
+.slide:not(.on) .item .pic img{animation-play-state:paused}
 @keyframes float{0%{transform:translateY(0) scale(1.0)}50%{transform:translateY(-1vh) scale(1.012)}100%{transform:translateY(0) scale(1.0)}}
 .item.big-img .pic img{animation:float-big var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite;object-position:50% 48%}
 @keyframes float-big{0%,100%{transform:translateY(0) scale(1.35)}50%{transform:translateY(-1vh) scale(1.365)}}
@@ -302,7 +301,6 @@ SLIDES.forEach(sl=>{
   rail.insertAdjacentHTML('beforeend','<div class="seg"><span class="fill"></span></div>');
 });
 const slides=[...stage.children],segs=[...rail.children];let i=0,leaveT=0;
-function reflow(el){void el.offsetWidth;}
 function setVideos(sl,play){sl.querySelectorAll('video').forEach(v=>{try{play?v.play().catch(()=>{}):v.pause();}catch(e){}});}
 const frame=document.querySelector('.frame'),boardTitle=document.getElementById('boardTitle');
 
@@ -361,7 +359,10 @@ function show(n){
   slides.forEach((s,k)=>{
     if(k===next){
       applyAnim(s,set,'in');
-      s.querySelectorAll('.item').forEach(el=>{el.style.animation='none';reflow(el);el.style.animation='';});
+      const els=[...s.querySelectorAll('.item')];
+      els.forEach(el=>el.style.animation='none');
+      void s.offsetWidth;
+      els.forEach(el=>el.style.animation='');
       s.classList.remove('leaving');s.classList.add('on');setVideos(s,true);
     } else if(k===i&&k!==next){
       applyAnim(s,set,'out');
