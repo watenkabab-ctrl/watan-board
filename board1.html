@@ -14,7 +14,6 @@
 <style>
 :root{
   --g:#C8922A;--gl:#E8B84A;--gc:#FFE8A0;--cream:#EFE1C5;--mute:#7A6248;
-  --ease:cubic-bezier(.22,1,.36,1);--ease-up:cubic-bezier(.4,0,1,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;width:100%;overflow:hidden;background:#3d1a06;overscroll-behavior:none}
@@ -29,8 +28,6 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   filter:brightness(3.0) contrast(1.5) saturate(1.6) hue-rotate(-8deg);opacity:.55;
   -webkit-mask-image:linear-gradient(to top,#000 0%,#000 38%,rgba(0,0,0,.55) 58%,transparent 82%);
   mask-image:linear-gradient(to top,#000 0%,#000 38%,rgba(0,0,0,.55) 58%,transparent 82%)}
-.ytbg iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:100vw;height:56.25vw;min-height:100vh;min-width:177.78vh;pointer-events:none;border:0}
 .shade{position:fixed;inset:0;z-index:2;pointer-events:none;
   background:none}
 .texture{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.07;
@@ -104,9 +101,9 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   box-shadow:0 2px 16px rgba(0,0,0,.3);
   position:relative;contain:layout style paint}
 .slide.on .item{will-change:transform,opacity;
-  animation:var(--in-anim,from-bottom) var(--in-dur,1.15s) var(--in-ease,cubic-bezier(.22,1,.36,1)) var(--in-delay,0ms) both}
+  animation:var(--in-anim,rise-up) var(--in-dur,1.15s) var(--in-ease,cubic-bezier(.22,1,.36,1)) var(--in-delay,0ms) both}
 .slide.leaving .item{will-change:transform,opacity;
-  animation:var(--out-anim,to-top) var(--out-dur,.72s) var(--out-ease,cubic-bezier(.4,0,1,1)) var(--out-delay,0ms) both}
+  animation:var(--out-anim,drift-fade) var(--out-dur,.72s) var(--out-ease,cubic-bezier(.4,0,1,1)) var(--out-delay,0ms) both}
 
 /* ── ENTER ── */
 @keyframes rise-up   {from{opacity:0;transform:translateY(52vh) scale(.92)}   to{opacity:1;transform:none}}
@@ -127,7 +124,6 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 
 /* ── IMAGE ── */
 .item .pic{flex:1;min-height:0;position:relative;overflow:hidden}
-.item .pic::before{content:"";display:none}
 .item .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;z-index:1;
   transform:scale(1.0);transform-origin:center center;
   image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges;filter:brightness(1.08)}
@@ -136,7 +132,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .slide:not(.on) .item .pic img{animation-play-state:paused}
 @keyframes float{0%{transform:translateY(0) scale(1.0)}50%{transform:translateY(-1vh) scale(1.012)}100%{transform:translateY(0) scale(1.0)}}
 .item.big-img .pic img{animation:float-big var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite}
-@keyframes float-big{0%,100%{transform:translateY(0) scale(1.10)}50%{transform:translateY(-1vh) scale(1.113)}}
+@keyframes float-big{0%,100%{transform:translateY(0) scale(1.155)}50%{transform:translateY(-1vh) scale(1.169)}}
 .item.small-img .pic img{animation:float-small var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite}
 @keyframes float-small{0%,100%{transform:translateY(0) scale(.92)}50%{transform:translateY(-1vh) scale(.932)}}
 
@@ -169,11 +165,9 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 /* ── SLIDE 2 CINEMATIC SHOWCASE ── */
 .showcase{flex:1;min-height:0;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:0;gap:0;overflow:visible}
 /* full-bleed warm glow backdrop */
-.showcase::before{content:"";display:none}
 /* plate */
 .sc-img{flex:0 0 auto;width:100%;max-height:52vh;position:relative;z-index:2;
   display:flex;align-items:center;justify-content:center;margin-top:.8vh}
-.sc-img::before{content:"";display:none}
 .sc-img img{max-width:100%;max-height:52vh;object-fit:contain;position:relative;z-index:1;
   animation:sc-enter 1.3s cubic-bezier(.22,1,.36,1) both, sc-float 12s ease-in-out 1.4s infinite}
 @keyframes sc-enter{0%{opacity:0;transform:scale(.88) rotate(0deg) translateY(2vh)}100%{opacity:1;transform:rotate(-5deg) scale(1.08) translateY(0)}}
@@ -200,8 +194,6 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .sc-card-price{font-family:"Lora",serif;font-weight:900;font-size:3.8vw;color:var(--gl);text-rendering:geometricPrecision;
   filter:drop-shadow(0 2px 4px rgba(0,0,0,1)) drop-shadow(0 0 12px rgba(0,0,0,.9))}
 .sc-card-price .cur{font-size:.46em;vertical-align:.22em;margin-left:.05em;opacity:.85}
-.sc-dot{display:none}
-
 /* ── PROGRESS RAIL ── */
 .rail{display:none}
 .seg{width:6.5vw;height:.5vh;min-height:4px;background:rgba(200,146,42,.18);border-radius:4px;overflow:hidden;
