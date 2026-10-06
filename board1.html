@@ -22,7 +22,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   text-rendering:geometricPrecision;image-rendering:-webkit-optimize-contrast}
 /* GPU-layer promotion — only on animating elements */
-.item,.item .pic img{will-change:transform}
+.item{will-change:transform}
 .ember,.ember2{will-change:opacity}
 
 /* ── BACKGROUND ── */
@@ -77,11 +77,11 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .frame.showcase-mode .head{height:0;overflow:hidden;padding:0;margin:0;opacity:0;pointer-events:none;transition:height .5s ease,opacity .5s ease}
 
 /* ── STAGE ── */
-.stage{flex:1;min-height:0;position:relative;margin:.1vh 0}
+.stage{flex:1;min-height:0;position:relative;margin:.1vh 0;overflow:hidden}
 .slide{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;
   opacity:0;pointer-events:none;will-change:opacity}
 .slide.on{opacity:1;pointer-events:auto;transition:opacity .6s var(--ease)}
-.slide.leaving{opacity:0;pointer-events:none;transition:opacity .55s var(--ease-up)}
+.slide.leaving{opacity:0;pointer-events:none;transition:opacity .7s var(--ease-up)}
 
 /* ── SLIDE HEADER ── */
 .sl-head{flex-shrink:0;margin-bottom:.15vh}
@@ -105,19 +105,18 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   100%{opacity:1;-webkit-transform:none;transform:none}}
 @keyframes enter{0%{opacity:0;transform:translate(var(--fx,0),var(--fy,80vh)) scale(var(--fs,.88)) rotate(var(--fr,0deg))}
   100%{opacity:1;transform:none}}
-.slide.leaving .item{-webkit-animation:leave var(--ldur,.7s) var(--ease-up) both;animation:leave var(--ldur,.7s) var(--ease-up) both;
-  -webkit-animation-delay:0s;animation-delay:0s;will-change:transform,opacity}
-@-webkit-keyframes leave{0%{opacity:1;-webkit-transform:none;transform:none}100%{opacity:0;-webkit-transform:translate(var(--lx,0),var(--ly,-9vh)) scale(var(--ls,.94)) rotate(var(--lr,0deg));transform:translate(var(--lx,0),var(--ly,-9vh)) scale(var(--ls,.94)) rotate(var(--lr,0deg))}}
-@keyframes leave{0%{opacity:1;transform:none}100%{opacity:0;transform:translate(var(--lx,0),var(--ly,-9vh)) scale(var(--ls,.94)) rotate(var(--lr,0deg))}}
+.slide.leaving .item{-webkit-animation:leave var(--ldur,.7s) ease-in both;animation:leave var(--ldur,.7s) ease-in both;
+  -webkit-animation-delay:0s;animation-delay:0s;will-change:opacity}
+@-webkit-keyframes leave{0%{opacity:1}100%{opacity:0}}
+@keyframes leave{0%{opacity:1}100%{opacity:0}}
 
 /* ── IMAGE ── */
 .item .pic{flex:0 0 13vh;position:relative;overflow:hidden}
 .item .pic.bigimg{flex-basis:26.8vh}
 .item .pic::before{content:"";display:none}
-.item .pic img{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;
+.item .pic img{position:absolute;top:0;left:0;width:100%;height:100%;
   -webkit-object-fit:contain;object-fit:contain;object-position:center center;z-index:1;
-  -webkit-transform:scale(1.0);transform:scale(1.0);transform-origin:center center;
-  image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges}
+  transform-origin:center center}
 .item .pic .emo{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font-size:11vh;z-index:1}
 .slide.on .item .pic img{-webkit-animation:float var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite;animation:float var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite;will-change:transform}
 .slide.on .item .pic.bigimg img{-webkit-animation:none;animation:none;-webkit-transform:none;transform:none}
