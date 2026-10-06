@@ -29,14 +29,14 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 /* ── BACKGROUND ── */
 .ytbg{position:fixed;top:0;left:0;right:0;bottom:0;z-index:1;overflow:hidden;background:#000}
 .ytbg video{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;object-fit:cover;
-  -webkit-filter:brightness(1.05) contrast(1.1) saturate(1.5) hue-rotate(-8deg);
-  filter:brightness(1.05) contrast(1.1) saturate(1.5) hue-rotate(-8deg);opacity:.32;
-  -webkit-mask-image:linear-gradient(to top,#000 0%,#000 38%,rgba(0,0,0,.55) 58%,transparent 82%);
-  mask-image:linear-gradient(to top,#000 0%,#000 38%,rgba(0,0,0,.55) 58%,transparent 82%)}
+  -webkit-filter:brightness(1.2) contrast(1.05) saturate(1.4) hue-rotate(-8deg);
+  filter:brightness(1.2) contrast(1.05) saturate(1.4) hue-rotate(-8deg);opacity:.52;
+  -webkit-mask-image:linear-gradient(to top,#000 0%,#000 55%,rgba(0,0,0,.7) 75%,transparent 92%);
+  mask-image:linear-gradient(to top,#000 0%,#000 55%,rgba(0,0,0,.7) 75%,transparent 92%)}
 .ytbg iframe{position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);
   width:100vw;height:56.25vw;min-height:100vh;min-width:177.78vh;pointer-events:none;border:0}
 .shade{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2;pointer-events:none;
-  background:linear-gradient(180deg,rgba(20,6,1,.55) 0%,rgba(18,5,1,.38) 22%,rgba(15,4,0,.22) 50%,rgba(10,3,0,.08) 70%,transparent 100%)}
+  background:linear-gradient(180deg,rgba(20,6,1,.30) 0%,rgba(18,5,1,.18) 22%,rgba(15,4,0,.10) 50%,transparent 70%)}
 .texture{position:fixed;top:0;left:0;right:0;bottom:0;z-index:3;pointer-events:none;opacity:.07;
   background-image:url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")}
 /* fire glow layers */
@@ -57,8 +57,8 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .frame{position:fixed;top:0;left:0;right:0;bottom:0;z-index:5;display:flex;flex-direction:column;padding:1.2vh 2.5vw 1vh}
 
 /* ── HEADER ── */
-.head{text-align:center;flex-shrink:0;padding:.1vh 0 .05vh;
-  transition:opacity .5s ease,transform .5s ease}
+.head{text-align:center;flex-shrink:0;padding:.1vh 0 .05vh;max-height:15vh;
+  transition:opacity .5s ease,transform .5s ease,max-height .5s ease,padding .5s ease}
 .board-brand{font-size:.93vw;letter-spacing:.45em;text-transform:uppercase;
   color:rgba(225,175,55,.92);font-weight:600;margin-bottom:.05vh;
   font-family:"Raleway",system-ui,sans-serif}
@@ -75,7 +75,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .board-title::before{width:0;animation-delay:.3s}
 .board-title::after{width:0;bottom:-.9vh;opacity:.4;animation-delay:.5s}
 @keyframes line-expand{to{width:110%}}
-.frame.showcase-mode .head{height:0;overflow:hidden;padding:0;margin:0;opacity:0;pointer-events:none;transition:height .5s ease,opacity .5s ease}
+.frame.showcase-mode .head{max-height:0;overflow:hidden;padding:0;margin:0;opacity:0;pointer-events:none}
 
 /* ── STAGE ── */
 .stage{flex:1;min-height:0;position:relative;margin:.1vh 0}
@@ -95,7 +95,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 
 /* ── ITEM ── */
 .item{display:flex;flex-direction:column;min-width:0;min-height:0;padding:0;
-  background:rgba(20,8,0,.55);
+  background:rgba(20,8,0,.40);
   border:1px solid rgba(255,200,100,.3);
   border-radius:1.2vw;overflow:hidden;
   box-shadow:0 4px 24px rgba(0,0,0,.5);
@@ -126,7 +126,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   color:#FFFAF0;letter-spacing:.02em;
   text-rendering:geometricPrecision;-webkit-font-smoothing:antialiased;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  filter:drop-shadow(0 1px 6px rgba(0,0,0,1))}
+  text-shadow:0 1px 6px rgba(0,0,0,1)}
 .item .desc{font-family:"Raleway",sans-serif;font-size:1.0vw;color:#D4AF70;line-height:1.3;margin-top:.3vh;
   letter-spacing:.07em;text-transform:uppercase;font-weight:600;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
@@ -149,9 +149,18 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   display:flex;align-items:center;justify-content:center;margin-top:2vh}
 .sc-img::before{content:"";display:none}
 .sc-img img{max-width:92%;max-height:68vh;-webkit-object-fit:contain;object-fit:contain;position:relative;z-index:1;
-  -webkit-animation:sc-spin 18s linear infinite;animation:sc-spin 18s linear infinite}
-@-webkit-keyframes sc-spin{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}
-@keyframes sc-spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+  -webkit-animation:sc-float 9s ease-in-out infinite;animation:sc-float 9s ease-in-out infinite}
+.slide.leaving .sc-img img{-webkit-animation-play-state:paused;animation-play-state:paused}
+@-webkit-keyframes sc-float{
+  0%{-webkit-transform:translate(0px,0px) scale(1)}
+  30%{-webkit-transform:translate(-14px,-10px) scale(1.025)}
+  65%{-webkit-transform:translate(10px,8px) scale(0.982)}
+  100%{-webkit-transform:translate(0px,0px) scale(1)}}
+@keyframes sc-float{
+  0%{transform:translate(0px,0px) scale(1)}
+  30%{transform:translate(-14px,-10px) scale(1.025)}
+  65%{transform:translate(10px,8px) scale(0.982)}
+  100%{transform:translate(0px,0px) scale(1)}}
 /* bottom options */
 .sc-info{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;width:100%;margin-top:3vh}
 .sc-row{position:relative;z-index:3;display:flex;flex-direction:column;gap:0;margin-top:1.5vh;width:78%;
@@ -322,11 +331,8 @@ function show(n){
   if(sl.showcase){
     setTimeout(()=>frame.classList.add('showcase-mode'),1400);
   } else {
-    // Erst nach der Leave-Animation wiederherstellen (sonst Layout-Shift sichtbar)
-    setTimeout(function(){
-      frame.classList.remove('showcase-mode');
-      boardTitle.textContent=sl.title||'Grill Gerichte';
-    },750);
+    boardTitle.textContent=sl.title||'Grill Gerichte';
+    frame.classList.remove('showcase-mode');
   }
   clearTimeout(leaveT);leaveT=setTimeout(()=>slides.forEach(s=>{if(!s.classList.contains('on'))s.classList.remove('leaving');}),1400);
   segs.forEach((s,k)=>{s.classList.remove('on','done');if(k<next)s.classList.add('done');});
