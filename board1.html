@@ -26,31 +26,34 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .ember,.ember2{will-change:opacity}
 
 /* ── BACKGROUND ── */
-.ytbg{position:fixed;inset:0;z-index:1;overflow:hidden;background:#000}
-.ytbg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+.ytbg{position:fixed;top:0;left:0;right:0;bottom:0;z-index:1;overflow:hidden;background:#000}
+.ytbg video{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;object-fit:cover;
+  -webkit-filter:brightness(1.05) contrast(1.1) saturate(1.5) hue-rotate(-8deg);
   filter:brightness(1.05) contrast(1.1) saturate(1.5) hue-rotate(-8deg);opacity:.32;
   -webkit-mask-image:linear-gradient(to top,#000 0%,#000 38%,rgba(0,0,0,.55) 58%,transparent 82%);
   mask-image:linear-gradient(to top,#000 0%,#000 38%,rgba(0,0,0,.55) 58%,transparent 82%)}
-.ytbg iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+.ytbg iframe{position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);
   width:100vw;height:56.25vw;min-height:100vh;min-width:177.78vh;pointer-events:none;border:0}
-.shade{position:fixed;inset:0;z-index:2;pointer-events:none;
+.shade{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2;pointer-events:none;
   background:linear-gradient(180deg,rgba(20,6,1,.55) 0%,rgba(18,5,1,.38) 22%,rgba(15,4,0,.22) 50%,rgba(10,3,0,.08) 70%,transparent 100%)}
-.texture{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.07;
+.texture{position:fixed;top:0;left:0;right:0;bottom:0;z-index:3;pointer-events:none;opacity:.07;
   background-image:url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")}
 /* fire glow layers */
-.ember{position:fixed;inset:auto 0 -2% 0;height:60vh;z-index:4;pointer-events:none;
+.ember{position:fixed;top:auto;left:0;right:0;bottom:-2%;height:60vh;z-index:4;pointer-events:none;
   background:radial-gradient(ellipse 90% 100% at 50% 110%,rgba(255,120,0,.75),rgba(220,90,0,.38) 42%,rgba(180,40,0,.12) 64%,transparent 75%);
-  animation:eb 4s ease-in-out infinite;will-change:opacity}
+  -webkit-animation:eb 4s ease-in-out infinite;animation:eb 4s ease-in-out infinite;will-change:opacity}
+@-webkit-keyframes eb{0%,100%{opacity:.88}50%{opacity:1}}
 @keyframes eb{0%,100%{opacity:.88}50%{opacity:1}}
-.ember2{position:fixed;inset:auto 0 -4% 0;height:45vh;z-index:4;pointer-events:none;
+.ember2{position:fixed;top:auto;left:0;right:0;bottom:-4%;height:45vh;z-index:4;pointer-events:none;
   background:radial-gradient(ellipse 60% 80% at 50% 112%,rgba(255,165,0,.58),rgba(255,80,0,.26) 40%,transparent 62%);
-  animation:eb2 3s ease-in-out infinite;will-change:opacity}
+  -webkit-animation:eb2 3s ease-in-out infinite;animation:eb2 3s ease-in-out infinite;will-change:opacity}
+@-webkit-keyframes eb2{0%,100%{opacity:.75}50%{opacity:1}}
 @keyframes eb2{0%,100%{opacity:.75}50%{opacity:1}}
-.vignette{position:fixed;inset:0;z-index:8;pointer-events:none;
+.vignette{position:fixed;top:0;left:0;right:0;bottom:0;z-index:8;pointer-events:none;
   box-shadow:inset 0 0 14vw 3vw rgba(0,0,0,.28)}
 
 /* ── FRAME ── */
-.frame{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;padding:1.2vh 2.5vw 1vh}
+.frame{position:fixed;top:0;left:0;right:0;bottom:0;z-index:5;display:flex;flex-direction:column;padding:1.2vh 2.5vw 1vh}
 
 /* ── HEADER ── */
 .head{text-align:center;flex-shrink:0;padding:.1vh 0 .05vh;
@@ -75,7 +78,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 
 /* ── STAGE ── */
 .stage{flex:1;min-height:0;position:relative;margin:.1vh 0}
-.slide{position:absolute;inset:0;display:flex;flex-direction:column;
+.slide{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;
   opacity:0;pointer-events:none;will-change:opacity}
 .slide.on{opacity:1;pointer-events:auto;transition:opacity .6s var(--ease)}
 .slide.leaving{opacity:0;pointer-events:none;transition:opacity .55s var(--ease-up)}
@@ -87,7 +90,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   text-shadow:0 0 2vw rgba(200,130,30,.3)}
 
 /* ── GRID ── */
-.grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:.55vh .7vw}
+.grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;grid-gap:.55vh .7vw;gap:.55vh .7vw}
 
 /* ── ITEM ── */
 .item{display:flex;flex-direction:column;min-width:0;min-height:0;padding:0;
@@ -95,24 +98,29 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   border:1px solid rgba(255,200,100,.22);
   border-radius:1vw;overflow:hidden;
   box-shadow:0 2px 16px rgba(0,0,0,.3);
-  position:relative;contain:layout style paint}
-.slide.on .item{animation:enter var(--edur,1.25s) var(--een,cubic-bezier(.22,1,.36,1)) both;
-  animation-delay:calc(var(--i,0)*var(--estag,.09s));will-change:transform,opacity}
+  position:relative;overflow:hidden}
+.slide.on .item{-webkit-animation:enter var(--edur,1.25s) var(--een,cubic-bezier(.22,1,.36,1)) both;animation:enter var(--edur,1.25s) var(--een,cubic-bezier(.22,1,.36,1)) both;
+  -webkit-animation-delay:calc(var(--i,0)*var(--estag,.09s));animation-delay:calc(var(--i,0)*var(--estag,.09s));will-change:transform,opacity}
+@-webkit-keyframes enter{0%{opacity:0;-webkit-transform:translate(var(--fx,0),var(--fy,80vh)) scale(var(--fs,.88)) rotate(var(--fr,0deg));transform:translate(var(--fx,0),var(--fy,80vh)) scale(var(--fs,.88)) rotate(var(--fr,0deg))}
+  100%{opacity:1;-webkit-transform:none;transform:none}}
 @keyframes enter{0%{opacity:0;transform:translate(var(--fx,0),var(--fy,80vh)) scale(var(--fs,.88)) rotate(var(--fr,0deg))}
   100%{opacity:1;transform:none}}
-.slide.leaving .item{animation:leave var(--ldur,.7s) var(--ease-up) both;
-  animation-delay:calc(var(--i,0)*.05s);will-change:transform,opacity}
+.slide.leaving .item{-webkit-animation:leave var(--ldur,.7s) var(--ease-up) both;animation:leave var(--ldur,.7s) var(--ease-up) both;
+  -webkit-animation-delay:calc(var(--i,0)*.05s);animation-delay:calc(var(--i,0)*.05s);will-change:transform,opacity}
+@-webkit-keyframes leave{0%{opacity:1;-webkit-transform:none;transform:none}100%{opacity:0;-webkit-transform:translate(var(--lx,0),var(--ly,-9vh)) scale(var(--ls,.94)) rotate(var(--lr,0deg));transform:translate(var(--lx,0),var(--ly,-9vh)) scale(var(--ls,.94)) rotate(var(--lr,0deg))}}
 @keyframes leave{0%{opacity:1;transform:none}100%{opacity:0;transform:translate(var(--lx,0),var(--ly,-9vh)) scale(var(--ls,.94)) rotate(var(--lr,0deg))}}
 
 /* ── IMAGE ── */
 .item .pic{flex:0 0 13vh;position:relative;overflow:hidden}
 .item .pic.bigimg{flex-basis:23.3vh}
 .item .pic::before{content:"";display:none}
-.item .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;z-index:1;
-  transform:scale(1.0);transform-origin:center center;
+.item .pic img{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;
+  -webkit-object-fit:contain;object-fit:contain;object-position:center center;z-index:1;
+  -webkit-transform:scale(1.0);transform:scale(1.0);transform-origin:center center;
   image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges}
-.item .pic .emo{position:absolute;inset:0;display:grid;place-items:center;font-size:11vh;z-index:1}
-.slide.on .item .pic img{animation:float var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite;will-change:transform}
+.item .pic .emo{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font-size:11vh;z-index:1}
+.slide.on .item .pic img{-webkit-animation:float var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite;animation:float var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite;will-change:transform}
+@-webkit-keyframes float{0%{-webkit-transform:translateY(0) scale(1.0);transform:translateY(0) scale(1.0)}50%{-webkit-transform:translateY(-1vh) scale(1.012);transform:translateY(-1vh) scale(1.012)}100%{-webkit-transform:translateY(0) scale(1.0);transform:translateY(0) scale(1.0)}}
 @keyframes float{0%{transform:translateY(0) scale(1.0)}50%{transform:translateY(-1vh) scale(1.012)}100%{transform:translateY(0) scale(1.0)}}
 .item .pic .smoke{position:absolute;left:0;right:0;bottom:0;height:175%;object-fit:cover;object-position:bottom;
   mix-blend-mode:screen;opacity:.36;z-index:2;
@@ -193,7 +201,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 </head>
 <body>
 <div class="ytbg" id="ytbg">
-  <video id="firevid" autoplay muted loop playsinline preload="auto" poster="images/grill_fire.jpg">
+  <video id="firevid" autoplay muted loop playsinline webkit-playsinline x5-playsinline preload="auto" poster="images/grill_fire.jpg">
     <source src="video/fire4k.mp4" type="video/mp4">
     <source src="video/fire.mp4" type="video/mp4">
   </video>
@@ -348,9 +356,9 @@ function scheduleNext(){
 requestAnimationFrame(()=>requestAnimationFrame(()=>{ show(0); scheduleNext(); }));
 function jump(n){clearTimeout(timer);show(n);scheduleNext();}
 addEventListener('click',()=>jump(i+1));
-addEventListener('keydown',e=>{if(e.key==='ArrowRight')jump(i+1);if(e.key==='ArrowLeft')jump(i-1);if(e.key.toLowerCase()==='f'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}});
+addEventListener('keydown',e=>{if(e.key==='ArrowRight')jump(i+1);if(e.key==='ArrowLeft')jump(i-1);if(e.key.toLowerCase()==='f'){const el=document.documentElement;if(document.fullscreenElement||document.webkitFullscreenElement){if(document.exitFullscreen)document.exitFullscreen();else if(document.webkitExitFullscreen)document.webkitExitFullscreen();}else{if(el.requestFullscreen)el.requestFullscreen();else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen();}}});
 // auto fullscreen on first interaction (TV kiosk mode)
-(function(){const fs=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(()=>{});};['click','touchstart','keydown'].forEach(e=>addEventListener(e,fs,{once:true,passive:true}));})();
+(function(){const fs=()=>{const el=document.documentElement;if(!document.fullscreenElement&&!document.webkitFullscreenElement){if(el.requestFullscreen)el.requestFullscreen().catch(()=>{});else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen();}};['click','touchstart','keydown'].forEach(e=>addEventListener(e,fs,{once:true,passive:true}));})();
 (function(){
   const vid=document.getElementById('firevid');
   if(!vid)return;
