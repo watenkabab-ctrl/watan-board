@@ -83,14 +83,13 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
 .stage{flex:1;min-height:0;position:relative;margin:.25vh 0}
 .slide{position:absolute;inset:0;display:flex;flex-direction:column;gap:.48vh;
   opacity:0;pointer-events:none;will-change:opacity,transform;
-  transform:scale(1.016) translateZ(0)}
+  transform:scale(1.012) translateZ(0)}
 .slide.on{opacity:1;pointer-events:auto;
-  transition:opacity 1.7s cubic-bezier(.4,0,.2,1),transform 1.7s cubic-bezier(.4,0,.2,1);
+  transition:opacity 1.4s cubic-bezier(.4,0,.2,1),transform 1.4s cubic-bezier(.4,0,.2,1);
   transform:scale(1) translateZ(0)}
-.slide.entering{opacity:0;transform:scale(1.016) translateZ(0)}
 .slide.leaving{opacity:0;pointer-events:none;
-  transition:opacity .95s cubic-bezier(.55,0,1,1),transform .95s cubic-bezier(.55,0,1,1);
-  transform:scale(.986) translateZ(0)}
+  transition:opacity 1.4s cubic-bezier(.55,0,1,1),transform 1.4s cubic-bezier(.55,0,1,1);
+  transform:scale(.992) translateZ(0)}
 
 /* ── SECTION GROUP ── */
 .sl-group{flex:1;min-height:0;display:flex;flex-direction:column;gap:.16vh}
@@ -281,15 +280,13 @@ function show(n){
   i=(n+slides.length)%slides.length;
   slides.forEach((s,k)=>{
     if(k===i){
-      s.classList.remove('leaving','entering');
-      s.classList.add('entering');
-      requestAnimationFrame(()=>requestAnimationFrame(()=>{
-        s.classList.remove('entering');s.classList.add('on');
-      }));
+      s.classList.remove('leaving','on');
+      void s.offsetWidth;
+      requestAnimationFrame(()=>s.classList.add('on'));
     } else if(k===prev&&k!==i){
       s.classList.remove('on');s.classList.add('leaving');
-      setTimeout(()=>s.classList.remove('leaving'),1000);
-    } else{s.classList.remove('on','leaving','entering');}
+      setTimeout(()=>s.classList.remove('leaving'),1550);
+    } else{s.classList.remove('on','leaving');}
   });
   dots.forEach((d,k)=>d.classList.toggle('on',k===i));
   boardTitle.innerHTML=SLIDES[i].title;
