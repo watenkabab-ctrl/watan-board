@@ -14,7 +14,7 @@
 <style>
 :root{
   --g:#C8922A;--gl:#E8B84A;--gc:#FFE8A0;--cream:#EFE1C5;--mute:#7A6248;
-  --ease:cubic-bezier(.22,1,.36,1);--ease-up:cubic-bezier(.4,0,1,1);--dwell:13s;
+  --ease:cubic-bezier(.22,1,.36,1);--ease-up:cubic-bezier(.4,0,1,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;width:100%;overflow:hidden;background:#3d1a06;overscroll-behavior:none}
@@ -102,9 +102,9 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   box-shadow:0 2px 16px rgba(0,0,0,.3);
   position:relative;contain:layout style paint}
 .slide.on .item{will-change:transform,opacity;
-  animation:var(--in-anim,anim-rise) var(--in-dur,.78s) var(--in-ease,cubic-bezier(.22,1,.36,1)) var(--in-delay,0ms) both}
+  animation:var(--in-anim,from-bottom) var(--in-dur,1.15s) var(--in-ease,cubic-bezier(.22,1,.36,1)) var(--in-delay,0ms) both}
 .slide.leaving .item{will-change:transform,opacity;
-  animation:var(--out-anim,anim-lift) var(--out-dur,.46s) var(--out-ease,cubic-bezier(.4,0,1,1)) var(--out-delay,0ms) both}
+  animation:var(--out-anim,to-top) var(--out-dur,.72s) var(--out-ease,cubic-bezier(.4,0,1,1)) var(--out-delay,0ms) both}
 
 /* ── ENTER: von außen herein ── */
 @keyframes from-bottom   {from{opacity:0;transform:translateY(110vh)}          to{opacity:1;transform:none}}
@@ -143,10 +143,6 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 @keyframes float{0%{transform:translateY(0) scale(1.0)}50%{transform:translateY(-1vh) scale(1.012)}100%{transform:translateY(0) scale(1.0)}}
 .item.big-img .pic img{animation:float-big var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite}
 @keyframes float-big{0%,100%{transform:translateY(0) scale(1.22)}50%{transform:translateY(-1vh) scale(1.235)}}
-.item .pic .smoke{position:absolute;left:0;right:0;bottom:0;height:175%;object-fit:cover;object-position:bottom;
-  mix-blend-mode:screen;opacity:.36;z-index:2;
-  -webkit-mask-image:linear-gradient(to top,transparent 0,#000 16%,#000 62%,transparent 100%);
-  mask-image:linear-gradient(to top,transparent 0,#000 16%,#000 62%,transparent 100%)}
 
 /* ── TEXT PANEL ── */
 .item .info{flex:0 0 auto;padding:.55vh .8vw .75vh;
@@ -178,7 +174,6 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .showcase{flex:1;min-height:0;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:0;gap:0;overflow:visible}
 /* full-bleed warm glow backdrop */
 .showcase::before{content:"";display:none}
-@keyframes bg-breathe{0%,100%{opacity:.7}50%{opacity:1}}
 /* plate */
 .sc-img{flex:0 0 auto;width:100%;max-height:52vh;position:relative;z-index:2;
   display:flex;align-items:center;justify-content:center;margin-top:.8vh}
@@ -249,10 +244,10 @@ const SLIDES=[
     {n:"Chicken Tikka Kebab",p:"12,50",d:"Tandoor · Basmati-Reis · Beilagen",img:"Chicken_Tikka_Kebab_pr1.webp"},
     {n:"Zershk Palau · Hähnchen",p:"13,50",d:"Berberitzenreis · Safran · Hähnchen",img:"Zershk_Palau_Haehnchen.webp",bigimg:true},
     {n:"Chapli Kebab",p:"8",d:"Gehacktes Lamm · Kräuter · Fladenbrot",img:"Chapli_Kebab_pr1.webp"},
-    {n:"Kobide Kebab",p:"15",d:"Rindshackfleisch · Gewürze · Basmati-Reis",img:"Kobide_Kebab_pr1.webp",noscale:true},
+    {n:"Kobide Kebab",p:"15",d:"Rindshackfleisch · Gewürze · Basmati-Reis",img:"Kobide_Kebab_pr1.webp"},
     {n:"Lamm Tikka Kebab",p:"18",d:"Zartes Lammfleisch · Tandoor · Beilagen",img:"Lamm_Tikka_Kebab.webp"},
     {n:"Lamm Kotelett",p:"19,50",d:"Gegrillte Lammkoteletts · Beilagen",img:"Lamm_Kotelett_pr1.webp"},
-    {n:"Mix Grill · 1 Person",p:"20",d:"Wings · Chapli · Tikka · Koteletts",img:"Mix_Grill_1_Person_pr1.webp",hero:true},
+    {n:"Mix Grill · 1 Person",p:"20",d:"Wings · Chapli · Tikka · Koteletts",img:"Mix_Grill_1_Person_pr1.webp"},
   ]},
   {title:"Mix Grill",ms:7000,showcase:{
     n:"Mix Grill",
@@ -284,7 +279,7 @@ SLIDES.forEach(sl=>{
     inner=`<div class="showcase">
       <div class="sc-img"><img src="images/${imgF(sc.img)}${v}" alt=""></div>
       <div class="sc-info">
-        <div class="sc-title" style="text-align:center;animation:item-in .9s cubic-bezier(.22,1,.36,1) .55s both">
+        <div class="sc-title" style="text-align:center;animation:fade-up .9s cubic-bezier(.22,1,.36,1) .55s both">
           <div style="font-family:'Lora',serif;font-weight:700;font-size:5.6vw;letter-spacing:.04em;background:linear-gradient(135deg,#E8B84A,#FFE8A0 45%,#C8922A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 8px rgba(0,0,0,1)) drop-shadow(0 2px 6px rgba(0,0,0,1))">${sc.n}</div>
           <div style="font-family:'Raleway',sans-serif;font-size:1.55vw;letter-spacing:.28em;text-transform:uppercase;color:rgba(220,170,60,.9);margin-top:.2vh;font-weight:600;text-shadow:0 0 8px rgba(0,0,0,1),0 1px 4px rgba(0,0,0,1)">${sc.sub}</div>
         </div>
@@ -299,7 +294,7 @@ SLIDES.forEach(sl=>{
         `<span class="emo">${d.emo||"🍢"}</span>`;
       const fdur=(6.2+(idx%4)*.65).toFixed(1),fdel=(-(idx*.9+Math.random()*.4)).toFixed(1);
       const desc=d.d?`<div class="desc">${d.d}</div>`:"";
-      return `<div class="item${d.noscale?" no-upscale":""}${d.bigimg?" big-img":""}" style="--i:${idx};--fdur:${fdur}s;--fdel:${fdel}s"${d.hero?" data-hero":""}><div class="pic">${pic}</div><div class="info"><div class="nm">${d.n}</div>${desc}<div class="bot"><div class="pr">${d.p}<span class="cur">€</span></div>${badge}</div></div></div>`;
+      return `<div class="item${d.bigimg?" big-img":""}" style="--fdur:${fdur}s;--fdel:${fdel}s"><div class="pic">${pic}</div><div class="info"><div class="nm">${d.n}</div>${desc}<div class="bot"><div class="pr">${d.p}<span class="cur">€</span></div>${badge}</div></div></div>`;
     }).join("")}</div>`;
   }
   stage.insertAdjacentHTML('beforeend',`<section class="slide">${inner}</section>`);
