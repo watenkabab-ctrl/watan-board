@@ -112,7 +112,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 
 /* ── IMAGE ── */
 .item .pic{flex:0 0 13vh;position:relative;overflow:hidden}
-.item .pic.bigimg{flex-basis:23.3vh}
+.item .pic.bigimg{flex-basis:26.8vh}
 .item .pic::before{content:"";display:none}
 .item .pic img{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;
   -webkit-object-fit:contain;object-fit:contain;object-position:center center;z-index:1;
@@ -120,8 +120,8 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges}
 .item .pic .emo{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font-size:11vh;z-index:1}
 .slide.on .item .pic img{-webkit-animation:float var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite;animation:float var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite;will-change:transform}
-@-webkit-keyframes float{0%{-webkit-transform:translateY(0) scale(1.0);transform:translateY(0) scale(1.0)}50%{-webkit-transform:translateY(-1vh) scale(1.012);transform:translateY(-1vh) scale(1.012)}100%{-webkit-transform:translateY(0) scale(1.0);transform:translateY(0) scale(1.0)}}
-@keyframes float{0%{transform:translateY(0) scale(1.0)}50%{transform:translateY(-1vh) scale(1.012)}100%{transform:translateY(0) scale(1.0)}}
+@-webkit-keyframes float{0%{-webkit-transform:translateY(0);transform:translateY(0)}50%{-webkit-transform:translateY(-1vh);transform:translateY(-1vh)}100%{-webkit-transform:translateY(0);transform:translateY(0)}}
+@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-1vh)}100%{transform:translateY(0)}}
 .item .pic .smoke{position:absolute;left:0;right:0;bottom:0;height:175%;object-fit:cover;object-position:bottom;
   mix-blend-mode:screen;opacity:.36;z-index:2;
   -webkit-mask-image:linear-gradient(to top,transparent 0,#000 16%,#000 62%,transparent 100%);
