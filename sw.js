@@ -1,4 +1,4 @@
-const CACHE='watan-v7';
+const CACHE='watan-v8';
 const ASSETS=[
   './board3.html',
   './fonts/0QIhMX1D_JOuMw_LIftL.woff2',
@@ -7,14 +7,15 @@ const ASSETS=[
   './fonts/0QIvMX1D_JOuMwT7I-NP.woff2',
   './fonts/1Ptug8zYS_SKggPNyC0ITw.woff2',
   './fonts/1Ptug8zYS_SKggPNyCMIT5lu.woff2',
-  './images/Loobia.webp','./images/Qorma.webp','./images/Bamya_Okra.webp',
-  './images/Sabzi_Palak.webp','./images/Chicken_Jalfrezi.webp',
-  './images/Kabuli_Palau.webp','./images/Beryani_Palau.webp',
-  './images/Molong_Palau.webp','./images/Mahicha_Palau.webp','./images/Mantu.webp',
-  './images/Pacha.webp','./images/Rosh.webp','./images/Chanaki.webp',
+  './images/Loobia_v1.png','./images/Qorma.webp','./images/Bamya_Okra.webp',
+  './images/Sabzi_Palak.webp','./images/Chicken_Jalfrezi_v1.png',
+  './images/Reis_Beilage_Kabuli_v1.png','./images/Beryani_Palau.webp',
+  './images/Molong_Palau.webp','./images/Mahicha_Palau_v1.png','./images/Mantu.webp',
+  './images/Pacha_v1.png','./images/Rosh.webp','./images/Chanaki.webp',
   './images/Chicken_Karahi.webp','./images/Lamm_Karahi.webp',
-  './images/Pizza_Margarita.webp','./images/Pizza_Spinat.webp',
-  './images/Pizza_Salami_Sucuk.webp','./images/Pizza_Tunfisch.webp','./images/Pizza_Gemuese.webp'
+  './images/Pizza_Margarita_v1.png','./images/Pizza_mit_Spinat_v1.png',
+  './images/Pizza_mit_Salami_oder_Sucuk_v1.png','./images/Pizza_mit_Tunfisch_v1.png',
+  './images/Pizza_mit_Gemuese_v1.png'
 ];
 self.addEventListener('install',e=>{
   e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()));
