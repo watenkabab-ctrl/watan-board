@@ -22,9 +22,11 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .ember,.ember2{will-change:opacity}
 
 /* ── BACKGROUND ── */
-.ytbg{position:fixed;inset:0;z-index:1;overflow:hidden;background:#000}
+/* filter on wrapper, NOT on video — Tizen ignores/breaks filter on video elements */
+.ytbg{position:fixed;inset:0;z-index:1;overflow:hidden;background:#000;
+  filter:brightness(1.8) contrast(1.3) saturate(1.5) hue-rotate(-8deg)}
 .ytbg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  filter:brightness(3.0) contrast(1.5) saturate(1.6) hue-rotate(-8deg);opacity:.55;
+  opacity:.65;
   -webkit-mask-image:linear-gradient(to top,#000 0%,#000 38%,rgba(0,0,0,.55) 58%,transparent 82%);
   mask-image:linear-gradient(to top,#000 0%,#000 38%,rgba(0,0,0,.55) 58%,transparent 82%)}
 .shade{position:fixed;inset:0;z-index:2;pointer-events:none;
@@ -218,7 +220,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 </head>
 <body>
 <div class="ytbg" id="ytbg">
-  <video id="firevid" autoplay muted loop playsinline preload="auto" poster="images/grill_fire.jpg">
+  <video id="firevid" autoplay muted loop playsinline webkit-playsinline x5-playsinline preload="auto" poster="images/grill_fire.jpg">
     <source src="video/fire4k.mp4" type="video/mp4">
     <source src="video/fire.mp4" type="video/mp4">
   </video>
