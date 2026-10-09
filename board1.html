@@ -22,13 +22,15 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .ember,.ember2{will-change:opacity}
 
 /* ── BACKGROUND ── */
-/* filter on wrapper, NOT on video — Tizen ignores/breaks filter on video elements */
-.ytbg{position:fixed;inset:0;z-index:1;overflow:hidden;background:#000;
-  filter:brightness(1.8) contrast(1.3) saturate(1.5) hue-rotate(-8deg)}
-.ytbg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  opacity:.65;
-  -webkit-mask-image:linear-gradient(to top,#000 0%,#000 38%,rgba(0,0,0,.55) 58%,transparent 82%);
-  mask-image:linear-gradient(to top,#000 0%,#000 38%,rgba(0,0,0,.55) 58%,transparent 82%)}
+/* NO filter/mask on video or its wrapper — Tizen drops video if parent has filter */
+.ytbg{position:fixed;inset:0;z-index:1;overflow:hidden;background:#000}
+.ytbg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.72}
+/* colour-grading via overlay div — no filter needed on video */
+.ytbg-ov{position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(to top,rgba(200,80,0,.38) 0%,rgba(180,60,0,.12) 45%,transparent 72%),
+    radial-gradient(ellipse 110% 55% at 50% 100%,rgba(255,120,0,.22),transparent 60%);
+  mix-blend-mode:screen}
 .shade{position:fixed;inset:0;z-index:2;pointer-events:none;
   background:none}
 .texture{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.07;
@@ -225,6 +227,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
     <source src="video/fire4k.mp4" type="video/mp4">
     <source src="video/fire.mp4" type="video/mp4">
   </video>
+  <div class="ytbg-ov"></div>
 </div>
 <div class="shade"></div>
 <div class="texture"></div>
@@ -406,18 +409,45 @@ document.documentElement.requestFullscreen().catch(()=>{});
 (function(){
   const vid=document.getElementById('firevid');
   if(!vid)return;
-  vid.muted=true;vid.defaultMuted=true;
-  vid.loop=true;
-  const tp=()=>{
+  vid.muted=true;vid.defaultMuted=true;vid.loop=true;
+
+  function revive(){
     if(!vid.isConnected)return;
     vid.muted=true;
-    if(vid.paused||vid.ended)vid.play().catch(()=>{});
-  };
-  vid.addEventListener('loadeddata',tp);vid.addEventListener('canplay',tp);tp();
-  ['pause','ended','stalled','suspend','waiting','emptied'].forEach(ev=>vid.addEventListener(ev,function(){setTimeout(tp,100);}));
-  setInterval(tp,2000);
-  document.addEventListener('visibilitychange',function(){if(!document.hidden)tp();});
-  window.addEventListener('focus',tp);window.addEventListener('pageshow',tp);
+    if(vid.paused||vid.ended||vid.readyState<2){
+      vid.play().catch(()=>{
+        // hard reset: reload src and try again
+        try{vid.load();vid.play().catch(()=>{});}catch(e){}
+      });
+    }
+  }
+
+  // start as soon as data is ready
+  vid.addEventListener('loadeddata',revive);
+  vid.addEventListener('canplay',revive);
+  revive();
+
+  // restart immediately on any stop/stall/suspend
+  ['pause','ended','stalled','suspend','waiting','emptied','error'].forEach(ev=>
+    vid.addEventListener(ev,function(){setTimeout(revive,80);}));
+
+  // watchdog: check currentTime is actually advancing (frozen video has paused=false)
+  let lastTime=-1,frozenCount=0;
+  setInterval(function(){
+    revive(); // always nudge
+    if(!vid.paused){
+      if(vid.currentTime===lastTime){
+        frozenCount++;
+        if(frozenCount>=2){frozenCount=0;try{vid.load();vid.play().catch(()=>{});}catch(e){}}
+      } else {frozenCount=0;}
+    }
+    lastTime=vid.currentTime;
+  },1500);
+
+  // restart when TV wakes from sleep / comes back into view
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)revive();});
+  window.addEventListener('focus',revive);
+  window.addEventListener('pageshow',revive);
 })();
 
 // ── Dauerbetrieb ──────────────────────────────────────────────────────
