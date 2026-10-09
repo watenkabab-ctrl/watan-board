@@ -6,6 +6,21 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=1920, initial-scale=1, viewport-fit=cover">
+<script>
+/* SW-Killer: alle alten Service Worker deregistrieren, dann hart neu laden */
+if('serviceWorker' in navigator && !location.search.includes('fresh')){
+  navigator.serviceWorker.getRegistrations().then(function(regs){
+    var del = regs.map(function(r){return r.unregister();});
+    Promise.all(del).then(function(){
+      caches.keys().then(function(keys){
+        Promise.all(keys.map(function(k){return caches.delete(k);})).then(function(){
+          location.replace(location.pathname+'?fresh=20261009');
+        });
+      });
+    });
+  });
+}
+</script>
 <title>Watan Kabab · Afghanische Spezialitäten</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🍽️</text></svg>">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/0QIvMX1D_JOuMwr7Iw.woff2">
