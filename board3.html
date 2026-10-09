@@ -356,7 +356,7 @@ addEventListener('keydown',e=>{
   const fs=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(()=>{});};
   ['click','touchstart','keydown'].forEach(e=>addEventListener(e,fs,{once:true,passive:true}));
 })();
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw3.js').catch(()=>{});}
 
 // ── Dauerbetrieb ──────────────────────────────────────────────────────
 if(navigator.wakeLock){
