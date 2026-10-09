@@ -223,7 +223,6 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
 <body>
 <div class="ytbg" id="ytbg">
   <video id="firevid" autoplay muted loop playsinline webkit-playsinline x5-playsinline preload="auto" poster="images/grill_fire.jpg">
-    <source src="video/fire4k.mp4" type="video/mp4">
     <source src="video/fire.mp4" type="video/mp4">
   </video>
   <div class="ytbg-ov"></div>
@@ -245,7 +244,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
 </div>
 <div class="vignette"></div>
 <script>
-const v="?v="+"20261009a";
+const v="?v="+"20261009b";
 const SLIDES=[
   {
     title:"Traditionelle Gerichte",
@@ -293,14 +292,18 @@ const stage=document.getElementById('stage');
 const dotsBox=document.getElementById('dots');
 const boardTitle=document.getElementById('boardTitle');
 
-SLIDES.forEach((sl)=>{
+const WEBP=(()=>{try{const c=document.createElement('canvas');return c.toDataURL('image/webp').startsWith('data:image/webp');}catch(e){return false;}})();
+function imgSrc(f){if(WEBP){const w=f.replace(/\.(png|jpg)$/,'.webp');if(w!==f)return w;}return f;}
+
+SLIDES.forEach((sl,si)=>{
   let idx=0;
   const html=sl.sections.map(sec=>{
     const cards=sec.items.map(d=>{
       const k=idx++;
       const fdel=(-(k*.85+Math.random()*.3)).toFixed(1);
+      const eager=si===0;
       const pic=d.img
-        ?`<img src="images/${d.img}${v}" alt="" loading="eager" decoding="async">`
+        ?`<img src="images/${imgSrc(d.img)}${v}" alt=""${eager?' loading="eager" fetchpriority="high"':' loading="lazy"'} decoding="async">`
         :`<span class="emo">${d.e||"🍽️"}</span>`;
       const nr=d.nr?`<span class="nr">${d.nr}</span>`:"";
       const imgsz=d.imgsz?`;--imgsz:${d.imgsz}`:"";
