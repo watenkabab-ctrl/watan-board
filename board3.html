@@ -8,13 +8,13 @@
 <meta name="viewport" content="width=1920, initial-scale=1, viewport-fit=cover">
 <script>
 /* SW-Killer: alle alten Service Worker deregistrieren, dann hart neu laden */
-if('serviceWorker' in navigator && !location.search.includes('fresh=20261009c')){
+if('serviceWorker' in navigator && !location.search.includes('fresh=20261009e')){
   navigator.serviceWorker.getRegistrations().then(function(regs){
     var del = regs.map(function(r){return r.unregister();});
     Promise.all(del).then(function(){
       caches.keys().then(function(keys){
         Promise.all(keys.map(function(k){return caches.delete(k);})).then(function(){
-          location.replace(location.pathname+'?fresh=20261009c');
+          location.replace(location.pathname+'?fresh=20261009e');
         });
       });
     });
@@ -121,17 +121,33 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
 /* ── STAGE ── */
 .stage{flex:1;min-height:0;position:relative;margin:.25vh 0}
 .slide{position:absolute;inset:0;display:flex;flex-direction:column;gap:.48vh;
-  opacity:0;pointer-events:none;will-change:opacity,transform;transform:translateZ(0)}
+  opacity:0;pointer-events:none;will-change:opacity,transform;transform:scale(1.012) translateZ(0)}
 .slide.on{opacity:1;pointer-events:auto;
-  animation:b3-in .90s cubic-bezier(.22,1,.36,1) both}
+  transition:opacity 1.1s cubic-bezier(.4,0,.2,1),transform 1.1s cubic-bezier(.4,0,.2,1);
+  transform:scale(1) translateZ(0)}
 .slide.leaving{opacity:0;pointer-events:none;
-  animation:b3-out .52s cubic-bezier(.4,0,1,1) both}
-@keyframes b3-in{
-  from{opacity:0;transform:scale(1.035) translateZ(0)}
-  to  {opacity:1;transform:scale(1)     translateZ(0)}}
-@keyframes b3-out{
-  from{opacity:1;transform:scale(1)    translateZ(0)}
-  to  {opacity:0;transform:scale(.975) translateZ(0)}}
+  transition:opacity .8s cubic-bezier(.55,0,1,1),transform .8s cubic-bezier(.55,0,1,1);
+  transform:scale(.988) translateZ(0)}
+.slide.on .item{will-change:transform,opacity;
+  animation:var(--in-anim,rise-up) var(--in-dur,1.15s) var(--in-ease,cubic-bezier(.22,1,.36,1)) var(--in-delay,0ms) both}
+.slide.leaving .item{will-change:transform,opacity;
+  animation:var(--out-anim,drift-fade) var(--out-dur,.72s) var(--out-ease,cubic-bezier(.4,0,1,1)) var(--out-delay,0ms) both}
+/* ── ENTER ── */
+@keyframes rise-up   {from{opacity:0;transform:translateY(52vh) scale(.92)}   to{opacity:1;transform:none}}
+@keyframes drop-in   {from{opacity:0;transform:translateY(-52vh) scale(.92)}  to{opacity:1;transform:none}}
+@keyframes slide-in-r{from{opacity:0;transform:translateX(-50vw) scale(.96)}  to{opacity:1;transform:none}}
+@keyframes slide-in-l{from{opacity:0;transform:translateX( 50vw) scale(.96)}  to{opacity:1;transform:none}}
+@keyframes corner-bl {from{opacity:0;transform:translate(-50vw,50vh) scale(.90)}to{opacity:1;transform:none}}
+@keyframes corner-br {from{opacity:0;transform:translate( 50vw,50vh) scale(.90)}to{opacity:1;transform:none}}
+@keyframes bloom     {from{opacity:0;transform:scale(.78)}                    to{opacity:1;transform:none}}
+@keyframes fade-rise {from{opacity:0;transform:translateY(5vh) scale(.97)}    to{opacity:1;transform:none}}
+/* ── EXIT ── */
+@keyframes drift-up  {from{opacity:1;transform:none}to{opacity:0;transform:translateY(-38vh) scale(.93)}}
+@keyframes drift-down{from{opacity:1;transform:none}to{opacity:0;transform:translateY( 38vh) scale(.93)}}
+@keyframes drift-r   {from{opacity:1;transform:none}to{opacity:0;transform:translateX( 42vw)}}
+@keyframes drift-l   {from{opacity:1;transform:none}to{opacity:0;transform:translateX(-42vw)}}
+@keyframes shrink    {from{opacity:1;transform:none}to{opacity:0;transform:scale(.78)}}
+@keyframes drift-fade{from{opacity:1;transform:none}to{opacity:0;transform:translateY(3vh) scale(.97)}}
 
 /* ── SECTION GROUP ── */
 .sl-group{flex:1;min-height:0;display:flex;flex-direction:column;gap:.16vh}
@@ -243,7 +259,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
 </div>
 <div class="vignette"></div>
 <script>
-const v="?v="+"20261009d";
+const v="?v="+"20261009e";
 const SLIDES=[
   {
     title:"Traditionelle Gerichte",
@@ -324,45 +340,84 @@ SLIDES.forEach((sl,si)=>{
 });
 
 const slides=[...stage.children], dots=[...dotsBox.children];
-let i=0;
+let i=0,leaveT=0;
 
-const OUT_MS=560; // must match b3-out animation duration (0.52s + 40ms margin)
-let hideTimer;
-
-function show(n){
-  const prev=i;
-  i=(n+slides.length)%slides.length;
-  clearTimeout(hideTimer);
-
-  const incoming=slides[i];
-
-  if(prev!==i){
-    const outgoing=slides[prev];
-    // atomic: remove on+leaving together, then add leaving — no intermediate opacity:0 flash
-    outgoing.classList.remove('on','leaving');
-    outgoing.classList.add('leaving');
-
-    // once outgoing is fully gone, fade in incoming
-    hideTimer=setTimeout(()=>{
-      outgoing.classList.remove('leaving');
-      incoming.classList.remove('on','leaving');
-      void incoming.offsetWidth;
-      incoming.classList.add('on');
-      boardTitle.innerHTML=SLIDES[i].title;
-    }, OUT_MS);
-  } else {
-    incoming.classList.remove('on','leaving');
-    void incoming.offsetWidth;
-    incoming.classList.add('on');
-    boardTitle.innerHTML=SLIDES[i].title;
+// stagger animation system — identisch mit board1
+const EI='cubic-bezier(.22,1,.36,1)',EO='cubic-bezier(.55,0,1,1)',EIS='cubic-bezier(.16,1,.3,1)';
+const ANIM_SETS=[
+  {in:'rise-up',   out:'drift-up',   stag:'seq',    dur:[1.22,.70], ease:[EI, EO]},
+  {in:'drop-in',   out:'drift-down', stag:'rev',    dur:[1.20,.70], ease:[EI, EO]},
+  {in:'slide-in-r',out:'drift-l',    stag:'col',    dur:[1.18,.68], ease:[EIS,EO]},
+  {in:'slide-in-l',out:'drift-r',    stag:'row',    dur:[1.18,.68], ease:[EIS,EO]},
+  {in:'corner-bl', out:'drift-r',    stag:'wave',   dur:[1.25,.72], ease:[EI, EO]},
+  {in:'corner-br', out:'drift-l',    stag:'wave',   dur:[1.25,.72], ease:[EI, EO]},
+  {in:'bloom',     out:'shrink',     stag:'center', dur:[1.28,.72], ease:[EI, EO]},
+  {in:'fade-rise', out:'drift-fade', stag:'spiral', dur:[1.32,.70], ease:[EI, EO]},
+  {in:'rise-up',   out:'drift-l',    stag:'wave',   dur:[1.20,.68], ease:[EI, EO]},
+  {in:'slide-in-r',out:'drift-up',   stag:'spiral', dur:[1.22,.70], ease:[EIS,EO]},
+];
+let lastSet=-1;
+function pickSet(){let s;do{s=0|Math.random()*ANIM_SETS.length;}while(s===lastSet);lastSet=s;return ANIM_SETS[s];}
+function staggerDelay(idx,mode,total){
+  const cols=5,rows=Math.ceil(total/cols),col=idx%cols,row=0|idx/cols;
+  const cx=cols/2-.5,cy=rows/2-.5,dist=Math.hypot(col-cx,row-cy);
+  if(mode==='seq')    return idx*62;
+  if(mode==='rev')    return (total-1-idx)*55;
+  if(mode==='col')    return col*100+(row*32);
+  if(mode==='row')    return row*122+(col*26);
+  if(mode==='center') return dist*92;
+  if(mode==='wave')   return (col+row)*70;
+  if(mode==='spiral') {
+    const angle=Math.atan2(row-cy,col-cx);
+    return (dist*78 + ((angle+Math.PI)/(2*Math.PI))*155)|0;
   }
-
-  dots.forEach((d,k)=>d.classList.toggle('on',k===i));
+  return idx*62;
+}
+function applyAnim(sl,set,phase){
+  const items=sl.querySelectorAll('.item');
+  items.forEach((el,idx)=>{
+    el.style.setProperty('--in-anim',set.in);
+    el.style.setProperty('--out-anim',set.out);
+    el.style.setProperty('--in-dur',set.dur[0]+'s');
+    el.style.setProperty('--out-dur',set.dur[1]+'s');
+    el.style.setProperty('--in-ease',set.ease[0]);
+    el.style.setProperty('--out-ease',set.ease[1]);
+    el.style.setProperty(phase==='in'?'--in-delay':'--out-delay', staggerDelay(idx,set.stag,items.length)+'ms');
+  });
 }
 
-show(0);
-let timer=setInterval(()=>show(i+1),18000);
-function jump(n){clearInterval(timer);show(n);timer=setInterval(()=>show(i+1),18000);}
+function show(n){
+  const next=(n+slides.length)%slides.length;
+  const set=pickSet();
+  slides.forEach((s,k)=>{
+    if(k===next){
+      applyAnim(s,set,'in');
+      const els=[...s.querySelectorAll('.item')];
+      els.forEach(el=>el.style.animation='none');
+      void s.offsetWidth;
+      els.forEach(el=>el.style.animation='');
+      s.classList.remove('leaving');s.classList.add('on');
+    } else if(k===i&&k!==next){
+      applyAnim(s,set,'out');
+      s.classList.remove('on');s.classList.add('leaving');
+    } else {
+      s.classList.remove('on','leaving');
+    }
+  });
+  boardTitle.innerHTML=SLIDES[next].title;
+  clearTimeout(leaveT);leaveT=setTimeout(()=>slides.forEach(s=>{if(!s.classList.contains('on'))s.classList.remove('leaving');}),950);
+  dots.forEach((d,k)=>d.classList.toggle('on',k===next));
+  i=next;
+}
+
+let timer=null;
+function scheduleNext(){
+  clearTimeout(timer);
+  const ms=SLIDES[i].ms||18000;
+  timer=setTimeout(()=>{show(i+1);scheduleNext();},ms);
+}
+requestAnimationFrame(()=>requestAnimationFrame(()=>{show(0);scheduleNext();}));
+function jump(n){clearTimeout(timer);show(n);scheduleNext();}
 addEventListener('click',()=>jump(i+1));
 addEventListener('keydown',e=>{
   if(e.key==='ArrowRight')jump(i+1);
@@ -385,13 +440,13 @@ if(navigator.wakeLock){
 }
 document.addEventListener('visibilitychange',()=>{
   if(document.visibilityState!=='visible')return;
-  clearInterval(timer);timer=setInterval(()=>show(i+1),18000);
+  clearTimeout(timer);show(i);scheduleNext();
 });
 (function(){
   let last=i;
   setInterval(()=>{
     if(document.visibilityState!=='visible')return;
-    if(last===i){clearInterval(timer);show(i+1);timer=setInterval(()=>show(i+1),18000);}
+    if(last===i){clearTimeout(timer);show(i+1);scheduleNext();}
     last=i;
   },35000);
 })();
