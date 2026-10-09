@@ -8,13 +8,13 @@
 <meta name="viewport" content="width=1920, initial-scale=1, viewport-fit=cover">
 <script>
 /* SW-Killer: alle alten Service Worker deregistrieren, dann hart neu laden */
-if('serviceWorker' in navigator && !location.search.includes('fresh')){
+if('serviceWorker' in navigator && !location.search.includes('fresh=20261009c')){
   navigator.serviceWorker.getRegistrations().then(function(regs){
     var del = regs.map(function(r){return r.unregister();});
     Promise.all(del).then(function(){
       caches.keys().then(function(keys){
         Promise.all(keys.map(function(k){return caches.delete(k);})).then(function(){
-          location.replace(location.pathname+'?fresh=20261009');
+          location.replace(location.pathname+'?fresh=20261009c');
         });
       });
     });
@@ -26,26 +26,26 @@ if('serviceWorker' in navigator && !location.search.includes('fresh')){
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/0QIvMX1D_JOuMwr7Iw.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/1Ptug8zYS_SKggPNyC0ITw.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/0QIhMX1D_JOuMw_LIftL.woff2">
-<link rel="preload" as="image" href="images/Loobia_v1.png">
+<link rel="preload" as="image" href="images/Loobia_v1.webp">
 <link rel="preload" as="image" href="images/Qorma.webp">
 <link rel="preload" as="image" href="images/Bamya_Okra.webp">
 <link rel="preload" as="image" href="images/Sabzi_Palak.webp">
-<link rel="preload" as="image" href="images/Chicken_Jalfrezi_v1.png">
-<link rel="preload" as="image" href="images/Reis_Beilage_Kabuli_v1.png">
+<link rel="preload" as="image" href="images/Chicken_Jalfrezi_v1.webp">
+<link rel="preload" as="image" href="images/Reis_Beilage_Kabuli_v1.webp">
 <link rel="preload" as="image" href="images/Beryani_Palau.webp">
 <link rel="preload" as="image" href="images/Molong_Palau.webp">
-<link rel="preload" as="image" href="images/Mahicha_Palau_v1.png">
+<link rel="preload" as="image" href="images/Mahicha_Palau_v1.webp">
 <link rel="preload" as="image" href="images/Mantu.webp">
-<link rel="preload" as="image" href="images/Pacha_v1.png">
+<link rel="preload" as="image" href="images/Pacha_v1.webp">
 <link rel="preload" as="image" href="images/Rosh.webp">
 <link rel="preload" as="image" href="images/Chanaki.webp">
 <link rel="preload" as="image" href="images/Chicken_Karahi.webp">
 <link rel="preload" as="image" href="images/Lamm_Karahi.webp">
-<link rel="preload" as="image" href="images/Pizza_Margarita_v1.png">
-<link rel="preload" as="image" href="images/Pizza_mit_Spinat_v1.png">
-<link rel="preload" as="image" href="images/Pizza_mit_Salami_oder_Sucuk_v1.png">
-<link rel="preload" as="image" href="images/Pizza_mit_Tunfisch_v1.png">
-<link rel="preload" as="image" href="images/Pizza_mit_Gemuese_v1.png">
+<link rel="preload" as="image" href="images/Pizza_Margarita_v1.webp">
+<link rel="preload" as="image" href="images/Pizza_mit_Spinat_v1.webp">
+<link rel="preload" as="image" href="images/Pizza_mit_Salami_oder_Sucuk_v1.webp">
+<link rel="preload" as="image" href="images/Pizza_mit_Tunfisch_v1.webp">
+<link rel="preload" as="image" href="images/Pizza_mit_Gemuese_v1.webp">
 <style>
 @font-face{font-family:'Lora';font-style:normal;font-weight:600 700;font-display:swap;src:url('fonts/0QIvMX1D_JOuMwT7I-NP.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C0}
 @font-face{font-family:'Lora';font-style:normal;font-weight:600 700;font-display:swap;src:url('fonts/0QIvMX1D_JOuMwr7Iw.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+FEFF,U+FFFD}
@@ -243,7 +243,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
 </div>
 <div class="vignette"></div>
 <script>
-const v="?v="+"20261009b";
+const v="?v="+"20261009c";
 const SLIDES=[
   {
     title:"Traditionelle Gerichte",
@@ -300,9 +300,8 @@ SLIDES.forEach((sl,si)=>{
     const cards=sec.items.map(d=>{
       const k=idx++;
       const fdel=(-(k*.85+Math.random()*.3)).toFixed(1);
-      const eager=si===0;
       const pic=d.img
-        ?`<img src="images/${imgSrc(d.img)}${v}" alt=""${eager?' loading="eager" fetchpriority="high"':' loading="lazy"'} decoding="async">`
+        ?`<img src="images/${imgSrc(d.img)}${v}" alt="">`
         :`<span class="emo">${d.e||"🍽️"}</span>`;
       const nr=d.nr?`<span class="nr">${d.nr}</span>`:"";
       const imgsz=d.imgsz?`;--imgsz:${d.imgsz}`:"";
