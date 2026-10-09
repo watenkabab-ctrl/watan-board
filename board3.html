@@ -82,21 +82,18 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
 /* ── STAGE ── */
 .stage{flex:1;min-height:0;position:relative;margin:.25vh 0}
 .slide{position:absolute;inset:0;display:flex;flex-direction:column;gap:.48vh;
-  opacity:0;pointer-events:none;will-change:opacity,transform;
-  transform:scale(1) translateZ(0)}
+  opacity:0;pointer-events:none;will-change:opacity,transform,filter;
+  transform:scale(1.03) translateZ(0);filter:blur(10px)}
 .slide.on{opacity:1;pointer-events:auto;
-  animation:slide-in .75s cubic-bezier(.25,0,.2,1) both;
-  transform:scale(1) translateZ(0)}
+  animation:b3-in .95s cubic-bezier(.22,1,.36,1) both}
 .slide.leaving{opacity:0;pointer-events:none;
-  animation:slide-out .32s ease-out both}
-@keyframes slide-in{
-  from{opacity:0;transform:scale(.97) translateZ(0)}
-  to  {opacity:1;transform:scale(1)   translateZ(0)}
-}
-@keyframes slide-out{
-  from{opacity:1}
-  to  {opacity:0}
-}
+  animation:b3-out .55s cubic-bezier(.4,0,1,1) both}
+@keyframes b3-in{
+  from{opacity:0;transform:scale(1.04) translateZ(0);filter:blur(14px)}
+  to  {opacity:1;transform:scale(1)    translateZ(0);filter:blur(0px)}}
+@keyframes b3-out{
+  from{opacity:1;transform:scale(1)    translateZ(0);filter:blur(0px)}
+  to  {opacity:0;transform:scale(.97)  translateZ(0);filter:blur(8px)}}
 
 /* ── SECTION GROUP ── */
 .sl-group{flex:1;min-height:0;display:flex;flex-direction:column;gap:.16vh}
@@ -131,12 +128,14 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
   background:
     radial-gradient(ellipse 110% 40% at 50% 105%,rgba(8,2,0,.32) 0%,transparent 55%)}
 .item .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
-  object-position:center center;z-index:1;
-  filter:drop-shadow(0 4px 10px rgba(0,0,0,.62));
+  object-position:center bottom;z-index:1;
+  filter:drop-shadow(0 6px 16px rgba(0,0,0,.50)) drop-shadow(0 2px 5px rgba(0,0,0,.25)) brightness(1.20) saturate(1.10);
   animation:float 7s ease-in-out var(--fdel,0s) infinite;will-change:transform;
-  transform:translateZ(0)}
+  transform:translateZ(0) scale(var(--imgsz,1));
+  -webkit-backface-visibility:hidden;backface-visibility:hidden;
+  image-rendering:-webkit-optimize-contrast;image-rendering:high-quality}
 .slide:not(.on) .item .pic img{animation-play-state:paused}
-@keyframes float{0%,100%{transform:translateY(0) scale(var(--imgsz,1))}50%{transform:translateY(-.9vh) scale(calc(var(--imgsz,1) + .012))}}
+@keyframes float{0%,100%{transform:translateY(0) translateZ(0) scale(var(--imgsz,1))}50%{transform:translateY(-.9vh) translateZ(0) scale(var(--imgsz,1))}}
 .item .pic .emo{position:absolute;inset:0;display:grid;place-items:center;
   font-size:min(11vh,8vw);z-index:1}
 .item .pic .nr{position:absolute;top:.32vh;left:.28vw;z-index:3;

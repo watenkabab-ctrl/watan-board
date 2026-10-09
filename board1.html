@@ -404,9 +404,17 @@ document.documentElement.requestFullscreen().catch(()=>{});
   const vid=document.getElementById('firevid');
   if(!vid)return;
   vid.muted=true;vid.defaultMuted=true;
-  const tp=()=>{if(vid.isConnected)vid.play().catch(()=>{});};
+  vid.loop=true;
+  const tp=()=>{
+    if(!vid.isConnected)return;
+    vid.muted=true;
+    if(vid.paused||vid.ended)vid.play().catch(()=>{});
+  };
   vid.addEventListener('loadeddata',tp);vid.addEventListener('canplay',tp);tp();
-  ['click','keydown','touchstart','mousemove'].forEach(ev=>addEventListener(ev,tp,{once:true,passive:true}));
+  ['pause','ended','stalled','suspend','waiting','emptied'].forEach(ev=>vid.addEventListener(ev,function(){setTimeout(tp,100);}));
+  setInterval(tp,2000);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)tp();});
+  window.addEventListener('focus',tp);window.addEventListener('pageshow',tp);
 })();
 
 // ── Dauerbetrieb ──────────────────────────────────────────────────────
