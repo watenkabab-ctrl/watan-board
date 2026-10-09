@@ -2,198 +2,209 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="format-detection" content="telephone=no">
-<meta name="google" content="notranslate">
+<meta name="viewport" content="width=1920, initial-scale=1, viewport-fit=cover">
 <title>Watan Kabab · Vom Grill</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔥</text></svg>">
-<!-- Fonts lokal — kein Netzwerk-Request -->
-<link rel="preload" href="fonts/Lora_normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/Raleway.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="fonts/board-fonts.css">
-<!-- Bilder vorladen (WebP, ~90% kleiner als PNG) -->
-<link rel="preload" href="images/Chicken_Wings_Kebab_pr1.webp" as="image" type="image/webp">
-<link rel="preload" href="images/Chicken_Tikka_Kebab_pr1.webp" as="image" type="image/webp">
-<link rel="preload" href="images/Zershk_Palau_Haehnchen.webp" as="image" type="image/webp">
-<link rel="preload" href="images/Chapli_Kebab_pr1.webp" as="image" type="image/webp">
-<link rel="preload" href="images/Kobide_Kebab_pr1.webp" as="image" type="image/webp">
-<link rel="preload" href="images/Lamm_Tikka_Kebab.webp" as="image" type="image/webp">
-<link rel="preload" href="images/Lamm_Kotelett_pr1.webp" as="image" type="image/webp">
-<link rel="preload" href="images/Mix_Grill_1_Person_pr1.webp" as="image" type="image/webp">
-<link rel="preload" href="images/Mix_Grill_Grillplatte_pr1.webp" as="image" type="image/webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;0,700;1,400&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>/* Fallback bis Fonts geladen — verhindert Layout-Shift */
 .board-title,.item .nm,.item .pr,.sc-card-num,.sc-card-price{font-synthesis:none}</style>
 <style>
 :root{
   --g:#C8922A;--gl:#E8B84A;--gc:#FFE8A0;--cream:#EFE1C5;--mute:#7A6248;
-  --ease:cubic-bezier(.22,1,.36,1);--ease-up:cubic-bezier(.4,0,1,1);--dwell:13s;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;width:100%;overflow:hidden;background:#1a0b03}
+html,body{height:100%;width:100%;overflow:hidden;background:#3d1a06;overscroll-behavior:none}
 body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-  text-rendering:geometricPrecision}
+  text-rendering:geometricPrecision;image-rendering:-webkit-optimize-contrast}
 .ember,.ember2{will-change:opacity}
 
 /* ── BACKGROUND ── */
-.ytbg{position:fixed;top:0;left:0;right:0;bottom:0;z-index:1;overflow:hidden;background:#000}
-.ytbg video{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;object-fit:cover;
-  -webkit-filter:brightness(1.45) contrast(1.0) saturate(1.3) hue-rotate(-6deg);
-  filter:brightness(1.45) contrast(1.0) saturate(1.3) hue-rotate(-6deg);opacity:.72;
-  -webkit-mask-image:linear-gradient(to top,#000 0%,#000 65%,rgba(0,0,0,.75) 82%,transparent 96%);
-  mask-image:linear-gradient(to top,#000 0%,#000 65%,rgba(0,0,0,.75) 82%,transparent 96%)}
-.ytbg iframe{position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);
-  width:100vw;height:56.25vw;min-height:100vh;min-width:177.78vh;pointer-events:none;border:0}
-.shade{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2;pointer-events:none;
-  background:linear-gradient(180deg,rgba(20,6,1,.15) 0%,rgba(15,4,0,.08) 30%,transparent 55%)}
-.texture{position:fixed;top:0;left:0;right:0;bottom:0;z-index:3;pointer-events:none;opacity:.07;
+/* NO filter/mask on video or its wrapper — Tizen drops video if parent has filter */
+.ytbg{position:fixed;inset:0;z-index:1;overflow:hidden;background:#000}
+.ytbg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.72}
+/* colour-grading via overlay div — no filter needed on video */
+.ytbg-ov{position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(to top,rgba(200,80,0,.38) 0%,rgba(180,60,0,.12) 45%,transparent 72%),
+    radial-gradient(ellipse 110% 55% at 50% 100%,rgba(255,120,0,.22),transparent 60%);
+  mix-blend-mode:screen}
+.shade{position:fixed;inset:0;z-index:2;pointer-events:none;
+  background:none}
+.texture{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.07;
   background-image:url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")}
 /* fire glow layers */
-.ember{position:fixed;top:auto;left:0;right:0;bottom:-2%;height:60vh;z-index:4;pointer-events:none;
-  background:radial-gradient(ellipse 90% 100% at 50% 110%,rgba(255,120,0,.75),rgba(220,90,0,.38) 42%,rgba(180,40,0,.12) 64%,transparent 75%);
-  -webkit-animation:eb 4s ease-in-out infinite;animation:eb 4s ease-in-out infinite;will-change:opacity}
-@-webkit-keyframes eb{0%,100%{opacity:.88}50%{opacity:1}}
+.ember{position:fixed;inset:auto 0 -2% 0;height:60vh;z-index:4;pointer-events:none;
+  background:radial-gradient(ellipse 90% 100% at 50% 110%,rgba(255,140,0,.95),rgba(220,90,0,.55) 42%,rgba(180,40,0,.18) 64%,transparent 75%);
+  animation:eb 4s ease-in-out infinite;will-change:opacity}
 @keyframes eb{0%,100%{opacity:.88}50%{opacity:1}}
-.ember2{position:fixed;top:auto;left:0;right:0;bottom:-4%;height:45vh;z-index:4;pointer-events:none;
+.ember2{position:fixed;inset:auto 0 -4% 0;height:45vh;z-index:4;pointer-events:none;
   background:radial-gradient(ellipse 60% 80% at 50% 112%,rgba(255,165,0,.58),rgba(255,80,0,.26) 40%,transparent 62%);
-  -webkit-animation:eb2 3s ease-in-out infinite;animation:eb2 3s ease-in-out infinite;will-change:opacity}
-@-webkit-keyframes eb2{0%,100%{opacity:.75}50%{opacity:1}}
+  animation:eb2 3s ease-in-out infinite;will-change:opacity}
 @keyframes eb2{0%,100%{opacity:.75}50%{opacity:1}}
-.vignette{position:fixed;top:0;left:0;right:0;bottom:0;z-index:8;pointer-events:none;
-  box-shadow:inset 0 0 14vw 3vw rgba(0,0,0,.28)}
+.vignette{position:fixed;inset:0;z-index:8;pointer-events:none;
+  box-shadow:inset 0 0 14vw 3vw rgba(0,0,0,.30)}
+/* helle Seitenleuchten links & rechts */
+.side-glow{position:fixed;inset:0;z-index:3;pointer-events:none;
+  background:
+    radial-gradient(ellipse 28% 80% at 0% 50%, rgba(255,190,90,.45), transparent 70%),
+    radial-gradient(ellipse 28% 80% at 100% 50%, rgba(255,190,90,.45), transparent 70%)}
 
 /* ── FRAME ── */
-.frame{position:fixed;top:0;left:0;right:0;bottom:0;z-index:5;display:flex;flex-direction:column;padding:1.2vh 2.5vw 1vh}
+.frame{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;padding:1.2vh 2.5vw 1vh}
 
 /* ── HEADER ── */
 .head{text-align:center;flex-shrink:0;padding:.1vh 0 .05vh;
-  -webkit-transition:opacity .5s ease;transition:opacity .5s ease}
-.board-brand{font-size:.93vw;letter-spacing:.45em;text-transform:uppercase;
+  transition:opacity .5s ease,transform .5s ease}
+.board-brand{font-size:1.12vw;letter-spacing:.45em;text-transform:uppercase;
   color:rgba(225,175,55,.92);font-weight:600;margin-bottom:.05vh;
   font-family:"Raleway",system-ui,sans-serif}
 .board-title{position:relative;display:inline-block;
   font-family:"Lora",serif;font-weight:700;
-  font-size:4.75vw;line-height:1.0;letter-spacing:.04em;
-  background:linear-gradient(135deg,#E8B84A 0%,#FFE8A0 40%,#C8922A 65%,#E8B84A 100%);
+  font-size:4.70vw;line-height:1.0;letter-spacing:.04em;
+  background:linear-gradient(135deg,#E8B84A,#FFE8A0 45%,#C8922A);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  background-size:100% auto}
+  filter:drop-shadow(0 0 8px rgba(0,0,0,1)) drop-shadow(0 2px 6px rgba(0,0,0,1))}
 .board-title::before,.board-title::after{
-  content:"";position:absolute;bottom:-.5vh;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);
-  width:0;height:1px;background:linear-gradient(90deg,transparent,rgba(232,184,74,.6),rgba(255,232,160,.9),rgba(232,184,74,.6),transparent)}
-.board-title::after{bottom:-.9vh;opacity:.4}
-.board-title.anim::before{-webkit-animation:line-expand 1.2s cubic-bezier(.22,1,.36,1) .3s forwards;animation:line-expand 1.2s cubic-bezier(.22,1,.36,1) .3s forwards}
-.board-title.anim::after{-webkit-animation:line-expand 1.2s cubic-bezier(.22,1,.36,1) .5s forwards;animation:line-expand 1.2s cubic-bezier(.22,1,.36,1) .5s forwards}
-@-webkit-keyframes line-expand{to{width:110%}}
+  content:"";position:absolute;bottom:-.5vh;left:50%;transform:translateX(-50%);
+  height:1px;background:linear-gradient(90deg,transparent,rgba(232,184,74,.6),rgba(255,232,160,.9),rgba(232,184,74,.6),transparent);
+  animation:line-expand 1.2s cubic-bezier(.22,1,.36,1) forwards}
+.board-title::before{width:0;animation-delay:.3s}
+.board-title::after{width:0;bottom:-.9vh;opacity:.4;animation-delay:.5s}
 @keyframes line-expand{to{width:110%}}
 .frame.showcase-mode .head{opacity:0;pointer-events:none}
 
 /* ── STAGE ── */
-.stage{flex:1;min-height:0;position:relative;margin:.1vh 0}
-.slide{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;
-  opacity:0;pointer-events:none;will-change:opacity}
-.slide.on{opacity:1;pointer-events:auto;-webkit-transition:opacity .9s cubic-bezier(.22,1,.36,1);transition:opacity .9s cubic-bezier(.22,1,.36,1)}
-.slide.leaving{opacity:0;pointer-events:none;-webkit-transition:opacity .85s cubic-bezier(.4,0,1,1);transition:opacity .85s cubic-bezier(.4,0,1,1)}
+.stage{flex:1;min-height:0;position:relative;margin:.1vh 0;overflow:hidden}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;
+  opacity:0;pointer-events:none;will-change:opacity,transform;transform:scale(1.012) translateZ(0)}
+.slide.on{opacity:1;pointer-events:auto;
+  transition:opacity 1.1s cubic-bezier(.4,0,.2,1),transform 1.1s cubic-bezier(.4,0,.2,1);
+  transform:scale(1) translateZ(0)}
+.slide.leaving{opacity:0;pointer-events:none;
+  transition:opacity .8s cubic-bezier(.55,0,1,1),transform .8s cubic-bezier(.55,0,1,1);
+  transform:scale(.988) translateZ(0)}
 
 /* ── SLIDE HEADER ── */
 .sl-head{flex-shrink:0;margin-bottom:.15vh}
-.sl-head span{font-family:"Lora",serif;font-weight:700;font-size:1.5vw;
+.sl-head span{font-family:"Lora",serif;font-weight:700;font-size:2.60vw;
   color:var(--g);letter-spacing:.03em;display:block;
   text-shadow:0 0 2vw rgba(200,130,30,.3)}
 
 /* ── GRID ── */
-.grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;grid-gap:.8vh 1vw;gap:.8vh 1vw}
+.grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:.55vh .7vw}
 
 /* ── ITEM ── */
 .item{display:flex;flex-direction:column;min-width:0;min-height:0;padding:0;
-  background:rgba(20,8,0,.18);
-  border:1px solid rgba(255,200,100,.15);
-  border-radius:1.2vw;overflow:hidden;
-  box-shadow:0 4px 16px rgba(0,0,0,.25);
-  position:relative}
-.slide.on .item{-webkit-animation:enter var(--edur,1.1s) var(--een,cubic-bezier(.22,1,.36,1)) both;animation:enter var(--edur,1.1s) var(--een,cubic-bezier(.22,1,.36,1)) both;
-  -webkit-animation-delay:calc(var(--i,0)*var(--estag,.09s));animation-delay:calc(var(--i,0)*var(--estag,.09s))}
-@-webkit-keyframes enter{0%{opacity:0;-webkit-transform:translate(var(--fx,0px),var(--fy,0px))}100%{opacity:1;-webkit-transform:translate(0,0)}}
-@keyframes enter{0%{opacity:0;transform:translate(var(--fx,0px),var(--fy,0px))}100%{opacity:1;transform:translate(0,0)}}
-.slide.leaving .item{-webkit-animation:leave var(--ldur,.7s) ease-in both;animation:leave var(--ldur,.7s) ease-in both;
-  -webkit-animation-delay:0s;animation-delay:0s;will-change:opacity}
-@-webkit-keyframes leave{0%{opacity:1;-webkit-transform:scale(1)}100%{opacity:0;-webkit-transform:scale(.97)}}
-@keyframes leave{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.97)}}
+  background:rgba(100,50,8,.55);
+  border:1px solid rgba(255,220,120,.9);
+  border-radius:1vw;overflow:hidden;
+  box-shadow:0 2px 16px rgba(0,0,0,.3);
+  position:relative;contain:layout style paint}
+.slide.on .item{will-change:transform,opacity;
+  animation:var(--in-anim,rise-up) var(--in-dur,1.15s) var(--in-ease,cubic-bezier(.22,1,.36,1)) var(--in-delay,0ms) both}
+.slide.leaving .item{will-change:transform,opacity;
+  animation:var(--out-anim,drift-fade) var(--out-dur,.72s) var(--out-ease,cubic-bezier(.4,0,1,1)) var(--out-delay,0ms) both}
+
+/* ── ENTER ── */
+@keyframes rise-up   {from{opacity:0;transform:translateY(52vh) scale(.92)}   to{opacity:1;transform:none}}
+@keyframes drop-in   {from{opacity:0;transform:translateY(-52vh) scale(.92)}  to{opacity:1;transform:none}}
+@keyframes slide-in-r{from{opacity:0;transform:translateX(-50vw) scale(.96)}  to{opacity:1;transform:none}}
+@keyframes slide-in-l{from{opacity:0;transform:translateX( 50vw) scale(.96)}  to{opacity:1;transform:none}}
+@keyframes corner-bl {from{opacity:0;transform:translate(-50vw,50vh) scale(.90)}to{opacity:1;transform:none}}
+@keyframes corner-br {from{opacity:0;transform:translate( 50vw,50vh) scale(.90)}to{opacity:1;transform:none}}
+@keyframes bloom     {from{opacity:0;transform:scale(.78)}                    to{opacity:1;transform:none}}
+@keyframes fade-rise {from{opacity:0;transform:translateY(5vh) scale(.97)}    to{opacity:1;transform:none}}
+/* ── EXIT ── */
+@keyframes drift-up  {from{opacity:1;transform:none}to{opacity:0;transform:translateY(-38vh) scale(.93)}}
+@keyframes drift-down{from{opacity:1;transform:none}to{opacity:0;transform:translateY( 38vh) scale(.93)}}
+@keyframes drift-r   {from{opacity:1;transform:none}to{opacity:0;transform:translateX( 42vw)}}
+@keyframes drift-l   {from{opacity:1;transform:none}to{opacity:0;transform:translateX(-42vw)}}
+@keyframes shrink    {from{opacity:1;transform:none}to{opacity:0;transform:scale(.78)}}
+@keyframes drift-fade{from{opacity:1;transform:none}to{opacity:0;transform:translateY(3vh) scale(.97)}}
 
 /* ── IMAGE ── */
-.item .pic{flex:1 1 0;min-height:0;position:relative;overflow:hidden;
-  background-size:100%;background-position:center center;background-repeat:no-repeat}
-.item .pic img{display:none}
-.item .pic .emo{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font-size:11vh;z-index:1}
+.item .pic{flex:1;min-height:0;position:relative;overflow:hidden}
+.item .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center center;z-index:1;
+  transform:scale(1.0);transform-origin:center center;
+  image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges;filter:brightness(1.08)}
+.item .pic .emo{position:absolute;inset:0;display:grid;place-items:center;font-size:11vh;z-index:1}
+.item .pic .nr{position:absolute;top:.32vh;left:.28vw;z-index:3;
+  font-family:"Lora",serif;font-weight:700;font-size:2.05vw;line-height:1;
+  color:#EDD068;letter-spacing:.06em;
+  background:rgba(6,1,0,.88);padding:.26vh .52vw .22vh;
+  border-radius:.38vw;border:1px solid rgba(200,146,42,.55);
+  text-shadow:0 0 1vw rgba(220,160,40,.55);
+  box-shadow:0 1px 6px rgba(0,0,0,.65)}
+.slide.on .item .pic img{animation:float var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite;will-change:transform}
+.slide:not(.on) .item .pic img{animation-play-state:paused}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-1vh)}}
+.item.big-img .pic img{animation:float-big var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite}
+@keyframes float-big{0%,100%{transform:scale(1.38) translateY(0)}50%{transform:scale(1.38) translateY(-1vh)}}
+.item.small-img .pic img{animation:float-small var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite}
+@keyframes float-small{0%,100%{transform:scale(.92) translateY(0)}50%{transform:scale(.92) translateY(-1vh)}}
 
 /* ── TEXT PANEL ── */
-.item .info{flex:0 0 auto;padding:1.2vh 1.1vw 1.4vh;
-  background:linear-gradient(180deg,rgba(4,1,0,.0) 0%,rgba(4,1,0,.70) 28%,rgba(4,1,0,.80) 100%);
-  border-top:1px solid rgba(200,146,42,.3);
+.item .info{flex:0 0 auto;padding:.55vh .8vw .75vh;
+  background:linear-gradient(180deg,rgba(4,1,0,.0) 0%,rgba(4,1,0,.15) 18%,rgba(4,1,0,.28) 100%);
+  border-top:1px solid rgba(200,146,42,.22);
   position:relative}
-.item .info::before{content:"";position:absolute;top:0;left:1.1vw;right:1.1vw;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(232,184,74,.5),transparent)}
-.item .nm{font-family:"Lora",serif;font-weight:700;font-size:1.85vw;line-height:1.2;
-  color:#FFFAF0;letter-spacing:.02em;
+.item .info::before{content:"";position:absolute;top:0;left:.8vw;right:.8vw;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(232,184,74,.35),transparent)}
+.item .nm{font-family:"Lora",serif;font-weight:700;font-size:1.60vw;line-height:1.18;
+  color:#FFFAF0;letter-spacing:0;
   text-rendering:geometricPrecision;-webkit-font-smoothing:antialiased;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  text-shadow:0 1px 6px rgba(0,0,0,1)}
-.item .desc{font-family:"Raleway",sans-serif;font-size:1.0vw;color:#D4AF70;line-height:1.3;margin-top:.3vh;
-  letter-spacing:.07em;text-transform:uppercase;font-weight:600;
+  filter:drop-shadow(0 1px 6px rgba(0,0,0,1)) drop-shadow(0 0 12px rgba(0,0,0,.8))}
+.item .desc{font-family:"Raleway",sans-serif;font-size:1.04vw;color:#EDD8A8;line-height:1.25;margin-top:.1vh;
+  letter-spacing:.1em;text-transform:uppercase;font-weight:600;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  text-shadow:0 1px 3px rgba(0,0,0,.9)}
-.item .bot{display:flex;align-items:center;justify-content:space-between;margin-top:.5vh;gap:.5vw}
-.item .pr{font-family:"Lora",serif;font-weight:900;font-size:2.35vw;line-height:1.1;overflow:visible;
+  filter:drop-shadow(0 1px 3px rgba(0,0,0,.9))}
+.item .bot{display:flex;align-items:baseline;justify-content:space-between;margin-top:.15vh;gap:.5vw}
+.item .pr{font-family:"Lora",serif;font-weight:900;font-size:3.20vw;line-height:1;overflow:visible;
   background:linear-gradient(135deg,#C8922A 0%,#FFE8A0 50%,#C8922A 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   text-rendering:geometricPrecision}
-.item .pr .cur{font-size:.6em;font-weight:600;vertical-align:.15em;margin-left:.05em;
-  -webkit-text-fill-color:rgba(200,146,42,.9)}
-.item .badge{font-size:.95vw;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
-  color:rgba(200,146,42,.8);white-space:nowrap}
+.item .pr .cur{font-size:.48em;font-weight:600;vertical-align:.2em;margin-left:.04em;
+  -webkit-text-fill-color:rgba(200,146,42,.8)}
+.item .badge{font-size:.82vw;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+  color:rgba(200,146,42,.75);white-space:nowrap}
 
 /* ── SLIDE 2 CINEMATIC SHOWCASE ── */
-.showcase{flex:1;min-height:0;position:relative;overflow:hidden}
-/* plate — füllt gesamte Fläche, schräge Float-Animation */
-.sc-img{position:absolute;top:0;left:0;right:0;bottom:0;z-index:10;
-  display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center}
-.sc-img::before{content:"";display:none}
-.sc-img img{width:77%;max-height:52vh;-webkit-object-fit:contain;object-fit:contain;position:relative;z-index:1;
-  margin-bottom:24vh;will-change:transform;-webkit-backface-visibility:hidden;backface-visibility:hidden}
-.slide.on .sc-img img{-webkit-animation:sc-float 9s ease-in-out infinite;animation:sc-float 9s ease-in-out infinite}
-@-webkit-keyframes sc-float{
-  0%{-webkit-transform:translate3d(0,0,0) rotate(-7deg) scale(1)}
-  30%{-webkit-transform:translate3d(-12px,0,0) rotate(-4deg) scale(1.022)}
-  65%{-webkit-transform:translate3d(10px,0,0) rotate(-1deg) scale(0.984)}
-  100%{-webkit-transform:translate3d(0,0,0) rotate(-7deg) scale(1)}}
+.showcase{flex:1;min-height:0;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:0;gap:0;overflow:visible}
+/* full-bleed warm glow backdrop */
+/* plate */
+.sc-img{flex:0 0 auto;width:100%;max-height:52vh;position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:center;margin-top:.8vh}
+.sc-img img{max-width:100%;max-height:52vh;object-fit:contain;position:relative;z-index:1;
+  will-change:transform;
+  animation:sc-enter 1.3s cubic-bezier(.22,1,.36,1) both, sc-float 12s ease-in-out 1.4s infinite}
+@keyframes sc-enter{0%{opacity:0;transform:scale(.88) rotate(0deg) translateY(2vh)}100%{opacity:1;transform:rotate(-5deg) scale(1.08) translateY(0)}}
 @keyframes sc-float{
-  0%{transform:translate3d(0,0,0) rotate(-7deg) scale(1)}
-  30%{transform:translate3d(-12px,0,0) rotate(-4deg) scale(1.022)}
-  65%{transform:translate3d(10px,0,0) rotate(-1deg) scale(0.984)}
-  100%{transform:translate3d(0,0,0) rotate(-7deg) scale(1)}}
-/* info-overlay am unteren Rand */
-.sc-info{position:absolute;bottom:0;left:0;right:0;z-index:5;
-  display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-align-items:center;align-items:center;
-  padding:3vh 4vw 2.5vh;
-  background:linear-gradient(to bottom,transparent,rgba(8,2,0,.92) 38%)}
-.sc-row{position:relative;z-index:3;display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:0;margin-top:1vh;width:72%;
-  opacity:0;-webkit-animation:fade-up .85s ease .4s forwards;animation:fade-up .85s ease .4s forwards}
-@-webkit-keyframes fade-up{from{opacity:0;-webkit-transform:translateY(10px)}to{opacity:1;-webkit-transform:translateY(0)}}
-@keyframes fade-up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@-webkit-keyframes row-rise{from{opacity:0;-webkit-transform:translateY(16px)}to{opacity:1;-webkit-transform:translateY(0)}}
-@keyframes row-rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  0%  {transform:rotate(-5deg) scale(1.08)   translateY(0)}
+  25% {transform:rotate(-2deg) scale(1.088)  translateY(-1.1vh)}
+  50% {transform:rotate( 5deg) scale(1.09)   translateY(-1.6vh)}
+  75% {transform:rotate( 2deg) scale(1.088)  translateY(-1.1vh)}
+  100%{transform:rotate(-5deg) scale(1.08)   translateY(0)}
+}
+/* bottom options */
+.sc-info{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;width:100%;margin-top:.3vh}
+.sc-row{position:relative;z-index:3;display:flex;flex-direction:column;gap:0;margin-top:.4vh;width:78%;
+  opacity:0;animation:fade-up .85s cubic-bezier(.22,1,.36,1) .4s forwards}
+@keyframes fade-up{from{opacity:0;transform:translateY(2vh)}to{opacity:1;transform:none}}
 .sc-card{display:flex;align-items:center;justify-content:space-between;
-  padding:.38vh 0;border-bottom:1px solid rgba(200,146,42,.15)}
+  padding:.4vh 0;border-bottom:1px solid rgba(200,146,42,.15)}
 .sc-card:first-child{border-top:1px solid rgba(200,146,42,.15)}
 .sc-card-left{display:flex;align-items:baseline;gap:1vw}
-.sc-card-num{font-family:"Lora",serif;font-weight:900;font-size:4.5vw;color:#FFF8EC;text-rendering:geometricPrecision;
-  text-shadow:0 2px 8px rgba(0,0,0,1),0 0 20px rgba(0,0,0,.8)}
-.sc-card-tag{font-family:"Raleway",sans-serif;font-size:1.4vw;letter-spacing:.28em;text-transform:uppercase;color:#E8B84A;font-weight:700;text-rendering:geometricPrecision;
-  text-shadow:0 1px 4px rgba(0,0,0,.9)}
-.sc-card-price{font-family:"Lora",serif;font-weight:900;font-size:3.0vw;color:var(--gl);text-rendering:geometricPrecision;
-  text-shadow:0 2px 8px rgba(0,0,0,1),0 0 20px rgba(0,0,0,.8)}
+.sc-card-num{font-family:"Lora",serif;font-weight:900;font-size:4.4vw;color:#FFF8EC;text-rendering:geometricPrecision;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,1)) drop-shadow(0 0 12px rgba(0,0,0,.9))}
+.sc-card-tag{font-family:"Raleway",sans-serif;font-size:1.68vw;letter-spacing:.28em;text-transform:uppercase;color:#E8B84A;font-weight:700;text-rendering:geometricPrecision;
+  filter:drop-shadow(0 1px 2px rgba(0,0,0,.95))}
+.sc-card-price{font-family:"Lora",serif;font-weight:900;font-size:3.8vw;color:var(--gl);text-rendering:geometricPrecision;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,1)) drop-shadow(0 0 12px rgba(0,0,0,.9))}
 .sc-card-price .cur{font-size:.46em;vertical-align:.22em;margin-left:.05em;opacity:.85}
-.sc-dot{display:none}
-
 /* ── PROGRESS RAIL ── */
 .rail{display:none}
 .seg{width:6.5vw;height:.5vh;min-height:4px;background:rgba(200,146,42,.18);border-radius:4px;overflow:hidden;
@@ -216,6 +227,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
     <source src="video/fire4k.mp4" type="video/mp4">
     <source src="video/fire.mp4" type="video/mp4">
   </video>
+  <div class="ytbg-ov"></div>
 </div>
 <div class="shade"></div>
 <div class="texture"></div>
@@ -229,18 +241,19 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   <main class="stage" id="stage"></main>
   <footer class="rail" id="rail"></footer>
 </div>
+<div class="side-glow"></div>
 <div class="vignette"></div>
 <script>
 const SLIDES=[
-  {title:"Grill Gerichte",star:"✦",ms:30000,items:[
-    {n:"Chicken Wings Kebab",p:"12",d:"Marinierte Flügel · Knoblauch-Joghurt",img:"Chicken_Wings_Kebab_pr1.webp"},
-    {n:"Chicken Tikka Kebab",p:"12,50",d:"Tandoor · Basmati-Reis · Beilagen",img:"Chicken_Tikka_Kebab_pr1.webp"},
-    {n:"Zershk Palau · Hähnchen",p:"13,50",d:"Berberitzenreis · Safran · Hähnchen",img:"Zershk_Palau_Haehnchen.webp"},
-    {n:"Chapli Kebab",p:"8",d:"Gehacktes Lamm · Kräuter · Fladenbrot",img:"Chapli_Kebab_pr1.webp"},
-    {n:"Kobide Kebab",p:"15",d:"Rindshackfleisch · Gewürze · Basmati-Reis",img:"Kobide_Kebab_pr1.webp",noscale:true},
-    {n:"Lamm Tikka Kebab",p:"18",d:"Zartes Lammfleisch · Tandoor · Beilagen",img:"Lamm_Tikka_Kebab.webp"},
-    {n:"Lamm Kotelett",p:"19,50",d:"Gegrillte Lammkoteletts · Beilagen",img:"Lamm_Kotelett_pr1.webp"},
-    {n:"Mix Grill · 1 Person",p:"20",d:"Wings · Chapli · Tikka · Koteletts",img:"Mix_Grill_1_Person_pr1.webp",hero:true},
+  {title:"Grill Gerichte",ms:30000,items:[
+    {n:"Chicken Wings Kebab",nr:"15",p:"12",d:"Marinierte Flügel · Knoblauch-Joghurt",img:"Chicken_Wings_Kebab_pr1.webp"},
+    {n:"Chicken Tikka Kebab",nr:"16",p:"12,50",d:"Tandoor · Basmati-Reis · Beilagen",img:"Chicken_Tikka_Kebab_pr1.webp"},
+    {n:"Zershk Palau · Hähnchen",nr:"17",p:"13,50",d:"Berberitzenreis · Safran · Hähnchen",img:"Zershk_Palau_Haehnchen.webp",bigimg:true},
+    {n:"Chapli Kebab",nr:"18",p:"8",d:"Gehacktes Lamm · Kräuter · Fladenbrot",img:"Chapli_Kebab_pr1.webp"},
+    {n:"Kobide Kebab",nr:"19",p:"15",d:"Rindshackfleisch · Gewürze · Basmati-Reis",img:"Kobide_Kebab_pr1.webp",smallimg:true},
+    {n:"Lamm Tikka Kebab",nr:"20",p:"18",d:"Zartes Lammfleisch · Tandoor · Beilagen",img:"Lamm_Tikka_Kebab.webp"},
+    {n:"Lamm Kotelett",nr:"21",p:"19,50",d:"Gegrillte Lammkoteletts · Beilagen",img:"Lamm_Kotelett_pr1.webp"},
+    {n:"Mix Grill · 1 Person",nr:"62",p:"20",d:"Wings · Chapli · Tikka · Koteletts",img:"Mix_Grill_1_Person_pr1.webp"},
   ]},
   {title:"Mix Grill",ms:7000,showcase:{
     n:"Mix Grill",
@@ -253,11 +266,14 @@ const SLIDES=[
     ]
   }},
 ];
+// WebP-Unterstützung testen — ältere Samsung TVs (Tizen <5) kennen kein WebP
+const WEBP=(()=>{try{const c=document.createElement('canvas');return c.toDataURL('image/webp').startsWith('data:image/webp');}catch(e){return false;}})();
+const imgF=f=>WEBP?f:f.replace(/\.webp$/i,'.png');
 const stage=document.getElementById('stage'),rail=document.getElementById('rail');
 SLIDES.forEach(sl=>{
   let inner="";
   if(sl.showcase){
-    const sc=sl.showcase;
+    const sc=sl.showcase,v="?v=20261009a";
     const pills=sc.opts.map(o=>`
       <div class="sc-card">
         <div class="sc-card-left">
@@ -267,87 +283,107 @@ SLIDES.forEach(sl=>{
         <div class="sc-card-price">${o.p}<span class="cur">€</span></div>
       </div>`).join("");
     inner=`<div class="showcase">
-      <div class="sc-img"><img src="images/${sc.img}" alt="" decoding="async" loading="eager"></div>
+      <div class="sc-img"><img src="images/${imgF(sc.img)}${v}" alt=""></div>
       <div class="sc-info">
-        <div class="sc-title" style="text-align:center;-webkit-animation:row-rise .8s cubic-bezier(.22,1,.36,1) both;animation:row-rise .8s cubic-bezier(.22,1,.36,1) both;-webkit-animation-delay:.3s;animation-delay:.3s">
-          <div style="font-family:'Lora',serif;font-weight:700;font-size:6.24vw;letter-spacing:.04em;background:linear-gradient(135deg,#E8B84A,#FFE8A0 45%,#C8922A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">${sc.n}</div>
-          <div style="font-family:'Raleway',sans-serif;font-size:1.02vw;letter-spacing:.38em;text-transform:uppercase;color:rgba(220,170,60,.9);margin-top:.3vh;font-weight:600;text-shadow:0 0 8px rgba(0,0,0,1),0 1px 4px rgba(0,0,0,1)">${sc.sub}</div>
+        <div class="sc-title" style="text-align:center;animation:fade-up .9s cubic-bezier(.22,1,.36,1) .55s both">
+          <div style="font-family:'Lora',serif;font-weight:700;font-size:5.6vw;letter-spacing:.04em;background:linear-gradient(135deg,#E8B84A,#FFE8A0 45%,#C8922A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 8px rgba(0,0,0,1)) drop-shadow(0 2px 6px rgba(0,0,0,1))">${sc.n}</div>
+          <div style="font-family:'Raleway',sans-serif;font-size:1.55vw;letter-spacing:.28em;text-transform:uppercase;color:rgba(220,170,60,.9);margin-top:.2vh;font-weight:600;text-shadow:0 0 8px rgba(0,0,0,1),0 1px 4px rgba(0,0,0,1)">${sc.sub}</div>
         </div>
         <div class="sc-row">${pills}</div>
       </div>
     </div>`;
   } else {
     inner=`<div class="grid">${sl.items.map((d,idx)=>{
+      const v="?v=20261009a";
       const badge=d.badge?`<div class="badge">${d.badge}</div>`:"";
-      const bgStyle=d.img?` style="background-image:url('images/${d.img}')"`:""
-      const emo=!d.img?`<span class="emo">${d.emo||"🍢"}</span>`:"";
+      const pic=d.img?`<img src="images/${imgF(d.img)}${v}" alt="">`:
+        `<span class="emo">${d.emo||"🍢"}</span>`;
+      const nr=d.nr?`<span class="nr">${d.nr}</span>`:"";
+      const fdur=(6.2+(idx%4)*.65).toFixed(1),fdel=(-(idx*.9+Math.random()*.4)).toFixed(1);
       const desc=d.d?`<div class="desc">${d.d}</div>`:"";
-      return `<div class="item${d.noscale?" no-upscale":""}" style="--i:${idx}"${d.hero?" data-hero":""}><div class="pic${d.bigimg?" bigimg":""}"${bgStyle}>${emo}</div><div class="info"><div class="nm">${d.n}</div>${desc}<div class="bot"><div class="pr">${d.p}<span class="cur">€</span></div>${badge}</div></div></div>`;
+      return `<div class="item${d.bigimg?" big-img":""}${d.smallimg?" small-img":""}" style="--fdur:${fdur}s;--fdel:${fdel}s"><div class="pic">${pic}${nr}</div><div class="info"><div class="nm">${d.n}</div>${desc}<div class="bot"><div class="pr">${d.p}<span class="cur">€</span></div>${badge}</div></div></div>`;
     }).join("")}</div>`;
   }
   stage.insertAdjacentHTML('beforeend',`<section class="slide">${inner}</section>`);
   rail.insertAdjacentHTML('beforeend','<div class="seg"><span class="fill"></span></div>');
 });
 const slides=[...stage.children],segs=[...rail.children];let i=0,leaveT=0;
-const rnd=(a,b)=>a+Math.random()*(b-a);
-const EAS=['cubic-bezier(.22,1,.36,1)','cubic-bezier(.16,1,.3,1)','cubic-bezier(.34,1.56,.64,1)','cubic-bezier(.5,0,.1,1)'];
-function applyEntrance(sl){
-  var een=EAS[0|rnd(0,EAS.length)];
-  var edur=rnd(1.0,1.4).toFixed(2)+'s';
-  var estag=rnd(.06,.11).toFixed(3)+'s';
-  sl.style.setProperty('--een',een);
-  sl.style.setProperty('--edur',edur);
-  sl.style.setProperty('--estag',estag);
-  var items=sl.querySelectorAll('.item');
-  if(!items.length)return;
-  var mode=0|(Math.random()*4);
-  var dirs=[[-3,0],[3,0],[-3,0],[3,0],[-2.5,0],[2.5,0],[-3,0],[3,0]];// scatter directions
-  items.forEach(function(el,k){
-    var fx='0px',fy='0px';
-    if(mode===0){// pure opacity
-    } else if(mode===1){// wave from left
-      fx=(-2.5-k*0.3).toFixed(1)+'vw';
-    } else if(mode===2){// wave from right
-      fx=(2.5+k*0.3).toFixed(1)+'vw';
-    } else {// scatter: alternating left/right per item
-      fx=dirs[k%dirs.length][0]+'vw';
-    }
-    el.style.setProperty('--fx',fx);
-    el.style.setProperty('--fy',fy);
+const frame=document.querySelector('.frame'),boardTitle=document.getElementById('boardTitle');
+
+// stagger-modes: seq, rev, col, row, center, wave, spiral
+const EI='cubic-bezier(.22,1,.36,1)',EO='cubic-bezier(.55,0,1,1)',EIS='cubic-bezier(.16,1,.3,1)';
+const ANIM_SETS=[
+  {in:'rise-up',   out:'drift-up',   stag:'seq',    dur:[1.22,.70], ease:[EI, EO]},
+  {in:'drop-in',   out:'drift-down', stag:'rev',    dur:[1.20,.70], ease:[EI, EO]},
+  {in:'slide-in-r',out:'drift-l',    stag:'col',    dur:[1.18,.68], ease:[EIS,EO]},
+  {in:'slide-in-l',out:'drift-r',    stag:'row',    dur:[1.18,.68], ease:[EIS,EO]},
+  {in:'corner-bl', out:'drift-r',    stag:'wave',   dur:[1.25,.72], ease:[EI, EO]},
+  {in:'corner-br', out:'drift-l',    stag:'wave',   dur:[1.25,.72], ease:[EI, EO]},
+  {in:'bloom',     out:'shrink',     stag:'center', dur:[1.28,.72], ease:[EI, EO]},
+  {in:'fade-rise', out:'drift-fade', stag:'spiral', dur:[1.32,.70], ease:[EI, EO]},
+  {in:'rise-up',   out:'drift-l',    stag:'wave',   dur:[1.20,.68], ease:[EI, EO]},
+  {in:'slide-in-r',out:'drift-up',   stag:'spiral', dur:[1.22,.70], ease:[EIS,EO]},
+];
+let lastSet=-1;
+function pickSet(){let s;do{s=0|Math.random()*ANIM_SETS.length;}while(s===lastSet);lastSet=s;return ANIM_SETS[s];}
+function staggerDelay(idx,mode,total){
+  const cols=4,rows=Math.ceil(total/cols),col=idx%cols,row=0|idx/cols;
+  const cx=cols/2-.5,cy=rows/2-.5,dist=Math.hypot(col-cx,row-cy);
+  if(mode==='seq')    return idx*62;
+  if(mode==='rev')    return (total-1-idx)*55;
+  if(mode==='col')    return col*100+(row*32);
+  if(mode==='row')    return row*122+(col*26);
+  if(mode==='center') return dist*92;
+  if(mode==='wave')   return (col+row)*70;
+  if(mode==='spiral') {
+    const angle=Math.atan2(row-cy,col-cx);
+    return (dist*78 + ((angle+Math.PI)/(2*Math.PI))*155)|0;
+  }
+  return idx*62;
+}
+function applyAnim(sl,set,phase){
+  const items=sl.querySelectorAll('.item');
+  const anim=phase==='in'?set.in:set.out;
+  const dur=phase==='in'?set.dur[0]:set.dur[1];
+  const ease=phase==='in'?set.ease[0]:set.ease[1];
+  items.forEach((el,idx)=>{
+    const delay=staggerDelay(idx,set.stag,items.length);
+    el.style.setProperty('--in-anim',set.in);
+    el.style.setProperty('--out-anim',set.out);
+    el.style.setProperty('--in-dur',set.dur[0]+'s');
+    el.style.setProperty('--out-dur',set.dur[1]+'s');
+    el.style.setProperty('--in-ease',set.ease[0]);
+    el.style.setProperty('--out-ease',set.ease[1]);
+    el.style.setProperty(phase==='in'?'--in-delay':'--out-delay', delay+'ms');
   });
 }
-function applyExit(sl){
-  sl.style.setProperty('--ldur',rnd(.55,.75).toFixed(2)+'s');
-}
-function setVideos(sl,play){sl.querySelectorAll('video').forEach(v=>{try{play?v.play().catch(()=>{}):v.pause();}catch(e){}});}
-const frame=document.querySelector('.frame'),boardTitle=document.getElementById('boardTitle');
+
 function show(n){
   const next=(n+slides.length)%slides.length;
   const sl=SLIDES[next];
+  const set=pickSet();
   slides.forEach((s,k)=>{
-    if(k===next){s.classList.remove('leaving');applyEntrance(s);s.classList.add('on');setVideos(s,true);}
-    else if(k===i&&k!==next){s.classList.remove('on');applyExit(s);s.classList.add('leaving');setVideos(s,false);}
-    else{s.classList.remove('on','leaving');setVideos(s,false);}
+    if(k===next){
+      applyAnim(s,set,'in');
+      const els=[...s.querySelectorAll('.item')];
+      els.forEach(el=>el.style.animation='none');
+      void s.offsetWidth;
+      els.forEach(el=>el.style.animation='');
+      s.classList.remove('leaving');s.classList.add('on');
+    } else if(k===i&&k!==next){
+      applyAnim(s,set,'out');
+      s.classList.remove('on');s.classList.add('leaving');
+    } else {
+      s.classList.remove('on','leaving');
+    }
   });
-  // Update header title + hide header on showcase slide
   if(sl.showcase){
-    var scNode=slides[next];
-    var scTitle=scNode.querySelector('.sc-title');
-    var scRow=scNode.querySelector('.sc-row');
-    if(scTitle){scTitle.style.webkitAnimation='none';scTitle.style.animation='none';}
-    if(scRow){scRow.style.webkitAnimation='none';scRow.style.animation='none';}
-    requestAnimationFrame(function(){requestAnimationFrame(function(){
-      if(scTitle){scTitle.style.webkitAnimation='row-rise .8s cubic-bezier(.22,1,.36,1) .3s both';scTitle.style.animation='row-rise .8s cubic-bezier(.22,1,.36,1) .3s both';}
-      if(scRow){scRow.style.webkitAnimation='fade-up .85s ease .4s forwards';scRow.style.animation='fade-up .85s ease .4s forwards';}
-    });});
     frame.classList.add('showcase-mode');
   } else {
-    boardTitle.textContent=sl.title||'Grill Gerichte';
-    boardTitle.classList.remove('anim');
     frame.classList.remove('showcase-mode');
-    requestAnimationFrame(function(){requestAnimationFrame(function(){boardTitle.classList.add('anim');});});
+    boardTitle.textContent=sl.title||'Grill Gerichte';
   }
-  clearTimeout(leaveT);leaveT=setTimeout(()=>slides.forEach(s=>{if(!s.classList.contains('on'))s.classList.remove('leaving');}),1400);
+  clearTimeout(leaveT);leaveT=setTimeout(()=>slides.forEach(s=>{if(!s.classList.contains('on'))s.classList.remove('leaving');}),950);
   segs.forEach((s,k)=>{s.classList.remove('on','done');if(k<next)s.classList.add('done');});
   const ms=SLIDES[next].ms||13000;
   const fill=segs[next].querySelector('.fill');
@@ -364,42 +400,87 @@ function scheduleNext(){
 requestAnimationFrame(()=>requestAnimationFrame(()=>{ show(0); scheduleNext(); }));
 function jump(n){clearTimeout(timer);show(n);scheduleNext();}
 addEventListener('click',()=>jump(i+1));
-addEventListener('keydown',e=>{if(e.key==='ArrowRight')jump(i+1);if(e.key==='ArrowLeft')jump(i-1);if(e.key.toLowerCase()==='f'){const el=document.documentElement;if(document.fullscreenElement||document.webkitFullscreenElement){if(document.exitFullscreen)document.exitFullscreen();else if(document.webkitExitFullscreen)document.webkitExitFullscreen();}else{if(el.requestFullscreen)el.requestFullscreen();else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen();}}});
-// auto fullscreen — sofort beim Laden + bei erster Interaktion
-(function(){
-  function fs(){var el=document.documentElement;
-    if(!document.fullscreenElement&&!document.webkitFullscreenElement){
-      if(el.requestFullscreen)el.requestFullscreen().catch(function(){});
-      else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen();
-    }
-  }
-  // sofort versuchen (funktioniert auf Samsung Tizen ohne Interaktion)
-  fs();
-  // Fallback: bei erster Interaktion
-  ['click','touchstart','keydown','keyup'].forEach(function(e){addEventListener(e,fs,{once:true,passive:true});});
-})();
+addEventListener('keydown',e=>{if(e.key==='ArrowRight')jump(i+1);if(e.key==='ArrowLeft')jump(i-1);if(e.key.toLowerCase()==='f'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}});
+// auto fullscreen on first interaction (TV kiosk mode)
+(function(){const fs=()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen().catch(()=>{});};['click','touchstart','keydown'].forEach(e=>addEventListener(e,fs,{once:true,passive:true}));})();
+// sofort Vollbild versuchen (Samsung TV startet oft direkt damit)
+document.documentElement.requestFullscreen().catch(()=>{});
+
 (function(){
   const vid=document.getElementById('firevid');
   if(!vid)return;
-  vid.muted=true;vid.defaultMuted=true;
-  vid.loop=true;
-  const tp=()=>{
+  vid.muted=true;vid.defaultMuted=true;vid.loop=true;
+
+  function revive(){
     if(!vid.isConnected)return;
     vid.muted=true;
-    if(vid.paused||vid.ended)vid.play().catch(()=>{});
-  };
+    if(vid.paused||vid.ended||vid.readyState<2){
+      vid.play().catch(()=>{
+        // hard reset: reload src and try again
+        try{vid.load();vid.play().catch(()=>{});}catch(e){}
+      });
+    }
+  }
+
   // start as soon as data is ready
-  vid.addEventListener('loadeddata',tp);
-  vid.addEventListener('canplay',tp);
-  tp();
-  // restart on any stop/stall event
-  ['pause','ended','stalled','suspend','waiting','emptied'].forEach(ev=>vid.addEventListener(ev,function(){setTimeout(tp,100);}));
-  // watchdog every 2s — catches anything Tizen silently pauses
-  setInterval(tp,2000);
-  // restart when tab/app comes back into view
-  document.addEventListener('visibilitychange',function(){if(!document.hidden)tp();});
-  window.addEventListener('focus',tp);
-  window.addEventListener('pageshow',tp);
+  vid.addEventListener('loadeddata',revive);
+  vid.addEventListener('canplay',revive);
+  revive();
+
+  // restart immediately on any stop/stall/suspend
+  ['pause','ended','stalled','suspend','waiting','emptied','error'].forEach(ev=>
+    vid.addEventListener(ev,function(){setTimeout(revive,80);}));
+
+  // watchdog: check currentTime is actually advancing (frozen video has paused=false)
+  let lastTime=-1,frozenCount=0;
+  setInterval(function(){
+    revive(); // always nudge
+    if(!vid.paused){
+      if(vid.currentTime===lastTime){
+        frozenCount++;
+        if(frozenCount>=2){frozenCount=0;try{vid.load();vid.play().catch(()=>{});}catch(e){}}
+      } else {frozenCount=0;}
+    }
+    lastTime=vid.currentTime;
+  },1500);
+
+  // restart when TV wakes from sleep / comes back into view
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)revive();});
+  window.addEventListener('focus',revive);
+  window.addEventListener('pageshow',revive);
+})();
+
+// ── Dauerbetrieb ──────────────────────────────────────────────────────
+// 1. Screen Wake Lock — verhindert TV-Standby/Screensaver
+(function keepAwake(){
+  if(!navigator.wakeLock)return;
+  const req=()=>navigator.wakeLock.request('screen').catch(()=>{});
+  req();
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')req();});
+})();
+
+// 2. Nach TV-Sleep wieder aufwachen — Video + Slides neu starten
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState!=='visible')return;
+  const vid=document.getElementById('firevid');
+  if(vid&&vid.paused)vid.play().catch(()=>{});
+  clearTimeout(timer);show(i);scheduleNext();
+});
+
+// 3. Watchdog — alle 35s prüfen ob Slides noch wechseln; falls nicht → neu starten
+(function(){
+  let last=i;
+  setInterval(()=>{
+    if(document.visibilityState!=='visible')return;
+    if(last===i){clearTimeout(timer);show(i+1);scheduleNext();}
+    last=i;
+  },35000);
+})();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw1.js').catch(()=>{});}
+// Auto-update: alle 3 Min prüfen ob neue Version deployed wurde
+(function(){
+  async function chk(){try{const r=await fetch(location.href,{cache:'no-store'});const t=await r.text();const h=t.length+'-'+t.slice(800,1200);if(!chk._h){chk._h=h;return;}if(chk._h!==h)location.reload(true);}catch(e){}}
+  chk();setInterval(chk,180000);
 })();
 </script>
 </body>
