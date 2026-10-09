@@ -43,43 +43,51 @@
   --ease:cubic-bezier(.22,1,.36,1);--ease-up:cubic-bezier(.4,0,1,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%;width:100%;overflow:hidden;background:#3a1a06}
-body{font-family:"Raleway",system-ui,sans-serif;color:#FFF5E0;cursor:none;
+html,body{height:100%;width:100%;overflow:hidden;background:#1a0b03}
+body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   text-rendering:geometricPrecision}
 
-/* ── BACKGROUND ── */
-.bg{position:fixed;inset:0;z-index:0;
-  background:
-    radial-gradient(ellipse 90% 60% at 50% 108%,rgba(255,170,20,.90),rgba(230,100,0,.55) 38%,rgba(170,50,0,.22) 58%,transparent 70%),
-    radial-gradient(ellipse 100% 60% at 20% 95%,rgba(255,130,0,.32),transparent 52%),
-    radial-gradient(ellipse 100% 60% at 80% 95%,rgba(255,130,0,.32),transparent 52%),
-    radial-gradient(ellipse 140% 100% at 50% 46%,#3a1a06 0%,#220f03 50%,#0e0502 100%)}
-.texture{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.04;
-  background-image:url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* ── BACKGROUND — identisch mit board1 ── */
+.texture{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")}
+.ember{position:fixed;inset:auto 0 -2% 0;height:60vh;z-index:4;pointer-events:none;
+  background:radial-gradient(ellipse 90% 100% at 50% 110%,rgba(255,140,0,.95),rgba(220,90,0,.55) 42%,rgba(180,40,0,.18) 64%,transparent 75%);
+  animation:eb 4s ease-in-out infinite;will-change:opacity}
+@keyframes eb{0%,100%{opacity:.88}50%{opacity:1}}
+.ember2{position:fixed;inset:auto 0 -4% 0;height:45vh;z-index:4;pointer-events:none;
+  background:radial-gradient(ellipse 60% 80% at 50% 112%,rgba(255,165,0,.58),rgba(255,80,0,.26) 40%,transparent 62%);
+  animation:eb2 3s ease-in-out infinite;will-change:opacity}
+@keyframes eb2{0%,100%{opacity:.75}50%{opacity:1}}
 .vignette{position:fixed;inset:0;z-index:8;pointer-events:none;
-  box-shadow:inset 0 0 6vw 1vw rgba(0,0,0,.12)}
+  box-shadow:inset 0 0 14vw 3vw rgba(0,0,0,.30)}
+.side-glow{position:fixed;inset:0;z-index:3;pointer-events:none;
+  background:
+    radial-gradient(ellipse 28% 80% at 0% 50%,rgba(255,190,90,.45),transparent 70%),
+    radial-gradient(ellipse 28% 80% at 100% 50%,rgba(255,190,90,.45),transparent 70%)}
 
 /* ── FRAME ── */
-.frame{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;padding:.95vh 2.0vw .6vh}
+.frame{position:fixed;inset:0;z-index:5;display:flex;flex-direction:column;padding:1.2vh 2.5vw 1vh}
 
 /* ── HEADER ── */
-.head{text-align:center;flex-shrink:0;padding:.06vh 0 .04vh}
-.board-brand{font-size:1.12vw;letter-spacing:.52em;text-transform:uppercase;
+.head{text-align:center;flex-shrink:0;padding:.1vh 0 .05vh;
+  transition:opacity .5s ease,transform .5s ease}
+.board-brand{font-size:1.12vw;letter-spacing:.45em;text-transform:uppercase;
   color:rgba(225,175,55,.92);font-weight:600;margin-bottom:.05vh;
   font-family:"Raleway",system-ui,sans-serif}
 .board-title{position:relative;display:inline-block;
   font-family:"Lora",serif;font-weight:700;
   font-size:4.70vw;line-height:1.0;letter-spacing:.04em;
-  background:linear-gradient(135deg,#E8B84A 0%,#FFE8A0 40%,#C8922A 65%,#E8B84A 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  background:linear-gradient(135deg,#E8B84A,#FFE8A0 45%,#C8922A);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 8px rgba(0,0,0,1)) drop-shadow(0 2px 6px rgba(0,0,0,1))}
 .board-title::before,.board-title::after{
   content:"";position:absolute;bottom:-.5vh;left:50%;transform:translateX(-50%);
   height:1px;background:linear-gradient(90deg,transparent,rgba(232,184,74,.6),rgba(255,232,160,.9),rgba(232,184,74,.6),transparent);
-  animation:line-expand 1.4s cubic-bezier(.22,1,.36,1) forwards}
-.board-title::before{width:0;animation-delay:.25s}
-.board-title::after{width:0;bottom:-.9vh;opacity:.4;animation-delay:.45s}
-@keyframes line-expand{to{width:116%}}
+  animation:line-expand 1.2s cubic-bezier(.22,1,.36,1) forwards}
+.board-title::before{width:0;animation-delay:.3s}
+.board-title::after{width:0;bottom:-.9vh;opacity:.4;animation-delay:.5s}
+@keyframes line-expand{to{width:110%}}
 
 /* ── STAGE ── */
 .stage{flex:1;min-height:0;position:relative;margin:.25vh 0}
@@ -114,20 +122,15 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#FFF5E0;cursor:none;
   grid-template-rows:1fr;gap:.42vh .52vw}
 
 /* ── ITEM ── */
-.item{display:flex;flex-direction:column;min-width:0;min-height:0;
-  background:linear-gradient(165deg,rgba(72,33,8,.62) 0%,rgba(38,16,4,.68) 100%);
-  border:1px solid rgba(225,178,65,.42);
-  border-radius:1.1vw;overflow:hidden;
-  box-shadow:0 4px 28px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,215,100,.07);
+.item{display:flex;flex-direction:column;min-width:0;min-height:0;padding:0;
+  background:rgba(100,50,8,.55);
+  border:1px solid rgba(255,220,120,.9);
+  border-radius:1vw;overflow:hidden;
+  box-shadow:0 2px 16px rgba(0,0,0,.3);
   position:relative;contain:layout style paint}
-.item::before{content:"";position:absolute;top:0;left:8%;right:8%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(240,190,80,.30),transparent);z-index:4;pointer-events:none}
 
 /* ── IMAGE AREA ── */
 .item .pic{flex:1 1 0;min-height:14vh;position:relative;overflow:hidden}
-.item .pic::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:
-    radial-gradient(ellipse 110% 40% at 50% 105%,rgba(8,2,0,.32) 0%,transparent 55%)}
 .item .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
   object-position:center bottom;z-index:1;
   filter:drop-shadow(0 6px 16px rgba(0,0,0,.50)) drop-shadow(0 2px 5px rgba(0,0,0,.25)) brightness(1.20) saturate(1.10);
@@ -148,25 +151,27 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#FFF5E0;cursor:none;
   box-shadow:0 1px 6px rgba(0,0,0,.65)}
 
 /* ── INFO PANEL ── */
-.item .info{flex:0 0 auto;padding:.42vh .65vw .52vh;
-  background:linear-gradient(180deg,rgba(15,7,0,.0) 0%,rgba(28,12,2,.50) 18%,rgba(28,12,2,.68) 100%);
-  border-top:1px solid rgba(200,146,42,.30);position:relative}
-.item .info::before{content:"";position:absolute;top:0;left:.65vw;right:.65vw;height:1px;
+.item .info{flex:0 0 auto;padding:.55vh .8vw .75vh;
+  background:linear-gradient(180deg,rgba(4,1,0,.0) 0%,rgba(4,1,0,.15) 18%,rgba(4,1,0,.28) 100%);
+  border-top:1px solid rgba(200,146,42,.22);position:relative}
+.item .info::before{content:"";position:absolute;top:0;left:.8vw;right:.8vw;height:1px;
   background:linear-gradient(90deg,transparent,rgba(232,184,74,.35),transparent)}
-.item .nm{font-family:"Lora",serif;font-weight:700;font-size:2.26vw;line-height:1.1;
-  color:#FFF9F0;letter-spacing:.03em;
+.item .nm{font-family:"Lora",serif;font-weight:700;font-size:1.60vw;line-height:1.18;
+  color:#FFFAF0;letter-spacing:0;
+  text-rendering:geometricPrecision;-webkit-font-smoothing:antialiased;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  text-shadow:0 1px 8px rgba(0,0,0,.95),0 0 1.2vw rgba(255,200,80,.12)}
-.item .desc{font-family:"Raleway",sans-serif;font-size:1.04vw;color:#E0C090;
-  line-height:1.26;margin-top:.05vh;letter-spacing:.09em;text-transform:uppercase;font-weight:600;
+  filter:drop-shadow(0 1px 6px rgba(0,0,0,1)) drop-shadow(0 0 12px rgba(0,0,0,.8))}
+.item .desc{font-family:"Raleway",sans-serif;font-size:1.04vw;color:#EDD8A8;line-height:1.25;margin-top:.1vh;
+  letter-spacing:.1em;text-transform:uppercase;font-weight:600;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   filter:drop-shadow(0 1px 3px rgba(0,0,0,.9))}
-.item .bot{display:flex;align-items:baseline;justify-content:space-between;margin-top:.18vh;gap:.4vw}
-.item .pr{font-family:"Lora",serif;font-weight:900;font-size:3.24vw;line-height:1;
+.item .bot{display:flex;align-items:baseline;justify-content:space-between;margin-top:.15vh;gap:.5vw}
+.item .pr{font-family:"Lora",serif;font-weight:900;font-size:3.20vw;line-height:1;overflow:visible;
   background:linear-gradient(135deg,#C8922A 0%,#FFE8A0 50%,#C8922A 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   text-rendering:geometricPrecision}
 .item .pr .cur{font-size:.48em;font-weight:600;vertical-align:.2em;margin-left:.04em;
-  -webkit-text-fill-color:rgba(200,146,42,.80)}
+  -webkit-text-fill-color:rgba(200,146,42,.8)}
 
 /* ── FOOTER ── */
 .ft{flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:2vw;
@@ -187,7 +192,9 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#FFF5E0;cursor:none;
 </style>
 </head>
 <body>
-<div class="bg"></div>
+<div class="ember"></div>
+<div class="ember2"></div>
+<div class="side-glow"></div>
 <div class="texture"></div>
 <div class="frame">
   <header class="head">
