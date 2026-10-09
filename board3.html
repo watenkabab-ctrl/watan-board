@@ -8,13 +8,13 @@
 <meta name="viewport" content="width=1920, initial-scale=1, viewport-fit=cover">
 <script>
 /* SW-Killer: alle alten Service Worker deregistrieren, dann hart neu laden */
-if('serviceWorker' in navigator && !location.search.includes('fresh=20261010a')){
+if('serviceWorker' in navigator && !location.search.includes('fresh=20261010b')){
   navigator.serviceWorker.getRegistrations().then(function(regs){
     var del = regs.map(function(r){return r.unregister();});
     Promise.all(del).then(function(){
       caches.keys().then(function(keys){
         Promise.all(keys.map(function(k){return caches.delete(k);})).then(function(){
-          location.replace(location.pathname+'?fresh=20261010a');
+          location.replace(location.pathname+'?fresh=20261010b');
         });
       });
     });
@@ -259,7 +259,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
 </div>
 <div class="vignette"></div>
 <script>
-const v="?v="+"20261010a";
+const v="?v="+"20261010b";
 const SLIDES=[
   {
     title:"Traditionelle Gerichte",
