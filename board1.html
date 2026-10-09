@@ -138,7 +138,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
   box-shadow:0 1px 6px rgba(0,0,0,.65)}
 .slide.on .item .pic img{animation:float var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite;will-change:transform}
 .slide:not(.on) .item .pic img{animation-play-state:paused}
-@keyframes float{0%{transform:translateY(0) scale(1.0)}50%{transform:translateY(-1vh) scale(1.012)}100%{transform:translateY(0) scale(1.0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-1vh)}}
 .item.big-img .pic img{animation:float-big var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite}
 @keyframes float-big{0%,100%{transform:scale(1.38) translateY(0)}50%{transform:scale(1.38) translateY(-1vh)}}
 .item.small-img .pic img{animation:float-small var(--fdur,6.5s) ease-in-out var(--fdel,0s) infinite}
@@ -177,6 +177,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 .sc-img{flex:0 0 auto;width:100%;max-height:52vh;position:relative;z-index:2;
   display:flex;align-items:center;justify-content:center;margin-top:.8vh}
 .sc-img img{max-width:100%;max-height:52vh;object-fit:contain;position:relative;z-index:1;
+  will-change:transform;
   animation:sc-enter 1.3s cubic-bezier(.22,1,.36,1) both, sc-float 12s ease-in-out 1.4s infinite}
 @keyframes sc-enter{0%{opacity:0;transform:scale(.88) rotate(0deg) translateY(2vh)}100%{opacity:1;transform:rotate(-5deg) scale(1.08) translateY(0)}}
 @keyframes sc-float{
@@ -269,7 +270,7 @@ const stage=document.getElementById('stage'),rail=document.getElementById('rail'
 SLIDES.forEach(sl=>{
   let inner="";
   if(sl.showcase){
-    const sc=sl.showcase,v="?v="+Date.now();
+    const sc=sl.showcase,v="?v=20261009a";
     const pills=sc.opts.map(o=>`
       <div class="sc-card">
         <div class="sc-card-left">
@@ -290,7 +291,7 @@ SLIDES.forEach(sl=>{
     </div>`;
   } else {
     inner=`<div class="grid">${sl.items.map((d,idx)=>{
-      const v="?v="+Date.now();
+      const v="?v=20261009a";
       const badge=d.badge?`<div class="badge">${d.badge}</div>`:"";
       const pic=d.img?`<img src="images/${imgF(d.img)}${v}" alt="">`:
         `<span class="emo">${d.emo||"🍢"}</span>`;

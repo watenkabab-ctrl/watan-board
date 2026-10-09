@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=1920, initial-scale=1, viewport-fit=cover">
 <title>Watan Kabab · Afghanische Spezialitäten</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🍽️</text></svg>">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/0QIvMX1D_JOuMwr7Iw.woff2">
@@ -29,10 +29,10 @@
 <link rel="preload" as="image" href="images/Pizza_mit_Tunfisch_v1.png">
 <link rel="preload" as="image" href="images/Pizza_mit_Gemuese_v1.png">
 <style>
-@font-face{font-family:'Lora';font-style:normal;font-weight:600 700;font-display:optional;src:url('fonts/0QIvMX1D_JOuMwT7I-NP.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C0}
-@font-face{font-family:'Lora';font-style:normal;font-weight:600 700;font-display:optional;src:url('fonts/0QIvMX1D_JOuMwr7Iw.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+FEFF,U+FFFD}
-@font-face{font-family:'Lora';font-style:italic;font-weight:400 600;font-display:optional;src:url('fonts/0QIhMX1D_JOuMw_LL_tLp_A.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C0}
-@font-face{font-family:'Lora';font-style:italic;font-weight:400 600;font-display:optional;src:url('fonts/0QIhMX1D_JOuMw_LIftL.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+FEFF,U+FFFD}
+@font-face{font-family:'Lora';font-style:normal;font-weight:600 700;font-display:swap;src:url('fonts/0QIvMX1D_JOuMwT7I-NP.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C0}
+@font-face{font-family:'Lora';font-style:normal;font-weight:600 700;font-display:swap;src:url('fonts/0QIvMX1D_JOuMwr7Iw.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+FEFF,U+FFFD}
+@font-face{font-family:'Lora';font-style:italic;font-weight:400 600;font-display:swap;src:url('fonts/0QIhMX1D_JOuMw_LL_tLp_A.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C0}
+@font-face{font-family:'Lora';font-style:italic;font-weight:400 600;font-display:swap;src:url('fonts/0QIhMX1D_JOuMw_LIftL.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+FEFF,U+FFFD}
 @font-face{font-family:'Raleway';font-style:normal;font-weight:400 700;font-display:optional;src:url('fonts/1Ptug8zYS_SKggPNyCMIT5lu.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+1E00-1EFF,U+20A0-20AB,U+20AD-20C0}
 @font-face{font-family:'Raleway';font-style:normal;font-weight:400 700;font-display:optional;src:url('fonts/1Ptug8zYS_SKggPNyC0ITw.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+FEFF,U+FFFD}
 </style>
@@ -84,18 +84,17 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#FFF5E0;cursor:none;
 /* ── STAGE ── */
 .stage{flex:1;min-height:0;position:relative;margin:.25vh 0}
 .slide{position:absolute;inset:0;display:flex;flex-direction:column;gap:.48vh;
-  opacity:0;pointer-events:none;will-change:opacity,transform,filter;
-  transform:scale(1.03) translateZ(0);filter:blur(10px)}
+  opacity:0;pointer-events:none;will-change:opacity,transform;transform:translateZ(0)}
 .slide.on{opacity:1;pointer-events:auto;
-  animation:b3-in .95s cubic-bezier(.22,1,.36,1) both}
+  animation:b3-in .90s cubic-bezier(.22,1,.36,1) both}
 .slide.leaving{opacity:0;pointer-events:none;
-  animation:b3-out .55s cubic-bezier(.4,0,1,1) both}
+  animation:b3-out .52s cubic-bezier(.4,0,1,1) both}
 @keyframes b3-in{
-  from{opacity:0;transform:scale(1.04) translateZ(0);filter:blur(14px)}
-  to  {opacity:1;transform:scale(1)    translateZ(0);filter:blur(0px)}}
+  from{opacity:0;transform:scale(1.035) translateZ(0)}
+  to  {opacity:1;transform:scale(1)     translateZ(0)}}
 @keyframes b3-out{
-  from{opacity:1;transform:scale(1)    translateZ(0);filter:blur(0px)}
-  to  {opacity:0;transform:scale(.97)  translateZ(0);filter:blur(8px)}}
+  from{opacity:1;transform:scale(1)    translateZ(0)}
+  to  {opacity:0;transform:scale(.975) translateZ(0)}}
 
 /* ── SECTION GROUP ── */
 .sl-group{flex:1;min-height:0;display:flex;flex-direction:column;gap:.16vh}
@@ -107,8 +106,8 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#FFF5E0;cursor:none;
 .sl-head::after{content:"";flex:1;height:1px;
   background:linear-gradient(90deg,rgba(200,146,42,.40),rgba(200,146,42,.05),transparent)}
 .sl-head span{font-family:"Lora",serif;font-weight:700;font-style:italic;
-  font-size:2.60vw;letter-spacing:.042em;white-space:nowrap;
-  color:var(--g);text-shadow:0 0 2vw rgba(200,130,30,.3)}
+  font-size:2.65vw;letter-spacing:.042em;white-space:nowrap;
+  color:#E0AA40;text-shadow:0 0 2.5vw rgba(220,150,30,.45),0 1px 2px rgba(0,0,0,.7)}
 
 /* ── GRID ── */
 .grid{flex:1;min-height:0;display:grid;grid-template-columns:repeat(var(--cols,5),1fr);
@@ -154,10 +153,10 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#FFF5E0;cursor:none;
   border-top:1px solid rgba(200,146,42,.30);position:relative}
 .item .info::before{content:"";position:absolute;top:0;left:.65vw;right:.65vw;height:1px;
   background:linear-gradient(90deg,transparent,rgba(232,184,74,.35),transparent)}
-.item .nm{font-family:"Lora",serif;font-weight:700;font-size:2.20vw;line-height:1.1;
-  color:#FFFAF0;letter-spacing:.03em;
+.item .nm{font-family:"Lora",serif;font-weight:700;font-size:2.26vw;line-height:1.1;
+  color:#FFF9F0;letter-spacing:.03em;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  filter:drop-shadow(0 1px 6px rgba(0,0,0,1))}
+  text-shadow:0 1px 8px rgba(0,0,0,.95),0 0 1.2vw rgba(255,200,80,.12)}
 .item .desc{font-family:"Raleway",sans-serif;font-size:1.04vw;color:#E0C090;
   line-height:1.26;margin-top:.05vh;letter-spacing:.09em;text-transform:uppercase;font-weight:600;
   filter:drop-shadow(0 1px 3px rgba(0,0,0,.9))}
@@ -176,9 +175,9 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#FFF5E0;cursor:none;
   background:linear-gradient(90deg,transparent,rgba(200,146,42,.32))}
 .ft::after{background:linear-gradient(270deg,transparent,rgba(200,146,42,.32))}
 .ft span{font-family:"Lora",serif;font-weight:600;font-style:italic;font-size:1.46vw;
-  letter-spacing:.13em;color:rgba(200,146,42,.72)}
+  letter-spacing:.13em;color:rgba(225,168,55,.85);text-shadow:0 0 2vw rgba(200,130,30,.28)}
 .dots{display:flex;justify-content:center;gap:.9vw;margin-top:.35vh}
-.dots i{width:.75vh;height:.75vh;border-radius:50%;background:rgba(200,146,42,.18);transition:.45s}
+.dots i{width:.75vh;height:.75vh;border-radius:50%;background:rgba(200,146,42,.18);transition:background .45s,box-shadow .45s,transform .45s}
 .dots i.on{background:var(--gl);box-shadow:0 0 .9vh rgba(232,175,55,.72);transform:scale(1.4)}
 
 @media(prefers-reduced-motion:reduce){
@@ -271,7 +270,7 @@ SLIDES.forEach((sl)=>{
         </div>
       </div>`;
     }).join("");
-    return `<div class="sl-group" style="flex:${sec.flex||1}">
+    return `<div class="sl-group">
       <div class="sl-head"><span>${sec.t}</span></div>
       <div class="grid" style="--cols:${sec.items.length}">${cards}</div>
     </div>`;
@@ -283,7 +282,7 @@ SLIDES.forEach((sl)=>{
 const slides=[...stage.children], dots=[...dotsBox.children];
 let i=0;
 
-const OUT_MS=320; // must match slide-out animation duration
+const OUT_MS=560; // must match b3-out animation duration (0.52s + 40ms margin)
 let hideTimer;
 
 function show(n){
@@ -295,13 +294,11 @@ function show(n){
 
   if(prev!==i){
     const outgoing=slides[prev];
-    // Phase 1: fade out outgoing (slide-out animation)
-    outgoing.classList.remove('leaving');
-    void outgoing.offsetWidth;
-    outgoing.classList.remove('on');
+    // atomic: remove on+leaving together, then add leaving — no intermediate opacity:0 flash
+    outgoing.classList.remove('on','leaving');
     outgoing.classList.add('leaving');
 
-    // Phase 2: once outgoing is gone, fade in incoming (slide-in animation)
+    // once outgoing is fully gone, fade in incoming
     hideTimer=setTimeout(()=>{
       outgoing.classList.remove('leaving');
       incoming.classList.remove('on','leaving');
@@ -310,7 +307,6 @@ function show(n){
       boardTitle.innerHTML=SLIDES[i].title;
     }, OUT_MS);
   } else {
-    // Initial show (no outgoing)
     incoming.classList.remove('on','leaving');
     void incoming.offsetWidth;
     incoming.classList.add('on');
@@ -336,6 +332,29 @@ addEventListener('keydown',e=>{
   ['click','touchstart','keydown'].forEach(e=>addEventListener(e,fs,{once:true,passive:true}));
 })();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+
+// ── Dauerbetrieb ──────────────────────────────────────────────────────
+if(navigator.wakeLock){
+  const req=()=>navigator.wakeLock.request('screen').catch(()=>{});
+  req();
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')req();});
+}
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState!=='visible')return;
+  clearInterval(timer);timer=setInterval(()=>show(i+1),18000);
+});
+(function(){
+  let last=i;
+  setInterval(()=>{
+    if(document.visibilityState!=='visible')return;
+    if(last===i){clearInterval(timer);show(i+1);timer=setInterval(()=>show(i+1),18000);}
+    last=i;
+  },35000);
+})();
+(function(){
+  async function chk(){try{const r=await fetch(location.href,{cache:'no-store'});const t=await r.text();const h=t.length+'-'+t.slice(800,1200);if(!chk._h){chk._h=h;return;}if(chk._h!==h)location.reload(true);}catch(e){}}
+  chk();setInterval(chk,180000);
+})();
 </script>
 </body>
 </html>
