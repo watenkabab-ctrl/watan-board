@@ -410,41 +410,35 @@ document.documentElement.requestFullscreen().catch(()=>{});
   const vid=document.getElementById('firevid');
   if(!vid)return;
   vid.muted=true;vid.defaultMuted=true;vid.loop=true;
-
   function revive(){
     if(!vid.isConnected)return;
     vid.muted=true;
     if(vid.paused||vid.ended||vid.readyState<2){
-      vid.play().catch(()=>{
-        // hard reset: reload src and try again
-        try{vid.load();vid.play().catch(()=>{});}catch(e){}
+      vid.play().catch(function(){
+        try{vid.currentTime=0.1;vid.play().catch(function(){try{vid.load();vid.play().catch(function(){});}catch(e){}});}catch(e){}
       });
     }
   }
-
-  // start as soon as data is ready
   vid.addEventListener('loadeddata',revive);
   vid.addEventListener('canplay',revive);
+  vid.addEventListener('canplaythrough',revive);
   revive();
-
-  // restart immediately on any stop/stall/suspend
-  ['pause','ended','stalled','suspend','waiting','emptied','error'].forEach(ev=>
-    vid.addEventListener(ev,function(){setTimeout(revive,80);}));
-
-  // watchdog: check currentTime is actually advancing (frozen video has paused=false)
-  let lastTime=-1,frozenCount=0;
+  ['pause','ended','stalled','waiting','emptied','error'].forEach(function(ev){
+    vid.addEventListener(ev,function(){setTimeout(revive,80);});
+  });
+  vid.addEventListener('timeupdate',function(){
+    if(vid.duration&&vid.currentTime>vid.duration-0.4){vid.currentTime=0.1;}
+  });
+  var lastTime=-1,frozenCount=0;
   setInterval(function(){
-    revive(); // always nudge
+    revive();
     if(!vid.paused){
-      if(vid.currentTime===lastTime){
-        frozenCount++;
-        if(frozenCount>=2){frozenCount=0;try{vid.load();vid.play().catch(()=>{});}catch(e){}}
-      } else {frozenCount=0;}
+      if(vid.currentTime===lastTime){frozenCount++;
+        if(frozenCount>=1){frozenCount=0;try{vid.currentTime=0.1;vid.play().catch(function(){try{vid.load();vid.play().catch(function(){});}catch(e){}});}catch(e){}}}
+      else{frozenCount=0;}
     }
     lastTime=vid.currentTime;
-  },1500);
-
-  // restart when TV wakes from sleep / comes back into view
+  },1200);
   document.addEventListener('visibilitychange',function(){if(!document.hidden)revive();});
   window.addEventListener('focus',revive);
   window.addEventListener('pageshow',revive);
