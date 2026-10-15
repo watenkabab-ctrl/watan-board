@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>WATAN KABAB · Afghanischer Grill & Orientalische Küche · München</title>
-  <meta name="description" content="WATAN KABAB – Afghanischer Grill & orientalische Küche in München. Kabab, Grillplatten, Palau & mehr – frisch vom Holzkohlegrill. Tisch reservieren: +49 89 32753840"/>
+  <meta name="description" content="WATAN KABAB – Afghanischer Holzkohlegrill & orientalische Küche in München. Kabab, Grillplatten, Palau, Kebab – 100 % Halal. Jetzt online bestellen & abholen."/>
   <meta name="robots" content="index,follow"/>
   <meta property="og:title" content="WATAN KABAB Restaurant · München"/>
   <meta property="og:description" content="Afghanischer Grill & orientalische Küche – frisch vom Holzkohlegrill, herzlich, unvergesslich."/>
@@ -40,7 +40,7 @@
     "paymentAccepted": "Cash, Credit Card",
     "telephone": "+498932753840",
     "email": "info@watan-kabab.de",
-    "acceptsReservations": true,
+    "acceptsReservations": false,
     "hasMenu": "https://watan-kabab.de/#speisekarte",
     "address": {
       "@type": "PostalAddress",
@@ -123,10 +123,6 @@ footer { background: #1B1712; color: #F2E6D0; }
 .info-strip { background: #1E1912; color: #FDFAF4; }
 /* Cookie bar */
 .cookie-bar { background: rgba(10,9,7,0.98); color: #F2E6D0; border-top-color: rgba(184,124,28,0.3); }
-/* Reservation modal */
-.res-modal-inner { background: #0C0B09; color: #F2E6D0; }
-/* Cancel overlay */
-.cancel-wrap { background: #0C0B09; color: #F2E6D0; }
 
 /* ═══════════════════════════════════════════════════════════════
    DESIGN TOKENS
@@ -170,6 +166,20 @@ footer { background: #1B1712; color: #F2E6D0; }
   --text-light:     rgba(242,230,208,0.28);
 
   --nav-h: 76px;
+
+  /* ── SEMANTIC ALIASES (use these for new CSS) ── */
+  --color-bg:         #0C0B09;   /* page background */
+  --color-bg-2:       #131210;   /* section background */
+  --color-bg-3:       #1B1712;   /* footer / card background */
+  --color-text:       #F2E6D0;   /* primary text */
+  --color-text-mid:   rgba(242,230,208,.78); /* body text */
+  --color-text-muted: rgba(242,230,208,.55); /* secondary text */
+  --color-heading:    #F2E6D0;   /* h1/h2/h3 */
+  --color-accent:     #EDA828;   /* gold accent / decorative */
+  --color-accent-2:   #F2BC52;   /* lighter gold / em text */
+  --color-cta:        #D93A1E;   /* call-to-action red / primary btn */
+  --color-cta-dark:   #AE2C15;   /* CTA hover */
+  --color-border:     rgba(237,168,40,0.18); /* subtle border */
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -393,38 +403,6 @@ a { color: inherit; text-decoration: none; }
 .nav-right a:not(.nav-cta):hover { color:#EDA828; }
 .nav-admin-link{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;color:rgba(242,230,208,0.28);background:none;border:none;cursor:pointer;transition:color .2s;margin-right:.1rem;}
 .nav-admin-link:hover{color:var(--gold);}
-#cancelOverlay{position:fixed;inset:0;z-index:9000;background:rgba(10,9,7,.72);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .3s;}
-#cancelOverlay.open{opacity:1;pointer-events:all;}
-.cancel-card{background:#0C0B09;border-radius:14px;box-shadow:0 24px 64px rgba(10,9,7,.32);max-width:420px;width:100%;transform:translateY(24px) scale(.98);transition:transform .3s cubic-bezier(.22,1,.36,1),opacity .3s;overflow:hidden;}
-#cancelOverlay.open .cancel-card{transform:none;}
-.cancel-head{padding:0;border-bottom:1px solid rgba(184,124,28,.22);}
-.cancel-head-bar{height:3px;background:linear-gradient(90deg,#B87C1C,rgba(217,58,30,.7),#EDA828);}
-.cancel-head-inner{display:flex;align-items:center;gap:.75rem;padding:1.2rem 1.6rem 1.1rem;}
-.cancel-head-icon{width:38px;height:38px;border-radius:50%;background:rgba(198,40,40,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.cancel-head-texts{}
-.cancel-brand{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;font-weight:700;color:#D93A1E;letter-spacing:.03em;line-height:1;}
-.cancel-sub{font-family:'Lato',sans-serif;font-size:.7rem;font-weight:700;color:rgba(242,230,208,.64);letter-spacing:.14em;text-transform:uppercase;margin-top:.25rem;}
-.cancel-body{padding:1.5rem 1.6rem 1.6rem;}
-.cancel-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;font-weight:600;color:#F2E6D0;margin-bottom:1rem;line-height:1.35;}
-.cancel-details{background:rgba(217,58,30,.04);border:1px solid rgba(217,58,30,.12);border-radius:8px;padding:.85rem 1rem;margin-bottom:1rem;}
-.cancel-detail-row{display:flex;align-items:baseline;gap:.75rem;padding:.3rem 0;border-bottom:1px solid rgba(237,168,40,.1);}
-.cancel-detail-row:last-child{border-bottom:none;padding-bottom:0;}
-.cancel-detail-row:first-child{padding-top:0;}
-.cancel-detail-label{font-family:'Lato',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,230,208,.42);width:70px;flex-shrink:0;}
-.cancel-detail-value{font-family:'Lato',sans-serif;font-size:.9rem;font-weight:600;color:#D93A1E;}
-.cancel-warn{font-family:'Lato',sans-serif;font-size:.8rem;color:rgba(242,230,208,.52);margin-bottom:1.2rem;line-height:1.65;padding:.7rem .9rem;background:rgba(237,168,40,.06);border-radius:6px;border-left:2px solid rgba(237,168,40,.35);}
-.cancel-actions{display:flex;gap:.7rem;}
-.cancel-btn-yes{flex:1;background:#c62828;border:none;color:#fff;font-family:'Lato',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.9rem;cursor:pointer;transition:background .2s,transform .1s;border-radius:7px;}
-.cancel-btn-yes:hover{background:#b71c1c;}
-.cancel-btn-yes:active{transform:scale(.98);}
-.cancel-btn-yes:disabled{opacity:.45;cursor:not-allowed;}
-.cancel-btn-no{background:#221C12;border:1.5px solid rgba(242,230,208,.18);color:rgba(242,230,208,.65);font-family:'Lato',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 1.2rem;cursor:pointer;transition:all .2s;border-radius:7px;}
-.cancel-btn-no:hover{border-color:rgba(242,230,208,.35);color:#F2E6D0;}
-.cancel-success{text-align:center;padding:.8rem 0 .4rem;}
-.cancel-success-icon{width:52px;height:52px;border-radius:50%;background:rgba(56,180,96,.1);display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;}
-.cancel-success-msg{font-family:'Cormorant Garamond',Georgia,serif;color:#3EC87A;font-size:1.25rem;font-weight:700;margin-bottom:.35rem;}
-.cancel-success-sub{font-family:'Lato',sans-serif;color:rgba(242,230,208,.52);font-size:.82rem;line-height:1.6;}
-.cancel-err-msg{font-family:'Lato',sans-serif;color:#c62828;font-size:.82rem;margin-top:.85rem;text-align:center;padding:.6rem .8rem;background:rgba(198,40,40,.06);border-radius:6px;}
 .nav-cta {
   font-size:.70rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
   text-decoration:none; color:#0A0603 !important; background:var(--gold);
@@ -994,7 +972,7 @@ a { color: inherit; text-decoration: none; }
 .catering-inner { max-width:880px; margin:0 auto; padding:0 2.5rem; text-align:center; }
 .catering-head { margin-bottom:3rem; }
 .catering-eyebrow { font-family:'Lato',sans-serif; font-size:.52rem; font-weight:700; letter-spacing:.42em; text-transform:uppercase; color:var(--gold); opacity:.8; display:block; margin-bottom:1.1rem; }
-.catering-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2.4rem,4vw,3.4rem); font-weight:300; font-style:italic; color:#D93A1E; line-height:1.1; margin-bottom:1.1rem; }
+.catering-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2.4rem,4vw,3.4rem); font-weight:300; font-style:italic; color:#F2E6D0; line-height:1.1; margin-bottom:1.1rem; }
 .catering-intro { font-size:.97rem; font-weight:400; line-height:1.88; color:rgba(242,230,208,.78); max-width:580px; margin:0 auto; }
 .catering-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-bottom:3rem; }
 .catering-card { background:#221C12; border:1px solid rgba(237,168,40,.15); padding:2rem 1.5rem; text-align:center; border-radius:6px; transition:transform .25s,border-color .25s; }
@@ -1801,9 +1779,10 @@ input[type="date"] { color-scheme: light; }
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2.4rem, 4vw, 3.4rem);
   font-weight: 300; font-style: italic;
-  color: #D93A1E; line-height: 1.1;
+  color: #F2E6D0; line-height: 1.1;
   margin-bottom: 1.4rem;
 }
+.about-title em { color: var(--gold-light); font-style: italic; }
 .about-pull {
   font-family: 'Lato', sans-serif;
   font-size: 1rem; font-weight: 400;
@@ -3414,7 +3393,7 @@ footer { background: #1B1712 !important; }
 .value-icon { opacity: 0.55 !important; }
 
 /* ── About section ── */
-.about-title { color: #D93A1E !important; }
+.about-title { color: #F2E6D0 !important; }
 .about-pull { color: rgba(242,230,208,0.82) !important; }
 .about-body { color: rgba(242,230,208,0.75) !important; }
 
@@ -3806,9 +3785,120 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   transform: translateY(-2px) !important;
 }
 
+/* ═══════════════════════════════════════════════
+   FOOTER — 3-column layout mit Kontakt & Zeiten
+═══════════════════════════════════════════════ */
+.footer-inner { max-width: 1200px; margin: 0 auto; padding: 3.5rem 2rem 2rem; }
+.footer-top-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+.footer-brand { display: flex; flex-direction: column; gap: .45rem; }
+.footer-brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: #F2E6D0;
+}
+.footer-brand-name .nll { color: #D93A1E; }
+.footer-brand-tag {
+  font-size: .72rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(237,168,40,0.6);
+  margin-bottom: .5rem;
+}
+.footer-social { display: flex; gap: .65rem; margin-top: .3rem; }
+.footer-social a {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(216,146,32,0.28);
+  color: rgba(216,146,32,0.52);
+  display: flex; align-items: center; justify-content: center;
+  transition: color .22s, border-color .22s, background .22s;
+}
+.footer-social a:hover { color: #EDA828; border-color: #EDA828; background: rgba(237,168,40,0.06); }
+
+.footer-contact { display: flex; flex-direction: column; gap: .38rem; }
+.footer-contact-head {
+  font-size: .68rem;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .4rem;
+  font-weight: 600;
+}
+.footer-contact span, .footer-contact a {
+  font-size: .86rem;
+  color: rgba(242,230,208,0.62);
+  line-height: 1.6;
+  transition: color .2s;
+}
+.footer-contact a:hover { color: #EDA828; }
+.footer-order-link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: .4rem;
+  margin-top: .6rem;
+  padding: .42rem .9rem;
+  border: 1px solid rgba(217,58,30,0.45);
+  border-radius: 4px;
+  color: #D93A1E !important;
+  font-size: .78rem !important;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  width: fit-content;
+  transition: background .22s, border-color .22s;
+}
+.footer-order-link:hover { background: rgba(217,58,30,0.08) !important; border-color: #D93A1E; }
+
+.footer-sep { border: none; border-top: 1px solid rgba(237,168,40,0.12); margin: 0 0 1.4rem; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .8rem; }
+.footer-copy { font-size: .78rem; color: rgba(242,230,208,0.38); }
+.footer-legal { display: flex; gap: 1.4rem; }
+.footer-legal a { font-size: .78rem; color: rgba(242,230,208,0.42); transition: color .2s; }
+.footer-legal a:hover { color: #EDA828; }
+.footer-accent {
+  display: block;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: rgba(216,146,32,0.18);
+  margin-top: 1rem;
+  letter-spacing: .08em;
+}
+@media (max-width: 860px) {
+  .footer-top-row { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .footer-top-row { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: .6rem; }
+}
+
+/* ═══ SKIP LINK (Accessibility) ═══ */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  padding: .5rem 1rem;
+  background: #D93A1E;
+  color: #FDFAF4;
+  font-weight: 700;
+  font-size: .85rem;
+  z-index: 10000;
+  border-radius: 0 0 4px 0;
+  transition: top .2s;
+}
+.skip-link:focus { top: 0; }
+
 </style>
 </head>
 <body>
+<a href="#highlights" class="skip-link">Zum Inhalt springen</a>
 
 <!-- ════════════ ARTY BACKGROUND CANVAS ════════════ -->
 <canvas id="art-bg" aria-hidden="true"></canvas>
@@ -4042,7 +4132,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.63 19.79 19.79 0 012 1.18 2 2 0 014 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
         +49 89 32753840
       </a>
-      <a href="https://wa.me/498932753840?text=Hallo%2C%20ich%20m%C3%B6chte%20gerne%20einen%20Tisch%20reservieren." target="_blank" rel="noopener" class="mob-wa">
+      <a href="https://wa.me/498932753840?text=Hallo%2C%20ich%20m%C3%B6chte%20gerne%20eine%20Bestellung%20aufgeben." target="_blank" rel="noopener" class="mob-wa">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.553 4.121 1.523 5.854L.044 23.956a.625.625 0 00.768.768l6.102-1.479A11.951 11.951 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.981 0-3.835-.54-5.424-1.482l-.388-.231-4.02.975.975-4.02-.231-.388A9.953 9.953 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
         <span data-key="mob_wa">WhatsApp schreiben</span>
       </a>
@@ -4359,18 +4449,42 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <!-- ════════════════════ FOOTER ════════════════════ -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">
-      <span class="footer-brand-name">WATAN <span class="nll">KABAB</span></span>
-      <span class="footer-brand-tag">Afghan Grill · München</span>
+
+    <div class="footer-top-row">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <span class="footer-brand-name">WATAN <span class="nll">KABAB</span></span>
+        <span class="footer-brand-tag">Afghanischer Holzkohlegrill · München</span>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/watan.kabab" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.facebook.com/watan.kabab" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-contact">
+        <span class="footer-contact-head">Kontakt</span>
+        <a href="tel:+498932753840">+49 89 32753840</a>
+        <a href="mailto:info@watan-kabab.de">info@watan-kabab.de</a>
+        <a href="https://maps.google.com/?q=Agilolfingerstra%C3%9Fe+28,+81543+M%C3%BCnchen" target="_blank" rel="noopener">Agilolfingerstraße 28, 81543 München</a>
+      </div>
+
+      <!-- Hours -->
+      <div class="footer-contact">
+        <span class="footer-contact-head">Öffnungszeiten</span>
+        <span>Mo – Sa &nbsp;17:00 – 23:00</span>
+        <span>Sonntag &nbsp;12:00 – 22:00</span>
+        <a href="bestellen.html" class="footer-order-link">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Jetzt online bestellen
+        </a>
+      </div>
     </div>
-    <div class="footer-social">
-      <a href="https://www.instagram.com/watan.kabab" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
-      </a>
-      <a href="https://www.facebook.com/watan.kabab" target="_blank" rel="noopener" aria-label="Facebook">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-      </a>
-    </div>
+
     <div class="footer-sep"></div>
     <div class="footer-bottom">
       <p class="footer-copy">© 2026 WATAN KABAB Restaurant · München</p>
@@ -4516,11 +4630,11 @@ document.querySelectorAll('.reveal,.reveal-l,.reveal-r,.dish-card,.info-cell').f
 
 // ── Language Switcher ──────────────────────────────────────────
 const LANGS = {
-  de:{ label:'🇩🇪 DE', dir:'ltr', nav_about:'Über uns', nav_menu:'Speisekarte', nav_cta:'Tisch Reservierung', btn_menu:'Speisekarte entdecken', btn_res:'Tisch reservieren',
+  de:{ label:'🇩🇪 DE', dir:'ltr', nav_about:'Über uns', nav_menu:'Speisekarte', nav_cta:'Online Bestellen', btn_menu:'Speisekarte entdecken', btn_res:'Jetzt bestellen',
     sentences:['*Feuer*, *Fleisch* & Familie —\nfrisch vom Holzkohlegrill.','*Kobide*, *Chapli* & *Tikka* —\nSpieße wie zu Hause.','Jeder Kebab erzählt eine *Geschichte*\naus Afghanistans Küche.','Duftendes *Palau* & knuspriges *Fladenbrot* —\ndie Seele unserer Küche.','*Handgemacht*. Über der *Glut*.\nMit *Herz* zubereitet.','Kommen Sie als Gäste —\ngehen Sie als *Freunde*.','Wo *Gastfreundschaft* keine Phrase ist —\nsie ist unsere *Seele*.']},
-  en:{ label:'🇬🇧 EN', dir:'ltr', nav_about:'About Us', nav_menu:'Menu', nav_cta:'Book a Table', btn_menu:'Discover the Menu', btn_res:'Reserve a Table',
+  en:{ label:'🇬🇧 EN', dir:'ltr', nav_about:'About Us', nav_menu:'Menu', nav_cta:'Order Online', btn_menu:'Discover the Menu', btn_res:'Order Now',
     sentences:['*Fire*, *meat* & family —\nfresh from the charcoal grill.','*Kobide*, *Chapli* & *Tikka* —\nskewers like back home.','Every kebab tells a *story*\nfrom the kitchens of Afghanistan.','Fragrant *Palau* & crisp *flatbread* —\nthe soul of our kitchen.','*Handmade*. Over the *embers*.\nWith *love*.','Come as guests —\nleave as *friends*.','Where *hospitality* is not just a word —\nit is our *soul*.']},
-  ar:{ label:'🇸🇦 AR', dir:'rtl', nav_about:'من نحن', nav_menu:'القائمة', nav_cta:'احجز طاولة', btn_menu:'استكشف القائمة', btn_res:'احجز طاولة',
+  ar:{ label:'🇸🇦 AR', dir:'rtl', nav_about:'من نحن', nav_menu:'القائمة', nav_cta:'اطلب الآن', btn_menu:'استكشف القائمة', btn_res:'اطلب الآن',
     sentences:['*النار* و*اللحم* والعائلة —\nطازج من فحم الشواء.','*كوبيده* و*تشابلي* و*تيكا* —\nأسياخ كما في الوطن.','كل كباب يحكي *قصة*\nمن مطبخ أفغانستان.','*البلاو* العطر و*الخبز* المقرمش —\nروح مطبخنا.','*يدوي الصنع*. على *الجمر*.\nبكل *حب*.','تعالوا كضيوف —\nوارحلوا كـ*أصدقاء*.','حيث *الضيافة* ليست مجرد كلمة —\nبل هي *روحنا*.']}
 };
 
@@ -4881,113 +4995,8 @@ if (backTop) {
 })();
 </script>
 
-<!-- ── STORNIERUNG MODAL ── -->
-<div id="cancelOverlay">
-  <div class="cancel-card">
-    <div class="cancel-head">
-      <div class="cancel-head-bar"></div>
-      <div class="cancel-head-inner">
-        <div class="cancel-head-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c62828" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
-        </div>
-        <div class="cancel-head-texts">
-          <div class="cancel-brand">WATAN KABAB Restaurant</div>
-          <div class="cancel-sub">Reservierung stornieren</div>
-        </div>
-      </div>
-    </div>
-    <div class="cancel-body">
-      <div id="cancelLoading" style="text-align:center;color:rgba(242,230,208,.4);padding:2.5rem 0;font-family:'Lato',sans-serif;font-size:.9rem;">Wird geladen …</div>
-      <div id="cancelConfirm" hidden>
-        <div class="cancel-title">Möchten Sie Ihre Reservierung stornieren?</div>
-        <div class="cancel-details" id="cancelDetails"></div>
-        <p class="cancel-warn">Diese Aktion kann nicht rückgängig gemacht werden. Sie erhalten eine Bestätigung per E-Mail.</p>
-        <div class="cancel-actions">
-          <button class="cancel-btn-no" id="cancelNoBtn">Behalten</button>
-          <button class="cancel-btn-yes" id="cancelDoBtn">Ja, stornieren</button>
-        </div>
-        <div class="cancel-err-msg" id="cancelErrMsg" hidden></div>
-      </div>
-      <div id="cancelDone" hidden>
-        <div class="cancel-success">
-          <div class="cancel-success-icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3EC87A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div class="cancel-success-msg">Stornierung bestätigt</div>
-          <div class="cancel-success-sub">Ihre Reservierung wurde erfolgreich storniert.<br>Sie erhalten eine Bestätigungs-E-Mail.</div>
-          <button class="cancel-btn-no" style="margin-top:1.4rem;width:100%;" onclick="document.getElementById('cancelOverlay').classList.remove('open')">Schließen</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 <script>
-(function(){
-  const params=new URLSearchParams(window.location.search);
-  const cid=params.get('cancel');
-  if(!cid)return;
-  window.history.replaceState({},'',window.location.pathname);
-
-  const API=(window.API_BASE||'').replace(/\/+$/,'');
-  if(!API)return;
-  let _res=null;
-
-  function fmtDate(iso){
-    if(!iso)return iso;
-    const[y,m,d]=String(iso).slice(0,10).split('-');
-    const mo=['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
-    return d+'. '+mo[parseInt(m,10)-1]+' '+y;
-  }
-
-  function showMsg(html){
-    document.getElementById('cancelLoading').hidden=true;
-    const cc=document.getElementById('cancelConfirm');
-    cc.hidden=false;
-    cc.innerHTML=html+'<div class="cancel-actions" style="margin-top:1.2rem"><button class="cancel-btn-no" onclick="document.getElementById(\'cancelOverlay\').classList.remove(\'open\')">Schließen</button></div>';
-  }
-
-  async function init(){
-    document.getElementById('cancelOverlay').classList.add('open');
-    try{
-      const r=await fetch(API+'/api/reservations/'+encodeURIComponent(cid));
-      if(!r.ok){ document.getElementById('cancelLoading').hidden=true; showMsg('<p style="color:rgba(242,230,208,.65);font-size:14px;text-align:center;padding:1rem 0">Reservierung nicht gefunden.</p>'); return; }
-      const res=await r.json(); _res=res;
-      document.getElementById('cancelLoading').hidden=true;
-      if(res.status==='cancelled'){ showMsg('<p style="color:rgba(242,230,208,.65);font-size:14px;text-align:center;padding:1rem 0">Diese Reservierung wurde bereits storniert.</p>'); return; }
-      document.getElementById('cancelDetails').innerHTML=
-        '<div class="cancel-detail-row"><span class="cancel-detail-label">Name</span><span class="cancel-detail-value">'+res.name+'</span></div>'+
-        '<div class="cancel-detail-row"><span class="cancel-detail-label">Datum</span><span class="cancel-detail-value">'+fmtDate(res.date)+'</span></div>'+
-        '<div class="cancel-detail-row"><span class="cancel-detail-label">Uhrzeit</span><span class="cancel-detail-value">'+res.time+' Uhr</span></div>'+
-        '<div class="cancel-detail-row"><span class="cancel-detail-label">Personen</span><span class="cancel-detail-value">'+res.guests+'</span></div>';
-      document.getElementById('cancelConfirm').hidden=false;
-    }catch(e){ document.getElementById('cancelLoading').hidden=true; showMsg('<p style="color:rgba(242,230,208,.65);font-size:14px;text-align:center;padding:1rem 0">Reservierung konnte nicht geladen werden.</p>'); }
-  }
-
-  document.addEventListener('DOMContentLoaded',init);
-
-  document.getElementById('cancelDoBtn').addEventListener('click',async()=>{
-    if(!_res)return;
-    const btn=document.getElementById('cancelDoBtn');
-    const err=document.getElementById('cancelErrMsg');
-    btn.disabled=true;btn.textContent='Wird storniert …';err.hidden=true;
-    try{
-      const r=await fetch(API+'/api/reservations/cancel',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:_res.id})});
-      const d=await r.json().catch(()=>({}));
-      if(!r.ok||!d.ok){ err.textContent=d.error||'Fehler. Bitte rufen Sie uns an: +49 89 32753840'; err.hidden=false;btn.disabled=false;btn.textContent='Ja, stornieren'; return; }
-      fetch('/api/send-email',{method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({type:'status',reservation:{..._res,status:'cancelled'}})}).catch(()=>{});
-      document.getElementById('cancelConfirm').hidden=true;
-      document.getElementById('cancelDone').hidden=false;
-    }catch(e){ err.textContent='Fehler. Bitte rufen Sie uns an: +49 89 32753840'; err.hidden=false;btn.disabled=false;btn.textContent='Ja, stornieren'; }
-  });
-
-  document.getElementById('cancelNoBtn').addEventListener('click',()=>{
-    document.getElementById('cancelOverlay').classList.remove('open');
-  });
-})();
-
 /* ── Speisekarten-Kategorien Nav ── */
 (function(){
   var strip = document.getElementById('menuCatStrip');

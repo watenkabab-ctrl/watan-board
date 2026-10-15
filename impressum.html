@@ -3,55 +3,59 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Impressum · INJERA Restaurant Hamburg</title>
+  <meta name="theme-color" content="#1E1912"/>
+  <title>Impressum · WATAN KABAB Restaurant München</title>
+  <meta name="description" content="Impressum von WATAN KABAB Restaurant, Agilolfingerstraße 28, 81543 München – Angaben gemäß § 5 TMG."/>
   <meta name="robots" content="noindex,nofollow"/>
-  <link rel="icon" type="image/png" href="logo-seal-nobg.png"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
   <link rel="stylesheet" href="fonts/fonts.css"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --ivory: #FDFAF4;
-      --parchment: #F5F0E8;
-      --teal: #21546A;
-      --teal-dk: #163B4A;
-      --gold: #C9973A;
-      --coffee: #2E1A0E;
+      --charcoal: #0D1210;
+      --green: #1A7A3C;
+      --green-dark: #0C4E22;
+      --parchment: #111A12;
+      --fire: #D93A1E;
+      --fire-dk: #AE2C15;
+      --amber: #EDA828;
+      --cream: #F2E6D0;
     }
     body {
       font-family: 'Lato', sans-serif;
       font-weight: 300;
       font-size: 16px;
       line-height: 1.8;
-      background: var(--ivory);
-      color: var(--coffee);
+      background: var(--charcoal);
+      color: var(--cream);
       -webkit-font-smoothing: antialiased;
     }
 
     /* ── NAV ── */
     .nav {
-      background: rgba(253,250,244,.97);
-      border-bottom: 1px solid rgba(201,151,58,.22);
+      background: rgba(10,18,12,.97);
+      border-bottom: 1px solid rgba(26,122,60,.2);
       backdrop-filter: blur(14px);
-      box-shadow: 0 1px 18px rgba(46,26,14,.07);
+      box-shadow: 0 1px 18px rgba(242,230,208,.07);
       position: sticky; top: 0; z-index: 100;
       display: grid; grid-template-columns: 1fr auto 1fr;
       align-items: center; padding: 0 1.5rem; height: 76px;
     }
     .nav::after {
       content:''; position:absolute; bottom:0; left:0; right:0; height:1px;
-      background: linear-gradient(90deg, transparent, rgba(201,151,58,.5) 50%, transparent);
+      background: linear-gradient(90deg, transparent, rgba(26,122,60,.45) 15%, rgba(217,58,30,.65) 38%, rgba(237,168,40,.7) 50%, rgba(217,58,30,.65) 62%, rgba(26,122,60,.45) 85%, transparent);
     }
     .nav-links { display: flex; align-items: center; gap: 0; }
     .nav-links a {
       font: 700 .72rem/1 'Lato', sans-serif; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--teal); padding: .55rem 1rem; text-decoration: none;
+      color: var(--fire); padding: .55rem 1rem; text-decoration: none;
       transition: color .2s; white-space: nowrap; position: relative;
     }
     .nav-links a::after {
       content:''; position:absolute; bottom:-1px; left:1rem; right:1rem; height:1px;
-      background: var(--gold); transform: scaleX(0); transition: transform .25s;
+      background: var(--amber); transform: scaleX(0); transition: transform .25s;
     }
-    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover { color: var(--amber); }
     .nav-links a:hover::after { transform: scaleX(1); }
     .nav-logo {
       justify-self: center; display: flex; flex-direction: row; align-items: center;
@@ -59,16 +63,16 @@
     }
     .nav-logo img { height: 60px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(100,40,8,.12)); flex-shrink: 0; }
     .nav-logo-text { display: flex; flex-direction: column; line-height: 1.15; }
-    .nav-logo-name { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; letter-spacing: .03em; color: #21546A; white-space: nowrap; }
-    .nav-logo-sub { font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(46,26,14,.55); }
+    .nav-logo-name { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; letter-spacing: .03em; color: #D93A1E; white-space: nowrap; }
+    .nav-logo-sub { font-family: 'Lato', sans-serif; font-size: .82rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(242,230,208,.55); }
     .nav-right { display: flex; align-items: center; justify-content: flex-end; gap: .5rem; }
     .nav-cta {
       font: 700 .62rem/1 'Lato', sans-serif; letter-spacing: .16em; text-transform: uppercase;
-      color: #FDFAF4; background: var(--teal); border: 1px solid var(--teal);
+      color: #FDFAF4; background: var(--fire); border: 1px solid var(--fire);
       padding: .55rem 1.2rem; border-radius: 2px; text-decoration: none;
       transition: background .2s, box-shadow .2s;
     }
-    .nav-cta:hover { background: var(--teal-dk); box-shadow: 0 4px 14px rgba(33,84,106,.28); }
+    .nav-cta:hover { background: var(--fire-dk); box-shadow: 0 4px 14px rgba(217,58,30,.28); }
     @media (max-width: 680px) {
       .nav { grid-template-columns: auto 1fr; padding: 0 1rem; }
       .nav-links { display: none; }
@@ -86,7 +90,7 @@
 
     /* ── HERO ── */
     .page-hero {
-      background: linear-gradient(135deg, var(--teal-dk) 0%, var(--teal) 100%);
+      background: linear-gradient(135deg, var(--fire-dk) 0%, var(--fire) 100%);
       padding: 3rem 2rem 2.5rem;
       text-align: center;
       position: relative;
@@ -95,24 +99,24 @@
     .page-hero::before {
       content: '';
       position: absolute; inset: 0;
-      background: url('tibeb-border.png') center / 200px auto repeat;
+      background: radial-gradient(circle at 30% 20%, rgba(237,168,40,.25), transparent 60%);
       opacity: .06;
     }
     .page-hero::after {
       content: '';
       position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+      background: linear-gradient(90deg, transparent, var(--amber) 50%, transparent);
     }
     .page-hero-eyebrow {
       font: 700 .52rem/1 'Lato', sans-serif; letter-spacing: .38em; text-transform: uppercase;
-      color: rgba(201,151,58,.75); display: block; margin-bottom: .8rem;
+      color: rgba(237,168,40,.75); display: block; margin-bottom: .8rem;
     }
     .page-hero-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2rem, 5vw, 2.8rem);
       font-weight: 300; color: #FDFAF4; line-height: 1.15;
     }
-    .page-hero-title em { font-style: italic; color: var(--gold); }
+    .page-hero-title em { font-style: italic; color: var(--amber); }
 
     /* ── CONTENT ── */
     main {
@@ -124,34 +128,34 @@
     .back {
       display: inline-flex; align-items: center; gap: .4rem;
       font: 400 .82rem/1 'Lato', sans-serif;
-      color: rgba(46,26,14,.45); text-decoration: none;
+      color: rgba(242,230,208,.45); text-decoration: none;
       transition: color .2s;
     }
-    .back:hover { color: var(--teal); }
+    .back:hover { color: var(--fire); }
     h2 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.3rem; font-weight: 700;
-      color: var(--teal);
+      color: var(--fire);
       margin: 2.2rem 0 .55rem;
       display: flex; align-items: center; gap: .6rem;
     }
     h2::before {
       content: '';
       display: inline-block; width: 18px; height: 2px;
-      background: var(--gold); flex-shrink: 0;
+      background: var(--amber); flex-shrink: 0;
     }
-    p { margin-bottom: .85rem; color: rgba(46,26,14,.78); }
-    a { color: var(--teal); text-decoration: underline; text-underline-offset: 2px; }
-    a:hover { color: var(--gold); }
+    p { margin-bottom: .85rem; color: rgba(242,230,208,.78); }
+    a { color: var(--fire); text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { color: var(--amber); }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--teal-dk);
+      background: var(--fire-dk);
       padding: 2rem 1.5rem;
       text-align: center;
     }
     .footer-logo { display: inline-block; margin-bottom: 1rem; }
-    .footer-logo img { height: 36px; width: auto; filter: brightness(0) invert(1); opacity: .7; }
+    .footer-logo img { height: 36px; width: auto; opacity: .9; }
     .footer-links {
       display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
       gap: .4rem .2rem; margin-bottom: .8rem;
@@ -162,9 +166,29 @@
       padding: .2rem .6rem; transition: color .2s;
     }
     .footer-links a:hover { color: rgba(253,250,244,.85); }
-    .footer-links span { color: rgba(201,151,58,.3); }
+    .footer-links span { color: rgba(237,168,40,.3); }
     .footer-copy { font: 300 .7rem/1 'Lato', sans-serif; color: rgba(253,250,244,.25); }
-  </style>
+  
+/* ═══ Neon-Wortmarke „Watan Kabab“ (Stil wie board1) ═══ */
+.neon-name{font-family:'Pacifico',cursive;color:#FF5500;-webkit-text-fill-color:#FF5500;line-height:1.1;white-space:nowrap;font-size:2.6rem;overflow:visible;
+  text-shadow:0 0 4px rgba(255,255,160,.95),0 0 10px rgba(255,200,0,1),0 0 20px rgba(255,100,0,.95),0 0 40px rgba(255,30,0,.85),0 0 70px rgba(200,0,0,.5);
+  animation:fire-glow 2.4s ease-in-out infinite}
+@keyframes fire-glow{
+  0%,100%{text-shadow:0 0 4px rgba(255,255,160,.9),0 0 10px rgba(255,190,0,.95),0 0 20px rgba(255,90,0,.9),0 0 38px rgba(255,25,0,.8),0 0 65px rgba(190,0,0,.48)}
+  30%{text-shadow:0 0 6px rgba(255,255,180,1),0 0 14px rgba(255,210,0,1),0 0 28px rgba(255,110,0,1),0 0 55px rgba(255,40,0,.9),0 0 90px rgba(210,0,0,.58)}
+  55%{text-shadow:0 0 3px rgba(255,230,80,.8),0 0 7px rgba(255,150,0,.85),0 0 14px rgba(255,60,0,.85),0 0 26px rgba(220,20,0,.65),0 0 48px rgba(170,0,0,.4)}
+  80%{text-shadow:0 0 5px rgba(255,255,140,.92),0 0 12px rgba(255,180,0,.98),0 0 24px rgba(255,85,0,.92),0 0 45px rgba(255,25,0,.82),0 0 75px rgba(200,0,0,.52)}}
+.neon-flame,.neon-flame-l{display:inline-block;vertical-align:middle;font-size:.85em;-webkit-text-fill-color:initial;color:initial;
+  filter:sepia(1) saturate(8) hue-rotate(310deg) brightness(2.2) drop-shadow(0 0 6px rgba(255,80,0,1)) drop-shadow(0 0 14px rgba(255,120,0,.9)) drop-shadow(0 0 22px rgba(255,50,0,.6))}
+.neon-flame{margin-left:.3rem;animation:flame-bob 1.8s ease-in-out infinite}
+.neon-flame-l{margin-right:.3rem;animation:flame-bob 1.8s .45s ease-in-out infinite}
+@keyframes flame-bob{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-12%) scale(1.12)}}
+.nav-logo .neon-name{font-size:clamp(1.35rem,2.4vw,1.85rem)}
+.menu-head .neon-name{font-size:clamp(2.2rem,7vw,3.4rem)}
+.logo-wrap .neon-name{font-size:clamp(2.2rem,8vw,3.2rem)}
+@media (prefers-reduced-motion: reduce){.neon-name,.neon-flame,.neon-flame-l{animation:none}}
+
+</style>
 </head>
 <body>
 
@@ -175,19 +199,15 @@
     <a href="bestellen.html">Bestellen</a>
   </div>
   <a href="index.html" class="nav-logo">
-    <img src="logo-seal-nobg.png" alt="INJERA Restaurant"/>
-    <div class="nav-logo-text">
-      <span class="nav-logo-name">INJERA</span>
-      <span class="nav-logo-sub">Restaurant</span>
-    </div>
+    <span class="neon-name"><span class="neon-flame neon-flame-l" aria-hidden="true">🔥</span>Watan Kabab<span class="neon-flame" aria-hidden="true">🔥</span></span>
   </a>
   <div class="nav-right">
-    <a href="index.html#reservierung" class="nav-cta">Reservieren</a>
+    <a href="index.html#reservation" class="nav-cta">Reservieren</a>
   </div>
 </nav>
 
 <div class="page-hero">
-  <span class="page-hero-eyebrow">INJERA · Hamburg St. Georg</span>
+  <span class="page-hero-eyebrow">WATAN KABAB · München</span>
   <h1 class="page-hero-title"><em>Impressum</em></h1>
 </div>
 
@@ -199,39 +219,29 @@
     </a>
   </div>
 
-  <h2>Angaben gemäß § 5 TMG</h2>
+  <h2>Angaben gemäß § 5 DDG</h2>
   <p>
-    INJERA Restaurant<br>
+    WATAN KABAB Restaurant<br>
     Inhaber: Saleem Al-Qassim<br>
-    Brennerstraße 35<br>
-    20099 Hamburg<br>
+    Agilolfingerstraße 28<br>
+    81543 München<br>
     Deutschland
   </p>
 
   <h2>Kontakt</h2>
   <p>
-    Telefon: <a href="tel:+4915751644776">+49 1575 1644776</a><br>
-    E-Mail: <a href="mailto:injera@gmail.com">injera@gmail.com</a>
+    Telefon: <a href="tel:+498932753840">+49 89 32753840</a><br>
+    E-Mail: <a href="mailto:info@watan-kabab.de">info@watan-kabab.de</a>
   </p>
 
-  <h2>Umsatzsteuer-ID</h2>
-  <p>
-    Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br>
-    DE000000000
-  </p>
-
-  <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+  <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
   <p>
     Saleem Al-Qassim<br>
-    Brennerstraße 35<br>
-    20099 Hamburg
+    Agilolfingerstraße 28<br>
+    81543 München
   </p>
 
   <h2>Streitschlichtung</h2>
-  <p>
-    Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
-    <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr/</a>
-  </p>
   <p>
     Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
     Verbraucherschlichtungsstelle teilzunehmen.
@@ -239,8 +249,8 @@
 
   <h2>Haftung für Inhalte</h2>
   <p>
-    Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den
-    allgemeellen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht
+    Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte auf diesen Seiten nach den
+    allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht
     verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu
     forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
   </p>
@@ -262,7 +272,7 @@
 
 <footer>
   <a href="index.html" class="footer-logo">
-    <img src="logo-seal-nobg.png" alt="INJERA Restaurant"/>
+    <img src="fire-mark.png" alt="WATAN KABAB Restaurant"/>
   </a>
   <div class="footer-links">
     <a href="index.html">Startseite</a>
@@ -271,19 +281,19 @@
     <span>·</span>
     <a href="bestellen.html">Online Bestellen</a>
     <span>·</span>
-    <a href="index.html#reservierung">Reservieren</a>
+    <a href="index.html#reservation">Reservieren</a>
     <span>·</span>
     <a href="datenschutz.html">Datenschutz</a>
     <span>·</span>
     <a href="agb.html">AGB</a>
   </div>
-  <p class="footer-copy">© 2026 INJERA Restaurant Hamburg · Brennerstraße 35 · 20099 Hamburg</p>
+  <p class="footer-copy">© 2026 WATAN KABAB Restaurant München · Agilolfingerstraße 28 · 81543 München</p>
 </footer>
 
 <!-- Cookie-Hinweis -->
-<div id="ck" style="position:fixed;bottom:0;left:0;right:0;z-index:9999;display:none;background:#163B4A;color:rgba(253,250,244,.85);font:300 .82rem/1.6 'Lato',sans-serif;padding:.9rem 1.5rem;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-top:2px solid rgba(201,151,58,.38);box-shadow:0 -2px 16px rgba(0,0,0,.12);">
-  <span>Diese Website verwendet ausschließlich technisch notwendige Cookies – keine Tracking- oder Werbecookies. <a href="datenschutz.html" style="color:rgba(201,151,58,.85);text-decoration:underline;text-underline-offset:2px;">Datenschutzerklärung</a></span>
-  <button onclick="localStorage.setItem('ck','1');document.getElementById('ck').style.display='none'" style="flex-shrink:0;background:rgba(201,151,58,.85);color:#0A0603;font:700 .68rem/1 'Lato',sans-serif;letter-spacing:.14em;text-transform:uppercase;border:none;padding:.68rem 1.5rem;border-radius:2px;cursor:pointer;min-height:40px;">Verstanden</button>
+<div id="ck" style="position:fixed;bottom:0;left:0;right:0;z-index:9999;display:none;background:#AE2C15;color:rgba(253,250,244,.85);font:300 .82rem/1.6 'Lato',sans-serif;padding:.9rem 1.5rem;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-top:2px solid rgba(237,168,40,.38);box-shadow:0 -2px 16px rgba(0,0,0,.12);">
+  <span>Diese Website verwendet ausschließlich technisch notwendige Cookies – keine Tracking- oder Werbecookies. <a href="datenschutz.html" style="color:rgba(237,168,40,.85);text-decoration:underline;text-underline-offset:2px;">Datenschutzerklärung</a></span>
+  <button onclick="localStorage.setItem('ck','1');document.getElementById('ck').style.display='none'" style="flex-shrink:0;background:rgba(237,168,40,.85);color:#0A0603;font:700 .68rem/1 'Lato',sans-serif;letter-spacing:.14em;text-transform:uppercase;border:none;padding:.68rem 1.5rem;border-radius:2px;cursor:pointer;min-height:40px;">Verstanden</button>
 </div>
 <script>if(!localStorage.getItem('ck'))document.getElementById('ck').style.display='flex';</script>
 </body>
