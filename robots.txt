@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://watenkabab.de/sitemap.xml
+Sitemap: https://watan-kabab.de/sitemap.xml
