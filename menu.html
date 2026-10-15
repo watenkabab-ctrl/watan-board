@@ -17,7 +17,7 @@
 <meta name="twitter:title" content="Speisekarte · WATAN KABAB"/>
 <meta name="twitter:description" content="Afghanischer Holzkohlegrill – Kabab, Grillplatten, Palau &amp; orientalische Spezialitäten."/>
 <meta name="twitter:image" content="https://watan-kabab.de/og-image.jpg"/>
-<meta name="theme-color" content="#0C4E22"/>
+<meta name="theme-color" content="#5C3210"/>
 <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="manifest" href="manifest.json"/>
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
@@ -27,11 +27,11 @@
 <noscript><link rel="stylesheet" href="fonts/fonts.css"/></noscript>
 <style>
 :root{
-  --bg:#0D1210; --bg2:#131D14; --card:#11201A;
-  --text:#F2E6D0; --muted:rgba(242,230,208,.62); --faint:rgba(242,230,208,.38);
-  --fire:#D93A1E; --amber:#EDA828; --amber-soft:rgba(237,168,40,.5);
-  --green:#1A7A3C; --green-light:#2DA058;
-  --line:rgba(26,122,60,.22); --line-gold:rgba(237,168,40,.18);
+  --bg:#120E07; --bg2:#131D14; --card:#11201A;
+  --text:#F5E6C8; --muted:rgba(245,230,200,.62); --faint:rgba(245,230,200,.38);
+  --fire:#B5621E; --amber:#C9943A; --amber-soft:rgba(201,148,58,.5);
+  --green:#8A5020; --green-light:#2DA058;
+  --line:rgba(138,80,32,.22); --line-gold:rgba(201,148,58,.18);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--bg);max-width:100%;overflow-x:hidden}
@@ -45,7 +45,7 @@ body{font-family:'Lato',sans-serif;color:var(--text);font-weight:300;-webkit-fon
 .menu-head-link{display:inline-flex;align-items:center;min-height:40px;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:.35rem 1rem;transition:color .2s,border-color .2s,background .2s}
 .menu-head-link:hover{color:var(--amber);border-color:var(--amber-soft)}
 .menu-head-link--cta{color:#13100B;background:var(--amber);border-color:var(--amber)}
-.menu-head-link--cta:hover{color:#13100B;background:#F2BC52;border-color:#F2BC52}
+.menu-head-link--cta:hover{color:#13100B;background:#DDB055;border-color:#DDB055}
 
 /* ── Category nav (sticky) ── */
 .cat-nav{
@@ -68,7 +68,7 @@ body{font-family:'Lato',sans-serif;color:var(--text);font-weight:300;-webkit-fon
   position:relative;
 }
 .cat-tab:hover{color:var(--amber)}
-.cat-tab.active{color:#F2E6D0;border-bottom-color:var(--amber)}
+.cat-tab.active{color:#F5E6C8;border-bottom-color:var(--amber)}
 
 /* ── Section headers ── */
 .menu-section{margin-bottom:3.5rem;scroll-margin-top:90px}
@@ -100,7 +100,7 @@ body{font-family:'Lato',sans-serif;color:var(--text);font-weight:300;-webkit-fon
 .mi{
   background:transparent;
   border:none;
-  border-bottom:1px solid rgba(26,122,60,.2);
+  border-bottom:1px solid rgba(138,80,32,.2);
   border-radius:0;
   overflow:visible;
   display:flex;
@@ -110,9 +110,9 @@ body{font-family:'Lato',sans-serif;color:var(--text);font-weight:300;-webkit-fon
   transition:background .22s;
   position:relative;
 }
-.mi:first-child{border-top:1px solid rgba(26,122,60,.2);}
+.mi:first-child{border-top:1px solid rgba(138,80,32,.2);}
 .mi:hover{
-  background:rgba(237,168,40,.04);
+  background:rgba(201,148,58,.04);
 }
 
 /* ── Row image (rechts) ── */
@@ -121,7 +121,7 @@ body{font-family:'Lato',sans-serif;color:var(--text);font-weight:300;-webkit-fon
   height:100px;
   min-width:100px;
   min-height:100px;
-  background:radial-gradient(ellipse at 50% 60%,rgba(26,122,60,.15) 0%,transparent 75%);
+  background:radial-gradient(ellipse at 50% 60%,rgba(138,80,32,.15) 0%,transparent 75%);
   display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
   order:2;
@@ -143,7 +143,7 @@ body{font-family:'Lato',sans-serif;color:var(--text);font-weight:300;-webkit-fon
 .mi-img--emblem{
   width:46px;height:46px;
   opacity:.18;
-  filter:drop-shadow(0 2px 6px rgba(217,58,30,.3));
+  filter:drop-shadow(0 2px 6px rgba(181,98,30,.3));
 }
 
 /* ── Row body (links) ── */
@@ -174,8 +174,8 @@ body{font-family:'Lato',sans-serif;color:var(--text);font-weight:300;-webkit-fon
   color:var(--amber);white-space:nowrap;
   flex-shrink:0;
   align-self:baseline;
-  background:rgba(237,168,40,.08);
-  border:1px solid rgba(237,168,40,.28);
+  background:rgba(201,148,58,.08);
+  border:1px solid rgba(201,148,58,.28);
   border-radius:4px;
   padding:.15rem .55rem;
 }
@@ -192,15 +192,15 @@ body{font-family:'Lato',sans-serif;color:var(--text);font-weight:300;-webkit-fon
   margin-top:.1rem;
 }
 .mi-tag--vegetarisch,.mi-tag--vegan{color:#7bd88a;background:rgba(80,180,100,.12);border:1px solid rgba(80,180,100,.3)}
-.mi-tag--scharf{color:#ff8a5c;background:rgba(217,58,30,.14);border:1px solid rgba(217,58,30,.4)}
-.mi-tag--beliebt{color:var(--amber);background:rgba(237,168,40,.12);border:1px solid rgba(237,168,40,.35)}
+.mi-tag--scharf{color:#ff8a5c;background:rgba(181,98,30,.14);border:1px solid rgba(181,98,30,.4)}
+.mi-tag--beliebt{color:var(--amber);background:rgba(201,148,58,.12);border:1px solid rgba(201,148,58,.35)}
 
 .mi:not(:last-child)::after{display:none}
 
 /* ── Footer note ── */
 .menu-note{
   text-align:center;font-size:.72rem;color:var(--faint);line-height:1.8;
-  border-top:1px solid rgba(26,122,60,.25);
+  border-top:1px solid rgba(138,80,32,.25);
   padding-top:1.6rem;margin-top:1rem;
 }
 .menu-note strong{color:var(--amber-soft);font-weight:700}
@@ -253,7 +253,7 @@ html.embedded body{padding-top:.5rem;background:transparent}
 }
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
-a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #EDA828;outline-offset:2px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #C9943A;outline-offset:2px}
 
 </style>
 </head>
