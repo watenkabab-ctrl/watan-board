@@ -1,4 +1,4 @@
-const CACHE='watan2-v10';
+const CACHE='watan2-v11';
 const FONTS=[
   './fonts/0QIhMX1D_JOuMw_LIftL.woff2','./fonts/0QIhMX1D_JOuMw_LL_tLp_A.woff2',
   './fonts/0QIvMX1D_JOuMwr7Iw.woff2','./fonts/0QIvMX1D_JOuMwT7I-NP.woff2',
