@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 880">
   <defs>
     <pattern id="p" patternUnits="userSpaceOnUse" width="60" height="60" patternTransform="rotate(-45 0 0)">
-      <rect width="60" height="20" fill="#CE1126"/>
-      <rect y="20" width="60" height="20" fill="#4189DD"/>
-      <rect y="40" width="60" height="20" fill="#007A3D"/>
+      <rect width="60" height="20" fill="#B62C12"/>
+      <rect y="20" width="60" height="20" fill="#D2531F"/>
+      <rect y="40" width="60" height="20" fill="#EDA828"/>
     </pattern>
     <clipPath id="tl"><polygon points="0,0 145,0 0,145"/></clipPath>
     <clipPath id="tr"><polygon points="700,0 555,0 700,145"/></clipPath>

@@ -3,15 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>INJERA – Kommt bald</title>
+<meta name="robots" content="noindex,nofollow"/>
+<meta name="theme-color" content="#0C4E22"/>
+<title>WATAN KABAB – Kommt bald</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
   min-height: 100%;
-  background: #FFFFFF;
-  color: #111111;
+  background: #0D1210;
+  color: #F2E6D0;
   font-family: 'Cormorant Garamond', Georgia, serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -41,7 +44,7 @@ html, body {
   font-weight: 700;
   letter-spacing: clamp(4px, 2vw, 10px);
   text-transform: uppercase;
-  color: #111;
+  color: #F2E6D0;
   line-height: 1;
 }
 
@@ -50,7 +53,7 @@ html, body {
   font-size: clamp(14px, 3vw, 20px);
   font-weight: 400;
   font-style: italic;
-  color: #555;
+  color: rgba(242,230,208,.6);
   letter-spacing: 0.3px;
   margin-top: 10px;
   max-width: 360px;
@@ -65,22 +68,22 @@ html, body {
   width: min(260px, 70vw);
   margin: 28px auto;
 }
-.divider-line { flex: 1; height: 1px; background: #C9973A; }
-.divider-dot  { width: 5px; height: 5px; border-radius: 50%; background: #C9973A; flex-shrink: 0; }
+.divider-line { flex: 1; height: 1px; background: #EDA828; }
+.divider-dot  { width: 5px; height: 5px; border-radius: 50%; background: #EDA828; flex-shrink: 0; }
 
 /* Coming soon */
 .cs-text {
   font-size: clamp(36px, 8vw, 64px);
   font-weight: 400;
   font-style: italic;
-  color: #111;
+  color: #F2E6D0;
   letter-spacing: 0.5px;
   line-height: 1.1;
 }
 .cs-sub {
   font-size: clamp(14px, 3vw, 18px);
   font-weight: 400;
-  color: #444;
+  color: rgba(242,230,208,.6);
   margin-top: 10px;
   max-width: 340px;
   line-height: 1.6;
@@ -91,9 +94,9 @@ html, body {
   display: flex;
   align-items: stretch;
   margin-top: 28px;
-  background: #F8F6F3;
+  background: #131D14;
   border-radius: 16px;
-  border: 1px solid #E5E0D8;
+  border: 1px solid rgba(237,168,40,.18);
   overflow: hidden;
   width: min(360px, 90vw);
 }
@@ -106,19 +109,19 @@ html, body {
   gap: 8px;
   padding: 18px 16px;
 }
-.feature-icon { font-size: clamp(22px, 5vw, 28px); }
+.feature-icon { display:flex; align-items:center; justify-content:center; }
 .feature-label {
   font-family: 'Cormorant SC', 'Cormorant Garamond', serif;
   font-size: clamp(10px, 2.2vw, 13px);
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: #333;
+  color: #F2E6D0;
   line-height: 1.3;
 }
 .feature-sep {
   width: 1px;
-  background: #E5E0D8;
+  background: rgba(237,168,40,.18);
   align-self: stretch;
 }
 
@@ -129,15 +132,15 @@ html, body {
   gap: 8px;
   margin-top: 24px;
   padding: 12px 24px;
-  background: #F8F6F3;
+  background: #131D14;
   border-radius: 40px;
-  border: 1px solid #E5E0D8;
+  border: 1px solid rgba(237,168,40,.18);
 }
-.location-icon { font-size: 16px; }
+.location-icon { display:flex; align-items:center; }
 .location-text {
   font-size: clamp(14px, 3vw, 16px);
   font-weight: 400;
-  color: #333;
+  color: #F2E6D0;
 }
 
 /* Button */
@@ -145,8 +148,8 @@ html, body {
   display: inline-block;
   margin-top: 14px;
   padding: 14px 36px;
-  background: #111;
-  color: #fff;
+  background: #D93A1E;
+  color: #FDFAF4;
   border-radius: 40px;
   font-family: 'Cormorant SC', 'Cormorant Garamond', serif;
   font-size: clamp(11px, 2.5vw, 13px);
@@ -158,7 +161,7 @@ html, body {
   -webkit-tap-highlight-color: transparent;
 }
 .email-btn:hover, .email-btn:active {
-  background: #333;
+  background: #AE2C15;
   transform: translateY(-1px);
 }
 
@@ -171,27 +174,27 @@ html, body {
   flex-direction: column;
   align-items: center;
   gap: 3px;
-  background: #F8F6F3;
-  border-top: 1px solid #E5E0D8;
+  background: #131D14;
+  border-top: 1px solid rgba(237,168,40,.18);
   font-family: 'Cormorant Garamond', serif;
 }
 .credit-label {
   font-size: 12px;
   font-weight: 400;
-  color: #888;
+  color: rgba(242,230,208,.6);
 }
 .credit-link {
   font-family: 'Cormorant SC', 'Cormorant Garamond', serif;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 2px;
-  color: #444;
+  color: #F2E6D0;
   text-decoration: none;
-  border-bottom: 1px solid #C9973A;
+  border-bottom: 1px solid #EDA828;
   padding-bottom: 1px;
   transition: color 0.2s;
 }
-.credit-link:hover { color: #C9973A; }
+.credit-link:hover { color: #EDA828; }
 
 /* Animations */
 .page > * { animation: up 0.6s ease both; }
@@ -221,6 +224,26 @@ html, body {
   .page { padding: 80px 48px 130px; }
   .logo-wrap img { width: 220px; }
 }
+
+/* ═══ Neon-Wortmarke „Watan Kabab“ (Stil wie board1) ═══ */
+.neon-name{font-family:'Pacifico',cursive;color:#FF5500;-webkit-text-fill-color:#FF5500;line-height:1.1;white-space:nowrap;font-size:2.6rem;overflow:visible;
+  text-shadow:0 0 4px rgba(255,255,160,.95),0 0 10px rgba(255,200,0,1),0 0 20px rgba(255,100,0,.95),0 0 40px rgba(255,30,0,.85),0 0 70px rgba(200,0,0,.5);
+  animation:fire-glow 2.4s ease-in-out infinite}
+@keyframes fire-glow{
+  0%,100%{text-shadow:0 0 4px rgba(255,255,160,.9),0 0 10px rgba(255,190,0,.95),0 0 20px rgba(255,90,0,.9),0 0 38px rgba(255,25,0,.8),0 0 65px rgba(190,0,0,.48)}
+  30%{text-shadow:0 0 6px rgba(255,255,180,1),0 0 14px rgba(255,210,0,1),0 0 28px rgba(255,110,0,1),0 0 55px rgba(255,40,0,.9),0 0 90px rgba(210,0,0,.58)}
+  55%{text-shadow:0 0 3px rgba(255,230,80,.8),0 0 7px rgba(255,150,0,.85),0 0 14px rgba(255,60,0,.85),0 0 26px rgba(220,20,0,.65),0 0 48px rgba(170,0,0,.4)}
+  80%{text-shadow:0 0 5px rgba(255,255,140,.92),0 0 12px rgba(255,180,0,.98),0 0 24px rgba(255,85,0,.92),0 0 45px rgba(255,25,0,.82),0 0 75px rgba(200,0,0,.52)}}
+.neon-flame,.neon-flame-l{display:inline-block;vertical-align:middle;font-size:.85em;-webkit-text-fill-color:initial;color:initial;
+  filter:sepia(1) saturate(8) hue-rotate(310deg) brightness(2.2) drop-shadow(0 0 6px rgba(255,80,0,1)) drop-shadow(0 0 14px rgba(255,120,0,.9)) drop-shadow(0 0 22px rgba(255,50,0,.6))}
+.neon-flame{margin-left:.3rem;animation:flame-bob 1.8s ease-in-out infinite}
+.neon-flame-l{margin-right:.3rem;animation:flame-bob 1.8s .45s ease-in-out infinite}
+@keyframes flame-bob{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-12%) scale(1.12)}}
+.nav-logo .neon-name{font-size:clamp(1.35rem,2.4vw,1.85rem)}
+.menu-head .neon-name{font-size:clamp(2.2rem,7vw,3.4rem)}
+.logo-wrap .neon-name{font-size:clamp(2.2rem,8vw,3.2rem)}
+@media (prefers-reduced-motion: reduce){.neon-name,.neon-flame,.neon-flame-l{animation:none}}
+
 </style>
 </head>
 <body>
@@ -228,11 +251,11 @@ html, body {
 <div class="page">
 
   <div class="logo-wrap">
-    <img src="logo-seal-nobg.png" alt="Injera Restaurant">
+    <span class="neon-name"><span class="neon-flame neon-flame-l" aria-hidden="true">🔥</span>Watan Kabab<span class="neon-flame" aria-hidden="true">🔥</span></span>
   </div>
 
-  <div class="name">Injera</div>
-  <div class="tagline">Eritreische &amp; Äthiopische Spezialitäten · Hamburg</div>
+  <h1 class="name">Watan Kabab</h1>
+  <div class="tagline">Orientalische &amp; Afghanische Spezialitäten · München</div>
 
   <div class="divider">
     <div class="divider-line"></div>
@@ -241,38 +264,42 @@ html, body {
   </div>
 
   <div class="cs-text">Kommt bald</div>
-  <div class="cs-sub">Unsere Website &amp; digitale Speisekarte sind in Kürze für Sie verfügbar.</div>
+  <div class="cs-sub">Unsere Website &amp; digitale Speisekarte sind bald für dich verfügbar.</div>
 
   <div class="features">
     <div class="feature">
-      <div class="feature-icon">🌐</div>
+      <div class="feature-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#EDA828" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
       <div class="feature-label">Website</div>
     </div>
     <div class="feature-sep"></div>
     <div class="feature">
-      <div class="feature-icon">📋</div>
+      <div class="feature-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#EDA828" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
       <div class="feature-label">Digitale Speisekarte</div>
     </div>
   </div>
 
   <div class="location">
-    <span class="location-icon">📍</span>
-    <span class="location-text">Hamburg St. Georg</span>
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#EDA828" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    <span class="location-text">München</span>
   </div>
 
-  <a class="email-btn" href="mailto:injera@gmail.com">Kontakt aufnehmen</a>
+  <a class="email-btn" href="mailto:info@watan-kabab.de">Kontakt aufnehmen</a>
 
 </div>
 
 <div class="credit">
   <div style="display:flex;gap:.2rem .3rem;flex-wrap:wrap;justify-content:center;margin-bottom:6px;">
-    <a href="impressum.html" style="font-family:'Lato',sans-serif;font-size:11px;color:#888;text-decoration:none;">Impressum</a>
-    <span style="color:#ccc;font-size:11px;">·</span>
-    <a href="datenschutz.html" style="font-family:'Lato',sans-serif;font-size:11px;color:#888;text-decoration:none;">Datenschutz</a>
-    <span style="color:#ccc;font-size:11px;">·</span>
-    <a href="agb.html" style="font-family:'Lato',sans-serif;font-size:11px;color:#888;text-decoration:none;">AGB</a>
+    <a href="impressum.html" style="font-family:'Lato',sans-serif;font-size:11px;color:rgba(242,230,208,.6);text-decoration:none;">Impressum</a>
+    <span style="color:rgba(242,230,208,.4);font-size:11px;">·</span>
+    <a href="datenschutz.html" style="font-family:'Lato',sans-serif;font-size:11px;color:rgba(242,230,208,.6);text-decoration:none;">Datenschutz</a>
+    <span style="color:rgba(242,230,208,.4);font-size:11px;">·</span>
+    <a href="agb.html" style="font-family:'Lato',sans-serif;font-size:11px;color:rgba(242,230,208,.6);text-decoration:none;">AGB</a>
   </div>
-  <span class="credit-label">Made with <span style="color:#E0201A;">♥</span> by</span>
+  <span class="credit-label">Made with <span style="color:#D93A1E;">♥</span> by</span>
   <a class="credit-link" href="https://salweb.de" target="_blank">salweb.de</a>
 </div>
 

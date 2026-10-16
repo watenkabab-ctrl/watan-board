@@ -81,9 +81,9 @@
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
-  opacity: 0.3;
+  opacity: 0.4;
 }
 
 /* ═══ WATAN KABAB – AFGHAN FLAG + GRILL VIBES ═══ */
@@ -4898,7 +4898,7 @@ if (backTop) {
       rotV:   rand(-0.003, 0.003),
       dx:     rand(-0.18, 0.18),
       dy:     rand(-0.12, 0.12),
-      alpha:  rand(0.025, 0.085),
+      alpha:  rand(0.05, 0.14),
       color:  pick(COLORS),
       pulse:  rand(0, Math.PI*2),
       pulseV: rand(0.004, 0.012),
@@ -4985,13 +4985,22 @@ if (backTop) {
 
   function tick(){
     ctx.clearRect(0,0,W,H);
-    for(const p of particles){ draw(p); }
+    for(const p of particles){
+      p.x += p.dx; p.y += p.dy;
+      p.rot += p.rotV; p.pulse += p.pulseV;
+      if(p.x < -p.size*2) p.x = W + p.size;
+      if(p.x > W + p.size*2) p.x = -p.size;
+      if(p.y < -p.size*2) p.y = H + p.size;
+      if(p.y > H + p.size*2) p.y = -p.size;
+      draw(p);
+    }
+    requestAnimationFrame(tick);
   }
 
-  window.addEventListener('resize', ()=>{ resize(); initParticles(); tick(); });
+  window.addEventListener('resize', ()=>{ resize(); initParticles(); });
   resize();
   initParticles();
-  tick();
+  requestAnimationFrame(tick);
 })();
 </script>
 

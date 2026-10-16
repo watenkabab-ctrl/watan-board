@@ -14,3 +14,13 @@ cover-screenshot.png
 test-*.svg
 Photos-3-001/
 photos_16227497_*/
+
+# Backend (läuft separat auf Railway, nicht mit ausliefern)
+backend/
+.git/
+SETUP.md
+
+# Nicht ausliefern: alte DB-Schema-Datei + ungenutztes QR
+schema.sql
+*.sql
+qr-code.png
