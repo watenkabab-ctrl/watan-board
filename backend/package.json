@@ -1,0 +1,17 @@
+{
+  "name": "watan-kabab-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Watan Kabab API — Tischreservierung + Online-Bestellung (Railway, Postgres). Getrennte Datenbanken.",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node server.js",
+    "init-db": "node init-db.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  }
+}
