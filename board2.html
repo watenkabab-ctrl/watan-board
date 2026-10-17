@@ -212,7 +212,7 @@ body{font-family:"Raleway",system-ui,sans-serif;color:var(--cream);cursor:none;
 </div>
 <div class="vignette"></div>
 <script>
-const v="?v="+"20261017l";
+const v="?v="+"20261017m";
 const SLIDES=[
   {
     title:"Döner &amp; Mehr",
@@ -221,7 +221,7 @@ const SLIDES=[
       {t:"Döner",items:[
         {n:"Döner",nr:"05",p:"7",d:"Fladenbrot · Salat · Soße · mit Käse +1 €",img:"Doener_v1.png",e:"🥙"},
         {n:"Lahmacun",nr:"07",p:"9",d:"Dönerfleisch · frischer Salat · Soße",img:"Lahmacun_v1.png",e:"🌯"},
-        {n:"Döner Box",nr:"06",p:"8,50",d:"Pommes oder Reis · Salat · Soße",img:"Doener_Box_neu.png",e:"🥡"},
+        {n:"Döner Box",nr:"06",p:"8,50",d:"Pommes oder Reis · Salat · Soße",img:"Doener_Box_neu.png",e:"🥡",cover:true},
         {n:"Dönerteller",nr:"09",p:"12",d:"Pommes oder Reis · Salat · Zwiebeln · Soße",img:"Doenerteller_Pommes.png",e:"🍽️"},
       ]},
       {t:"Vegetarisch &amp; Vegan",items:[
@@ -261,7 +261,7 @@ SLIDES.forEach(sl=>{
   const html=sl.sections.map(sec=>{
     const cards=sec.items.map(d=>{
       const k=globalIdx++;
-      const bgStyle=d.img?` style="background-image:url('images/${d.img}${v}')"` :"";
+      const bgStyle=d.img?` style="background-image:url('images/${d.img}${v}')${d.cover?';background-size:cover;background-position:center center':''}"` :"";
       const emo=!d.img?`<span class="emo">${d.e||"🍽️"}</span>`:"";
       const nr=d.nr?`<span class="nr">${d.nr}</span>`:"";
       return `<div class="item" style="--i:${k}">
