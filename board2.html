@@ -10,7 +10,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/0QIhMX1D_JOuMw_LIftL.woff2">
 <link rel="preload" as="image" href="images/Doener_v1.png">
 <link rel="preload" as="image" href="images/Lahmacun_v1.png">
-<link rel="preload" as="image" href="images/Doener_Box_neu.png">
+<link rel="preload" as="image" href="images/Doener_Box.png">
 <link rel="preload" as="image" href="images/Doenerteller_Pommes.png">
 <link rel="preload" as="image" href="images/Falafel_Sandwich.png">
 <link rel="preload" as="image" href="images/Seitan_Sandwich.png">
@@ -148,12 +148,12 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#FFF5E0;cursor:none;
   -webkit-filter:drop-shadow(0 6px 16px rgba(0,0,0,.70)) drop-shadow(0 2px 6px rgba(0,0,0,.50)) brightness(1.12) saturate(1.15);
   filter:drop-shadow(0 6px 16px rgba(0,0,0,.70)) drop-shadow(0 2px 6px rgba(0,0,0,.50)) brightness(1.12) saturate(1.15);
   -webkit-animation:float 7s ease-in-out var(--fdel,0s) infinite;animation:float 7s ease-in-out var(--fdel,0s) infinite;will-change:transform;
-  -webkit-transform:translateZ(0) scale(var(--imgsz,1));transform:translateZ(0) scale(var(--imgsz,1));
+  -webkit-transform:translateZ(0) scale(var(--imgsz,1.04));transform:translateZ(0) scale(var(--imgsz,1.04));
   -webkit-backface-visibility:hidden;backface-visibility:hidden;
   image-rendering:-webkit-optimize-contrast;image-rendering:high-quality}
 .slide:not(.on) .item .pic img{-webkit-animation-play-state:paused;animation-play-state:paused}
-@-webkit-keyframes float{0%,100%{-webkit-transform:translateY(0) translateZ(0) scale(var(--imgsz,1))}50%{-webkit-transform:translateY(-.9vh) translateZ(0) scale(var(--imgsz,1))}}
-@keyframes float{0%,100%{transform:translateY(0) translateZ(0) scale(var(--imgsz,1))}50%{transform:translateY(-.9vh) translateZ(0) scale(var(--imgsz,1))}}
+@-webkit-keyframes float{0%,100%{-webkit-transform:translateY(0) translateZ(0) scale(var(--imgsz,1.04))}50%{-webkit-transform:translateY(-.9vh) translateZ(0) scale(var(--imgsz,1.04))}}
+@keyframes float{0%,100%{transform:translateY(0) translateZ(0) scale(var(--imgsz,1.04))}50%{transform:translateY(-.9vh) translateZ(0) scale(var(--imgsz,1.04))}}
 .item .pic .emo{position:absolute;top:0;left:0;right:0;bottom:0;display:grid;place-items:center;
   font-size:min(11vh,8vw);z-index:1}
 .item .pic .nr{position:absolute;top:.32vh;left:.28vw;z-index:3;
@@ -226,23 +226,23 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#FFF5E0;cursor:none;
 </div>
 <div class="vignette"></div>
 <script>
-const v="?v="+"20261017r";
+const v="?v="+"20261017c";
 const SLIDES=[
   {
     title:"Döner &amp; Mehr",
     ms:18000,
     sections:[
       {t:"Döner",items:[
-        {n:"Döner",nr:"05",p:"7",d:"Fladenbrot · Salat · Soße · mit Käse +1 €",img:"Doener_v1.png",e:"🥙",imgsz:1.10},
-        {n:"Lahmacun",nr:"07",p:"9",d:"Dönerfleisch · frischer Salat · Soße",img:"Lahmacun_v1.png",e:"🌯",imgsz:1.10},
-        {n:"Döner Box",nr:"06",p:"8,50",d:"Pommes oder Reis · Salat · Soße",img:"Doener_Box_neu.png",e:"🥡",imgsz:0.95},
-        {n:"Dönerteller",nr:"09",p:"12",d:"Pommes oder Reis · Salat · Zwiebeln · Soße",img:"Doenerteller_Pommes.png",e:"🍽️",imgsz:1.10},
+        {n:"Döner",nr:"05",p:"7",d:"Fladenbrot · Salat · Soße · mit Käse +1 €",img:"Doener_v1.png",e:"🥙"},
+        {n:"Lahmacun",nr:"07",p:"9",d:"Dönerfleisch · frischer Salat · Soße",img:"Lahmacun_v1.png",e:"🌯"},
+        {n:"Döner Box",nr:"06",p:"8,50",d:"Pommes oder Reis · Salat · Soße",img:"Doener_Box.png",e:"🥡"},
+        {n:"Dönerteller",nr:"09",p:"12",d:"Pommes oder Reis · Salat · Zwiebeln · Soße",img:"Doenerteller_Pommes.png",e:"🍽️"},
       ]},
       {t:"Vegetarisch &amp; Vegan",items:[
-        {n:"Falafel-Sandwich",nr:"11",p:"7",d:"Falafel · Salat · Soße · Fladenbrot",img:"Falafel_Sandwich.png",e:"🥙",imgsz:1.10},
-        {n:"Seitan-Sandwich",nr:"13",p:"7,50",d:"Seitan · Salat · Soße · Fladenbrot",img:"Seitan_Sandwich.png",e:"🌱",imgsz:1.10},
-        {n:"Falafel-Teller",nr:"12",p:"12",d:"Falafel · Salat · Beilagen · Soße",img:"Falafel_Teller.png",e:"🧆",imgsz:1.10},
-        {n:"Seitan-Teller",nr:"14",p:"11,50",d:"Seitan · Salat · Beilagen · Soße",img:"Seitan_Teller.png",e:"🌿",imgsz:1.10},
+        {n:"Falafel-Sandwich",nr:"11",p:"7",d:"Falafel · Salat · Soße · Fladenbrot",img:"Falafel_Sandwich.png",e:"🥙"},
+        {n:"Seitan-Sandwich",nr:"13",p:"7,50",d:"Seitan · Salat · Soße · Fladenbrot",img:"Seitan_Sandwich.png",e:"🌱"},
+        {n:"Falafel-Teller",nr:"12",p:"12",d:"Falafel · Salat · Beilagen · Soße",img:"Falafel_Teller.png",e:"🧆"},
+        {n:"Seitan-Teller",nr:"14",p:"11,50",d:"Seitan · Salat · Beilagen · Soße",img:"Seitan_Teller.png",e:"🌿",imgsz:0.92},
       ]},
     ]
   },
@@ -251,16 +251,16 @@ const SLIDES=[
     ms:18000,
     sections:[
       {t:"Vorspeisen",items:[
-        {n:"Samosa Gemüse",nr:"01",p:"5",d:"Gemüse · Kartoffeln · Erbsen · Stück 2,50 €",img:"Samosa_Gemuese_v1.png",e:"🥟",imgsz:1.10},
-        {n:"Bolani Kachalo",nr:"02",p:"5",d:"Kartoffeln · Zwiebeln · Koriander · Stück 2,50 €",img:"Bolani_Kachalo_Gandana_v1.png",e:"🫓",imgsz:1.10},
-        {n:"Afghan Soup",nr:"04",p:"7",d:"Hähnchen · Kichererbsen · Ei · Mais · Karotten",img:"Afghan_Soup.png",e:"🍲",imgsz:1.10},
-        {n:"Shor Nakhod",nr:"03",p:"7",d:"Kichererbsen · Kartoffeln · Chutney · Pfeffer",img:"Shor_Nakhod_v1.png",e:"🫘",imgsz:1.10},
+        {n:"Samosa Gemüse",nr:"01",p:"5",d:"Gemüse · Kartoffeln · Erbsen · Stück 2,50 €",img:"Samosa_Gemuese_v1.png",e:"🥟",imgsz:0.97},
+        {n:"Bolani Kachalo",nr:"02",p:"5",d:"Kartoffeln · Zwiebeln · Koriander · Stück 2,50 €",img:"Bolani_Kachalo_Gandana_v1.png",e:"🫓",imgsz:0.97},
+        {n:"Afghan Soup",nr:"04",p:"7",d:"Hähnchen · Kichererbsen · Ei · Mais · Karotten",img:"Afghan_Soup.png",e:"🍲",imgsz:0.97},
+        {n:"Shor Nakhod",nr:"03",p:"7",d:"Kichererbsen · Kartoffeln · Chutney · Pfeffer",img:"Shor_Nakhod_v1.png",e:"🫘",imgsz:0.97},
       ]},
       {t:"Burger &amp; Fisch",items:[
-        {n:"Afghan Burger",nr:"22",p:"7",d:"Dürüm-Fladen · Kalbfleisch · Pommes · Ei · Salat",img:"Afghan_Burger.png",e:"🌯",imgsz:1.10},
-        {n:"Burger mit Pommes",nr:"23",p:"9",d:"Rindfleisch-Patty · Cheddar · Salat · Pommes",img:"Burger_mit_Pommes_v1.png",e:"🍔",imgsz:1.10},
-        {n:"Fry Fish",nr:"24",p:"12,50",d:"Frittierter Fisch · Pommes oder Brot · Salat",img:"Fry_Fish.png",e:"🐟",imgsz:1.10},
-        {n:"Grill Fish",nr:"25",p:"15",d:"Gegrillter Fisch · Pommes oder Brot · Salat",img:"Grill_Fish.png",e:"🐟",imgsz:1.10},
+        {n:"Afghan Burger",nr:"22",p:"7",d:"Dürüm-Fladen · Kalbfleisch · Pommes · Ei · Salat",img:"Afghan_Burger.png",e:"🌯",imgsz:0.97},
+        {n:"Burger mit Pommes",nr:"23",p:"9",d:"Rindfleisch-Patty · Cheddar · Salat · Pommes",img:"Burger_mit_Pommes_v1.png",e:"🍔",imgsz:0.97},
+        {n:"Fry Fish",nr:"24",p:"12,50",d:"Frittierter Fisch · Pommes oder Brot · Salat",img:"Fry_Fish.png",e:"🐟",imgsz:0.97},
+        {n:"Grill Fish",nr:"25",p:"15",d:"Gegrillter Fisch · Pommes oder Brot · Salat",img:"Grill_Fish.png",e:"🐟",imgsz:0.97},
       ]},
     ]
   },
