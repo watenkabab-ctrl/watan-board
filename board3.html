@@ -140,23 +140,24 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
   border:1px solid rgba(255,200,100,.22);
   border-radius:1.05vw;overflow:hidden;
   box-shadow:0 2px 16px rgba(0,0,0,.30);
-  position:relative;contain:layout style paint}
+  position:relative;contain:layout style paint;
+  --imgsz:1.24}
 .item::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
   background:linear-gradient(90deg,transparent,rgba(232,184,74,.22),transparent);z-index:4;pointer-events:none}
 
 /* ── IMAGE AREA ── */
-.item .pic{flex:1 1 0;min-height:14vh;position:relative;overflow:hidden}
+.item .pic{flex:1 1 0;min-height:18vh;position:relative;overflow:hidden}
 .item .pic::after{content:"";position:absolute;top:0;left:0;right:0;bottom:0;z-index:2;pointer-events:none;
   background:
     radial-gradient(ellipse 110% 40% at 50% 105%,rgba(8,2,0,.32) 0%,transparent 55%)}
 .item .pic img{position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;object-fit:contain;
   object-position:center center;z-index:1;
-  -webkit-filter:drop-shadow(0 4px 10px rgba(0,0,0,.62));filter:drop-shadow(0 4px 10px rgba(0,0,0,.62));
+  -webkit-filter:drop-shadow(0 8px 22px rgba(0,0,0,.72));filter:drop-shadow(0 8px 22px rgba(0,0,0,.72));
   -webkit-animation:float 7s ease-in-out var(--fdel,0s) infinite;animation:float 7s ease-in-out var(--fdel,0s) infinite;will-change:transform;
   -webkit-transform:translateZ(0);transform:translateZ(0)}
 .slide:not(.on) .item .pic img{-webkit-animation-play-state:paused;animation-play-state:paused}
-@-webkit-keyframes float{0%,100%{-webkit-transform:translateY(0) scale(var(--imgsz,1))}50%{-webkit-transform:translateY(-.9vh) scale(calc(var(--imgsz,1) + .012))}}
-@keyframes float{0%,100%{transform:translateY(0) scale(var(--imgsz,1))}50%{transform:translateY(-.9vh) scale(calc(var(--imgsz,1) + .012))}}
+@-webkit-keyframes float{0%,100%{-webkit-transform:translateY(0) scale(var(--imgsz,1))}50%{-webkit-transform:translateY(-1.4vh) scale(calc(var(--imgsz,1) + .016))}}
+@keyframes float{0%,100%{transform:translateY(0) scale(var(--imgsz,1))}50%{transform:translateY(-1.4vh) scale(calc(var(--imgsz,1) + .016))}}
 .item .pic .emo{position:absolute;top:0;left:0;right:0;bottom:0;display:grid;place-items:center;
   font-size:min(11vh,8vw);z-index:1}
 .item .pic .nr{position:absolute;top:.32vh;left:.28vw;z-index:3;
@@ -229,25 +230,25 @@ body{font-family:"Raleway",system-ui,sans-serif;color:#EFE1C5;cursor:none;
 </div>
 <div class="vignette"></div>
 <script>
-const v="?v="+"20261017b";
+const v="?v="+"20261017e";
 const SLIDES=[
   {
     title:"Traditionelle Gerichte",
     ms:18000,
     sections:[
       {t:"Hauptgerichte",items:[
-        {n:"Loobia",nr:"46",p:"7",d:"Bohnen-Eintopf · Tomatensauce · Gewürze",img:"Loobia_v1.png",e:"🫘",imgsz:1.22},
-        {n:"Qorma",nr:"48",p:"9",d:"Fleisch-Eintopf · Zwiebeln · Gewürze",img:"Qorma.png",e:"🍲",imgsz:1.22},
-        {n:"Bamya (Okra)",nr:"50",p:"10",d:"Okra · Tomatensauce · Lammfleisch",img:"Bamya_Okra.png",e:"🍲",imgsz:1.22},
-        {n:"Sabzi Palak",nr:"47",p:"9",d:"Spinat · Gewürze · frische Kräuter",img:"Sabzi_Palak.png",e:"🌿",imgsz:1.22},
-        {n:"Chicken Jalfrezi",nr:"49",p:"10",d:"Hähnchen · Paprika · Zwiebeln · Gewürze",img:"Chicken_Jalfrezi_v1.png",e:"🍗",imgsz:1.22},
+        {n:"Loobia",nr:"46",p:"7",d:"Bohnen-Eintopf · Tomatensauce · Gewürze",img:"Loobia_v1.png",e:"🫘"},
+        {n:"Qorma",nr:"48",p:"9",d:"Fleisch-Eintopf · Zwiebeln · Gewürze",img:"Qorma.png",e:"🍲"},
+        {n:"Bamya (Okra)",nr:"50",p:"10",d:"Okra · Tomatensauce · Lammfleisch",img:"Bamya_Okra.png",e:"🍲"},
+        {n:"Sabzi Palak",nr:"47",p:"9",d:"Spinat · Gewürze · frische Kräuter",img:"Sabzi_Palak.png",e:"🌿"},
+        {n:"Chicken Jalfrezi",nr:"49",p:"10",d:"Hähnchen · Paprika · Zwiebeln · Gewürze",img:"Chicken_Jalfrezi_v1.png",e:"🍗"},
       ]},
       {t:"Palau &amp; Mantu",items:[
-        {n:"Kabuli Palau",nr:"40",p:"9",d:"Basmati-Reis · Karotten · Rosinen · Lamm",img:"Reis_Beilage_Kabuli_v1.png",e:"🍚",imgsz:1.12},
-        {n:"Beryani Palau",nr:"41",p:"10",d:"Gewürzreis · Lamm · Kräuter",img:"Beryani_Palau.png",e:"🍚",imgsz:1.12},
-        {n:"Molong Palau",nr:"44",p:"30",d:"Kalbshaxe · Gewürzreis · Karotten · Rosinen · für 3 Pers.",img:"Molong_Palau.png",e:"🍚",imgsz:1.04},
-        {n:"Mahicha Palau",nr:"43",p:"14",d:"Rindsbein · Gewürzreis · Beilagen",img:"Mahicha_Palau_v1.png",e:"🦴",imgsz:1.12},
-        {n:"Mantu",nr:"45",p:"11",d:"Gedämpfte Teigtaschen · Hackfleisch · Joghurt",img:"Mantu.png",e:"🥟",imgsz:1.08},
+        {n:"Kabuli Palau",nr:"40",p:"9",d:"Basmati-Reis · Karotten · Rosinen · Lamm",img:"Reis_Beilage_Kabuli_v1.png",e:"🍚"},
+        {n:"Beryani Palau",nr:"41",p:"10",d:"Gewürzreis · Lamm · Kräuter",img:"Beryani_Palau.png",e:"🍚"},
+        {n:"Molong Palau",nr:"44",p:"30",d:"Kalbshaxe · Gewürzreis · Karotten · Rosinen · für 3 Pers.",img:"Molong_Palau.png",e:"🍚"},
+        {n:"Mahicha Palau",nr:"43",p:"14",d:"Rindsbein · Gewürzreis · Beilagen",img:"Mahicha_Palau_v1.png",e:"🦴"},
+        {n:"Mantu",nr:"45",p:"11",d:"Gedämpfte Teigtaschen · Hackfleisch · Joghurt",img:"Mantu.png",e:"🥟"},
       ]},
     ]
   },
@@ -256,18 +257,18 @@ const SLIDES=[
     ms:18000,
     sections:[
       {t:"Spezialitäten",items:[
-        {n:"Pacha",nr:"51",p:"10",d:"Traditionell · Kopffleisch · Gewürze",img:"Pacha_v1.png",e:"🍲",imgsz:1.20},
-        {n:"Rosh",nr:"53",p:"13",d:"Lammfleisch-Eintopf · Gewürze · Brot",img:"Rosh.png",e:"🍖",imgsz:1.22},
-        {n:"Chanaki",nr:"54",p:"15",d:"Lamm · Kartoffeln · Tomaten · Gewürze",img:"Chanaki.png",e:"🫕",imgsz:1.22},
-        {n:"Chicken Karahi",nr:"55",p:"15",d:"Hähnchen · Tomaten · Ingwer · Gewürze",img:"Chicken_Karahi.png",e:"🍗",imgsz:1.18},
-        {n:"Lamm Karahi",nr:"56",p:"16",d:"Lamm · Tomaten · Ingwer · Gewürze",img:"Lamm_Karahi.png",e:"🍖",imgsz:1.15},
+        {n:"Pacha",nr:"51",p:"10",d:"Traditionell · Kopffleisch · Gewürze",img:"Pacha_v1.png",e:"🍲"},
+        {n:"Rosh",nr:"53",p:"13",d:"Lammfleisch-Eintopf · Gewürze · Brot",img:"Rosh.png",e:"🍖"},
+        {n:"Chanaki",nr:"54",p:"15",d:"Lamm · Kartoffeln · Tomaten · Gewürze",img:"Chanaki.png",e:"🫕",imgsz:1.15},
+        {n:"Chicken Karahi",nr:"55",p:"15",d:"Hähnchen · Tomaten · Ingwer · Gewürze",img:"Chicken_Karahi.png",e:"🍗"},
+        {n:"Lamm Karahi",nr:"56",p:"16",d:"Lamm · Tomaten · Ingwer · Gewürze",img:"Lamm_Karahi.png",e:"🍖"},
       ]},
       {t:"Pizza",items:[
-        {n:"Margarita",nr:"34",p:"9",d:"Tomatensoße · Gauda",img:"Pizza_Margarita_v1.png",e:"🍕",imgsz:1.12},
-        {n:"mit Spinat",nr:"35",p:"10",d:"Tomatensoße · Gauda · Spinat",img:"Pizza_mit_Spinat_v1.png",e:"🍕",imgsz:1.12},
-        {n:"Salami / Sucuk",nr:"36",p:"10",d:"Tomatensoße · Gauda · Salami oder Sucuk",img:"Pizza_mit_Salami_oder_Sucuk_v1.png",e:"🍕",imgsz:1.12},
-        {n:"mit Tunfisch",nr:"37",p:"10",d:"Tomatensoße · Gauda · Tunfisch · Zwiebeln",img:"Pizza_mit_Tunfisch_v1.png",e:"🍕",imgsz:1.12},
-        {n:"mit Gemüse",nr:"39",p:"13",d:"Paprika · Champignons · Zwiebeln · Oliven",img:"Pizza_mit_Gemuese_v1.png",e:"🍕",imgsz:1.12},
+        {n:"Margarita",nr:"34",p:"9",d:"Tomatensoße · Gauda",img:"Pizza_Margarita_v1.png",e:"🍕"},
+        {n:"mit Spinat",nr:"35",p:"10",d:"Tomatensoße · Gauda · Spinat",img:"Pizza_mit_Spinat_v1.png",e:"🍕"},
+        {n:"Salami / Sucuk",nr:"36",p:"10",d:"Tomatensoße · Gauda · Salami oder Sucuk",img:"Pizza_mit_Salami_oder_Sucuk_v1.png",e:"🍕"},
+        {n:"mit Tunfisch",nr:"37",p:"10",d:"Tomatensoße · Gauda · Tunfisch · Zwiebeln",img:"Pizza_mit_Tunfisch_v1.png",e:"🍕"},
+        {n:"mit Gemüse",nr:"39",p:"13",d:"Paprika · Champignons · Zwiebeln · Oliven",img:"Pizza_mit_Gemuese_v1.png",e:"🍕"},
       ]},
     ]
   },
