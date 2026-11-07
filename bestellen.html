@@ -283,19 +283,19 @@
     }
     /* Photo */
     .item-photo {
-      width: 100%; height: 200px;
+      width: 100%; aspect-ratio: 4/3;
       background: #0A1209;
       overflow: hidden; display: flex; align-items: center; justify-content: center;
       position: relative;
     }
     .item-photo::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 48px;
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40px;
       background: linear-gradient(to top, #0F1A10, transparent);
       pointer-events: none;
     }
     .item-photo img {
       width: 100%; height: 100%; object-fit: contain;
-      padding: 18px 14px 6px;
+      padding: 14px 10px 4px;
       transition: transform .45s ease;
     }
     .order-item:hover .item-photo img { transform: scale(1.08); }
@@ -777,7 +777,6 @@
     }
     @media (max-width: 600px) {
       .order-items { grid-template-columns: 1fr; gap: .75rem; }
-      .item-photo { height: 170px; }
       .order-item-name { font-size: 1.15rem; }
       .item-add-btn { width: 44px; height: 44px; font-size: 19px; }
     }
@@ -1129,69 +1128,76 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 (function(){
   /* ── DISH DATA with photos ── */
   var MENU = [
-    {id:'samosa', cat:'vorspeisen', catLabel:'Vorspeisen', name:"Samosa Gemüse", desc:"Knusprige Teigtaschen mit würzigem Gemüse.", price:4.50, photo:'dishes/samosa-gemuese.png'},
-    {id:'bolani', cat:'vorspeisen', catLabel:'Vorspeisen', name:"Bolani Kachalo & Gandana", desc:"Gefülltes Fladenbrot mit Kartoffel & Lauch, dazu Joghurt.", price:5.50, photo:'dishes/bolani-kachalo-und-gandana.png'},
-    {id:'shornakhod', cat:'vorspeisen', catLabel:'Vorspeisen', name:"Shor Nakhod", desc:"Marinierte Kichererbsen mit Zwiebeln, Koriander & Chutney.", price:5.00, photo:'dishes/shor-nakhod.png'},
-    {id:'afghansoup', cat:'vorspeisen', catLabel:'Vorspeisen', name:"Afghan Soup", desc:"Herzhafte Suppe nach Familienrezept.", price:5.50, photo:'favicon.svg'},
-    {id:'salat', cat:'vorspeisen', catLabel:'Vorspeisen', name:"Salat", desc:"Frischer gemischter Salat mit Hausdressing.", price:5.00, photo:'dishes/salat.png'},
-    {id:'pommes', cat:'vorspeisen', catLabel:'Vorspeisen', name:"Pommes", desc:"Knusprige Pommes frites.", price:3.50, photo:'dishes/pommes.png'},
-    {id:'nuggets', cat:'vorspeisen', catLabel:'Vorspeisen', name:"Chicken Nuggets", desc:"6 Stück, dazu Pommes.", price:5.50, photo:'dishes/chicken-nuggets.png'},
-    {id:'fischfingers', cat:'vorspeisen', catLabel:'Vorspeisen', name:"Fisch Fingers", desc:"Knusprige Fischstäbchen, dazu Pommes.", price:5.50, photo:'dishes/fisch-fingers.png'},
-    {id:'chapli', cat:'grill', catLabel:'Grill & Kebab', name:"Chapli Kebab", desc:"Würzig gebratenes Hacksteak nach afghanischer Art.", price:8.00, photo:'dishes/chapli-kebab.png'},
-    {id:'kobide', cat:'grill', catLabel:'Grill & Kebab', name:"Kobide Kebab", desc:"Saftiger Hackfleischspieß vom Holzkohlegrill.", price:13.00, photo:'dishes/kobide-kebab.png'},
-    {id:'wings', cat:'grill', catLabel:'Grill & Kebab', name:"Chicken Wings Kebab", desc:"Marinierte Hähnchenflügel vom Grill.", price:12.00, photo:'dishes/chicken-wings-kebab.png'},
-    {id:'ctikka', cat:'grill', catLabel:'Grill & Kebab', name:"Chicken Tikka Kebab", desc:"Zart mariniertes Hähnchenfilet vom Spieß.", price:12.50, photo:'dishes/chicken-tikka-kebab.png'},
-    {id:'ltikka', cat:'grill', catLabel:'Grill & Kebab', name:"Lamm Tikka Kebab", desc:"Zarte Lammfiletstücke vom Holzkohlegrill.", price:18.00, photo:'dishes/lamm-tikka-kebab.png'},
-    {id:'lkotelett', cat:'grill', catLabel:'Grill & Kebab', name:"Lamm Kotelett", desc:"Saftige Lammkoteletts, frisch gegrillt.", price:19.50, photo:'dishes/lamm-kotelett.png'},
-    {id:'grillfish', cat:'grill', catLabel:'Grill & Kebab', name:"Grill Fish", desc:"Ganzer Fisch vom Grill mit Kräutern.", price:15.00, photo:'dishes/grill-fish.png'},
-    {id:'mix1', cat:'grill', catLabel:'Grill & Kebab', name:"Mix Grill (1 Person)", price:20.00, photo:'dishes/mix-grill-1-person.png', group:'mixgrill', groupTitle:'Mix Grill', variantLabel:'1 Person'},
-    {id:'mix2', cat:'grill', catLabel:'Grill & Kebab', name:"Mix Grill (2 Personen)", price:40.00, photo:'dishes/mix-grill-grillplatte.png', group:'mixgrill', groupTitle:'Mix Grill', variantLabel:'2 Personen'},
-    {id:'mix4', cat:'grill', catLabel:'Grill & Kebab', name:"Mix Grill (4 Personen)", price:80.00, photo:'dishes/mix-grill-grillplatte.png', group:'mixgrill', groupTitle:'Mix Grill', variantLabel:'4 Personen'},
-    {id:'doener', cat:'teller', catLabel:'Teller & Sandwich', name:"Döner", desc:"Im Fladenbrot mit Salat & Sauce.", price:6.50, photo:'dishes/doener.png'},
-    {id:'doenerbox', cat:'teller', catLabel:'Teller & Sandwich', name:"Döner Box", desc:"Dönerfleisch mit Pommes in der Box.", price:7.50, photo:'dishes/doener.png'},
-    {id:'kobidadueruem', cat:'teller', catLabel:'Teller & Sandwich', name:"Kobida Dürüm", desc:"Kobide im dünnen Fladen gerollt.", price:8.50, photo:'dishes/kobide-kebab.png'},
-    {id:'lahmacun', cat:'teller', catLabel:'Teller & Sandwich', name:"Lahmacun", desc:"Dünne Teigfladen mit Hackfleisch & Salat.", price:6.50, photo:'favicon.svg'},
-    {id:'dtellerp', cat:'teller', catLabel:'Teller & Sandwich', name:"Dönerteller mit Pommes", desc:"Dönerfleisch mit Pommes, Salat & Sauce.", price:11.00, photo:'dishes/doenerteller-mit-pommes.png'},
-    {id:'dtellerr', cat:'teller', catLabel:'Teller & Sandwich', name:"Dönerteller mit Reis", desc:"Dönerfleisch mit Reis, Salat & Sauce.", price:11.00, photo:'dishes/doenerteller-mit-reis.png'},
-    {id:'falafels', cat:'teller', catLabel:'Teller & Sandwich', name:"Falafel-Sandwich", desc:"Knusprige Falafel im Fladen mit Salat.", price:6.00, photo:'dishes/falafel-sandwich.png'},
-    {id:'falafelt', cat:'teller', catLabel:'Teller & Sandwich', name:"Falafel-Teller", desc:"Falafel mit Reis oder Pommes & Salat.", price:10.00, photo:'dishes/falafel-teller.png'},
-    {id:'seitans', cat:'teller', catLabel:'Teller & Sandwich', name:"Seitan-Sandwich", desc:"Herzhaftes Seitan im Fladen mit Salat.", price:6.50, photo:'dishes/seitan-sandwich.png'},
-    {id:'seitant', cat:'teller', catLabel:'Teller & Sandwich', name:"Seitan-Teller", desc:"Seitan mit Reis oder Pommes & Salat.", price:10.50, photo:'dishes/seitan-teller.png'},
-    {id:'afghanburger', cat:'teller', catLabel:'Teller & Sandwich', name:"Afghan Burger", desc:"Hausburger nach afghanischer Art.", price:8.50, photo:'dishes/afghan-burger.png'},
-    {id:'burgerp', cat:'teller', catLabel:'Teller & Sandwich', name:"Burger mit Pommes", desc:"Burger mit knusprigen Pommes.", price:10.50, photo:'dishes/burger-mit-pommes.png'},
-    {id:'fryfish', cat:'teller', catLabel:'Teller & Sandwich', name:"Fry Fish", desc:"Knusprig frittierter Fisch mit Beilage.", price:12.00, photo:'dishes/fry-fish.png'},
-    {id:'kabuli', cat:'palau', catLabel:'Palau & Reis', name:"Kabuli Palau", desc:"Duftender Reis mit Rosinen, Karotten & Fleisch.", price:13.50, photo:'dishes/kabuli-palau.png'},
-    {id:'beryani', cat:'palau', catLabel:'Palau & Reis', name:"Beryani Palau", desc:"Würziger Beryani-Reis mit Fleisch.", price:13.50, photo:'dishes/beryani-palau.png'},
-    {id:'zereshkk', cat:'palau', catLabel:'Palau & Reis', name:"Zereshk Palau mit Kalbfleisch", desc:"Reis mit Berberitzen & Kalbfleisch.", price:15.00, photo:'dishes/zereshk-palau-mit-kalbfleisch.png'},
-    {id:'zereshkh', cat:'palau', catLabel:'Palau & Reis', name:"Zereshk Palau mit Hähnchen", desc:"Reis mit Berberitzen & Hähnchen.", price:14.00, photo:'dishes/zershk-palau-mit-haehnchen.png'},
-    {id:'mahicha', cat:'palau', catLabel:'Palau & Reis', name:"Mahicha Palau", desc:"Palau mit geschmorter Lammhaxe.", price:16.00, photo:'dishes/mahicha-palau.png'},
-    {id:'molong', cat:'palau', catLabel:'Palau & Reis', name:"Molong Palau", desc:"Aromatischer Palau nach Hausart.", price:13.50, photo:'dishes/molong-palau.png'},
-    {id:'mantu', cat:'palau', catLabel:'Palau & Reis', name:"Mantu", desc:"Gefüllte Teigtaschen mit Hackfleisch & Joghurt.", price:12.00, photo:'dishes/mantu.png'},
-    {id:'loobia', cat:'palau', catLabel:'Palau & Reis', name:"Loobia", desc:"Weiße Bohnen in würziger Sauce.", price:11.00, photo:'dishes/loobia.png'},
-    {id:'sabzi', cat:'palau', catLabel:'Palau & Reis', name:"Sabzi Palak (Spinat)", desc:"Cremiger Spinat mit Gewürzen.", price:11.00, photo:'dishes/sabzi-palak-spinat.png'},
-    {id:'qorma', cat:'palau', catLabel:'Palau & Reis', name:"Qorma", desc:"Zart geschmortes Fleisch in Zwiebelsauce.", price:12.50, photo:'dishes/qorma.png'},
-    {id:'jalfrezi', cat:'palau', catLabel:'Palau & Reis', name:"Chicken Jalfrezi", desc:"Hähnchen mit Paprika & Zwiebeln, würzig.", price:13.50, photo:'dishes/chicken-jalfrezi.png'},
-    {id:'bamya', cat:'palau', catLabel:'Palau & Reis', name:"Bamya (Okra)", desc:"Okraschoten in Tomatensauce.", price:11.00, photo:'dishes/bamya-okra.png'},
-    {id:'pacha', cat:'palau', catLabel:'Palau & Reis', name:"Pacha", desc:"Traditionelles Gericht nach Familienrezept.", price:14.00, photo:'dishes/pacha.png'},
-    {id:'haleem', cat:'palau', catLabel:'Palau & Reis', name:"Haleem", desc:"Herzhafter Weizen-Fleisch-Eintopf.", price:11.50, photo:'dishes/haleem.png'},
-    {id:'rosh', cat:'palau', catLabel:'Palau & Reis', name:"Rosh", desc:"Gebratenes Fleisch nach afghanischer Art.", price:14.00, photo:'dishes/rosh.png'},
-    {id:'ckarahi', cat:'palau', catLabel:'Palau & Reis', name:"Chicken Karahi", desc:"Hähnchen in würziger Tomaten-Karahi-Sauce.", price:14.50, photo:'dishes/chicken-karahi.png'},
-    {id:'lkarahi', cat:'palau', catLabel:'Palau & Reis', name:"Lamm Karahi", desc:"Lamm in würziger Tomaten-Karahi-Sauce.", price:16.50, photo:'dishes/lamm-karahi.png'},
-    {id:'chanaki', cat:'palau', catLabel:'Palau & Reis', name:"Chanaki", desc:"Geschmortes Lamm mit Gemüse im Tontopf.", price:14.00, photo:'dishes/chanaki.png'},
-    {id:'pidekaese', cat:'pizza', catLabel:'Pizza & Pide', name:"Pide mit Käse", desc:"Ofenfrisches Fladenbrot mit Käse.", price:8.00, photo:'dishes/pide-mit-kaese.png'},
-    {id:'pidedoener', cat:'pizza', catLabel:'Pizza & Pide', name:"Pide mit Dönerfleisch", desc:"Pide mit Dönerfleisch & Käse.", price:10.00, photo:'dishes/pide-mit-doenerfleisch.png'},
-    {id:'pidesalami', cat:'pizza', catLabel:'Pizza & Pide', name:"Pide mit Salami oder Sucuk", desc:"Pide mit Salami oder Sucuk & Käse.", price:9.50, photo:'dishes/pide-mit-salami-oder-sucuk.png'},
-    {id:'pidehack', cat:'pizza', catLabel:'Pizza & Pide', name:"Pide mit Hackfleisch", desc:"Pide mit gewürztem Hackfleisch.", price:9.50, photo:'dishes/pide-mit-hackfleisch.png'},
-    {id:'pizzamarg', cat:'pizza', catLabel:'Pizza & Pide', name:"Pizza Margherita", desc:"Tomate & Käse.", price:8.00, photo:'dishes/pizza-margarita.png'},
-    {id:'pizzaspinat', cat:'pizza', catLabel:'Pizza & Pide', name:"Pizza mit Spinat", desc:"Spinat, Tomate & Käse.", price:9.00, photo:'dishes/pizza-mit-spinat.png'},
-    {id:'pizzasalami', cat:'pizza', catLabel:'Pizza & Pide', name:"Pizza mit Salami oder Sucuk", desc:"Salami oder Sucuk, Tomate & Käse.", price:9.50, photo:'dishes/pizza-mit-salami-oder-sucuk.png'},
-    {id:'pizzatun', cat:'pizza', catLabel:'Pizza & Pide', name:"Pizza mit Tunfisch", desc:"Tunfisch, Zwiebeln, Tomate & Käse.", price:9.50, photo:'dishes/pizza-mit-tunfisch.png'},
-    {id:'pizzagemuese', cat:'pizza', catLabel:'Pizza & Pide', name:"Pizza mit Gemüse", desc:"Gemischtes Gemüse, Tomate & Käse.", price:9.50, photo:'dishes/pizza-mit-gemuese.png'},
-    {id:'baklava', cat:'dessert', catLabel:'Dessert', name:"Baklava", desc:"Süßes Blätterteiggebäck mit Nüssen & Sirup.", price:4.00, photo:'dishes/baklava.png'},
-    {id:'kuenefe', cat:'dessert', catLabel:'Dessert', name:"Künefe", desc:"Warmes Käsegebäck in Zuckersirup.", price:6.00, photo:'dishes/kuenefe.png'},
-    {id:'jalebi', cat:'dessert', catLabel:'Dessert', name:"Jalebi", desc:"Knusprig-süße Teigspiralen in Sirup.", price:4.50, photo:'dishes/jalebi.png'},
-    {id:'firnee', cat:'dessert', catLabel:'Dessert', name:"Firnee", desc:"Feiner Milchpudding mit Kardamom & Pistazien.", price:4.50, photo:'dishes/firnee.png'},
-    {id:'shiryakh', cat:'dessert', catLabel:'Dessert', name:"Shir Yakh", desc:"Hausgemachtes Eis nach afghanischer Art.", price:4.00, photo:'dishes/shir-yakh.png'},
+    /* ── Vorspeisen (nur echte Starter) ── */
+    {id:'samosa',      cat:'vorspeisen', catLabel:'Vorspeisen', name:"Samosa Gemüse",           desc:"Knusprige Teigtaschen mit würzigem Gemüse.",                 price:4.50,  photo:'dishes/samosa-gemuese.png'},
+    {id:'bolani',      cat:'vorspeisen', catLabel:'Vorspeisen', name:"Bolani Kachalo & Gandana",desc:"Gefülltes Fladenbrot mit Kartoffel & Lauch, dazu Joghurt.",  price:5.50,  photo:'dishes/bolani-kachalo-und-gandana.png'},
+    {id:'shornakhod',  cat:'vorspeisen', catLabel:'Vorspeisen', name:"Shor Nakhod",             desc:"Marinierte Kichererbsen mit Zwiebeln, Koriander & Chutney.", price:5.00,  photo:'dishes/shor-nakhod.png'},
+    {id:'afghansoup',  cat:'vorspeisen', catLabel:'Vorspeisen', name:"Afghan Soup",             desc:"Herzhafte Suppe nach Familienrezept.",                       price:5.50,  photo:'favicon.svg'},
+    {id:'salat',       cat:'vorspeisen', catLabel:'Vorspeisen', name:"Salat",                   desc:"Frischer gemischter Salat mit Hausdressing.",                price:5.00,  photo:'dishes/salat.png'},
+    /* ── Grill & Kebab (Mix Grill zuerst — Flagship!) ── */
+    {id:'mix1',  cat:'grill', catLabel:'Grill & Kebab', name:"Mix Grill (1 Person)",   price:20.00, photo:'dishes/mix-grill-1-person.png',   group:'mixgrill', groupTitle:'Mix Grill', variantLabel:'1 Person'},
+    {id:'mix2',  cat:'grill', catLabel:'Grill & Kebab', name:"Mix Grill (2 Personen)", price:40.00, photo:'dishes/mix-grill-grillplatte.png', group:'mixgrill', groupTitle:'Mix Grill', variantLabel:'2 Personen'},
+    {id:'mix4',  cat:'grill', catLabel:'Grill & Kebab', name:"Mix Grill (4 Personen)", price:80.00, photo:'dishes/mix-grill-grillplatte.png', group:'mixgrill', groupTitle:'Mix Grill', variantLabel:'4 Personen'},
+    {id:'chapli',    cat:'grill', catLabel:'Grill & Kebab', name:"Chapli Kebab",        desc:"Würzig gebratenes Hacksteak nach afghanischer Art.",   price:8.00,  photo:'dishes/chapli-kebab.png'},
+    {id:'kobide',    cat:'grill', catLabel:'Grill & Kebab', name:"Kobide Kebab",        desc:"Saftiger Hackfleischspieß vom Holzkohlegrill.",         price:13.00, photo:'dishes/kobide-kebab.png'},
+    {id:'wings',     cat:'grill', catLabel:'Grill & Kebab', name:"Chicken Wings Kebab", desc:"Marinierte Hähnchenflügel vom Grill.",                  price:12.00, photo:'dishes/chicken-wings-kebab.png'},
+    {id:'ctikka',    cat:'grill', catLabel:'Grill & Kebab', name:"Chicken Tikka Kebab", desc:"Zart mariniertes Hähnchenfilet vom Spieß.",             price:12.50, photo:'dishes/chicken-tikka-kebab.png'},
+    {id:'ltikka',    cat:'grill', catLabel:'Grill & Kebab', name:"Lamm Tikka Kebab",    desc:"Zarte Lammfiletstücke vom Holzkohlegrill.",             price:18.00, photo:'dishes/lamm-tikka-kebab.png'},
+    {id:'lkotelett', cat:'grill', catLabel:'Grill & Kebab', name:"Lamm Kotelett",       desc:"Saftige Lammkoteletts, frisch gegrillt.",               price:19.50, photo:'dishes/lamm-kotelett.png'},
+    {id:'grillfish', cat:'grill', catLabel:'Grill & Kebab', name:"Grill Fish",          desc:"Ganzer Fisch vom Grill mit Kräutern.",                  price:15.00, photo:'dishes/grill-fish.png'},
+    /* ── Hauptgerichte (Palau, Karahi & Spezialitäten) ── */
+    {id:'kabuli',   cat:'palau', catLabel:'Hauptgerichte', name:"Kabuli Palau",             desc:"Duftender Reis mit Rosinen, Karotten & Fleisch.",        price:13.50, photo:'dishes/kabuli-palau.png'},
+    {id:'mahicha',  cat:'palau', catLabel:'Hauptgerichte', name:"Mahicha Palau",            desc:"Palau mit zart geschmorter Lammhaxe.",                   price:16.00, photo:'dishes/mahicha-palau.png'},
+    {id:'beryani',  cat:'palau', catLabel:'Hauptgerichte', name:"Beryani Palau",            desc:"Würziger Beryani-Reis mit Fleisch.",                      price:13.50, photo:'dishes/beryani-palau.png'},
+    {id:'zereshkh', cat:'palau', catLabel:'Hauptgerichte', name:"Zereshk Palau mit Hähnchen",    desc:"Reis mit Berberitzen & Hähnchen.",                  price:14.00, photo:'dishes/zershk-palau-mit-haehnchen.png'},
+    {id:'zereshkk', cat:'palau', catLabel:'Hauptgerichte', name:"Zereshk Palau mit Kalbfleisch", desc:"Reis mit Berberitzen & Kalbfleisch.",               price:15.00, photo:'dishes/zereshk-palau-mit-kalbfleisch.png'},
+    {id:'molong',   cat:'palau', catLabel:'Hauptgerichte', name:"Molong Palau",             desc:"Aromatischer Palau nach Hausart.",                       price:13.50, photo:'dishes/molong-palau.png'},
+    {id:'chanaki',  cat:'palau', catLabel:'Hauptgerichte', name:"Chanaki",                  desc:"Geschmortes Lamm mit Gemüse im Tontopf.",                price:14.00, photo:'dishes/chanaki.png'},
+    {id:'ckarahi',  cat:'palau', catLabel:'Hauptgerichte', name:"Chicken Karahi",           desc:"Hähnchen in würziger Tomaten-Karahi-Sauce.",             price:14.50, photo:'dishes/chicken-karahi.png'},
+    {id:'lkarahi',  cat:'palau', catLabel:'Hauptgerichte', name:"Lamm Karahi",              desc:"Lamm in würziger Tomaten-Karahi-Sauce.",                 price:16.50, photo:'dishes/lamm-karahi.png'},
+    {id:'jalfrezi', cat:'palau', catLabel:'Hauptgerichte', name:"Chicken Jalfrezi",         desc:"Hähnchen mit Paprika & Zwiebeln, würzig.",               price:13.50, photo:'dishes/chicken-jalfrezi.png'},
+    {id:'qorma',    cat:'palau', catLabel:'Hauptgerichte', name:"Qorma",                    desc:"Zart geschmortes Fleisch in Zwiebelsauce.",              price:12.50, photo:'dishes/qorma.png'},
+    {id:'mantu',    cat:'palau', catLabel:'Hauptgerichte', name:"Mantu",                    desc:"Gefüllte Teigtaschen mit Hackfleisch & Joghurt.",        price:12.00, photo:'dishes/mantu.png'},
+    {id:'haleem',   cat:'palau', catLabel:'Hauptgerichte', name:"Haleem",                   desc:"Herzhafter Weizen-Fleisch-Eintopf.",                     price:11.50, photo:'dishes/haleem.png'},
+    {id:'pacha',    cat:'palau', catLabel:'Hauptgerichte', name:"Pacha",                    desc:"Traditionelles Gericht nach Familienrezept.",            price:14.00, photo:'dishes/pacha.png'},
+    {id:'rosh',     cat:'palau', catLabel:'Hauptgerichte', name:"Rosh",                     desc:"Gebratenes Fleisch nach afghanischer Art.",              price:14.00, photo:'dishes/rosh.png'},
+    {id:'loobia',   cat:'palau', catLabel:'Hauptgerichte', name:"Loobia",                   desc:"Weiße Bohnen in würziger Sauce.",                        price:11.00, photo:'dishes/loobia.png'},
+    {id:'sabzi',    cat:'palau', catLabel:'Hauptgerichte', name:"Sabzi Palak (Spinat)",     desc:"Cremiger Spinat mit Gewürzen.",                          price:11.00, photo:'dishes/sabzi-palak-spinat.png'},
+    {id:'bamya',    cat:'palau', catLabel:'Hauptgerichte', name:"Bamya (Okra)",             desc:"Okraschoten in Tomatensauce.",                           price:11.00, photo:'dishes/bamya-okra.png'},
+    /* ── Teller & Sandwich ── */
+    {id:'doener',       cat:'teller', catLabel:'Teller & Sandwich', name:"Döner",                  desc:"Im Fladenbrot mit Salat & Sauce.",                 price:6.50,  photo:'dishes/doener.png'},
+    {id:'doenerbox',    cat:'teller', catLabel:'Teller & Sandwich', name:"Döner Box",              desc:"Dönerfleisch mit Pommes in der Box.",              price:7.50,  photo:'dishes/doener.png'},
+    {id:'kobidadueruem',cat:'teller', catLabel:'Teller & Sandwich', name:"Kobida Dürüm",          desc:"Kobide im dünnen Fladen gerollt.",                 price:8.50,  photo:'dishes/kobide-kebab.png'},
+    {id:'lahmacun',     cat:'teller', catLabel:'Teller & Sandwich', name:"Lahmacun",              desc:"Dünne Teigfladen mit Hackfleisch & Salat.",        price:6.50,  photo:'favicon.svg'},
+    {id:'falafels',     cat:'teller', catLabel:'Teller & Sandwich', name:"Falafel-Sandwich",      desc:"Knusprige Falafel im Fladen mit Salat.",           price:6.00,  photo:'dishes/falafel-sandwich.png'},
+    {id:'seitans',      cat:'teller', catLabel:'Teller & Sandwich', name:"Seitan-Sandwich",       desc:"Herzhaftes Seitan im Fladen mit Salat.",           price:6.50,  photo:'dishes/seitan-sandwich.png'},
+    {id:'afghanburger', cat:'teller', catLabel:'Teller & Sandwich', name:"Afghan Burger",         desc:"Hausburger nach afghanischer Art.",                price:8.50,  photo:'dishes/afghan-burger.png'},
+    {id:'burgerp',      cat:'teller', catLabel:'Teller & Sandwich', name:"Burger mit Pommes",     desc:"Burger mit knusprigen Pommes.",                    price:10.50, photo:'dishes/burger-mit-pommes.png'},
+    {id:'dtellerp',     cat:'teller', catLabel:'Teller & Sandwich', name:"Dönerteller mit Pommes",desc:"Dönerfleisch mit Pommes, Salat & Sauce.",          price:11.00, photo:'dishes/doenerteller-mit-pommes.png'},
+    {id:'dtellerr',     cat:'teller', catLabel:'Teller & Sandwich', name:"Dönerteller mit Reis",  desc:"Dönerfleisch mit Reis, Salat & Sauce.",            price:11.00, photo:'dishes/doenerteller-mit-reis.png'},
+    {id:'falafelt',     cat:'teller', catLabel:'Teller & Sandwich', name:"Falafel-Teller",        desc:"Falafel mit Reis oder Pommes & Salat.",            price:10.00, photo:'dishes/falafel-teller.png'},
+    {id:'seitant',      cat:'teller', catLabel:'Teller & Sandwich', name:"Seitan-Teller",         desc:"Seitan mit Reis oder Pommes & Salat.",             price:10.50, photo:'dishes/seitan-teller.png'},
+    {id:'fryfish',      cat:'teller', catLabel:'Teller & Sandwich', name:"Fry Fish",              desc:"Knusprig frittierter Fisch mit Beilage.",          price:12.00, photo:'dishes/fry-fish.png'},
+    /* ── Pizza & Pide (Pide zuerst) ── */
+    {id:'pidekaese',   cat:'pizza', catLabel:'Pizza & Pide', name:"Pide mit Käse",             desc:"Ofenfrisches Fladenbrot mit Käse.",              price:8.00,  photo:'dishes/pide-mit-kaese.png'},
+    {id:'pidedoener',  cat:'pizza', catLabel:'Pizza & Pide', name:"Pide mit Dönerfleisch",     desc:"Pide mit Dönerfleisch & Käse.",                  price:10.00, photo:'dishes/pide-mit-doenerfleisch.png'},
+    {id:'pidehack',    cat:'pizza', catLabel:'Pizza & Pide', name:"Pide mit Hackfleisch",      desc:"Pide mit gewürztem Hackfleisch.",                price:9.50,  photo:'dishes/pide-mit-hackfleisch.png'},
+    {id:'pidesalami',  cat:'pizza', catLabel:'Pizza & Pide', name:"Pide mit Salami oder Sucuk",desc:"Pide mit Salami oder Sucuk & Käse.",             price:9.50,  photo:'dishes/pide-mit-salami-oder-sucuk.png'},
+    {id:'pizzamarg',   cat:'pizza', catLabel:'Pizza & Pide', name:"Pizza Margherita",          desc:"Tomate & Käse.",                                price:8.00,  photo:'dishes/pizza-margarita.png'},
+    {id:'pizzaspinat', cat:'pizza', catLabel:'Pizza & Pide', name:"Pizza mit Spinat",          desc:"Spinat, Tomate & Käse.",                        price:9.00,  photo:'dishes/pizza-mit-spinat.png'},
+    {id:'pizzasalami', cat:'pizza', catLabel:'Pizza & Pide', name:"Pizza mit Salami oder Sucuk",desc:"Salami oder Sucuk, Tomate & Käse.",            price:9.50,  photo:'dishes/pizza-mit-salami-oder-sucuk.png'},
+    {id:'pizzatun',    cat:'pizza', catLabel:'Pizza & Pide', name:"Pizza mit Tunfisch",        desc:"Tunfisch, Zwiebeln, Tomate & Käse.",            price:9.50,  photo:'dishes/pizza-mit-tunfisch.png'},
+    {id:'pizzagemuese',cat:'pizza', catLabel:'Pizza & Pide', name:"Pizza mit Gemüse",          desc:"Gemischtes Gemüse, Tomate & Käse.",             price:9.50,  photo:'dishes/pizza-mit-gemuese.png'},
+    /* ── Beilagen ── */
+    {id:'pommes',      cat:'beilagen', catLabel:'Beilagen', name:"Pommes",          desc:"Knusprige Pommes frites.",                 price:3.50, photo:'dishes/pommes.png'},
+    {id:'nuggets',     cat:'beilagen', catLabel:'Beilagen', name:"Chicken Nuggets", desc:"6 Stück, dazu Pommes.",                    price:5.50, photo:'dishes/chicken-nuggets.png'},
+    {id:'fischfingers',cat:'beilagen', catLabel:'Beilagen', name:"Fisch Fingers",   desc:"Knusprige Fischstäbchen, dazu Pommes.",    price:5.50, photo:'dishes/fisch-fingers.png'},
+    /* ── Dessert ── */
+    {id:'baklava',  cat:'dessert', catLabel:'Dessert', name:"Baklava", desc:"Süßes Blätterteiggebäck mit Nüssen & Sirup.", price:4.00, photo:'dishes/baklava.png'},
+    {id:'kuenefe',  cat:'dessert', catLabel:'Dessert', name:"Künefe",  desc:"Warmes Käsegebäck in Zuckersirup.",           price:6.00, photo:'dishes/kuenefe.png'},
+    {id:'jalebi',   cat:'dessert', catLabel:'Dessert', name:"Jalebi",  desc:"Knusprig-süße Teigspiralen in Sirup.",        price:4.50, photo:'dishes/jalebi.png'},
+    {id:'firnee',   cat:'dessert', catLabel:'Dessert', name:"Firnee",  desc:"Feiner Milchpudding mit Kardamom & Pistazien.",price:4.50, photo:'dishes/firnee.png'},
+    {id:'shiryakh', cat:'dessert', catLabel:'Dessert', name:"Shir Yakh",desc:"Hausgemachtes Eis nach afghanischer Art.",    price:4.00, photo:'dishes/shir-yakh.png'},
     {id:'softdrink', cat:'getraenke', catLabel:'Getränke', name:"Softdrink 0,33 l", price:2.50, photo:'favicon.svg', dgroup:'kalt'},
     {id:'ayran', cat:'getraenke', catLabel:'Getränke', name:"Ayran", desc:"Erfrischendes Joghurtgetränk.", price:2.50, photo:'favicon.svg', dgroup:'kalt'},
     {id:'dooghe', cat:'getraenke', catLabel:'Getränke', name:"Dooghe", desc:"Afghanisches Minz-Joghurtgetränk.", price:3.00, photo:'favicon.svg', dgroup:'kalt'},
@@ -1204,9 +1210,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     {id:'all',        label:'Alle'},
     {id:'vorspeisen', label:'Vorspeisen'},
     {id:'grill',      label:'Grill & Kebab'},
+    {id:'palau',      label:'Hauptgerichte'},
     {id:'teller',     label:'Teller & Sandwich'},
-    {id:'palau',      label:'Palau & Reis'},
     {id:'pizza',      label:'Pizza & Pide'},
+    {id:'beilagen',   label:'Beilagen'},
     {id:'dessert',    label:'Dessert'},
     {id:'getraenke',  label:'Getränke'},
   ];
