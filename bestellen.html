@@ -260,55 +260,68 @@
     .cart-col { position: relative; }
 
     /* ══════════════════════════════════════════
-       DISH CARDS
+       DISH CARDS — Grid-Layout
     ══════════════════════════════════════════ */
     .order-items {
-      display: flex; flex-direction: column; gap: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.1rem;
       width: 100%;
     }
     .order-item {
-      display: flex; align-items: center; gap: 1.2rem;
-      padding: 1.1rem 1rem;
-      margin-bottom: .5rem;
-      background: #162918;
-      border: 1px solid rgba(201,148,58,.18);
-      border-radius: 12px;
-      box-shadow: 0 1px 6px rgba(245,230,200,.05);
-      transition: box-shadow .2s, border-color .2s;
+      display: flex; flex-direction: column;
+      background: #0F1A10;
+      border: 1px solid rgba(201,148,58,.14);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: box-shadow .25s, border-color .25s, transform .22s;
     }
     .order-item:hover {
-      box-shadow: 0 4px 18px rgba(181,98,30,.1);
-      border-color: rgba(181,98,30,.22);
+      box-shadow: 0 10px 36px rgba(0,0,0,.4), 0 0 0 1px rgba(201,148,58,.28);
+      border-color: rgba(201,148,58,.28);
+      transform: translateY(-3px);
     }
     /* Photo */
     .item-photo {
-      flex-shrink: 0; width: 140px; height: 140px; border-radius: 10px;
-      background: linear-gradient(135deg,#162918,#1A1208);
+      width: 100%; height: 200px;
+      background: #0A1209;
       overflow: hidden; display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .item-photo::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 48px;
+      background: linear-gradient(to top, #0F1A10, transparent);
+      pointer-events: none;
     }
     .item-photo img {
-      width: 140px; height: 140px; object-fit: contain;
-      padding: 8px;
-      transition: transform .35s ease;
+      width: 100%; height: 100%; object-fit: contain;
+      padding: 18px 14px 6px;
+      transition: transform .45s ease;
     }
-    .order-item:hover .item-photo img { transform: scale(1.07); }
-    .item-photo-placeholder { width: 44px; height: 44px; opacity: .12; color: var(--fire); }
-    /* Info */
-    .item-info { flex: 1; min-width: 0; }
+    .order-item:hover .item-photo img { transform: scale(1.08); }
+    .item-photo-placeholder { width: 44px; height: 44px; opacity: .1; color: var(--fire); }
+    /* Body */
+    .item-body { flex: 1; display: flex; flex-direction: column; padding: .9rem 1.1rem 1rem; }
     .item-cat-pill {
-      font: 700 .58rem/1 'Lato', sans-serif; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--fire); opacity: .65; display: block; margin-bottom: .25rem;
+      font: 700 .52rem/1 'Lato', sans-serif; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gold); opacity: .6; display: block; margin-bottom: .3rem;
     }
-    .order-item-desc { font: 300 .82rem/1.5 'Lato', sans-serif; color: rgba(245,230,200,.6); margin-top: .3rem; max-width: 52ch; }
+    .order-item-desc { font: 300 .78rem/1.55 'Lato', sans-serif; color: rgba(245,230,200,.48); margin-top: .25rem; flex: 1; }
     .order-item-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.45rem; font-weight: 700; color: #B5621E;
-      line-height: 1.25;
+      font-size: 1.25rem; font-weight: 600; color: #F5E6C8;
+      line-height: 1.2;
+    }
+    /* Footer: price + button */
+    .item-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: .75rem; padding-top: .65rem;
+      border-top: 1px solid rgba(201,148,58,.1);
     }
     .order-item-price {
-      font: 700 .88rem/1 'Lato', sans-serif;
-      color: var(--gold);
-      display: inline-block; margin-top: .4rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--gold); letter-spacing: .01em;
     }
     /* Ctrl */
     .item-ctrl { flex-shrink: 0; }
@@ -329,6 +342,7 @@
     .item-qty-num { font: 700 .9rem/1 'Lato', sans-serif; color: var(--coffee); min-width: 22px; text-align: center; }
     /* Category section heading */
     .cat-heading {
+      grid-column: 1 / -1;
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.5rem; font-weight: 700; font-style: italic;
       color: #B5621E; padding: 1.6rem 0 .7rem;
@@ -339,10 +353,11 @@
     .item-sep-gem { display: none; }
     /* ── Gruppen-Karte (Personen-Varianten) ── */
     .item-group {
+      grid-column: 1 / -1;
       display: flex; align-items: stretch; gap: 1.2rem;
       padding: 1.1rem 1rem; margin-bottom: .5rem;
-      background: #162918; border: 1px solid rgba(201,148,58,.18);
-      border-radius: 12px; box-shadow: 0 1px 6px rgba(245,230,200,.05);
+      background: #0F1A10; border: 1px solid rgba(201,148,58,.18);
+      border-radius: 14px; box-shadow: 0 1px 6px rgba(245,230,200,.05);
     }
     .item-group-photo {
       flex-shrink: 0; width: 150px; border-radius: 10px;
@@ -761,11 +776,9 @@
       .order-items { padding: 0; }
     }
     @media (max-width: 600px) {
-      .order-items { padding: 0; }
-      .order-item { gap: .9rem; padding: .85rem .85rem; }
-      .item-photo { width: 120px; height: 120px; }
-      .item-photo img { width: 120px; height: 120px; }
-      .order-item-name { font-size: 1.2rem; }
+      .order-items { grid-template-columns: 1fr; gap: .75rem; }
+      .item-photo { height: 170px; }
+      .order-item-name { font-size: 1.15rem; }
       .item-add-btn { width: 44px; height: 44px; font-size: 19px; }
     }
     @media (max-width: 480px) {
@@ -1359,13 +1372,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
       card.innerHTML =
         '<div class="item-photo">' + photoHtml + '</div>'
-        + '<div class="item-info">'
+        + '<div class="item-body">'
           + (!isAll ? '<span class="item-cat-pill">' + m.catLabel + '</span>' : '')
           + '<div class="order-item-name">' + m.name + '</div>'
           + (m.desc ? '<div class="order-item-desc">' + m.desc + '</div>' : '')
-          + '<span class="order-item-price">' + fmt(m.price) + '</span>'
-        + '</div>'
-        + '<div class="item-ctrl">' + ctrlHtml + '</div>';
+          + '<div class="item-footer">'
+            + '<span class="order-item-price">' + fmt(m.price) + '</span>'
+            + '<div class="item-ctrl">' + ctrlHtml + '</div>'
+          + '</div>'
+        + '</div>';
       el.appendChild(card);
     });
 
