@@ -247,7 +247,7 @@ const SLIDES=[
         {n:"Afghan Burger",nr:"22",p:"7",d:"Dürüm-Fladen · Kalbfleisch · Pommes · Ei · Salat",img:"Afghan_Burger.png",e:"🌯"},
         {n:"Burger mit Pommes",nr:"23",p:"9",d:"Rindfleisch-Patty · Cheddar · Salat · Pommes",img:"Burger_mit_Pommes_v1.png",e:"🍔"},
         {n:"Fry Fish",nr:"24",p:"12,50",d:"Frittierter Fisch · Pommes oder Brot · Salat",img:"Fry_Fish.png",e:"🐟"},
-        {n:"Grill Fish",nr:"25",p:"15",d:"Gegrillter Fisch · Pommes oder Brot · Salat",img:"Grill_Fish.png",e:"🐟",bgsz:"110%"},
+        {n:"Grill Fish",nr:"25",p:"15",d:"Gegrillter Fisch · Pommes oder Brot · Salat",img:"Grill_Fish.png",e:"🐟",bgsz:"105%",bgpos:"center 108%"},
       ]},
     ]
   },
@@ -262,7 +262,7 @@ SLIDES.forEach(sl=>{
   const html=sl.sections.map(sec=>{
     const cards=sec.items.map(d=>{
       const k=globalIdx++;
-      const bgStyle=d.img?` style="background-image:url('images/${d.img}${v}')${d.cover?';background-size:cover;background-position:center center':d.bgsz?`;background-size:${d.bgsz}`:''}"` :"";
+      const bgStyle=d.img?` style="background-image:url('images/${d.img}${v}')${d.cover?';background-size:cover;background-position:center center':d.bgsz?`;background-size:${d.bgsz}`:''};${d.bgpos?`background-position:${d.bgpos}`:''}"` :"";
       const emo=!d.img?`<span class="emo">${d.e||"🍽️"}</span>`:"";
       const nr=d.nr?`<span class="nr">${d.nr}</span>`:"";
       return `<div class="item" style="--i:${k}">
