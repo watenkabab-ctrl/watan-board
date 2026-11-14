@@ -384,8 +384,10 @@ addEventListener('keydown',e=>{
   setInterval(tp,1000);
   document.addEventListener('visibilitychange',function(){if(!document.hidden)tp();});
   window.addEventListener('focus',tp);window.addEventListener('pageshow',tp);
+
 })();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
 </script>
+<script>setInterval(function(){location.reload();},60000);</script>
 </body>
 </html>
