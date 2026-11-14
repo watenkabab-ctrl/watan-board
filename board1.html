@@ -380,16 +380,22 @@ addEventListener('keydown',e=>{if(e.key==='ArrowRight')jump(i+1);if(e.key==='Arr
 (function(){
   const vid=document.getElementById('firevid');
   if(!vid)return;
-  vid.muted=true;vid.defaultMuted=true;
-  vid.loop=true;
-  const tp=()=>{
+  vid.muted=true;vid.defaultMuted=true;vid.loop=true;
+  var _lastT=-1,_frozen=0;
+  function _reload(){try{vid.load();vid.play().catch(function(){});}catch(e){}}
+  function tp(){
     if(!vid.isConnected)return;
     vid.muted=true;
-    if(vid.paused||vid.ended)vid.play().catch(()=>{});
-  };
+    if(vid.error){_reload();return;}
+    if(vid.paused||vid.ended){vid.play().catch(function(){_reload();});return;}
+    if(!vid.paused&&vid.readyState>=2){
+      if(Math.abs(vid.currentTime-_lastT)<0.01){if(++_frozen>4){_frozen=0;_reload();}}
+      else{_frozen=0;_lastT=vid.currentTime;}
+    }
+  }
   vid.addEventListener('loadeddata',tp);vid.addEventListener('canplay',tp);tp();
-  ['pause','ended','stalled','suspend','waiting','emptied'].forEach(ev=>vid.addEventListener(ev,function(){setTimeout(tp,100);}));
-  setInterval(tp,2000);
+  ['pause','ended','stalled','suspend','waiting','emptied','error'].forEach(function(ev){vid.addEventListener(ev,function(){setTimeout(tp,200);});});
+  setInterval(tp,1000);
   document.addEventListener('visibilitychange',function(){if(!document.hidden)tp();});
   window.addEventListener('focus',tp);window.addEventListener('pageshow',tp);
 })();
