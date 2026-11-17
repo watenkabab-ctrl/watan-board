@@ -388,6 +388,6 @@ addEventListener('keydown',e=>{
 })();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
 </script>
-<script>setInterval(function(){location.reload();},60000);</script>
+<script>setInterval(function(){fetch(location.href,{method:'HEAD',cache:'no-store'}).then(function(r){if(r.ok)location.reload();}).catch(function(){});},60000);</script>
 </body>
 </html>
